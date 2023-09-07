@@ -8,16 +8,17 @@ body{
 }
 section{
     height: 98vh;
+    overflow: hidden;
 }
+
 
 /* HEADER */
 .header{
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 20vh;
+    height: 15vh;
 }
-
 .div-logo{
     width: 30vh;
     height: 100%;
@@ -25,7 +26,6 @@ section{
     flex-direction: column;
     text-align: center;
 }
-
 .div-img-logo{
     width: 100%;
     height: 100%;
@@ -33,19 +33,16 @@ section{
     align-items: center;
     justify-content: center;
 }
-
 .logo-header{
     width: 25vh;
     height: 100%;
 }
-
 .txt-logo{
     margin-top: -1vh;
     padding: 0;
     color: black;
-    font-size: 5vh;
+    font-size: 3vh;
 }
-
 .nav{
     width: 90%;
     height: 100%;
@@ -53,8 +50,7 @@ section{
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-}
-
+} 
 .lista-nav{
     width: 100%;
     height: 100%;
@@ -62,13 +58,11 @@ section{
     align-items: center;
     justify-content: space-around;
 }
-
 .lista-nav li{
     list-style: none;
-    font-size: 25px;
+    font-size: 20px;
     color: black;
 }
-
 .div-toca{
     height: 100%;
     width: 30vh;
@@ -76,7 +70,6 @@ section{
     justify-content: center;
     align-items: center;
 }
-
 .div-toca img{
     width: 60%;
     height: 60%;
@@ -85,35 +78,97 @@ section{
 
 /* CONTEÚDO HOME */
 .conteudo-home{
-    width: 100%;    
-    height: 80%;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
 }
 
+
+
+.div-left-home{
+    width: 50%;
+    height: 100%;
+}
 .div-title-home{
-    width: 50%;
-    height: 100%;
-    
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #4F64B0;
+    text-align: center;
+    margin-top: 15vh;
+
+}
+.div-title-home .title-home{
+    color: #4F64B0;
+    font-size: 10vh;
+    font-weight: 300;
+    margin: 0;
 }
 
-.div-img-home{
-    width: 50%;
-    height: 100%;
+.div-title-home .slogan-home{
+    padding-top: 5vh;
+    width: 60vh;
+    border-top: #4F64B0 2px solid;
 }
 
+
+.div-conteudo-home{
+    height: 10%;
+    text-align: center;
+}
+
+.div-conteudo-home p{
+    font-size: 20px;
+    color: #525252;
+}
+
+.div-right-home{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+}
+.div-right-home img{
+    margin-top: 10vh;
+    width: 100vh;
+    height: 70vh;
+}
+.div-botao-home{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+}
+.div-botao-home button{
+    margin-top: 20vh;
+    width: 50vh;
+    height: 80%;
+    background-color: #4F64B0;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+}
 /* FIM CONTEÚDO HOME */
 
-.sobreNos {
+.caixote {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.acimaNos {
+.caixoteCima {
     width: 20%;
     border-bottom: 1.2px solid;
     text-align: center;
     height: fit-content;
+    margin-top: 20px;
     margin-bottom: 20px;
 
     color: #4F64B0;
@@ -147,4 +202,86 @@ section{
 
 .t2Nos {
     text-align: end;
+}
+
+.conteudoMembros {
+    padding-bottom: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.quadradoMembro {
+    width: 75%;
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.cardMembro  {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagemMembro {
+    height: 130px;
+    width: 130px;
+    border-radius: 200px;
+    border: 2px solid rgba(79, 100, 176, 0.88);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.nomeMembro {
+    width: 100%;
+    text-align: center;
+}
+
+.guilima {
+    background-image: url(../assets/matheus.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.kevin {
+    background-image: url(../assets/matheus.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.matheus {
+    background-image: url(../assets/matheus.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.poliana {
+    background-image: url(../assets/poliana.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.samuel {
+    background-image: url(../assets/matheus.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.sthefanny {
+    background-image: url(../assets/sthefanny.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
