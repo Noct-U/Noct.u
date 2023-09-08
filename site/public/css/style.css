@@ -7,7 +7,7 @@ body{
     background-color: #E3E3E3;
 }
 section{
-    height: 110vh;
+    height: 98vh;
     overflow: hidden;
 }
 
@@ -61,8 +61,12 @@ section{
 .lista-nav li{
     list-style: none;
     font-size: 20px;
-    color: black;
+    cursor: pointer;
+    color: #4F64B0;
+    font-weight: bold;
 }
+
+
 .div-toca{
     height: 100%;
     width: 30vh;
@@ -73,13 +77,14 @@ section{
 .div-toca img{
     width: 60%;
     height: 60%;
+    cursor: pointer;
 }
 /* FIM HEADER */
 
 /* CONTEÚDO HOME */
 .conteudo-home{
     width: 100%;
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -89,9 +94,11 @@ section{
 .div-left-home{
     width: 50%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .div-title-home{
-    height: 50%;
+    height: 30%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -99,7 +106,7 @@ section{
     align-items: center;
     color: #4F64B0;
     text-align: center;
-    margin-top: 15vh;
+    margin-top: 10vh;
 
 }
 .div-title-home .title-home{
@@ -125,36 +132,139 @@ section{
     font-size: 20px;
     color: #525252;
 }
-
+.div-button-home{
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-home{
+    height: 10vh;
+    width: 30vh;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #4F64B0;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+}
 .div-right-home{
     width: 50%;
     height: 100%;
     display: flex;
-    align-items: center ;
     justify-content: center;
 }
 .div-right-home img{
-    margin-top: 10vh;
     width: 100vh;
     height: 70vh;
 }
-.div-botao-home{
+
+
+/* FIM CONTEÚDO HOME */
+
+
+
+/* CARDS COM FLIP */
+.div-cards-valores{
+    height: 100%;
     width: 100%;
-    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.container-cards{
+    width: 90%;
+    height: 80%;
+    display: flex;  
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card-valores{
+    width: 50vh;
+    height: 90%;
+    background-color: #4F64B0;
+    border-radius: 10px;
+    position: relative;
+    /* box-shadow: 0 -80px 100px -15px inset black; */
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+}
+.conteudo-card-valores-frente,.conteudo-card-valores-verso{
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.card-valores:hover{
+    transform: rotateY(180deg);
+}
+/* CARD VERSO */
+.div-img-card{
+
+    width: 100%;
+    height: 3vh;
     display: flex;
     justify-content: center;
 }
-.div-botao-home button{
-    margin-top: 20vh;
-    width: 50vh;
-    height: 80%;
-    background-color: #4F64B0;
-    color: #ffffff;
-    border: 3px solid #ffffff;
-    border-radius: 20px;
-    cursor: pointer;
+
+.div-img-card img{
+    width: 15vh;
+    height: 15vh;
+    margin-top: -7vh;
 }
-/* FIM CONTEÚDO HOME */
+.conteudo-card-valores-verso{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotateY(180deg);
+    padding: 5px;
+    
+}
+.div-txt-card-valores{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+
+}
+.div-txt-card-valores p{
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 10vh;
+}
+
+.card3-valores{
+    justify-content: center;
+    align-items: center;
+}
+/* FIM VERSO CARD */
+
+/* CARD FRENTE */
+.conteudo-card-valores-frente{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.conteudo-card-valores-frente img{
+    width: 30vh;
+    height: 30vh;
+}
+.conteudo-card-valores-frente p{
+    color: #ffffff;
+}
+/* FIM CARD FRENTE */
+/* FIM CARDS COM FLIP */
+
 
 .caixote {
     width: 100%;
