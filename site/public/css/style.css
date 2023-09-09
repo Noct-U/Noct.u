@@ -62,8 +62,12 @@ section{
     list-style: none;
     font-size: 20px;
     cursor: pointer;
+
+}
+.lista-nav li a{
     color: #4F64B0;
     font-weight: bold;
+    text-decoration: none;
 }
 
 
@@ -284,6 +288,9 @@ section{
     color: #4F64B0;
     font-weight: 300;
     font-size: 22px;;
+}
+.caixoteTitulo p{
+    font-weight: bold;
 }
 
 .conteudoNos {
@@ -552,4 +559,17 @@ section{
 .socialMediaRodape p {
     width: 100%;
     text-align: center;
+}
+.div-rodape-mancha{
+    background-color: #4F64B0;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.img-mancha-rodape{
+    margin-top: -15vh;
+    width: 100vh;
+    height: 20vh;
 }

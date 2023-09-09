@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <!-- Colocar Titulo -->
-    <title>AquaTech | Cadastro</title>
 
-    <script src="./js/sessao.js"></script>
-    <!-- Colocar favicon -->
-    <link rel="icon" href="./assets/icon/favicon2.ico" />
-    
-  </head>
+    <head>
+        <!-- Colocar Titulo -->
+        <title>NOCT.U login</title>
 
-  <body>
-    
+        <script src="./js/sessao.js"></script>
+        <!-- Colocar favicon -->
+        <link rel="icon" href="./assets/icon/favicon2.ico" />
+        <link rel="stylesheet" href="css/login.css">
+
+    </head>
+
+    <body>
+        <div class="fundo-login">
+            <img class="img-fundo" src="assets/triangulo-login2.png" alt="">
+            <div class="container-login">
+                <div class="caixa-login">
+                    <div class="header-caixa-login">
+                        <img src="assets/toca-escura.svg" alt="">
+                    </div>
+                    <div class="div-title-login">
+                        <p>Bem vindo de volta, faça o login <br> para voltar a sua conta!!</p>
+                    </div>
+                    <div class="div-input">
+                        <div class="div-campos">
+                            <p id="label_email">Email:</p>
+                            <input type="text" id="email" onclick="animacao_input('email')">
+                        </div>
+                    </div>
+                    <div class="div-input">
+                        <div class="div-campos">
+                            <p id="label_senha" >Senha:</p>
+                            <input type="password" id="senha" onclick="animacao_input('senha')">
+                        </div>
+                    </div>
+                    <div class="div-rodape-login">
+                        <button class="button-login">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
-</body>
+    </body>
 
 </html>
 
 <script>
+    function animacao_input(email){
+        if("email" == email){
+            console.log("Email");
+            var inputEmail = document.getElementById("label_email");
+            console.log(inputEmail);
+            inputEmail.style.position = "relative";
 
+        }
+        else{
+            console.log("Senha");
+            var inputSenha= document.getElementById("label_senha");
+            console.log(inputSenha);
+            inputSenha.style.position = "relative";
+        }
+    }
 
     function entrar() {
-       
+
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
@@ -62,7 +105,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    
+
                 });
             }
 
@@ -73,5 +116,5 @@
         return false;
     }
 
-   
+
 </script>
