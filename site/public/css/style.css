@@ -366,14 +366,14 @@ section{
 }
 
 .guilima {
-    background-image: url(../assets/matheus.jpg);
+    background-image: url(../assets/guilima.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .kevin {
-    background-image: url(../assets/matheus.jpg);
+    background-image: url(../assets/kevin.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -394,7 +394,7 @@ section{
 }
 
 .samuel {
-    background-image: url(../assets/matheus.jpg);
+    background-image: url(../assets/samuel.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

@@ -1,99 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <!-- Colocar Titulo -->
-    <title>NOCT.U cadastro</title>
 
-    <script src="./js/sessao.js"></script>
-    <!-- Colocar favicon -->
-    <link rel="icon" href="./assets/icon/favicon.ico" />
-    <link rel="stylesheet" href="css/cadastro.css">
-  </head>
+<head>
+  <!-- Colocar Titulo -->
+  <title>NOCT.U | CADASTRO</title>
 
-  <body>
-      <div class="conteudo-cadastro">
-        <div class="header-cadastro">
+  <script src="./js/sessao.js"></script>
+  <!-- Colocar favicon -->
+  <link rel="icon" href="./assets/icon/favicon.ico" />
+  <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+  <div class="conteudo-cadastro">
+    <div class="aicalica">
+      <div class="header-cadastro">
+        <div class="botaodecria btn1">
+        </div>
+        <div class="eosamuca">
           <a href="index.html">
             <img src="assets/icon/favicon2.svg" alt="">
             <p>NOCT.U</p>
           </a>
         </div>
-        <div class="container-inputs">
-          <div class="div-container-inputs">
-            <div class="div-input">
-              <p>Nome</p>
-              <input type="text">
-            </div>
-            <div class="div-input">
-              <p>Razão Social</p>
-              <input type="text">
-            </div>
-            <div class="div-input">
-              <p>CNPJ</p>
-              <input type="text">
-            </div>
-            <div class="div-input">
-              <p>Telefone</p>
-              <input type="text">
-            </div>
-            <div class="div-input">
-              <p>Email</p>
-              <input type="text">
-            </div>
-            
-          </div>
-          <div class="div-container-inputs">
-            <div class="title-endereco">
-              <p>Endereço</p>
-            </div>
-            <div class="div-input input-duplo">
-              <div>
-                <p>CEP</p>
-                <input type="text">
-              </div>
-              <div>
-                <p>Cidade</p>
-                <input type="text">
-              </div>
-            </div>
-            <div class="div-input">
-              <p>Logradouro</p>
-              <input type="text">
-            </div>
-            <div class="div-input input-duplo">
-              <div>
-                <p>Estado</p>
-                <input type="text">
-              </div>
-              <div>
-                <p>Município</p>
-                <input type="text">
-              </div>
-            </div>
-            <div class="div-input input-duplo-menor">
-              <div>
-                <p>Número</p>
-                <input class="ipt-num" type="text">
-              </div>
-              <div>
-                <p>Complemento</p>
-                <input class="ipt-complemento" type="text">
-              </div>
-            </div>
-            <div class="div-input">
-              <p>Senha</p>
-              <input type="password">
-            </div>
-            
-          </div>
-
-        </div>
-        <div class="div-btn-cadastrar">
-          <button class="button-cadastrar">Cadastre-se</button>
+        <div class="botaodecria">
+          <button>LOGIN</button>
         </div>
       </div>
     </div>
-  </body>
+    <div class="container-inputs">
+      <div class="div-container-inputs">
+        <div class="div-input">
+          <p>Nome</p>
+          <input type="text">
+        </div>
+        <div class="div-input">
+          <p>Razão Social</p>
+          <input type="text">
+        </div>
+        <div class="div-input">
+          <p>CNPJ</p>
+          <input type="text">
+        </div>
+        <div class="div-input">
+          <p>Telefone</p>
+          <input type="text">
+        </div>
+        <div class="div-input">
+          <p>Email</p>
+          <input type="text">
+        </div>
+
+      </div>
+      <div class="div-container-inputs">
+        <div class="title-endereco">
+          <p>Endereço</p>
+        </div>
+        <div class="div-input input-duplo">
+          <div>
+            <p>CEP</p>
+            <input type="text">
+          </div>
+          <div>
+            <p>Cidade</p>
+            <input type="text">
+          </div>
+        </div>
+        <div class="div-input">
+          <p>Logradouro</p>
+          <input type="text">
+        </div>
+        <div class="div-input input-duplo">
+          <div>
+            <p>Estado</p>
+            <input type="text">
+          </div>
+          <div>
+            <p>Município</p>
+            <input type="text">
+          </div>
+        </div>
+        <div class="div-input input-duplo-menor">
+          <div>
+            <p>Número</p>
+            <input class="ipt-num" type="text">
+          </div>
+          <div>
+            <p>Complemento</p>
+            <input class="ipt-complemento" type="text">
+          </div>
+        </div>
+        <div class="div-input">
+          <p>Senha</p>
+          <input type="password">
+        </div>
+
+      </div>
+
+    </div>
+    <div class="div-btn-cadastrar">
+      <button class="button-cadastrar">Cadastre-se</button>
+    </div>
+  </div>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -103,7 +114,7 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    
+
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
