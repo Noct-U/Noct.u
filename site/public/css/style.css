@@ -1,93 +1,104 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500&display=swap');
 
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Urbanist', sans-serif;
     background-color: #E3E3E3;
 }
-section{
+
+section {
     height: 98vh;
     overflow: hidden;
 }
 
 
 /* HEADER */
-.header{
+.header {
     display: flex;
     justify-content: space-around;
     width: 100%;
     height: 15vh;
     align-items: center;
 }
-.div-logo{
+
+.div-logo {
     width: 30vh;
     height: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.div-img-logo{
+
+.div-img-logo {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.logo-header{
+
+.logo-header {
     width: 25vh;
     height: 100%;
 }
-.txt-logo{
+
+.txt-logo {
     margin-top: -1vh;
     padding: 0;
     color: black;
     font-size: 3vh;
 }
-.nav{
+
+.nav {
     width: 90%;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-} 
-.lista-nav{
+}
+
+.lista-nav {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-.lista-nav li{
+
+.lista-nav li {
     list-style: none;
     font-size: 20px;
     cursor: pointer;
 
 }
-.lista-nav li a{
+
+.lista-nav li a {
     color: #4F64B0;
     font-weight: bold;
     text-decoration: none;
 }
 
 
-.div-toca{
+.div-toca {
     height: 100%;
     width: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.div-toca img{
+
+.div-toca img {
     width: 60%;
     height: 60%;
     cursor: pointer;
 }
+
 /* FIM HEADER */
 
 /* CONTEÚDO HOME */
-.conteudo-home{
+.conteudo-home {
     width: 100%;
     height: 100%;
     display: flex;
@@ -96,13 +107,14 @@ section{
 
 
 
-.div-left-home{
+.div-left-home {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-.div-title-home{
+
+.div-title-home {
     height: 30%;
     width: 100%;
     display: flex;
@@ -114,37 +126,40 @@ section{
     margin-top: 10vh;
 
 }
-.div-title-home .title-home{
+
+.div-title-home .title-home {
     color: #4F64B0;
     font-size: 10vh;
     font-weight: 300;
     margin: 0;
 }
 
-.div-title-home .slogan-home{
+.div-title-home .slogan-home {
     padding-top: 5vh;
     width: 60vh;
     border-top: #4F64B0 2px solid;
 }
 
 
-.div-conteudo-home{
+.div-conteudo-home {
     height: 10%;
     text-align: center;
 }
 
-.div-conteudo-home p{
+.div-conteudo-home p {
     font-size: 20px;
     color: #525252;
 }
-.div-button-home{
+
+.div-button-home {
     width: 100%;
     height: 25vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.button-home{
+
+.button-home {
     height: 10vh;
     width: 30vh;
     cursor: pointer;
@@ -153,13 +168,15 @@ section{
     border: 2px solid #ffffff;
     border-radius: 10px;
 }
-.div-right-home{
+
+.div-right-home {
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
-.div-right-home img{
+
+.div-right-home img {
     width: 100vh;
     height: 70vh;
 }
@@ -170,23 +187,24 @@ section{
 
 
 /* CARDS COM FLIP */
-.div-cards-valores{
+.div-cards-valores {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
-.container-cards{
+
+.container-cards {
     width: 90%;
     height: 80%;
-    display: flex;  
+    display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.card-valores{
+.card-valores {
     width: 50vh;
     height: 90%;
     background-color: #4F64B0;
@@ -197,16 +215,19 @@ section{
     transition: transform 0.5s ease-in-out;
     cursor: pointer;
 }
-.conteudo-card-valores-frente,.conteudo-card-valores-verso{
+
+.conteudo-card-valores-frente,
+.conteudo-card-valores-verso {
     position: absolute;
     backface-visibility: hidden;
 }
 
-.card-valores:hover{
+.card-valores:hover {
     transform: rotateY(180deg);
 }
+
 /* CARD VERSO */
-.div-img-card{
+.div-img-card {
 
     width: 100%;
     height: 3vh;
@@ -214,12 +235,13 @@ section{
     justify-content: center;
 }
 
-.div-img-card img{
+.div-img-card img {
     width: 15vh;
     height: 15vh;
     margin-top: -7vh;
 }
-.conteudo-card-valores-verso{
+
+.conteudo-card-valores-verso {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -228,31 +250,34 @@ section{
     text-align: center;
     transform: rotateY(180deg);
     padding: 5px;
-    
+
 }
-.div-txt-card-valores{
+
+.div-txt-card-valores {
     height: 100%;
     width: 70%;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 
 }
-.div-txt-card-valores p{
+
+.div-txt-card-valores p {
     font-size: 20px;
     color: #ffffff;
     margin-bottom: 10vh;
 }
 
-.card3-valores{
+.card3-valores {
     justify-content: center;
     align-items: center;
 }
+
 /* FIM VERSO CARD */
 
 /* CARD FRENTE */
-.conteudo-card-valores-frente{
+.conteudo-card-valores-frente {
     height: 100%;
     width: 100%;
     display: flex;
@@ -260,13 +285,16 @@ section{
     justify-content: center;
     flex-direction: column;
 }
-.conteudo-card-valores-frente img{
+
+.conteudo-card-valores-frente img {
     width: 30vh;
     height: 30vh;
 }
-.conteudo-card-valores-frente p{
+
+.conteudo-card-valores-frente p {
     color: #ffffff;
 }
+
 /* FIM CARD FRENTE */
 /* FIM CARDS COM FLIP */
 
@@ -288,9 +316,11 @@ section{
 
     color: #4F64B0;
     font-weight: 300;
-    font-size: 22px;;
+    font-size: 22px;
+    ;
 }
-.caixoteTitulo p{
+
+.caixoteTitulo p {
     font-weight: bold;
 }
 
@@ -338,12 +368,12 @@ section{
 .quadradoMembro {
     width: 75%;
     display: flex;
-    align-items: center ;
+    align-items: center;
     justify-content: space-between;
     padding-top: 40px;
 }
 
-.cardMembro  {
+.cardMembro {
     height: 150px;
     width: 150px;
     display: flex;
@@ -561,7 +591,8 @@ section{
     width: 100%;
     text-align: center;
 }
-.div-rodape-mancha{
+
+.div-rodape-mancha {
     background-color: #4F64B0;
     width: 100%;
     height: 5vh;
@@ -569,7 +600,8 @@ section{
     justify-content: flex-end;
     align-items: center;
 }
-.img-mancha-rodape{
+
+.img-mancha-rodape {
     margin-top: -15vh;
     width: 100vh;
     height: 20vh;
@@ -580,132 +612,210 @@ section{
 
 
 /* Tela mobile */
-.tela-mobile{
+.tela-mobile {
     display: none;
 }
-@media screen and (max-width: 980px) {
-    @media screen and (max-width: 980px) {
-        /* MATANDO A TELA DE PC */
-        .tela{
-            display: none;
-        }
-        .tela-mobile{
-            display: block;
-        }
 
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: 'Urbanist', sans-serif;
-        }
-        .body{
-            overflow-x: hidden;
-            background-color: #E3E3E3;
-        }
-        .header-mobile{
-            width: 100%;
-            height: 15vh;
-            display: flex;
-            justify-content: space-around;
-        }
-        .div-header-mobile{
-            width: 27%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: start;
-        }
-        .div-header-mobile-ponta{
-            display: flex;
-            justify-content: flex-end;
-            text-align: start;
-        }
-        .div-header-mobile p{
-            color: #4F64B0;
-            font-size: 3vh;
-        }
-        .menu-hamburger{
-            width: 4vh;
-        }
-        /* FIM HEADER */
-        .fundo-txt-home-mobile{
-            width: 100%;
-            height: fit-content;
-            display: flex;
-            justify-content: center;
-        }
-        .div-txt-home-mobile{
-            height: 15vh;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            justify-content:flex-end;
-            text-align: center;
-            border-bottom: 4px solid #4F64B0;
-        }
-        .div-txt-home-mobile p{
-            color: #4F64B0;
-            font-size: 6vh;
-            margin-bottom: 1vh;
-        }
-        .div-slogan-mobile{
-            width: 100%;
-            height: 9vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .div-slogan-mobile p{
-            color: #4F64B0;
-            font-size: 40px;
-        }
-        .fundo-div-convite-mobile{
-            width: 100%;
-            height: fit-content;
-            display: flex;
-            justify-content: center;
-        }
-        .div-convite-mobile{
-            width: 50%;
-            height: 18vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            word-wrap: break-word;
-            font-size: 50px;
-            text-align: center;
-            color: black;
-            font-weight: 200;
-        }
-        .div-img-home-mobile{
-            width: 100%;
-            height: 25vh;
-            display: flex;
-            justify-content: center;
-        }
-        .div-img-home-mobile img{
-            width: 37vh;
-        }
-        .div-btn-descubra-mobile{
-            width: 100%;
-            height: 18vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .button-home-mobile{
-            height: 40%;
-            width: 40%;
-            cursor: pointer;
-            color: #ffffff;
-            background-color: #4F64B0;
-            border: 4px solid #ffffff;
-            border-radius: 30px;
-            font-weight: 100;
-            font-size: 40px;
-        }
-        
+@media screen and (max-width: 980px) {
+
+    /* MATANDO A TELA DE PC */
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Urbanist', sans-serif;
+    }
+
+    .tela {
+        display: none;
+    }
+
+    .tela-mobile {
+        display: block;
+        padding-bottom: 80px;
+    }
+
+    .body {
+        overflow-x: hidden;
+        background-color: #E3E3E3;
+    }
+
+    .header-mobile {
+        width: 100%;
+        height: 15vh;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .div-header-mobile {
+        width: 27%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: start;
+    }
+
+    .div-header-mobile-ponta {
+        display: flex;
+        justify-content: flex-end;
+        text-align: start;
+    }
+
+    .div-header-mobile p {
+        color: #4F64B0;
+        font-size: 3vh;
+    }
+
+    .menu-hamburger {
+        width: 4vh;
+    }
+
+    /* FIM HEADER */
+    .fundo-txt-home-mobile {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+
+    .div-txt-home-mobile {
+        height: 15vh;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: center;
+        border-bottom: 4px solid #4F64B0;
+    }
+
+    .div-txt-home-mobile p {
+        color: #4F64B0;
+        font-size: 6vh;
+        margin-bottom: 1vh;
+    }
+
+    .div-slogan-mobile {
+        width: 100%;
+        height: 9vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .div-slogan-mobile p {
+        color: #4F64B0;
+        font-size: 40px;
+    }
+
+    .fundo-div-convite-mobile {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+
+    .div-convite-mobile {
+        width: 50%;
+        height: 18vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        word-wrap: break-word;
+        font-size: 50px;
+        text-align: center;
+        color: black;
+        font-weight: 200;
+    }
+
+    .div-img-home-mobile {
+        width: 100%;
+        height: 25vh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .div-img-home-mobile img {
+        width: 37vh;
+    }
+
+    .div-btn-descubra-mobile {
+        width: 100%;
+        height: 18vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-home-mobile {
+        height: 40%;
+        width: 40%;
+        cursor: pointer;
+        color: #ffffff;
+        background-color: #4F64B0;
+        border: 4px solid #ffffff;
+        border-radius: 30px;
+        font-weight: 100;
+    }
+
+    .bigCaixa-mobile {
+        padding: 60px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+    }
+
+    .bigCaixaCima-mobile {
+        width: 60%;
+        border-bottom: 1px solid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bigCaixaTitulo-mobile {
+        text-align: center;
+        font-size: 60px;
+        color: #4F64B0;
+    }
+
+    .conteudoSobre-mobile {
+        display: flex;
+        flex-direction: column;
+        padding: 80px;
+        text-align: center;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .blocoSobre-mobile {
+        font-size: 13px;
+    }
+
+    .conteudoMembros-mobile {
+        width: 100%;
+        display: flex;
+        padding: 80px;
+        justify-content: space-around;
+    }
+
+    .blocoMembros-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .imagemMembro-mobile {
+        display: flex;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+        border-radius: 200px;
+        border: 8px solid rgba(79, 100, 176, 0.88);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
     }
 }
