@@ -1,151 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-  <!-- Colocar Titulo -->
   <title>NOCT.U | CADASTRO</title>
-
-  <script src="./js/sessao.js"></script>
-  <!-- Colocar favicon -->
-  <link rel="icon" href="./assets/icon/favicon.ico" />
   <link rel="stylesheet" href="css/cadastro.css">
 </head>
 
 <body>
-  <div class="conteudo-cadastro">
-    <div class="aicalica">
-      <div class="header-cadastro">
-        <div class="botaodecria btn1">
+  <div class="fundo">
+    <div class="caixao">
+      <div class="tela">
+        <div class="infoTela">
+          <span>Informações da Empresa</span>
         </div>
-        <div class="eosamuca">
-          <a href="index.html">
-            <img src="assets/icon/favicon2.svg" alt="">
-            <p>NOCT.U</p>
+        <div class="descTela">
+          <span>Insira as informações sobre a sua empresa</span>
+        </div>
+        <div class="camposTela">
+          <div class="linhaCampo">
+            <input class="campo" placeholder="Razão Social" id="ipt_razao_social">
+            <input class="campo" placeholder="CNPJ" id="ipt_cnpj">
+          </div>
+          <div class="linhaCampo">
+            <input class="campo" placeholder="Email" id="ipt_email">
+            <input class="campo" placeholder="Telefone Celular" id="ipt_telefone">
+          </div>
+          <div class="linhaCampo">
+            <input class="campo" placeholder="Senha" id="ipt_senha">
+            <input class="campo" placeholder="Confirme sua senha" id="ipt_confirmar_senha">
+          </div>
+          <div class="logoCanto">
+            <img src="assets/icon/favicon2.svg">
+          </div>
+        </div>
+      </div>
+      <div class="botoes">
+        <div class="voltar">
+          <img src="assets/seta-login.png" >
+          <a id="voltar" href="index.html">
+            <span>Voltar ao Início</span>
           </a>
         </div>
-        <div class="botaodecria">
-          <button>LOGIN</button>
+        <div class="avancar">
+          <a id="avancar">
+            <span onclick="avancar()">AVANÇAR</span>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="container-inputs">
-      <div class="div-container-inputs">
-        <div class="div-input">
-          <p>Nome</p>
-          <input type="text">
-        </div>
-        <div class="div-input">
-          <p>Razão Social</p>
-          <input type="text">
-        </div>
-        <div class="div-input">
-          <p>CNPJ</p>
-          <input type="text">
-        </div>
-        <div class="div-input">
-          <p>Telefone</p>
-          <input type="text">
-        </div>
-        <div class="div-input">
-          <p>Email</p>
-          <input type="text">
-        </div>
-
-      </div>
-      <div class="div-container-inputs">
-        <div class="title-endereco">
-          <p>Endereço</p>
-        </div>
-        <div class="div-input input-duplo">
-          <div>
-            <p>CEP</p>
-            <input type="text">
-          </div>
-          <div>
-            <p>Cidade</p>
-            <input type="text">
-          </div>
-        </div>
-        <div class="div-input">
-          <p>Logradouro</p>
-          <input type="text">
-        </div>
-        <div class="div-input input-duplo">
-          <div>
-            <p>Estado</p>
-            <input type="text">
-          </div>
-          <div>
-            <p>Município</p>
-            <input type="text">
-          </div>
-        </div>
-        <div class="div-input input-duplo-menor">
-          <div>
-            <p>Número</p>
-            <input class="ipt-num" type="text">
-          </div>
-          <div>
-            <p>Complemento</p>
-            <input class="ipt-complemento" type="text">
-          </div>
-        </div>
-        <div class="div-input">
-          <p>Senha</p>
-          <input type="password">
-        </div>
-
-      </div>
-
-    </div>
-    <div class="div-btn-cadastrar">
-      <button class="button-cadastrar">Cadastre-se</button>
     </div>
   </div>
-  </div>
+
 </body>
 
 </html>
-
 <script>
-  function cadastrar() {
+  function avancar(){
+    //recuperando dados dos inputs
+    var razaoSocial = ipt_razao_social.value;
+    var cnpj = ipt_cnpj.value;
+    var email = ipt_email.value;
+    var telefone = ipt_telefone.value;
+    var senha = ipt_senha.value;
+    var confirmacaoSenha = ipt_confirmar_senha.value;
 
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    //vetor de dados
+    var dadosCad1 = [razaoSocial,cnpj,email,telefone,senha,confirmacaoSenha];
+    console.log(dadosCad1);
 
+    //transformando em JSON e salvar em memória cache 
+    var jsonDados = JSON.stringify(dadosCad1);
+    console.log("JSON: " + jsonDados)
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+    localStorage.setItem('dadosCad1', jsonDados);
 
-        if (resposta.ok) {
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+    //mandando para a pagina 2
+    window.location.href = "cadastro2.html";
 
-    return false;
   }
 
+  //caso o usuário volte da tela 2, essa verificação devolve os dados que ele digitou
+  if(typeof localStorage.getItem("dados1") != 'undefined'){
+    console.log("Estou aqui")
+    var jsonDados = localStorage.getItem('dados1');
+    dadosCad1 = JSON.parse(jsonDados);
+    var razaoSocialID = document.getElementById('ipt_razao_social');
+    var cnpjID = document.getElementById('ipt_cnpj');
+    var emailID = document.getElementById('ipt_email');
+    var telefoneID = document.getElementById('ipt_telefone');
+    var senhaID = document.getElementById('ipt_senha');
+    var confirmarID = document.getElementById('ipt_confirmar_senha');
+
+    razaoSocialID.value = dadosCad1[0];
+    cnpjID.value = dadosCad1[1];
+    emailID.value = dadosCad1[2];
+    telefoneID.value = dadosCad1[3];
+    senhaID.value = dadosCad1[4];
+    confirmarID.value = dadosCad1[5];
+  }
 </script>

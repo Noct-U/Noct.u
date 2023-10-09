@@ -68,6 +68,13 @@ body {
     align-items: center;
 }
 
+.culpaDoMobile {
+    width: 47%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .campo {
     width: 45%;
     display: flex;
@@ -88,6 +95,14 @@ body {
 
 .minusculo {
     width: 15%;
+}
+
+.cidade {
+    width: 48%;
+}
+
+.estado {
+    width: 29%;
 }
 
 .logoCanto {
@@ -139,6 +154,14 @@ a {
 }
 
 @media screen and (max-width: 980px) {
+    .caixao {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .tela {
         width: 80%;
         margin-top: 40px;
@@ -163,6 +186,8 @@ a {
         justify-content: center;
         padding: 45px 0 65px;
         font-size: 30px;
+        text-align: center;
+        
     }
 
     .camposTela {
@@ -184,6 +209,17 @@ a {
         gap: 50px;
     }
 
+    .logradourCEP {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .doisCampo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
     .campo {
         width: 75%;
         display: flex;
@@ -195,16 +231,20 @@ a {
         font-size: 32px;
     }
 
-    .enderecado {
-        width: 70%;
+    .culpaDoMobile {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 49px;
     }
 
-    .encurtado {
+    .mobileG {
+        width: 43%;
+    }
+
+    .mobileP {
         width: 20%;
-    }
-
-    .minusculo {
-        width: 15%;
     }
 
     .logoCanto {

@@ -5,6 +5,7 @@ body {
     padding: 0;
     font-family: 'Urbanist', sans-serif;
     background-color: #E3E3E3;
+    overflow-x: hidden;
 }
 
 section {
@@ -146,7 +147,7 @@ section {
     text-align: center;
 }
 
-.div-conteudo-home p {
+.div-conteudo-home span {
     font-size: 20px;
     color: #525252;
 }
@@ -263,7 +264,7 @@ section {
 
 }
 
-.div-txt-card-valores p {
+.div-txt-card-valores span {
     font-size: 20px;
     color: #ffffff;
     margin-bottom: 10vh;
@@ -291,7 +292,7 @@ section {
     height: 30vh;
 }
 
-.conteudo-card-valores-frente p {
+.conteudo-card-valores-frente span {
     color: #ffffff;
 }
 
@@ -320,7 +321,7 @@ section {
     ;
 }
 
-.caixoteTitulo p {
+.caixoteTitulo span {
     font-weight: bold;
 }
 
@@ -468,7 +469,7 @@ section {
     word-wrap: break-word;
 }
 
-.tituloServico p {
+.tituloServico span {
     width: 60%;
 }
 
@@ -585,9 +586,10 @@ section {
     width: 100%;
     gap: 10px;
     justify-content: space-evenly;
+    align-items: center;
 }
 
-.socialMediaRodape p {
+.socialMediaRodape span {
     width: 100%;
     text-align: center;
 }
@@ -614,6 +616,9 @@ section {
 /* Tela mobile */
 .tela-mobile {
     display: none;
+    width: 100%;
+    height: fit-content;
+    position: relative;
 }
 
 @media screen and (max-width: 980px) {
@@ -631,7 +636,7 @@ section {
 
     .tela-mobile {
         display: block;
-        padding-bottom: 80px;
+        padding: 0;
     }
 
     .body {
@@ -646,6 +651,12 @@ section {
         justify-content: space-around;
     }
 
+    .span-topo-mobile {
+        text-decoration: none;
+        color: #4F64B0;
+        font-size: 40px;
+    }
+
     .div-header-mobile {
         width: 27%;
         height: 100%;
@@ -655,20 +666,16 @@ section {
         text-align: start;
     }
 
-    .div-header-mobile-ponta {
-        display: flex;
-        justify-content: flex-end;
-        text-align: start;
-    }
 
-    .div-header-mobile p {
+    .div-header-mobile span {
         color: #4F64B0;
         font-size: 3vh;
     }
 
-    .menu-hamburger {
-        width: 4vh;
+    .button-home-mobile {
+        font-size: 40px;
     }
+
 
     /* FIM HEADER */
     .fundo-txt-home-mobile {
@@ -688,7 +695,7 @@ section {
         border-bottom: 4px solid #4F64B0;
     }
 
-    .div-txt-home-mobile p {
+    .div-txt-home-mobile span {
         color: #4F64B0;
         font-size: 6vh;
         margin-bottom: 1vh;
@@ -703,7 +710,7 @@ section {
         text-align: center;
     }
 
-    .div-slogan-mobile p {
+    .div-slogan-mobile span {
         color: #4F64B0;
         font-size: 40px;
     }
@@ -759,7 +766,7 @@ section {
     }
 
     .bigCaixa-mobile {
-        padding: 60px 0;
+        padding: 60px 0 20px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -806,16 +813,341 @@ section {
         justify-content: center;
         align-items: center;
         text-align: center;
+        gap: 40px;
     }
 
     .imagemMembro-mobile {
         display: flex;
         align-items: center;
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         border-radius: 200px;
         border: 8px solid rgba(79, 100, 176, 0.88);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .nomeMembro-mobile {
+        font-size: 32px;
+    }
+
+    .div-cards-mobile {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .card-mobile {
+        width: 43%;
+        height: 90%;
+        border-radius: 80px;
+        background-color: #4F64B0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .header-card {
+        width: 100%;
+        height: 6vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-card img {
+        position: absolute;
+        top: -4vh;
 
     }
+
+    .div-txt-card {
+        width: 75%;
+        height: 80%;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .div-txt-card span {
+        color: white;
+        font-size: 30px;
+    }
+
+    .div-card2-mobile {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .div-txt-card2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #servicos-mobile {
+        background: #4F64B0;
+        color: #E3E3E3 !important;
+    }
+
+    #servicosCima-mobile {
+        border-bottom: 2px solid #E3E3E3;
+    }
+
+    #servicoTitulo-mobile {
+        color: #E3E3E3;
+    }
+
+    .conteudoServicos-mobile {
+        display: flex;
+        flex-direction: column;
+        padding: 80px;
+        font-size: 12px;
+        text-align: center;
+        gap: 60px;
+    }
+
+    .conteudoBaixoServicos-mobile {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 60px;
+    }
+
+    .quadradoServicos-mobile {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .elementoServicos-mobile {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imgServico-mobile {
+        width: 120px;
+        height: 120px;
+    }
+
+    .descricaoServico-mobile {
+        font-size: 32px;
+    }
+
+    .div-footer {
+        height: fit-content;
+        width: 100%;
+        background-color: #D9D9D9;
+    }
+
+    .header-footer {
+        width: 100%;
+        height: 3vh;
+        background-color: #D9D9D9;
+        position: relative;
+    }
+
+    .header-footer img {
+        position: absolute;
+        top: -5vh;
+        width: 100%;
+        height: 10vh;
+    }
+
+    .div-title-footer-mobile {
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .logo-nome-footer-mobile {
+        width: 18vh;
+        height: 100%;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 35px;
+        font-weight: 800;
+    }
+
+    .logo-footer-mobile p {
+        color: #4F64B0;
+        border-bottom: 2px solid;
+    }
+
+    .camada2-footer-mobile {
+        width: 100%;
+        height: 5vh;
+        display: flex;
+        justify-content: end;
+    }
+
+    .subcamada2-mobile {
+        width: 69%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box-subcamada2-mobile {
+        width: 49%;
+        height: 100%;
+        word-wrap: break-word;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+    }
+
+    .convite-footer-mobile {
+        font-size: 30px;
+        color: #2B2929;
+    }
+
+    .camada3-footer-mobile {
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .camada3-footer-div1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 33%;
+        height: 100%;
+    }
+
+    .camada3-footer-div1 img {
+        width: 4vh;
+    }
+
+    .camada3-footer-div1 span {
+        width: 100%;
+        font-size: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: 2vh;
+    }
+
+    .camada3-footer-div {
+        width: 33%;
+        height: 100%;
+        word-wrap: break-word;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    .camada4-footer-mobile {
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .box-camada4-mobile {
+        width: 33%;
+        height: 100%;
+    }
+
+    .icon-txt-footer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        font-size: 20px;
+    }
+
+    .icon-txt-footer img {
+        width: 4vh;
+        margin-left: 1vh;
+    }
+
+    .caixa2-mobile-footer {
+        text-align: center;
+        word-wrap: break-word;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+    }
+
+    .caixa3-mobile-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .caixa3-mobile-footer img {
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .rodape {
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .blocoRodape {
+        width: 28%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .tituloBlocoRodape {
+        font-size: 24px;
+    }
+
+    .esquerdoRodape {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .meioRodapeBLoco {
+        justify-content: space-evenly;
+    }
+
+    .duvidasRodape {
+        justify-content: space-around;
+        align-items: center;
+        font-size: 10px;
+    }
+
+    .socialMediaRodape {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .socialMediaRodape span {
+        width: 100%;
+        text-align: center;
+    }
+    
 }

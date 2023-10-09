@@ -1,50 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     font-family: 'Urbanist', sans-serif;
+    overflow: hidden;
 }
 
-.fundo-login{
+.fundo-login {
     width: 100%;
     height: 100vh;
     background-color: #384576;
     display: flex;
-    justify-content: flex-end;
-}
-.img-fundo{
-    width: 100%;
-}
-.container-login{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
-.caixa-login{
+
+.img-fundo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+.caixa-login {
     width: 60vh;
     height: 70vh;
     background-color: #D9D9D9;
     border: 4px solid #091338;
     border-radius: 40px;
-    box-shadow: 0px 8px 10px black;
+    position: absolute;
     display: flex;
     flex-direction: column;
 }
-.header-caixa-login{
+
+.header-caixa-login {
     width: 100%;
     height: 18vh;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.header-caixa-login img{
+
+.header-caixa-login img {
     width: 12vh;
     margin-right: 3vh;
 }
-.div-title-login{
+
+.div-title-login {
     width: 100%;
     height: 10vh;
     color: #000000;
@@ -53,45 +57,164 @@
     text-align: center;
     word-wrap: break-word;
 }
-.div-input{
+
+.div-inputs {
+    width: 100%;
+    height: 10vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-.div-campos{
-    width: fit-content;
-    height: 4vh;
-    position: relative;
-    margin-top: 5vh;
-}
-.div-campos input{
-    width: 45vh;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-bottom: #000000 2px solid;
-    font-size: 20px;
 
 }
-.div-campos p{
-    position: absolute;
-    bottom: 2px;
+
+.subdiv-inputs {
+    width: 80%;
+    height: 100%;
 }
-.div-rodape-login{
+
+.div-inputs p {
+    color: #384576;
+
+}
+
+.div-inputs input {
+    outline: none;
+    width: 45vh;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid black;
+}
+
+.div-rodape-login {
     width: 100%;
     height: fit-content;
     display: flex;
-    justify-content: center;
-    margin-top: 3vh;
-}
-.button-login{
+    justify-content: space-around;
+    align-items: center;
     margin-top: 5vh;
+}
+
+.button-login {
     height: 7vh;
-    width: 30vh;
+    width: 20vh;
     cursor: pointer;
     color: #ffffff;
     background-color: #091338;
     border: 2px solid #ffffff;
     border-radius: 10px;
-    
+}
+
+.div-seta-saida {
+    width: 20vh;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.div-seta-saida a {
+    text-decoration: none;
+}
+
+.volta-p {
+    margin-right: 4vh;
+}
+
+@media screen and (max-width: 980px) {
+    .caixa-login {
+        width: 40vh;
+        height: 50vh;
+        border: 4px solid #091338;
+        border-radius: 40px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-caixa-login {
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .header-caixa-login img {
+        width: 8vh;
+        margin-right: 3vh;
+    }
+
+    .div-title-login {
+        width: 100%;
+        height: 10vh;
+        color: #000000;
+        font-weight: bold;
+        font-size: 40px;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .div-inputs {
+        margin-top: 2vh;
+        width: 100%;
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .subdiv-inputs {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        text-align: start;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .div-inputs p {
+        color: #384576;
+        font-size: 40px;
+        font-weight: 400;
+    }
+
+    .div-inputs input {
+        outline: none;
+        width: 45vh;
+        font-size: 40px;
+    }
+
+    .div-rodape-login {
+        width: 100%;
+        height: fit-content;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5vh;
+    }
+
+    .button-login {
+        height: 7vh;
+        width: 15vh;
+        cursor: pointer;
+        font-size: 40px;
+    }
+
+    .div-seta-saida {
+        width: 15vh;
+        height: 5vh;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 40px;
+        color: #384576;
+    }
+
+    .div-seta-saida a {
+        text-decoration: none;
+    }
+
+    .div-seta-saida a img {
+        width: 20px;
+    }
+
+    .volta-p {
+        margin-right: 4vh;
+    }
 }

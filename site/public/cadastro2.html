@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>NOCT.U | CADASTRO</title>
+    <link rel="stylesheet" href="css/cadastro2.css">
+</head>
+
+<body>
+    <div class="fundo">
+        <div class="caixao">
+            <div class="tela">
+                <div class="infoTela">
+                    <span>Informações de Endereço</span>
+                </div>
+                <div class="descTela">
+                    <span>Insira as informações sobre o endereço de sua empresa</span>
+                </div>
+                <div class="camposTela">
+                    <div class="linhaCampo logradourCEP">
+                        <input class="campo enderecado" placeholder="Logradouro" id="ipt_logradouro">
+                        <input class="campo encurtado" placeholder="CEP" id="ipt_cep">
+                    </div>
+                    <div class="linhaCampo doisCampo">
+                        <input class="campo enderecado mobileG" placeholder="Complemento" id="ipt_complemento">
+                        <input class="campo encurtado mobileP" placeholder="Número" id="ipt_num">
+                    </div>
+                    <div class="linhaCampo">
+                        <input class="campo " placeholder="Bairro" id="ipt_bairro">
+                        <div class="culpaDoMobile">
+                            <input class="campo cidade mobileG" placeholder="Cidade" id="ipt_cidade">
+                            <input class="campo estado mobileP" placeholder="Estado" id="ipt_estado">
+                        </div>
+                    </div>
+                    <div class="logoCanto">
+                        <img src="assets/icon/favicon2.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="botoes">
+                <div class="voltar">
+                    <img src="assets/seta-login.png">
+                    <a id="voltar" onclick="voltar()">
+                        <span>Voltar ao Início</span>
+                    </a>
+                </div>
+                <div class="avancar">
+                    <a id="avancar" onclick="cadastrar()">
+                        <span>FINALIZAR</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    
+
+    //pegando dado da memória cache
+    var jsonDados = localStorage.getItem('dadosCad1');
+    var dadosCad1 = JSON.parse(jsonDados);
+
+    console.log(dadosCad1);
+    
+    function cadastrar(){
+        var logradouro = ipt_logradouro.value;
+        var cep = ipt_cep.value;
+        var complemento = ipt_complemento.value;
+        var numero = ipt_num.value;
+        var bairro = ipt_bairro.value;
+        var cidade = ipt_cidade.value;
+        var estado = ipt_estado.value;
+        var dadosVazios = [];
+        
+        //adicionando os novos dados a um segundo vetor referente ao 2° pag cadastro
+        var dadosCad2 = [logradouro,cep,complemento,numero,bairro,cidade,estado];
+
+        //verificando se existe dados vazios
+        for(var i = 0; i < dadosCad1.length; i++){
+            if(dadosCad1[i] == ""){
+                //Pegando as informações vazias e jogando em um vetor para mostrar pro usuário(pode ignorar é apenas uma verificação)
+                dadosVazios.push(dadosCad1[i]);
+            }
+        }
+
+        //verificando se existe dados vazios
+        for(var i = 0; i < dadosCad2.length; i++){
+            if(dadosCad2[i] == ""){
+                //Pegando as informações vazias e jogando em um vetor para mostrar pro usuário(pode ignorar é apenas uma verificação)
+                dadosVazios.push(dadosCad2[i]);
+            }
+        }
+        console.log(dadosVazios.length);
+        //verificando se existe dado vazio, se existir dadosVazio[0] é pq existe algum dado não preenchido
+        if(dadosVazios != 0){
+            alert("Existe campos vazios no formulário");
+        }
+        else{
+
+            // Enviando o valor da nova input
+            fetch("/empresas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                razaoSocialServer: dadosCad1[0],
+                cnpjServer: dadosCad1[1],
+                emailServer: dadosCad1[2],
+                telefoneServer: dadosCad1[3],
+                senhaServer: dadosCad1[4],
+                confirmaServer: dadosCad1[5],
+
+                //Dados da segunda pag de cadastro
+                logradouroServer: dadosCad2[0],
+                cepServer: dadosCad2[1],
+                bairroServer: dadosCad2[4],
+                cidadeServer: dadosCad2[5],
+                estadoServer: dadosCad2[6],
+            }),
+            })
+            .then(function (resposta) {
+                
+                fetch("/empresas/consultarUltimaEmpresa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+                })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                    resposta.json().then(jsonResposta => {
+                    console.log(JSON.stringify(jsonResposta));
+
+                    var idUltimaEmpresa = jsonResposta[0].id;
+                    fetch("/empresas/consultarUltimoEndereco", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                    })
+                    .then(function (resposta) {
+                        if (resposta.ok) {
+                        resposta.json().then(jsonResposta => {
+                        console.log(JSON.stringify(jsonResposta));
+
+                        var idUltimoEndereco = jsonResposta[0].id;
+
+                        console.log("Ultima Empresa: "+idUltimaEmpresa);
+                        console.log("Ultimo Endereço: "+idUltimoEndereco);
+                        fetch("/empresas/cadastrarLocalidade", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            //Dados da primeira pag de cadastro
+                            complementoServer: dadosCad2[2],
+                            numeroServer: dadosCad2[3],
+                            idUltimaEmpresaServer: idUltimaEmpresa,
+                            idUltimoEnderecoServer: idUltimoEndereco
+                        }),
+                        })
+                        .then(function (resposta) {
+                        
+                            setTimeout(() => {
+                                window.location = "login.html";
+                            }, "2000")
+                        })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                    });
+
+                    }})
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });      
+
+                });
+
+                }})
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                }); 
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    
+            return false;
+
+        }    
+
+    }
+
+    function voltar(){
+        var logradouro = ipt_logradouro.value;
+        var cep = ipt_cep.value;
+        var complemento = ipt_complemento.value;
+        var numero = ipt_num.value;
+        var bairro = ipt_bairro.value;
+        var cidade = ipt_cidade.value;
+        var estado = ipt_estado.value;
+        console.log("Estou aqui");
+        var dadosCad2 = [logradouro,cep,complemento,numero,bairro,cidade,estado];
+        var jsonDados2 = JSON.stringify(dadosCad2);
+        var jsonDados = JSON.stringify(dadosCad1);
+        localStorage.setItem('dados1',jsonDados);
+        localStorage.setItem('dados2',jsonDados2);
+      
+    
+        window.location.href = "cadastro.html";
+    }
+        
+        //caso o usuário volte da tela 2, essa verificação devolve os dados que ele digitou
+    if(typeof localStorage.getItem("dados2") != 'undefined'){
+
+        var jsonDados2 = localStorage.getItem('dados2');
+        var dadosCad2 = JSON.parse(jsonDados2);
+        console.log("vetor de dados" + dadosCad2)
+        var logradouroID = document.getElementById('ipt_logradouro');
+        var cepID = document.getElementById('ipt_cep');
+        var complementoID = document.getElementById('ipt_complemento');
+        var numID = document.getElementById('ipt_num');
+        var bairroID = document.getElementById('ipt_bairro');
+        var cidadeID = document.getElementById('ipt_cidade');
+        var estadoID= document.getElementById('ipt_estado');
+
+        logradouroID.value = dadosCad2[0];
+        cepID.value = dadosCad2[1];
+        complementoID.value = dadosCad2[2];
+        numID.value = dadosCad2[3];
+        bairroID.value = dadosCad2[4];
+        cidadeID.value = dadosCad2[5];
+        estadoID.value = dadosCad2[6];
+
+    }
+</script>
