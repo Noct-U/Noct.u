@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <title>NOCT.U | CADASTRO</title>
+</head>
+
+<body>
+
+            <input class="campo" placeholder="Nome" id="iptNome">
+            <input class="campo" placeholder="E-mail" id="iptEmail">
+            <input class="campo" placeholder="Senha" id="iptSenha">
+            <button onclick="cadastrar()">Cadastrar</button>
+            
+         
+</body>
+
+</html>
+<script>
+    function cadastrar(){
+        var nome = iptNome.value;
+        var email = iptEmail.value;
+        var senha = iptSenha.value;
+
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha
+            }),
+            })
+            .then(function (resposta) {
+
+            }).then(function (resposta) {
+                   
+                alert("cadastrado");     
+                // setTimeout(() => {
+                //     window.location = "login.html";
+                // }, "2000")
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+</script>
