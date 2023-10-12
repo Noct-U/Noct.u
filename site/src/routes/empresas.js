@@ -24,5 +24,10 @@ router.post("/cadastrarLocalidade", function (req, res) {
     empresaController.cadastrarLocalidade(req, res);
 });
 
+router.post("/exibirEmpresas", function (req, res) {
+    empresaController.exibirEmpresas(req, res);
+});
+
+
 
 module.exports = router;

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro de Computador</title>
+    </head>
+    <body>
+        <button onclick="exibirEmpresas()">teste</button>
+        <select name="" id="lista_empresas">
+            
+        </select>
+    </body>
+</html>
+<script>
+    exibirEmpresas();
+    function exibirEmpresas(){
+
+        fetch("/empresas/exibirEmpresas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json.id));
+
+                   for(var i = 0; i <= json.length; i++){
+                    lista_empresas.innerHTML +=`<option value="${json[i].id}">${json[i].razaoSocial}</option>`;
+                   }
+
+                    // var nomeEmpresa = json.razaoSocial;
+                    // var idEmpresa = json.id;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+
+                    console.log(json.id)
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+</script>

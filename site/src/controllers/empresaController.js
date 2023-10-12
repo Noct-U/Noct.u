@@ -107,6 +107,7 @@ function consultarUltimaEmpresa(req, res) {
         );
 }
 
+
 function consultarUltimoEndereco(req, res) {
     
     empresaModel.consultarUltimoEndereco()
@@ -153,6 +154,24 @@ function cadastrarLocalidade(req, res) {
         );
 }
 
+function exibirEmpresas(req, res) {
+    
+    empresaModel.exibirEmpresas()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 
 module.exports = {
@@ -160,5 +179,6 @@ module.exports = {
     cadastrar,
     consultarUltimaEmpresa,
     consultarUltimoEndereco,
-    cadastrarLocalidade
+    cadastrarLocalidade,
+    exibirEmpresas
 }
