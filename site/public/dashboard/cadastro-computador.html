@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro de Computador</title>
-    </head>
-    <body>
-        <button onclick="exibirEmpresas()">teste</button>
-        <select name="" id="lista_empresas">
-            
-        </select>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Computador</title>
+</head>
+
+<body>
+    <input placeholder="numero de serie" id="ipt_numeroSerie">
+    <input placeholder="modelo" id="ipt_modelo">
+
+    <button onclick="cadastrar()">cadastrar</button>
+    <select name="" id="lista_empresas">
+
+    </select>
+</body>
+
 </html>
 <script>
+
+    function cadastrar() {
+        var numSerie = ipt_numeroSerie.value;
+        var modelo = ipt_modelo.value;
+
+        fetch("/computadores/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                numSerieServer:numSerie,
+                modeloServer:modelo
+            }),
+        })
+            .then(function (resposta) {
+
+                alert("Cadastrado");
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
     exibirEmpresas();
-    function exibirEmpresas(){
+    function exibirEmpresas() {
 
         fetch("/empresas/exibirEmpresas", {
             method: "POST",
@@ -31,9 +63,9 @@
                     console.log(json);
                     console.log(JSON.stringify(json.id));
 
-                   for(var i = 0; i <= json.length; i++){
-                    lista_empresas.innerHTML +=`<option value="${json[i].id}">${json[i].razaoSocial}</option>`;
-                   }
+                    for (var i = 0; i <= json.length; i++) {
+                        lista_empresas.innerHTML += `<option value="${json[i].id}">${json[i].razaoSocial}</option>`;
+                    }
 
                     // var nomeEmpresa = json.razaoSocial;
                     // var idEmpresa = json.id;
