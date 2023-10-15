@@ -104,7 +104,12 @@ body {
 .estado {
     width: 29%;
 }
-
+.bairro{
+    width: 65%;
+}
+.complemento{
+    width: 100%;
+}
 .logoCanto {
     width: 95%;
     height: 50px;

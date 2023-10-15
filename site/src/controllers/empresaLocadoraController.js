@@ -1,4 +1,4 @@
-var empresaModel = require("../models/empresaModel");
+var empresaLocadoraModel = require("../models/empresaLocadoraModel");
 // var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -11,7 +11,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        empresaModel.autenticar(email, senha)
+        empresaLocadoraModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -54,23 +54,12 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
-    var razaoSocial = req.body.razaoSocialServer;
     var cnpj = req.body.cnpjServer;
-    var telefone = req.body.telefoneServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-
-    var cep = req.body.cepServer;
-    var uf = req.body.ufServer;
-    var cidade = req.body.cidadeServer;
-    var bairro = req.body.bairroServer;
-    var logradouro = req.body.logradouroServer;
- 
-
-    // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-    empresaModel.cadastrarEmpresa(nome,razaoSocial,cnpj,telefone,email,senha),
-    empresaModel.cadastrarEndereco(cep,uf,cidade,bairro,logradouro)
-    // empresaModel.cadastrarLocal(numero,complemento)
+    var fkMatriz = req.body.fkMatrizServer;
+    var fkEmpresa = req.body.idEmpresaServer;
+    if(fkMatriz == "nunhuma"){
+        // Passe os valores como parâmetro e vá para o arquivo empresaLocadoraModel.js
+        empresaLocadoraModel.cadastrarMatriz(nome,cnpj,fkMatriz,fkEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -85,82 +74,33 @@ function cadastrar(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
+
+    }
+    else{
+        empresaLocadoraModel.cadastrarLocadora(nome,cnpj,fkMatriz,fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+  
 }
-
-
-
-function consultarUltimaEmpresa(req, res) {
     
-    empresaModel.consultarUltimaEmpresa()
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
 
-
-function consultarUltimoEndereco(req, res) {
-    
-    empresaModel.consultarUltimoEndereco()
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-
-function cadastrarLocalidade(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var complemento = req.body.complementoServer;
-    var numero = req.body.numServer;
-    var andar = req.body.andarServer;
-    var sala = req.body.salaServer;
-    var idUltimoEndereco = req.body.idUltimoEnderecoServer;
-    var idUltimaEmpresa = req.body.idUltimaEmpresaServer;
-
-    // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-
-    empresaModel.cadastrarLocal(numero,complemento,andar,sala,idUltimoEndereco,idUltimaEmpresa)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
 
 function exibirEmpresas(req, res) {
-    
-    var idEmpresa = idEmpresaServer;
-    empresaModel.exibirEmpresas(idEmpresa)
+    var idEmpresa = req.body.idEmpresaServer;
+    empresaLocadoraModel.exibirEmpresas(idEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -181,8 +121,5 @@ function exibirEmpresas(req, res) {
 module.exports = {
     autenticar,
     cadastrar,
-    consultarUltimaEmpresa,
-    consultarUltimoEndereco,
-    cadastrarLocalidade,
-    exibirEmpresas
+    exibirEmpresas,
 }
