@@ -27,8 +27,8 @@ public class TestePrototipo {
         dao.adicionarHardware(hardwareCPU);
         dao.adicionarHardware(hardwareMemoria);
 
-        Componente componenteCPU = new Componente(1,1,"123dsa45");
-        Componente componenteRAM = new Componente(1,2,"78asd9s1");
+        Componente componenteCPU = new Componente(1, 1, "123dsa45");
+        Componente componenteRAM = new Componente(1, 2, "78asd9s1");
 
         dao.adicionarComponente(componenteCPU);
         dao.adicionarComponente(componenteRAM);
@@ -49,14 +49,12 @@ public class TestePrototipo {
 
                 String valorMemoriaTexto = String.format("%.2f", memoria.getEmUso().doubleValue());
 
-
-                Componente.Captura cap01 = new Componente.Captura(valorProcessador, dataAtual, 1, 1, 1);
-                Componente.Captura cap02 = new Componente.Captura(valorMemoria, dataAtual, 1, 2, 2);
+                Captura cap01 = new Captura(valorProcessador, dataAtual, 1, 1, 1);
+                Captura cap02 = new Captura(valorMemoria, dataAtual, 1, 2, 2);
 
                 dao.adicionarCaptura(cap01);
                 dao.adicionarCaptura(cap02);
                 System.out.println(dao.exibirCaptura());
-
             }
         };
         // TEMPORIZADOR PARA A TAREFA.

@@ -2,6 +2,7 @@ package dao;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import teste.Captura;
 import teste.Componente;
 import teste.Hardware;
 
@@ -17,12 +18,12 @@ public class NoctuDao {
     }
 
     // INSERT NO BANCO PARA CAPTURAR E EXIBIR DADOS EM TEMPO REAL
-    public void adicionarCaptura(Componente.Captura captura) {
-        con.update("INSERT INTO captura (valor, dtCaptura, fkComponenteIdComputador, fkComponenteIdHardware, fkComponente) VALUES (?, ?, ?, ?, ?)", captura.getValor(), captura.getDtCaptura(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
+    public void adicionarCaptura(Captura captura) {
+        con.update("INSERT INTO captura (valor, dtCaptura, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?, ?)", captura.getValor(), captura.getDtCaptura(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
     }
 
-    public void adicionarCapturaComDescricao(Componente.Captura captura) {
-        con.update("INSERT INTO captura (valor, descricao, dtCaptura, fkComponenteIdComputador, fkComponenteIdHardware, fkComponente) VALUES (?, ?, ?, ?, ?, ?)", captura.getValor(), captura.getDescricao(), captura.getDtCaptura(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
+    public void adicionarCapturaComDescricao(Captura captura) {
+        con.update("INSERT INTO captura (valor, descricao, dtCaptura, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?, ?, ?)", captura.getValor(), captura.getDescricao(), captura.getDtCaptura(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
     }
 
     public List<Componente.Captura> exibirCaptura() {
@@ -32,7 +33,7 @@ public class NoctuDao {
     }
 
     public void adicionarHardware(Hardware hardware) {
-        con.update("INSERT INTO hardware (nome, capacidade, fkModeloHardware) VALUES (?, ?, ?)", hardware.getNome(), hardware.getCapacidade(), hardware.getFkModeloHardware());
+        con.update("INSERT INTO hardware (nome, capacidade, fkTipoHardware) VALUES (?, ?, ?)", hardware.getNome(), hardware.getCapacidade(), hardware.getFkModeloHardware());
     }
 
     public void adicionarComponente(Componente componente) {
