@@ -5,20 +5,21 @@
   <title>NOCT.U | CADASTRO</title>
 </head>
 
-<body>
+<body onload="validarSessao(), atualizarFeed()">
+  <form id="form_postagem" method="post" onsubmit="return publicar()">
+    <input name="nome" class="campo" placeholder="Nome" id="iptNome">
+    <input name="email" class="campo" placeholder="E-mail" id="iptEmail">
+    <input name="senha" campo placeholder="Senha" id="iptSenha">
+    <input name="tipoFunc" type="text" placeholder="Tipo de Funcionário..." id="iptFuncionario">
+    <select name="empresa" id="iptEmpresas">
 
-            <input class="campo" placeholder="Nome" id="iptNome">
-            <input class="campo" placeholder="E-mail" id="iptEmail">
-            <input class="campo" placeholder="Senha" id="iptSenha">
-            <input type="text" placeholder="Tipo de Funcionário..." id="iptFuncionario">
-            <select name="" id="iptEmpresas">
+    </select>
+    <button onclick="cadastrar()">Cadastrar</button>
+  </form>
+  <a href="dashboard.html">Voltar</a>
+  <a href="../login.html">Logout</a>
 
-            </select>
-            <button onclick="cadastrar()">Cadastrar</button>
-            <a href="dashboard.html">Voltar</a>
-            <a href="../login.html">Logout</a>
-            
-         
+
 </body>
 
 </html>
