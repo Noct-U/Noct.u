@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Urbanist', sans-serif;
+    overflow: hidden;
+}
+body{
+    background-color: #6174BB;
+    height: 100vh;
+    width: 100%;
+}
+header{
+    width: 100%;
+    height: 15vh;
+
+    border-bottom: 5px solid #D9D9D9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.div-header{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+
+    font-weight: 300;
+    font-size: 6vh;
+    color: #D9D9D9;
+}
+.div-header img{
+    width: 13vh;
+}
+.txt-header{
+    font-size: 4vh;
+    font-weight: 300;
+}
+.div-dash{
+    width: 300vh;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    
+}
+.div-alertas{
+    width: 17%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+}
+.div-alertas2{
+    width: 90%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+
+    flex-direction: column;
+
+}
+.alertas{
+    width: 95%;
+    height: 80%;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    border: 5px solid white;
+    opacity: 80%;
+}
+.div-alertas2 button{
+    height: 15%;
+    border-radius: 15px;
+    width: 98%;
+    background-color: #4F64B0;
+    border: 5px solid white;
+    color: white;
+}
+.div-conteudo{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+}
+.div-kpis{
+    margin-top: 10vh;
+    width: 100%;
+    height: 25%;
+    background-color: red;
+}
+.div-graficos{
+    width: 100%;
+    height: 30%;
+    background-color: aqua;
+}
