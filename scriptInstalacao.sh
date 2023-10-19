@@ -1,3 +1,7 @@
+#antes de executar o script fazer a instalação do git na VM (sudu apt install git);
+#fazer o git clone do repositório; selecionar o diretório; dar permissão ao arquivo (chmod +x NOMEDOARQUIVO.sh);
+#executar o arquivo (./NOMEDOARQUIVO.sh)
+
 #!/bin/bash
 
 sudo adduser noctu
