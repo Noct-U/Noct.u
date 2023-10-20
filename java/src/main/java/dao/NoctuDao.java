@@ -36,6 +36,10 @@ public class NoctuDao {
         con.update("INSERT INTO hardware (nome, capacidade, fkTipoHardware) VALUES (?, ?, ?)", hardware.getNome(), hardware.getCapacidade(), hardware.getFkModeloHardware());
     }
 
+    public void adicionarHardwareComEspecificidade(Hardware hardware) {
+        con.update("INSERT INTO hardware (nome, especificidade, capacidade, fkTipoHardware) VALUES (?, ?, ?, ?)", hardware.getNome(), hardware.getEspecificidade(), hardware.getCapacidade(), hardware.getFkModeloHardware());
+    }
+
     public void adicionarComponente(Componente componente) {
         con.update("INSERT INTO componente (fkComputador, fkHardware, codigoSerial) VALUES (?, ?, ?)", componente.getFkComputador(), componente.getFkHardware(), componente.getCodigoSerial());
     }
