@@ -11,7 +11,7 @@ echo "Verificando se você possui o Java instalado na sua máquina!"
 sleep 2
 
 java -version
-if [ $? -eq 0 ]; 
+if [ $? == 0 ]; 
     then
         echo -e "Você ja possui o java instalado"
         sleep 4

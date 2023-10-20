@@ -59,6 +59,7 @@ public class TestePrototipo {
         Timer timer = new Timer();
 
         // CRIA UMA TAREFA PARA SER EXECUTADA REPETIDAMENTE.
+
         TimerTask tarefa = new TimerTask() {
             @Override
             public void run() {
