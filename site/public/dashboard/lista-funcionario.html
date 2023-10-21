@@ -1,168 +1,125 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/listaComp.css">
-    <link rel="icon" href="../assets/icon/logo.ico">
-    <title>>NOCT.U | FUNCIONÁRIOS</title>
-</head>
-
-<header>
-    <div class="nav">
-        <img src="../assets/icon/favicon.ico" alt="icon" width="180px">
-        <div class="junto">
-            <label class="noctu">NOCT.U</label>
-            <br>
-            <div class="sub">Funcionários Registrados</div>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
+        <title>Lista de Computadores</title>
+        <link rel="stylesheet" href="../css/lista-empresa.css">
+        <link rel="stylesheet" href="../css/lista-computador.css">
+        <link rel="stylesheet" href="../css/lista-funcionario.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class = "header-container">
+                <div class="header-top">
+                    <div class="header-logo-image">
+                        <img class="logoImage" src="../assets/icon/favicon2.svg">  
+                    </div>     
+                    <div class="header-title">
+                        <h1> NOCT.U </h1>
+                    </div>
+                    <div class="nomeEmpresa">
+                        <label id="nomeEmpresa">Simpress</label>
+                    </div>
+                </div>
+                <div class="header-end">
+                    <label>Funcionários registrados</label>
+                </div>
+           </div> 
+           <div class="body-container">
+                <div class="form-container">
+                    <div class="form-logo">
+                        <div class="selecao">
+                            <label for="emp">Empresas</label>
+                            <select name="empresas" id="emp" class="campo">
+                                <option value="empresa1">Sptech</option>
+                                <option value="empresa1">Elera</option>
+                                <option value="empresa1">Simpress</option>
+                            </select>
+                        </div>
+                        <img class="formLogo" src="../assets/funcionarios 1.png">
+                    </div>
+                    <div class="form-body">
+                        <div class="list-item">
+                            <div class="form-info">
+                                <div class="form-label">
+                                    <label class="label-info">Nome:</label> 
+                                    <label class="info">Kevin</label>   
+                                </div>
+                                <div class="form-label">
+                                    <label class="label-info" >Email:</label>    
+                                    <label class="info">kevin@sptech.school</label>    
+                                </div>
+                            </div>
+                            <div class="form-footer">
+                               
+                                <div class="form-button">
+                                    
+                                    <button id="btn_excluir"> Excluir </button>
+                                    <button id="btn_editar"> Editar </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="form-info">
+                                <div class="form-label">
+                                    <label class="label-info">Nome:</label> 
+                                    <label class="info">Poliana</label>   
+                                </div>
+                                <div class="form-label">
+                                    <label class="label-info" >Email:</label>    
+                                    <label class="info">poliana@sptech.school</label>    
+                                </div>
+                            </div>
+                            <div class="form-footer">
+                               
+                                <div class="form-button">
+                                    
+                                    <button id="btn_excluir"> Excluir </button>
+                                    <button id="btn_editar"> Editar </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <div class="form-info">
+                                <div class="form-label">
+                                    <label class="label-info">Nome:</label> 
+                                    <label class="info">Guilherme</label>   
+                                </div>
+                                <div class="form-label">
+                                    <label class="label-info" >Email:</label>    
+                                    <label class="info">guilherme@sptech.school</label>    
+                                </div>
+                            </div>
+                            <div class="form-footer">
+                               
+                                <div class="form-button">
+                                    
+                                    <button id="btn_excluir"> Excluir </button>
+                                    <button id="btn_editar"> Editar </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+           <div class="footer-container">
+                <div class="footer-body">
+                    <div class="footer-arrow-back">
+                        <a href="">
+                            <img src="../assets/Arrow 3.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-button">
+                    <a href="">
+                        <button id="btn_finalizar" class="btnFinalizar">
+                            Adicionar Funcionario
+                        </button>
+                    </a>
+                </div>
+           </div>
         </div>
-        <div class="usuario"><b>Simpress</b></div>
-    </div>
-</header>
-
-<body>
-    <div class="fundo">
-        <div class="caixa">
-            <div class="selecao">
-
-                <div class="campo-comp">
-                    <a>Nome:</a>
-                    <select name="empresas" id="emp" class="campo">
-                        <option value="empresa1">Sptech</option>
-                        <option value="empresa1">Elera</option>
-                        <option value="empresa1">Simpress</option>
-                    </select>
-                </div>
-                <div class="botoes-organizado">
-                    <img src="../assets/funcionarios 1.png">
-                </div>
-
-            </div>
-
-            <div class="computador">
-
-                <div class="box-organizado">
-                    <div class="campo-organizado">
-                        <div class="campo-comp">
-                            <a>Nome:</a>
-                            <input class="campo" placeholder="" id="ipt_nome">
-                        </div>
-                    </div>
-
-                    <div class="box-organizado-baixo">
-
-                        <div class="campo-comp">
-                            <a>E-mail:</a>
-                            <input class="campo" placeholder="" id="ipt_email">
-                        </div>
-                        <div class="botoes-organizado">
-                            <button onclick="" class="botao-edi">Editar</button>
-                            <button onclick="" class="botao-exc">Excluir</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="computador">
-
-                <div class="box-organizado">
-                    <div class="campo-organizado">
-                        <div class="campo-comp">
-                            <a>Nome:</a>
-                            <input class="campo" placeholder="" id="ipt_nome">
-                        </div>
-
-                    </div>
-
-                    <div class="box-organizado-baixo">
-
-                        <div class="campo-comp">
-                            <a>E-mail:</a>
-                            <input class="campo" placeholder="" id="ipt_email">
-                        </div>
-
-                        <div class="botoes-organizado">
-                            <button onclick="" class="botao-edi">Editar</button>
-                            <button onclick="" class="botao-exc">Excluir</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="computador">
-
-                <div class="box-organizado">
-                    <div class="campo-organizado">
-                        <div class="campo-comp">
-                            <a>Nome:</a>
-                            <input class="campo" placeholder="" id="ipt_nome">
-                        </div>
-
-                    </div>
-
-                    <div class="box-organizado-baixo">
-
-                        <div class="campo-comp">
-                            <a>E-mail:</a>
-                            <input class="campo" placeholder="" id="ipt_email">
-                        </div>
-
-                        <div class="botoes-organizado">
-                            <button onclick="" class="botao-edi">Editar</button>
-                            <button onclick="" class="botao-exc">Excluir</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="computador">
-
-                <div class="box-organizado">
-                    <div class="campo-organizado">
-                        <div class="campo-comp">
-                            <a>Nome:</a>
-                            <input class="campo" placeholder="" id="ipt_nome">
-                        </div>
-
-                    </div>
-
-                    <div class="box-organizado-baixo">
-
-                        <div class="campo-comp">
-                            <a>E-mail:</a>
-                            <input class="campo" placeholder="" id="ipt_email">
-                        </div>
-
-                        <div class="botoes-organizado">
-                            <button onclick="" class="botao-edi">Editar</button>
-                            <button onclick="" class="botao-exc">Excluir</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="botoes">
-            <button class="voltar"> <img src="../assets/Arrow.png" alt="voltar" width="95px"></button>
-            <button class="botao">Adicionar Funcionário</button>
-        </div>
-
-
-</body>
-
+    </body>
 </html>
-<script>
-
-</script>

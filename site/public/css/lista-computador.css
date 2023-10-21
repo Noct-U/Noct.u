@@ -1,0 +1,94 @@
+.form-body{
+    overflow: auto;
+}
+
+.form-footer{
+    width: 100%;
+}
+
+.form-button{
+    width: 50%;
+}
+
+.form-logo{
+    width: 100%;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+        
+}
+
+.form-logo select{
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+}
+
+
+.form-logo select, option{
+    color: black;
+}
+
+.selecao{
+    width: 20%;    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.selecao label{
+    color: black;
+}
+
+#btn_acessar{
+    background-color: #4F64B0;
+}
+
+#btn_acessar:hover{
+    background-color: #5973d4;
+}
+
+/* .form-body ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.form-body ::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: black;
+}
+
+.form-body ::-webkit-scrollbar-track {
+    background: #a7a3a3;
+} */
+
+.form-footer{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-alert{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-alert label{
+    color: black;
+    font-weight: 800;
+}
+
+.alerta{
+    width: 15px;
+    height: 100%;
+    border-radius: 100%;
+    background-color: #FF3C3Ced;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.418);
+    margin-right: 10px;
+}
