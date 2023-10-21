@@ -81,14 +81,14 @@ button {
 
 .box {
     margin-top: 15px;
-    margin-left: 268px;
-    margin-right: 268px;
+    margin-left: 16.7rem;
+    margin-right: 16.7rem;
     display: flex;
     justify-content: start;
     flex-direction: column;
     align-items: center;
-    width: 800px;
-    height: 500px;
+    width: 50rem;
+    height: 30rem;
     background-color: #D9D9D9;
     border-radius: 1.5rem;
 }
