@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Urbanist', sans-serif;
+    color: white;
+    box-sizing:border-box ;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #6074BC;
+    justify-content: space-between;
+}
+
+.header-container{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-top{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-end{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.header-title{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    font-size: 18px;
+
+}
+
+.header-logo-image{
+    width: 20%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.nomeEmpresa{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px ;
+
+}
+
+.logoImage{
+    width: 50%;
+    height: 100%;
+}
+
+.body-container{
+    width:100%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    width: 70%;
+    height: 100%;
+    background-color: #D4D4D4;
+    border-radius: 15px;
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.137),
+    inset 0px 5px 10px rgba(0, 0, 0, 0.295);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.form-logo{
+    width: 14%;
+    height: 16%;
+    padding-left: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-body{
+    width: 80%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+}
+
+.list-item{
+    width: 85%;
+    height: 27%;
+    display: flex;
+    background-color: white;
+    box-shadow: 4px 5px rgba(0, 0, 0, 0.11);
+    border-radius: 15px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center ;
+}
+
+.form-info{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-label{
+    width: 50%;
+    display: flex;
+    padding-left: 20px;
+
+    
+}
+
+.label-info{
+    color: rgba(0, 0, 0, 0.582);
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.info{   
+     color: rgb(0, 0, 0);
+    font-weight: 900;
+    font-size: 15px;
+
+}
+
+.form-button{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-button button{
+    width: 50px;
+    height: 16px;
+    margin-right: 18px;
+    border-radius: 4px;
+    border:0;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.548);
+}
+
+.form-button button:hover{
+    cursor: pointer;
+}
+
+#btn_editar{
+    background-color: #7A7979;
+}
+
+#btn_editar:hover{
+    background-color: #948e8e;
+}
+
+#btn_excluir:hover{
+    background-color: #fd2b2b;
+}
+
+#btn_excluir{
+    background-color: #EC2020;
+}
+
+.footer-container{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 30px;
+}
+
+.footer-button{
+    width: 20%;
+
+}
+
+.btnFinalizar{
+    width: 75%;
+    height: 50%;
+    background-color: #4F64B0;
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.562);
+    text-decoration: none;
+    border-radius: 15px;
+    border: 0;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.btnFinalizar:hover{
+    cursor: pointer;
+    background-color: #4c65c0;
+}
