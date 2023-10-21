@@ -125,6 +125,11 @@ html ::-webkit-scrollbar-track {
     margin: 20px;
 }
 
+.campo-comp {
+    gap: 40px;
+    margin: 20px;
+}
+
 .botoes-organizado {
     display: flex;
     flex-direction: row;
@@ -170,6 +175,22 @@ button {
     flex-direction: row;
     justify-content: space-around;
 }
+
+.selecao {
+    position: sticky;
+    margin: 25px;
+    top: 0; 
+    z-index: 2; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    gap: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 25px;
+}
+
 
 .estado.estado-vermelha::before {
     content: '';
