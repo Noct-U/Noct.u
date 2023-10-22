@@ -34,7 +34,7 @@ function cadastrarTipo(tipo) {
 function exibirLocatarias(idEmpresa) {
 
     var instrucao = `
-    SELECT * FROM empresaLocataria WHERE fkEmpresaLocadora = '${idEmpresa}';`
+    SELECT * FROM empresaLocataria WHERE fkEmpresa = '${idEmpresa}';`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
