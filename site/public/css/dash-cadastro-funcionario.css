@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500&display=swap');
+
+
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    font-size: 100%;
+    background: #3F3E90;
+}
+.header-top{
+    width: 100%;
+    height: 20%;
+    display: flex;
+}
+
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 10rem;
+    color: #FFFFFF;
+    border-color: rgb(255, 255, 255);
+    border-radius: 10rem;
+    background-color: #4F64B0;
+    font-size: larger;
+    font-family: 'Urbanist', sans-serif;
+}
+
+.botoes {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.voltar {
+    margin-right: 42rem;
+}
+
+.texto {
+    width: 100%;
+    height: 35vh;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo1 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 3rem;
+}
+
+.titulo2 {
+    margin-top: 4rem;
+
+}
+
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 44rem;
+}
+
+.box {
+    margin-top: 2rem;
+    margin-left: 16.7rem;
+    margin-right: 16.7rem;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    width: 50rem;
+    height: 30rem;
+    background-color: #D9D9D9;
+    border-radius: 1.5rem;
+}
+.box input, select{
+    border : 0;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.616);    
+}
+
+
+.conteudo-meio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.campo {
+    width: 20rem;
+    padding-bottom: 1.3rem;
+    margin-top: 0.2rem;
+    border-radius: 20rem;
+}
+
+.titulo-campo {
+    display: flex;
+    align-items: start;
+    margin-top: 1.8rem;
+    font-family: 'Urbanist', sans-serif;
+    font-size: small;
+}
+
+.imagem-lateral-direita {
+    display: flex;
+    transform: rotate(180deg);
+}
+
+.imagem-lateral-esquerda {
+    display: flex;
+}
+
+.logo {
+    width: 5rem;
+    height: 5rem;
+}
+
+.organizar {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}

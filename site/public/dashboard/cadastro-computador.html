@@ -1,20 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Computador</title>
+    <link rel="stylesheet" href="../css/stylef.css">
+    <title>NOCT.U | CADASTRO</title>
 </head>
 
 <body>
-    <input placeholder="numero de serie" id="ipt_numeroSerie">
-    <input placeholder="modelo" id="ipt_modelo">
 
-    <button onclick="cadastrar()">cadastrar</button>
-    <a href="dashboard.html">Voltar</a>
-    <a href="../login.html">Logout</a>
+    <div id="superior">
+        <div id="separar">
+            <div id="divimagem">
+                <img src="../assets/icon/favicon.ico">
+            </div>
+        </div>
+        
+        <div id="blocos">
+            <div id="nome">
+            <span style="color: #D9D9D9;font-size: 35pt; font-style: normal; margin-bottom: 4%;">NOCT.U</span></div>
+            <div id="insira">
+                <span style="color: #D9D9D9; font-size: 25pt; font-style: normal; ">Insira as informações sobre o novo computador</span>
+                <div style="border: 1px solid #fff; margin-top: 1%; width: 105%;" id="linha"></div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div id="blocoinput">
+      <div id="inpt1">
+          <div id="numeroSerie">
+              <label for="numeroSerie">Numero Série:</label><br><br>
+              <input class="campo1" id="iptNumeroSerie">
+          </div>
+  
+          <div id="associada">
+              <label for="associada">Empresa associada:</label><br><br>
+              <select class="campo2" id="iptAssociada">
+                  <option disabled selected></option>
+                  <option value="opcao1">Empresa Associada</option>
+                  <option value="opcao2">Opção</option>
+                  <option value="opcao3">Opção</option>
+              </select>
+          </div>
+      </div>
+  
+      <div id="inpt2">
+          <div id="modelo">
+              <label for="Selecionario">Selecionario modelo:</label><br><br>
+              <select class="campo3" id="iptselecionario">
+                  <option disabled selected></option>
+                  <option value="opcao1">Selecione o modelo</option>
+                  <option value="opcao2">Opção</option>
+                  <option value="opcao3">Opção</option>
+              </select>
+          </div>
+
+          <div id="OU">
+              <h4>OU</h4>
+          </div>
+  
+          <div id="Modelo">
+              <label for="modelo">Modelo:</label><br><br>
+              <input class="campo4" id="iptModelo">
+          </div>
+      </div>
+  </div>
+
+    <div id="blocochao">
+        <a href="dashboard.html"><img src="../assets/Arrow 3.png"></a>
+        <div class="butaozin"><button class="campo5" aria-flowto="" onclick="cadastrar()">Finalizar</button></div>
+    </div>
+
+    <script src="../js/cadastro-usuario.js"></script>
+
 </body>
 
 </html>
-<script src="../js/cadastro-computador.js"></script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<link rel="stylesheet" href="../css/dash-cadastro-funcionario.css">
 
 <head>
   <title>NOCT.U | CADASTRO</title>
@@ -7,18 +8,48 @@
 
 <body>
 
-            <input class="campo" placeholder="Nome" id="iptNome">
-            <input class="campo" placeholder="E-mail" id="iptEmail">
-            <input class="campo" placeholder="Senha" id="iptSenha">
-            <input type="text" placeholder="Tipo de Funcionário..." id="iptFuncionario">
-            <select name="" id="iptEmpresas">
+  <main class="conteudo">
 
-            </select>
-            <button onclick="cadastrar()">Cadastrar</button>
-            <a href="dashboard.html">Voltar</a>
-            <a href="../login.html">Logout</a>
-            
-         
+    <div class="texto">
+      <div class="header-top">
+        <div class="organizar">
+          <img class="logo" src="../assets/icon/favicon.ico" alt="">
+          <label class="titulo1">NOCT.U </label>
+          <label>Simpress</label>
+        </div>
+      </div>  
+      <label class="titulo2">Insira as informações sobre o novo funcionário</label>
+    </div>
+
+
+    <div class="conteudo-meio">
+      <img class="imagem-lateral-esquerda" src="../assets/Desenho-lateral-cadFunc.png" alt="">
+      <div class="box">
+        <h6 class="titulo-campo">Nome:</h6>
+        <input class="campo" placeholder="" id="iptNome">
+        <h6 class="titulo-campo">Email:</h6>
+        <input class="campo" placeholder="" id="iptEmail">
+        <h6 class="titulo-campo">Senha:</h6>
+        <input class="campo" placeholder="" id="iptSenha">
+        <h6 class="titulo-campo">Tipo funcionário:</h6>
+        <select class="campo type=" text" placeholder="" id="iptFuncionario"></select>
+        <h6 class="titulo-campo">Empresa de locação:</h6>
+        <select class="campo name="" id=" iptEmpresas"></select>
+      </div>
+      <img class="imagem-lateral-direita" src="../assets/Desenho-lateral-cadFunc.png" alt="">
+    </div>
+
+    <div class="botoes">
+      <a href="dashboard-funcionario.html"><img class="voltar" src="../assets/voltar.png" href="dashboard.html" alt=""></a>
+      <button onclick="cadastrar()">Finalizar</button>
+      
+    </div>
+
+
+
+
+  </main>
+
 </body>
 
 </html>

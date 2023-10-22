@@ -1,0 +1,27 @@
+.form-button{
+    justify-content: center;
+}
+
+.form-button button{
+    width: 50%;
+}
+
+.list-item{
+    flex-direction: row;
+}
+
+.form-info{
+    width: 60%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.form-footer{
+    width: 40%;
+}
+
+.form-info label{
+    margin-right: 8px;
+}

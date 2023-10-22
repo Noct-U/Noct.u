@@ -89,81 +89,8 @@ function cadastrarTipo(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var tipo = req.body.tipoUsuarioServer;
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarTipo(tipo)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    
-}
-
-
-
-function exibirLocatarias(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var idEmpresa = req.body.idEmpresaServer;
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.exibirLocatarias(idEmpresa)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    
-}
-
-function exibirUltimoTipo(req, res) {
- 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.exibirUltimoTipo()
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    
-}
-
-
-function cadastrarUsuario(req, res) {
-    
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var tipo = req.body.tipoUsuarioServer;
-    var empresa = req.body.empresaServer;
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel.cadastrarUsuario(nome,email,senha,tipo,empresa)
+    usuarioModel.cadastrarTipo(tipo)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -181,11 +108,123 @@ function cadastrarUsuario(req, res) {
 
 }
 
+function exibirLocatarias(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var idEmpresa = req.body.idEmpresaServer;
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.exibirLocatarias(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function exibirUltimoTipo(req, res) {
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.exibirUltimoTipo()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function cadastrarUsuario(req, res) {
+
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoUsuarioServer;
+    var empresa = req.body.empresaServer;
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.cadastrarUsuario(nome, email, senha, tipo, empresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function publicar(req, res) {
+    // var titulo = req.body.titulo;
+    var idUsuario = req.params.idUsuario;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var tipoFunc = req.body.tipoFunc;
+    var empresa = req.body.empresa;
+
+    // if (titulo == undefined) {
+    //     res.status(400).send("O título está indefinido!");
+    // } else 
+    if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else if (nome == undefined) {
+        res.status(400).send("O nome está indefinido!");
+    } else if (email == undefined) {
+        res.status(400).send("O e-mail está indefinido!");
+    } else if (senha == undefined) {
+        res.status(400).send("A senha está indefinida!");
+    } else if (tipoFunc == undefined) {
+        res.status(400).send("O tipo de funcionário está indefinido!");
+    } else if (empresa == undefined) {
+        res.status(400).send("A empresa está indefinida!");
+    } else {
+        avisoModel.publicar(idUsuario, nome, email, senha, tipoFunc)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarTipo,
     exibirLocatarias,
     exibirUltimoTipo,
-    cadastrarUsuario
+    cadastrarUsuario,
+    publicar
 }
