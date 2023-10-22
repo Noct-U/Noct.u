@@ -16,9 +16,9 @@ if which java > /dev/null 2>&1; then
   if [ "$(echo -e "17\n$java_version" | sort -V | head -n 1)" == "17" ]; then
     echo "A versão do JDK é igual ou superior a 17."
 sleep 3
-
+        ls
         echo "Agora será baixado o arquivo .JAR"
-        cd /home/$USER/Desktop
+        cd C:\Users\$USER\Documents\script-instalacao
         wget https://github.com/Noct-U/Noct.u/blob/main/java/noctu-looca-1.0.jar
         sleep 3
 

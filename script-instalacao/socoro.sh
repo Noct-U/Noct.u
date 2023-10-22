@@ -17,7 +17,7 @@ if [ $? == 0 ];
         sleep 3
 
         echo "Agora será baixado o arquivo .JAR"
-        cd /home/$USER/Desktop
+        cd C:/Users/$USER/Documents/
         wget https://github.com/Noct-U/Noct.u/blob/main/java/noctu-looca-1.0.jar
         sleep 3
 
@@ -37,5 +37,6 @@ if [ $? == 0 ];
             
             else
         
-        sleep 4
+        
 fi
+sleep 4
