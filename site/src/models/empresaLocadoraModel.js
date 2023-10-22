@@ -17,7 +17,7 @@ function cadastrarMatriz(nome,cnpj,fkMatriz,fkEmpresa) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO empresaLocataria (nome,cnpj,fkEmpresaLocadora) VALUES ('${nome}', '${cnpj}','${fkEmpresa}');
+        INSERT INTO empresaLocataria (nome,cnpj,fkEmpresa) VALUES ('${nome}', '${cnpj}','${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -29,7 +29,7 @@ function cadastrarLocadora(nome,cnpj,fkMatriz,fkEmpresa) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO empresaLocataria (nome,cnpj,fkMatriz,fkEmpresaLocadora) VALUES ('${nome}', '${cnpj}','${fkMatriz}', '${fkEmpresa}');
+        INSERT INTO empresaLocataria (nome,cnpj,fkMatriz,fkEmpresa) VALUES ('${nome}', '${cnpj}','${fkMatriz}', '${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -41,7 +41,8 @@ function exibirEmpresas(idEmpresa) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-    SELECT empresaLocataria.*,empresa.idEMpresa,empresa.nome AS nomeEmpresaOutsorcing FROM empresaLocataria JOIN empresa ON empresa.idEmpresa = empresaLocataria.fkEmpresaLocadora WHERE empresaLocataria.fkMatriz IS NULL AND fkEmpresaLocadora = '${idEmpresa}';
+    SELECT empresaLocataria.*,empresa.idEmpresa,empresa.nome AS nomeEmpresaOutsorcing FROM empresaLocataria 
+    JOIN empresa ON empresa.idEmpresa = empresaLocataria.fkEmpresa WHERE empresaLocataria.fkMatriz IS NULL AND fkEmpresa = '${idEmpresa}';
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
