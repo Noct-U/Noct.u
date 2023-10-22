@@ -4,13 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/dashboard-funcionario.css">
+        <!-- scripts do Chart.js - 2022-1 -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <title>Document</title>
     </head>
     <body>
         <header>
             <div class="div-header">
-                <label for="">NOCT.U</label>
-                <img src="../assets/icon/favicon2.svg" alt="">
+                <a href="../login.html">
+                    NOCT.U
+                    <img src="../assets/icon/favicon2.svg" alt="">
+                </a>
             </div>
             <div class="div-header">
                 <label class="txt-header" for="">SPTECH</label>
@@ -22,14 +26,287 @@
         <div class="div-dash">
             <div class="div-alertas">
                 <div class="div-alertas2">
-                    <div class="alertas"></div>
+                    <div class="alertas">
+                        <div class="div-title-alertas">
+                            <h2>HISTÓRICO DE ALERTAS</h2>
+                        </div>
+                        <div class="div-notificao">
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem perigo">
+                                    <p>CPU - Ocupação acima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem cuidado">
+                                    <p>CPU - Ocupação proxima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem cuidado">
+                                    <p>Memoria - Memória proxima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem perigo">
+                                    <p>CPU - Ocupação acima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem perigo">
+                                    <p>CPU - Ocupação acima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem cuidado">
+                                    <p>Memoria - Memória proxima do limite</p>
+                                </div>
+                            </div>
+
+                            <div class="div-caixa-mensagem">
+                                <div class="caixa-mensagem cuidado">
+                                    <p>CPU - Ocupação proxima do limite</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button>Lista de Computadores</button>
                 </div>
             </div>
             <div class="div-conteudo">
-                <div class="div-kpis"></div>
-                <div class="div-graficos"></div>
+                <div class="div-kpis">
+                    <div class="kpis">
+                        <div class="sessao-title-kpi">
+                            <div class="rotulo-kpi">
+                                <label for="">Informações da máquina</label>
+                            </div>
+                        </div>
+                        <div class="sessao-subtitle-kpi">
+                            <label for="">Número de série:</label>
+                        </div>
+                        <div class="sessao-subtitle-kpi div-num-serie">
+                            <label for="" class="num-serie">012391027912X-S</label>
+                        </div>
+                        <div class="div-linha-kpi">
+                            <div class="linha-kpi"></div>
+                        </div>
+                        <div class="sessao-subtitle-kpi">
+                            <label for="">Modelo:</label>
+                        </div>
+                        <div class="sessao-subtitle-kpi div-num-serie">
+                            <label for="" class="num-serie">IdealPad</label>
+                        </div>
+                    </div>
+                    <div class="kpis">
+                        <div class="sessao-title-kpi">
+                            <div class="rotulo-kpi2">
+                                <label for="">Tempo de atividade da máquina</label>
+                            </div>
+                        </div>
+                        <div class="sessao-subtitle-kpi div-num-serie">
+                            <label for="" class="num-serie">04:20:15:53</label>
+                        </div>  
+                        <div class="sessao-subtitle-kpi">
+                            <label for="">Janelas:</label>
+                        </div>
+                        <div class="sessao-subtitle-kpi div-num-serie">
+                            <label for="" class="janelas">05</label>
+                        </div>
+                    </div>
+                    <div class="kpis">
+                        <div class="sessao-title-kpi sessao-title-kpi2">
+                            <div class="rotulo-kpi3">
+                                <label for="">Disco - Utilização</label>
+                            </div>
+                        </div>
+                        <div class="div-grafico">
+                            <div class="div-legenda">
+                                <div class="legenda">
+                                    <div class="cor-grafico cor-grafico1"></div><p>EM USO</p>
+                                </div>
+                                <div class="legenda">
+                                    <div class="cor-grafico cor-grafico2"></div><p>DISPONÍVEL</p>
+                                </div>
+                            </div>
+                            <div class="div-grafico1">
+                                <canvas id="myChartCanvasGeral"></canvas>
+                            </div>
+                            <div class="legenda-total">
+                                <p>Total:</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="kpis">
+                        <div class="sessao-title-kpi4">
+                            <div class="rotulo-kpi4">
+                                <label for="">Estado atual do componente</label>
+                            </div>
+                        </div>
+                        <div class="div-conteudo-kpi4">
+                            <div class="componentes-kpi">
+                                <p>CPU</p><div class="cor-grafico cor-graficocomp cor1"></div>
+                            </div>
+                            <div class="componentes-kpi">
+                                <p>MEMÓRIA</p><div class="cor-grafico cor-graficocomp cor2"></div>
+                            </div>
+                            <div class="componentes-kpi">
+                                <p>DISCO</p><div class="cor-grafico cor-graficocomp cor3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div-graficos">
+                    <div class="div-grafico-linha">
+                        <h2>CPU - DESEMPENHO</h2>
+                        <div class="grafico-linha">
+                            <canvas id="myChartCanvasGeral2"></canvas>
+                        </div>
+                    </div>
+                    <div class="div-grafico-pizza">
+                        <div class="sessao-title-kpi sessao-title-kpi2">
+                            <div class="rotulo-kpi3 rotulo-grafico3">
+                                <label for="">Memória - Utilização</label>
+                            </div>
+                        </div>
+                        <div class="div-grafico">
+                            <div class="div-legenda div-legenda3">
+                                <div class="legenda legenda-grafico3">
+                                    <div class="cor-grafico cor-grafico1 cor-grafico3"></div><p>EM USO</p>
+                                </div>
+                                <div class="legenda  legenda-grafico3">
+                                    <div class="cor-grafico cor-grafico2 cor-grafico3"></div><p>DISPONÍVEL</p>
+                                </div>
+                            </div>
+                            <div class="div-grafico3">
+
+                                <canvas id="myChartCanvasGeral3"></canvas>
+                            </div>
+                            <div class="legenda-total legenda-total3">
+                                <p>Total:</p>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
             </div>
         </div>
     </body>
 </html>
+<script>
+    plotarGrafico();
+     function plotarGrafico() {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+
+
+        // Criando estrutura para plotar gráfico - dados
+        var dados = {
+            labels: ['EM USO', 'DISPONÍVEL'],
+            datasets: [
+                {
+                label: 'Utilização de disco',
+                data: [12, 19],
+                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
+                borderWidth: 1,
+                }
+
+        ]
+            };
+            const config = {
+                type: 'pie',
+                data: dados,
+                options: {
+                    plugins: {
+                    legend: {
+                        display: false
+                       
+                    },
+                    },
+                },
+                };
+
+            // Adicionando gráfico criado em div na tela
+            let myChart = new Chart(
+                document.getElementById(`myChartCanvasGeral`),
+                config
+            );
+
+
+
+
+            
+        // Criando estrutura para plotar gráfico - dados
+        var dados2 = {
+            labels: ['Há 180 Segs ', 'Há 90 Segs', 'Há 60 Segs', 'Há 30 Segs', 'Agora'],
+            datasets: [
+                {
+                label: 'DESEMPENHO',
+                data: [12, 19,13,45,10,21,55],
+                backgroundColor: ['rgb(96, 116, 188)'],
+                borderWidth: 1,
+                borderColor: '#4F64B0'
+                }
+
+        ]
+            };
+            const config2 = {
+                type: 'line',
+                data: dados2,
+                options: {
+                    plugins: {
+                    legend: {
+                        display: false
+                    },
+
+                    },
+                },
+                };
+
+            // Adicionando gráfico criado em div na tela
+            let myChart2 = new Chart(
+                document.getElementById(`myChartCanvasGeral2`),
+                config2
+            );
+
+
+            
+        // Criando estrutura para plotar gráfico - dados
+        var dados3 = {
+            labels: ['EM USO', 'DISPONÍVEL'],
+            datasets: [
+                {
+                label: 'Utilização de disco',
+                data: [12, 19],
+                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
+                borderWidth: 1,
+                }
+
+        ]
+            };
+            const config3 = {
+                type: 'pie',
+                data: dados3,
+                options: {
+                    plugins: {
+                    legend: {
+                        display: false
+                       
+                    },
+                    },
+                },
+                };
+
+            // Adicionando gráfico criado em div na tela
+            let myChart3 = new Chart(
+                document.getElementById(`myChartCanvasGeral3`),
+                config3
+            );
+    }
+</script>
