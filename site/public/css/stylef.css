@@ -16,27 +16,29 @@ body {
 
 #nome{
     margin-bottom: 4%;
-    width: 15%;
+    width: 20%;
 
 }
 
 #insira{
     width: 50%;
+    height: 150px;
+    
+    
 }
 
 #linha{
-    position: relative;
     top: 10px;
-    left: -35px;
-}
+    width: 100%;
 
+}
 
 #superior {
     display: flex;
     padding: 50px;
     width: 100%;
+    height: 200px;
 }
-
 
 
 #blocos {
@@ -56,20 +58,21 @@ body {
 
 #blocoinput {
     background-color: #D9D9D9;
-    width: 58%;
+    width: 60%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 510px;
+    height: 600px;
     box-shadow: 1px 4px 2px rgb(92, 90, 90);
+    margin-top: 1%;
+    right:50px;
 
 }
 
 #inpt1 {
     display: flex;
-    align-items: flex-end;
     width: 100%;
     justify-content: space-evenly;
 
@@ -77,21 +80,36 @@ body {
 
 #inpt2{
     display: flex;
-    align-items: flex-end;
-    width: 80%;
+    width: 76%;
     justify-content: space-evenly;
-
+    left: 100px;
 }
-#modelo{
-    width: 25%;
+#modelo1{
+    
+    width: 30%;
+    
 }
 
 #OU{
-    width: 9%;
+    width: 10%;
     justify-content: end;
     display: flex;
+
 }
 
+#associada{
+    align-items: flex-start;
+    width: 22%;
+    
+}
+
+#numeroSerie{
+    
+}
+
+#Modelo{
+    
+}
 
 
  #inpt2 input,  #inpt2 select {
@@ -103,7 +121,7 @@ body {
     font-size: 16px;
     flex-direction: column;
     box-shadow: 1px 4px 2px rgb(92, 90, 90);
-
+    
 
     
 }
@@ -113,7 +131,7 @@ body {
     padding: 10px;
     border-radius: 20px;
     border: none;
-    width: 110%;
+    width: 120%;
     font-size: 16px;
     flex-direction: column;
     box-shadow: 1px 4px 2px rgb(92, 90, 90);
@@ -121,11 +139,11 @@ body {
 }
 
 #blocochao {
-   width :70%; 
-   height :100px; 
+   width :60%; 
+   height :60px; 
    justify-content :space-between; 
    display :flex; 
-   margin-top: 3%;
+   align-items: center;
 }
 
 button {
@@ -135,8 +153,15 @@ button {
    background-color :#4F64B0; 
    color:#fff6f6;
    font-size: larger;
-   width: 160%;
+   width: 100%;
    height: 45px;
    border-color: aliceblue;
    box-shadow: 1px 4px 2px rgb(92, 90, 90);
+}
+
+
+.setinha{
+    width: 5%;
+    align-items: end;
+    
 }
