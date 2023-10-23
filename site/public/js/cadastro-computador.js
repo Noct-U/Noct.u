@@ -1,7 +1,14 @@
 console.log(sessionStorage.ID_EMPRESA);
+
     function cadastrar() {
         var numSerie = ipt_numeroSerie.value;
         var modelo = ipt_modelo.value;
+
+        if(modelo == ""){
+            modelo = iptselecionario.value;
+        }
+        console.log(numSerie);
+        console.log(modelo);
         fetch("/computadores/cadastrarModelo", {
             method: "POST",
             headers: {
