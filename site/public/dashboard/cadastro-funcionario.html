@@ -1,77 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-  <title>NOCT.U | CADASTRO</title>
-  <link rel="stylesheet" href="../css/dash-cadastro-funcionario.css">
+    <title>NOCT.U | CADASTRO</title>
+    <link rel="stylesheet" href="../css/cadastro-funcionario.css">
 </head>
 
 <body>
-
-  <div class="conteudo">
-        <div class="organizar">
-          <img class="logo" src="../assets/icon/favicon.ico" alt="">
-          <label class="titulo1">NOCT.U </label>
+    <div class="caixa">
+        <div class="header">
+            <div class="logo">
+                <img src="../assets/logo.png" height="68px" width="68px">
+            </div>
+            <div class="titulo">
+                <div class="marca"><span>NOCT.U</span></div>
+                <div class="descricao"><span>Insira as informações sobre o novo funcionário</span></div>
+            </div>
+            <div class="invisivel"></div>
         </div>
-        <div class="subtitle">
-          <label class="titulo2">Insira as informações sobre o novo funcionário</label>
-          <div class="linha"></div>
-        </div>
-  
 
-
-    <div class="conteudo-meio">
-      <img class="imagem-lateral-esquerda" src="../assets/Desenho-lateral-cadFunc.png" alt="">
-      <div class="box">
-        <div class="label-campo">
-          <h6 class="titulo-campo">Nome:</h6>
+        <div class="big">
+            <div class="quadrado">
+                <div class="campo">
+                    <span>Nome:</span>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <span>Email:</span>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <span>Senha:</span>
+                    <input type="text">
+                </div>
+                <div class="campo">
+                    <span>Tipo do usuário:</span>
+                    <select >
+                        <option value="tip1">Comum</option>
+                        <option value="tip2">Gestor</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <span>Empresa de alocação:</span>
+                    <select >
+                        <option value="emp1">Empresa 1</option>
+                        <option value="emp2">Empresa 2</option>
+                        <option value="emp3">Empresa 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="botoes">
+                <div class="btn-esquerda">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="23" viewBox="0 0 38 23" fill="none">
+                        <path
+                            d="M0.447103 9.93201C-0.14273 10.5137 -0.149313 11.4635 0.4324 12.0533L9.91195 21.6652C10.4937 22.255 11.4434 22.2616 12.0332 21.6799C12.6231 21.0981 12.6296 20.1484 12.0479 19.5586L3.62166 11.0147L12.1655 2.58844C12.7554 2.00672 12.762 1.057 12.1802 0.467167C11.5985 -0.122665 10.6488 -0.129248 10.059 0.452465L0.447103 9.93201ZM37.5797 9.75004L1.51078 9.50004L1.48999 12.5L37.5589 12.75L37.5797 9.75004Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="btn-direita">
+                    <span>Finalizar</span>
+                </div>
+            </div>
         </div>
-        <input class="campo" placeholder="" id="iptNome">
-
-        <div class="label-campo">
-          <h6 class="titulo-campo">Email:</h6>
-        </div>
-        <input class="campo" placeholder="" id="iptEmail">
-
-        <div class="label-campo">
-          <h6 class="titulo-campo">Senha:</h6>
-        </div>
-        <input class="campo" placeholder="" id="iptSenha">
-
-        <div class="label-campo">
-          <h6 class="titulo-campo">Tipo funcionário:</h6>
-        </div>
-        <select class="campo type="  placeholder="" id="iptFuncionario">
-          <option value="Admin">Admin</option>
-          <option value="Admin">Supervisor</option>
-          <option value="Admin">Gerente</option>
-        </select>
-
-        <div class="label-campo">
-          <h6 class="titulo-campo">Empresa de Locação:</h6>
-        </div>
-        <select class="campo name=" id="iptEmpresas">
-          <option value="">Selecione uma empresa</option>
-        </select>
-      </div>
-      <img class="imagem-lateral-direita" src="../assets/Desenho-lateral-cadFunc.png" alt="">
     </div>
-
-    <div class="div-botoes">
-      <div class="botoes">
-        <a href="lista-funcionario.html"><img class="voltar" src="../assets/Arrow 3.png" href="dashboard.html"
-            alt=""></a>
-        <button onclick="cadastrar()">Finalizar</button>
-      </div>
-
-    </div>
-
-
-
-
-  </div>
-
 </body>
 
 </html>
-<script src="../js/cadastro-usuario.js"></script>

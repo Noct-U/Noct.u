@@ -1,75 +1,69 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="../css/stylef.css">
     <title>NOCT.U | CADASTRO</title>
+    <link rel="stylesheet" href="../css/cadastro-computador.css">
 </head>
 
 <body>
+    <div class="caixa">
+        <div class="header">
+            <div class="logo">
+                <img src="../assets/logo.png" height="68px" width="68px">
+            </div>
+            <div class="titulo">
+                <div class="marca"><span>NOCT.U</span></div>
+                <div class="descricao"><span>Insira as informações sobre o novo computador</span></div>
+            </div>
+            <div class="invisivel"></div>
+        </div>
 
-    <div id="superior">
-        <div id="separar">
-            <div id="divimagem">
-                <img src="../assets/icon/favicon.ico">
+        <div class="big">
+            <div class="quadrado">
+                <div class="qdd-bloco">
+                    <div class="campo">
+                        <span>Número-Série:</span>
+                        <input type="text">
+                    </div>
+                    <div class="campo">
+                        <span>Empresa associada:</span>
+                        <select >
+                            <option value="emp1">Empresa 1</option>
+                            <option value="emp2">Empresa 2</option>
+                            <option value="emp3">Empresa 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="qdd-bloco">
+                    <div class="campo">
+                        <span>Novo modelo:</span>
+                        <input type="text">
+                    </div>
+                    <div class="campo">
+                        <span>Selecionar modelo:</span>
+                        <select >
+                            <option value="emp1">IdeaPad</option>
+                            <option value="emp2">Lenovo</option>
+                            <option value="emp3">Dell</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="botoes">
+                <div class="btn-esquerda">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="23" viewBox="0 0 38 23" fill="none">
+                        <path
+                            d="M0.447103 9.93201C-0.14273 10.5137 -0.149313 11.4635 0.4324 12.0533L9.91195 21.6652C10.4937 22.255 11.4434 22.2616 12.0332 21.6799C12.6231 21.0981 12.6296 20.1484 12.0479 19.5586L3.62166 11.0147L12.1655 2.58844C12.7554 2.00672 12.762 1.057 12.1802 0.467167C11.5985 -0.122665 10.6488 -0.129248 10.059 0.452465L0.447103 9.93201ZM37.5797 9.75004L1.51078 9.50004L1.48999 12.5L37.5589 12.75L37.5797 9.75004Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="btn-direita">
+                    <span>Finalizar</span>
+                </div>
             </div>
         </div>
-        
-        <div id="blocos">
-            <div id="nome">
-            <span style="color: #D9D9D9;font-size: 35pt; font-style: normal; margin-bottom: 4%;">NOCT.U</span></div>
-            <div id="insira">
-                <span style="color: #D9D9D9; font-size: 20pt; font-style: normal; ">Insira as informações sobre o novo computador</span>
-                <h5 style="color: #D9D9D9;">_____________________________________________________________________________</h5>
-            </div>
-        </div>
-       
     </div>
-
-    <div id="blocoinput">
-      <div id="inpt1">
-          <div id="numeroSerie">
-              <label for="numeroSerie">Numero Série:</label><br><br>
-              <input class="campo1" id="ipt_numeroSerie">
-          </div>
-  
-          <div id="associada">
-              <label for="associada">Empresa associada:</label><br><br>
-              <select class="campo2" id="iptAssociada">
-                <option value="SPTECH">SPTECH</option>
-              </select>
-          </div>
-      </div>
-  
-      <div id="inpt2">
-          <div id="modelo1">
-              <label for="Selecionario">Selecionario modelo:</label><br><br>
-              <select class="campo3" id="iptselecionario">
-                <option value="Nenhuma">Selecionar</option>
-                <option value="Desktop Dell">Desktop Dell</option>
-                <option value="Desktop LG">Desktop LG</option>
-                
-              </select>
-          </div>
-
-          <div id="OU">
-              <h4>OU</h4>
-          </div>
-  
-          <div id="Modelo">
-              <label for="modelo">Modelo:</label><br><br>
-              <input class="campo4" id="ipt_modelo">
-          </div>
-      </div>
-  </div>
-
-    <div id="blocochao">
-        <a class="setinha" href="lista-computador.html"><img src="../assets/Arrow 3.png"></a>
-        <div class="butaozin"><button class="campo5" aria-flowto="" onclick="cadastrar()">Finalizar</button></div>
-    </div>
-
-    <script src="../js/cadastro-computador.js"></script>
-
 </body>
 
 </html>

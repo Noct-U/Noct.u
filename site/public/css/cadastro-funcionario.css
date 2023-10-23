@@ -4,7 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #6074BC;
+    background-color: #3F3E90;;
     font-family: 'Urbanist', sans-serif;
 }
 
@@ -66,7 +66,7 @@ body {
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
     font-family: 'Inter', sans-serif;
 
-    gap: 30px;
+    gap: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +99,7 @@ body {
 }
 
 .botoes {
-    padding-top: 35px;
+    padding-top: 20px;
     width: 100%;
     display: flex;
     justify-content: space-around;
