@@ -28,7 +28,7 @@
                 </div>
                 <div class="campo">
                     <span>Telefone:</span>
-                    <input type="text">
+                    <input type="text" id="ipt_cnpj">
                 </div>
                 <div class="campo">
                     <span>CNPJ:</span>
@@ -36,10 +36,7 @@
                 </div>
                 <div class="campo">
                     <span>Matriz:</span>
-                    <select name="Bananinha">
-                        <option value="emp1">Empresa 1</option>
-                        <option value="emp2">Empresa 2</option>
-                        <option value="emp3">Empresa 3</option>
+                    <select name="Bananinha" id="ipt_empresa">
                     </select>
                 </div>
             </div>
@@ -53,11 +50,9 @@
                         </svg>
                     </div>
                 </a>
-                <a href="lista-empresas.html">
                     <div class="btn-direita">
-                        <span>Finalizar</span>
+                        <span onclick="cadastrar()">Finalizar</span>
                     </div>
-                </a>
             </div>
         </div>
     </div>
