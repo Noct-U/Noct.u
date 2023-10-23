@@ -132,6 +132,7 @@ a {
     color: #FFFFFF;
     font-size: 22px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 #avancar {
