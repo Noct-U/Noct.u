@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import teste.Captura;
 import teste.Componente;
 import teste.Hardware;
+import teste.Select;
 
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class NoctuDao {
         con.update("INSERT INTO captura (valor, descricao, dtCaptura, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?, ?, ?)", captura.getValor(), captura.getDescricao(), captura.getDtCaptura(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
     }
 
-    public List<Componente.Captura> exibirCaptura() {
+    public List<Select> exibirCaptura() {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        List<Componente.Captura> capturaDoBanco = con.query("SELECT * FROM captura", new BeanPropertyRowMapper<>(Componente.Captura.class));
+        List<Select> capturaDoBanco = con.query("SELECT th.nome, valor, dtCaptura FROM componente JOIN Hardware AS h ON componente.fkHardware = idHardware JOIN tipoHardware AS th ON idtipoHardware = fktipoHardware JOIN captura AS c ON idComponente = fkComponente ORDER BY dtCaptura", new BeanPropertyRowMapper<>(Select.class));
         return capturaDoBanco;
     }
 
