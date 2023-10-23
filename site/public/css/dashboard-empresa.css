@@ -12,7 +12,6 @@ body{
 }
 header{
     background-color: #122465;
-    box-shadow: 1px 1px 3px 2px inset;
     width: 15%;
     height: 100vh;
 }
@@ -26,7 +25,7 @@ header a {
     height: 20%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 .div-logo img{
     width: 15vh;
