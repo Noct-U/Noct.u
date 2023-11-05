@@ -1,6 +1,37 @@
 
+// Função para fazer a requisição AJAX
+function buscarCep() {
+    var cep = ipt_cep_empresa.value;
+    var apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
 
-    //pegando dado da memória cache
+    // URL da API do Via CEP
+    fetch(apiUrl).then(response => response.json())
+    .then(data => {
+        if (!data.erro) {
+        ipt_cidade_empresa.value = data.localidade;
+        ipt_bairro_empresa.value = data.bairro;
+        ipt_uf_empresa.value = data.uf;
+        ipt_logradouro_empresa.value = data.logradouro;
+
+
+        console.log("CEP: " + data.cep);
+        console.log("Logradouro: " + data.logradouro);
+        console.log("Bairro: " + data.bairro);
+        console.log("Cidade: " + data.localidade);
+        console.log("Estado: " + data.uf);
+        } else {
+        console.log("CEP não encontrado");
+        }
+    })
+    .catch(error => {
+        console.error("Erro na requisição: " + error);
+    });
+  }
+
+  
+  
+  
+  //pegando dado da memória cache
     var jsonDados = localStorage.getItem('dadosCad1');
     var dadosCad1 = JSON.parse(jsonDados);
 
