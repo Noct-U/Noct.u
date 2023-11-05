@@ -1,4 +1,36 @@
-exibirLocatarias();
+    verificar();
+    exibirLocatarias();
+
+
+    //function para verificar se existe dados do local storage
+    function verificar(){
+        if(typeof localStorage.getItem("dadosUsuario") != 'undefined'){
+
+            var jsonDados = localStorage.getItem('dadosUsuario');
+            dadosUsuario = JSON.parse(jsonDados);
+            
+            ipt_nome_usuario.value = dadosUsuario[0];
+            ipt_email_usuario.value = dadosUsuario[1];
+            ipt_senha_usuario.value = dadosUsuario[2];
+          }
+    }
+
+    // Função para avançar de pag no cadastro antes de logar
+    function avancar(){
+        var nomeUsuario  = ipt_nome_usuario.value;
+        var emailUsuario = ipt_email_usuario.value;
+        var senhaUsuario = ipt_senha_usuario.value;
+
+        var dadosUsuario = [nomeUsuario,emailUsuario,senhaUsuario];
+
+        var jsonDados = JSON.stringify(dadosUsuario);
+        localStorage.setItem('dadosUsuario',jsonDados);
+
+
+        window.location.href = "cadastro-endereco.html";
+    }
+
+
     function cadastrar(){
         var nome = iptNome.value;
         var email = iptEmail.value;
@@ -105,6 +137,10 @@ exibirLocatarias();
                 console.log(`#ERRO: ${resposta}`);
             });
     }
+
+
+
+    // daqui pra baixo é da poli
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
