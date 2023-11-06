@@ -4,6 +4,7 @@
 <head>
   <title>NOCT.U | CADASTRO</title>
   <link rel="stylesheet" href="css/cadastro.css">
+  <script src="js/cadastro-empresa1.js"></script>
 </head>
 
 <body>
@@ -18,16 +19,49 @@
         </div>
         <div class="camposTela">
           <div class="linhaCampo">
-            <input class="campo" placeholder="Nome" id="ipt_nome">
-            <input class="campo" placeholder="Razão Social" id="ipt_razao_social">
+            <div class="nomeCampo">
+              <span>Nome:</span>
+              <input class="campo" placeholder="Digite o nome da empresa" id="ipt_nome">
+            </div>
+            <div class="nomeCampo">
+              <span>Razão Social:</span>
+              <input class="campo" placeholder="Digite a razão social de sua empresa" id="ipt_razao_social">
+            </div>
           </div>
           <div class="linhaCampo">
-            <input class="campo" placeholder="CNPJ" id="ipt_cnpj">
-            <input class="campo" placeholder="Telefone Celular" id="ipt_telefone">
+            <div class="nomeCampo">
+              <span>CNPJ:</span>
+              <input class="campo" placeholder="Digite o CNPJ" id="ipt_cnpj">
+            </div>
+            <div class="nomeCampo">
+              <span>Telefone Celular:</span>
+              <input class="campo" placeholder="Digite um telefone" id="ipt_telefone">
+            </div>
+          </div>
+        </div>
+        <div class="descTela">
+          <span>Insira as informações sobre um representante da sua empresa</span>
+        </div>
+        <div class="camposTela">
+          <div class="linhaCampo">
+            <div class="nomeCampo">
+              <span>Nome:</span>
+              <input class="campo" id="ipt_email">
+            </div>
+            <div class="nomeCampo">
+              <span>Email:</span>
+              <input class="campo" id="ipt_senha">
+            </div>
           </div>
           <div class="linhaCampo">
-            <input class="campo" placeholder="Email" id="ipt_email">
-            <input class="campo" placeholder="Senha" id="ipt_senha">
+            <div class="nomeCampo">
+              <span>Senha:</span>
+              <input class="campo" id="ipt_cnpj">
+            </div>
+            <div class="nomeCampo">
+              <span>Confirmar senha:</span>
+              <input class="campo" id="ipt_telefone">
+            </div>
           </div>
           <div class="logoCanto">
             <img src="assets/icon/favicon2.svg">
@@ -53,4 +87,3 @@
 </body>
 
 </html>
-<script src="js/cadastro-empresa1.js"></script>
