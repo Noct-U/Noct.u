@@ -15,8 +15,134 @@
           }
     }
 
-    // Função para avançar de pag no cadastro antes de logar
-    function avancar(){
+    function finalizarCadastro(){
+        var nomeUsuario  = ipt_nome_usuario.value;
+        var emailUsuario = ipt_email_usuario.value;
+        var senhaUsuario = ipt_senha_usuario.value;
+
+        var jsonDadosEmpresa = localStorage.getItem('dadosEmpresa');
+        dadosEmpresa = JSON.parse(jsonDadosEmpresa);
+
+        var jsonDadosEndereco = localStorage.getItem('dadosEndereco');
+        dadosEndereco = JSON.parse(jsonDadosEndereco);
+
+        fetch("/empresas/cadastrarEmpresa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeEmpresaServer : dadosEmpresa[0],
+                razaoEmpresaServer : dadosEmpresa[1],
+                cnpjEmpresaServer : dadosEmpresa[2],
+                telefoneEmpresaServer : dadosEmpresa[3],
+
+                cepEnderecoServer : dadosEndereco[0],
+                cidadeEnderecoServer : dadosEndereco[1],
+                bairroEnderecoServer : dadosEndereco[2],
+                ufEnderecoServer : dadosEndereco[3],
+                logEnderecoServer : dadosEndereco[4]
+            }),
+        })
+        .then(function (resposta) {
+            fetch("/empresas/consultarUltimaEmpresa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+                })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                    resposta.json().then(jsonResposta => {
+                    console.log(JSON.stringify(jsonResposta));
+
+                    var idUltimaEmpresa = jsonResposta[0].idEmpresa;
+                    fetch("/empresas/consultarUltimoEndereco", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                    })
+                    .then(function (resposta) {
+                        if (resposta.ok) {
+                        resposta.json().then(jsonResposta => {
+                        console.log(JSON.stringify(jsonResposta));
+
+                        var idUltimoEndereco = jsonResposta[0].idEndereco;
+
+                        console.log("Ultima Empresa: "+idUltimaEmpresa);
+                        console.log("Ultimo Endereço: "+idUltimoEndereco);
+                        fetch("/empresas/cadastrarLocalidade", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            //Dados da primeira pag de cadastro
+                            numServer: dadosEndereco[5],
+                            andarServer: dadosEndereco[6],
+                            salaServer: dadosEndereco[7],
+                            complementoServer: dadosEndereco[8],
+                            idUltimaEmpresaServer: idUltimaEmpresa,
+                            idUltimoEnderecoServer: idUltimoEndereco
+                        }),
+                        })
+                        .then(function (resposta) {
+                            fetch("/usuarios/cadastrar", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    nomeServer : nomeUsuario,
+                                    emailServer : emailUsuario,    
+                                    senhaServer : senhaUsuario,
+                                    tipoUsuarioServer : 1,
+                                    locadoraServer : null,
+                                    alocacaoServer : idUltimaEmpresa
+                                }),
+                            })
+                            .then(function (resposta) {
+                                
+                                alert("Cadastrei tudo papaizinho");
+                                setTimeout(() => {
+                                    window.location = "../login.html";
+                                }, "2000")
+
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
+
+                            
+                        })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                    });
+
+                    }})
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });      
+
+                });
+
+                }})
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                }); 
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        
+    }
+
+    function voltar(){
         var nomeUsuario  = ipt_nome_usuario.value;
         var emailUsuario = ipt_email_usuario.value;
         var senhaUsuario = ipt_senha_usuario.value;
@@ -29,81 +155,9 @@
 
         window.location.href = "cadastro-endereco.html";
     }
-
-
-    function cadastrar(){
-        var nome = iptNome.value;
-        var email = iptEmail.value;
-        var senha = iptSenha.value;
-        var empresaLocataria = iptEmpresas.value;
-        var tipoUsuario = iptFuncionario.value;
-
-        //cadastrando o tipo de funcionario
-        fetch("/usuarios/cadastrarTipo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                //Dados da primeira pag de cadastro
-                tipoUsuarioServer: tipoUsuario
-            }),
-            }).then(function (resposta) {
-                   
-                fetch("/usuarios/exibirUltimoTipo", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                }}).then(function (resposta) {
-                    
-                    if(resposta.ok){
-                        resposta.json().then(json => {
-
-                        
-                        var idTipo = json[0].idTipoUsuario;
-
-                        fetch("/usuarios/cadastrarUsuario", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        }
-                        ,
-                        body: JSON.stringify({
-                            // crie um atributo que recebe o valor recuperado aqui
-                            // Agora vá para o arquivo routes/usuario.js
-                            //Dados da primeira pag de cadastro
-
-                            nomeServer: nome,
-                            emailServer: email,
-                            senhaServer: senha,
-                            tipoUsuarioServer: idTipo,
-                            empresaServer: empresaLocataria
-
-                        }),
-                    
-                        }).then(function (resposta) {
-                            alert("Cadastrado");
-                            
-
-                        })
-                        .catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                        });
-
-                    })
     
-                }   
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    }
+
+
 
 
     function exibirLocatarias(){
