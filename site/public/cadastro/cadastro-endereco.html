@@ -7,7 +7,18 @@
 </head>
 
 <body>
-    <div class="fundo">
+    <input type="text" placeholder="CEP da empresa"         id="ipt_cep_empresa" onkeyup="buscarCep()">
+    <input type="text" placeholder="Cidade da Empresa"      id="ipt_cidade_empresa">
+    <input type="text" placeholder="Bairro da Empresa"      id="ipt_bairro_empresa">
+    <input type="text" placeholder="UF da Empresa"          id="ipt_uf_empresa">
+    <input type="text" placeholder="Logradouro da Empresa"  id="ipt_logradouro_empresa">
+    <input type="text" placeholder="Número de endereço"     id="ipt_num_empresa">
+    <input type="text" placeholder="Andar da Empresa"       id="ipt_andar_empresa">
+    <input type="text" placeholder="Sala da Empresa"        id="ipt_sala_empresa">
+    <input type="text" placeholder="Complemento da Empresa" id="ipt_comp_empresa">
+    <button onclick="voltar()">Voltar</button>
+    <button onclick="avancar()">Avançar</button>
+    <!-- <div class="fundo">  
         <div class="caixao">
             <div class="tela">
                 <div class="infoTela">
@@ -16,7 +27,7 @@
                 <div class="descTela">
                     <span>Insira as informações sobre o endereço de sua empresa</span>
                 </div>
-                <div class="camposTela">
+                <! <div class="camposTela">
                     <div class="linhaCampo logradourCEP">
                         <input class="campo enderecado" placeholder="Logradouro" id="ipt_logradouro">
                         <input class="campo encurtado" placeholder="CEP" id="ipt_cep">
@@ -39,7 +50,7 @@
                     <div class="logoCanto">
                         <img src="assets/icon/favicon2.svg">
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="botoes">
                 <div class="voltar">
@@ -59,4 +70,5 @@
 </body>
 
 </html>
-<script src="js/cadastro-empresa2.js"></script>
+
+<script src="../js/cadastro-endereco.js"></script>
