@@ -1,19 +1,6 @@
-    verificar();
     exibirLocatarias();
 
 
-    //function para verificar se existe dados do local storage
-    function verificar(){
-        if(typeof localStorage.getItem("dadosUsuario") != 'undefined'){
-
-            var jsonDados = localStorage.getItem('dadosUsuario');
-            dadosUsuario = JSON.parse(jsonDados);
-            
-            ipt_nome_usuario.value = dadosUsuario[0];
-            ipt_email_usuario.value = dadosUsuario[1];
-            ipt_senha_usuario.value = dadosUsuario[2];
-          }
-    }
 
     function finalizarCadastro(){
         var nomeUsuario  = ipt_nome_usuario.value;
@@ -141,22 +128,6 @@
         });
         
     }
-
-    function voltar(){
-        var nomeUsuario  = ipt_nome_usuario.value;
-        var emailUsuario = ipt_email_usuario.value;
-        var senhaUsuario = ipt_senha_usuario.value;
-
-        var dadosUsuario = [nomeUsuario,emailUsuario,senhaUsuario];
-
-        var jsonDados = JSON.stringify(dadosUsuario);
-        localStorage.setItem('dadosUsuario',jsonDados);
-
-
-        window.location.href = "cadastro-endereco.html";
-    }
-    
-
 
 
 

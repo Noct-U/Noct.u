@@ -28,8 +28,10 @@ function buscarCep() {
     });
   }
 
-    function avancar(){
 
+    function voltarEndereco(){
+
+    
         var cep = ipt_cep_empresa.value;
         var cidade = ipt_cidade_empresa.value;
         var bairro = ipt_bairro_empresa.value;
@@ -39,32 +41,10 @@ function buscarCep() {
         var andar = ipt_andar_empresa.value;
         var sala = ipt_sala_empresa.value;
         var complemento = ipt_comp_empresa.value;
-
         var dadosEndereco = [cep,cidade,bairro,uf,logradouro,num,andar,sala,complemento];
+        console.log("dados endereco "+dadosEndereco)
         var jsonDadosEndereco = JSON.stringify(dadosEndereco);
         localStorage.setItem('dadosEndereco',jsonDadosEndereco);
-      
-    
-        window.location.href = "cadastro-usuario.html";
-    }
-    
-
-    function voltar(){
-
-        var cep = ipt_cep_empresa.value;
-        var cidade = ipt_cidade_empresa.value;
-        var bairro = ipt_bairro_empresa.value;
-        var uf = ipt_uf_empresa.value;
-        var logradouro = ipt_logradouro_empresa.value;
-        var num = ipt_num_empresa.value;
-        var andar = ipt_andar_empresa.value;
-        var sala = ipt_sala_empresa.value;
-        var complemento = ipt_comp_empresa.value;
-
-        var dadosEndereco = [cep,cidade,bairro,uf,logradouro,num,andar,sala,complemento];
-        var jsonDadosEndereco = JSON.stringify(dadosEndereco);
-        localStorage.setItem('dadosEndereco',jsonDadosEndereco);
-      
     
         window.location.href = "cadastro-empresa.html";
     }
