@@ -223,17 +223,16 @@ a {
     }
 
     .linhaCampo {
-        width: 100%;
+        width: 80%;
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         gap: 15px;
     }
 
-    .logradourCEP {
-        display: flex;
-        flex-direction: column-reverse;
+    .linhaCampo span {
+        font-size: 28px;
+        padding-left: 25px;
     }
 
     .doisCampo {
@@ -243,30 +242,22 @@ a {
     }
 
     .campo {
-        width: 75%;
+        max-width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 16px 0 16px 40px;
+        padding: 12px 0 12px 25px;
         border-radius: 40px;
         border: 0.1px solid #000;
-        font-size: 32px;
+        font-size: 26px;
     }
 
-    .culpaDoMobile {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        gap: 49px;
+    .enderecado {
+        width: 68%;
     }
 
-    .mobileG {
-        width: 43%;
-    }
-
-    .mobileP {
-        width: 20%;
+    .encurtado {
+        width: 25%;
     }
 
     .logoCanto {
@@ -279,11 +270,11 @@ a {
     /* EM BAIXO DA TELA - OS BOTÕES */
     /* EM BAIXO DA TELA - OS BOTÕES */
     .botoes {
+        margin-top: 25px;
         width: 75%;
         display: flex;
         justify-content: space-between;
         color: #FFFFFF;
-        font-size: 19px;
     }
 
     a {
@@ -297,7 +288,7 @@ a {
         text-align: center;
         align-items: center;
         word-wrap: normal;
-        font-size: 46px;
+        font-size: 38px;
         font-weight: 500;
     }
 
@@ -306,15 +297,15 @@ a {
     }
 
     .avancar {
-        padding: 13px 50px;
+        padding: 6px 40px;
         background-color: #384576;
         border-radius: 200px;
         color: #FFFFFF;
-        font-size: 46px;
+        font-size: 38px;
         font-weight: 500;
     }
 
     #avancar {
         color: #FFFFFF;
-    }
+    }   
 }
