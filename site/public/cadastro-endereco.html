@@ -4,8 +4,7 @@
 <head>
     <title>NOCT.U | CADASTRO</title>
     <link rel="stylesheet" href="css/cadastro2.css">
-    <script src="../js/cadastro-endereco.js"></script>
-    <script src="../js/cadastro-empresa.js"></script>
+    <script src="js/cadastro-endereco.js"></script>
 </head>
 
 <body>
@@ -20,23 +19,40 @@
                 </div>
                 <div class="camposTela">
                     <div class="linhaCampo logradourCEP">
-                        <input class="campo enderecado" placeholder="Logradouro" id="ipt_logradouro">
-                        <input class="campo encurtado" placeholder="CEP" id="ipt_cep">
+                        <div class="nomeCampo enderecado">
+                            <span>Logradouro:</span>
+                            <input class="campo" placeholder="Av Laranjeiras" id="ipt_logradouro_empresa">
+                        </div>
+                        <div class="nomeCampo encurtado">
+                            <span>Número:</span>
+                            <input class="campo" placeholder="98" id="ipt_num_empresa">
+                        </div>
+                    </div>
+                    <div class="linhaCampo ">
+                        <div class="nomeCampo completo">
+                            <span>Complemento:</span>
+                            <input class="campo mobileG" placeholder="Ao lado da Honda.">
+                        </div>
                     </div>
                     <div class="linhaCampo doisCampo">
-                        <input class="campo enderecado mobileG" placeholder="Cidade" id="ipt_cidade">
-                        <input class="campo encurtado mobileP" placeholder="UF" id="ipt_uf">
+                        <div class="nomeCampo encurtado">
+                            <span>CEP:</span>
+                            <input class="campo mobileG" placeholder="25964-634" id="ipt_cep_empresa">
+                        </div>
+                        <div class="nomeCampo enderecado">
+                            <span>Bairro:</span>
+                            <input class="campo mobileP" placeholder="Parque das Águas" id="ipt_bairro_empresa">
+                        </div>
                     </div>
                     <div class="linhaCampo doisCampo">
-                        <input class="campo enderecado mobileG" placeholder="Bairro" id="ipt_bairro">
-                        <input class="campo encurtado mobileP" placeholder="Número" id="ipt_num">
-                    </div>
-                    <div class="linhaCampo logradourCEP">
-                        <input class="campo complemento" placeholder="Complemento" id="ipt_complemento">
-                    </div>
-                    <div class="linhaCampo doisCampo">
-                        <input class="campo enderecado mobileG" placeholder="Sala" id="ipt_sala">
-                        <input class="campo encurtado mobileP" placeholder="Andar" id="ipt_andar">
+                        <div class="nomeCampo meio">
+                            <span>Cidade:</span>
+                            <input class="campo mobileG" placeholder="Vitória" id="ipt_cidade_empresa">
+                        </div>
+                        <div class="nomeCampo meio">
+                            <span>UF:</span>
+                            <input class="campo mobileP" placeholder="Espírito Santo (ES)" id="ipt_uf_empresa">
+                        </div>
                     </div>
                     <div class="logoCanto">
                         <img src="assets/icon/favicon2.svg">
