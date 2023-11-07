@@ -29,8 +29,6 @@ CREATE TABLE local(
 	idLocal INT AUTO_INCREMENT,
     numero INT NOT NULL,
     complemento VARCHAR(45),
-    andar INT,
-    sala VARCHAR(45),
     fkEndereco INT NOT NULL,
     fkEmpresa INT NOT NULL,
     FOREIGN KEY (fkEndereco) REFERENCES endereco(idEndereco),
@@ -38,8 +36,8 @@ CREATE TABLE local(
     PRIMARY KEY (idLocal, fkEndereco, fkEmpresa)
 );
 
-INSERT INTO local (numero, andar, sala, fkEndereco, fkEmpresa) VALUES
-	(211, 7, '7A', 1, 1);
+INSERT INTO local (numero, fkEndereco, fkEmpresa) VALUES
+	(211, 1, 1);
 
 CREATE TABLE empresaLocataria (
 	idEmpresaLocataria INT PRIMARY KEY AUTO_INCREMENT,
@@ -69,13 +67,14 @@ CREATE TABLE usuario(
 	email VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
     fkTipoUsuario INT NOT NULL,
-    fkEmpresaLocadora INT NOT NULL,
-    fkEmpresaAlocacao INT NOT NULL,
-    FOREIGN KEY (fkEmpresaAlocacao) REFERENCES empresaLocataria(idEmpresaLocataria),
-    FOREIGN KEY (fkTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario)
-);
+    fkEmpresaLocadora INT,
+    fkEmpresa INT,
+    FOREIGN KEY (fkTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario),
+    FOREIGN KEY (fkEmpresaLocadora) REFERENCES empresaLocataria(idEmpresaLocataria), 
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
+); 
 
-INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEmpresaAlocacao) VALUES
+INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEmpresa) VALUES
 	('Kevin', 'kevin.silva@sptech.school', '1234', 1, 1, 1);
 
 CREATE TABLE modeloComputador(
@@ -88,15 +87,14 @@ INSERT INTO modeloComputador (nome) VALUES
 
 CREATE TABLE computador(
 	idComputador INT PRIMARY KEY auto_increment,
-    numeroSerie VARCHAR(45),
     fkEmpresa INT,
     fkModeloComputador INT,
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
 );
 
-INSERT INTO computador (numeroSerie, fkEmpresa, fkModeloComputador) VALUES
-	('2213131xy321', 1, 1);
+INSERT INTO computador (fkEmpresa, fkModeloComputador) VALUES
+	(1, 1);
     
 CREATE TABLE unidadeMedida(
 	idUnidadeMedida INT PRIMARY KEY AUTO_INCREMENT,
@@ -142,7 +140,6 @@ CREATE TABLE componente(
 	idComponente INT AUTO_INCREMENT,
     fkHardware INT,
     fkComputador INT,
-    codigoSerial VARCHAR(45),
     fkParametro INT,
     FOREIGN KEY (fkParametro) REFERENCES parametro(idParametro),
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
