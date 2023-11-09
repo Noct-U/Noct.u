@@ -7,12 +7,10 @@ import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
 public class Slack {
-
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final String URL = "https://hooks.slack.com/services/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";
 
     public static void sendMessage(JSONObject content) throws IOException, InterruptedException {
-
         HttpRequest request = HttpRequest.newBuilder(
                         URI.create(URL))
                 .header("accept", "application/json")
@@ -20,7 +18,6 @@ public class Slack {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         System.out.println(String.format("Status: %s", response.statusCode()));
         System.out.println(String.format("Response: %s", response.body()));
     }

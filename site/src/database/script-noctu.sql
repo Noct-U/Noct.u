@@ -11,19 +11,20 @@ CREATE TABLE empresa(
 );
 
 INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES
-	('Simpress', 'Ltda', '12356789019283', '119333576377');
+	('Simpress', 'Ltda', '12356789019283', '119333576377'), -- TIRAR DEPOIS
+	('PressSim', 'Ltda', '12356789019283', '119333576377'); -- TIRAR DEPOIS
 
 CREATE TABLE endereco(
 	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
 	cep CHAR(8) NOT NULL,
-    uf CHAR(2) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     bairro VARCHAR(45) NOT NULL,
+    uf CHAR(2) NOT NULL,
     logradouro VARCHAR(45) NOT NULL
 );
 
 INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES
-	('08474230', 'SP', 'São Paulo', 'Paulista', 'Rua Haddock Lobo');
+	('08474230', 'SP', 'São Paulo', 'Paulista', 'Rua Haddock Lobo'); -- TIRAR DEPOIS
 
 CREATE TABLE local(
 	idLocal INT AUTO_INCREMENT,
@@ -37,7 +38,7 @@ CREATE TABLE local(
 );
 
 INSERT INTO local (numero, fkEndereco, fkEmpresa) VALUES
-	(211, 1, 1);
+	(211, 1, 1); -- TIRAR DEPOIS
 
 CREATE TABLE empresaLocataria (
 	idEmpresaLocataria INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +51,7 @@ CREATE TABLE empresaLocataria (
 );
 
 INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa) VALUES
-	('SPTech', '10293029381203', 1);
+	('SPTech', '10293029381203', 1); -- TIRAR DEPOIS
     
 CREATE TABLE tipoUsuario(
 	idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,43 +59,49 @@ CREATE TABLE tipoUsuario(
 );
 
 INSERT INTO tipoUsuario (nomeTipo) VALUES
-	('Admin'),
-	('Funcionario');
+	('ADMIN'),
+	('COMUM');
     
 CREATE TABLE usuario(
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
 	email VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
-    fkTipoUsuario INT NOT NULL,
+    fkTipoUsuario INT,
     fkEmpresaLocadora INT,
     fkEmpresa INT,
-    FOREIGN KEY (fkTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario),
+    FOREIGN KEY (fkTipoUsuario) REFERENCES tipoUsuario(idTipoUsuario),
     FOREIGN KEY (fkEmpresaLocadora) REFERENCES empresaLocataria(idEmpresaLocataria), 
     FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
 ); 
 
 INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEmpresa) VALUES
-	('Kevin', 'kevin.silva@sptech.school', '1234', 1, 1, 1);
-
+	('Kevin', 'kevin.silva@sptech.school', '1234', 1, 1, 1); -- TIRAR DEPOIS
+ 
 CREATE TABLE modeloComputador(
-	idModeloComputador INT PRIMARY KEY auto_increment,
+	idModeloComputador INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45)
 );
 
 INSERT INTO modeloComputador (nome) VALUES
-	('IdeaPad');
-
+	('Padrão'); -- TIRAR DEPOIS
+ 
 CREATE TABLE computador(
-	idComputador INT PRIMARY KEY auto_increment,
+	idComputador INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT,
     fkModeloComputador INT,
+    -- fkEmpresaLocataria INT,
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
+    -- FOREIGN KEY (fkEmpresaLocataria) REFERENCES empresaLocataria(idEmpresaLocataria)
 );
 
 INSERT INTO computador (fkEmpresa, fkModeloComputador) VALUES
-	(1, 1);
+	(1, 1), -- TIRAR DEPOIS
+	(1, 1), -- TIRAR DEPOIS
+	(1, 1), -- TIRAR DEPOIS
+	(2, 1), -- TIRAR DEPOIS
+	(2, 1); -- TIRAR DEPOIS
     
 CREATE TABLE unidadeMedida(
 	idUnidadeMedida INT PRIMARY KEY AUTO_INCREMENT,
@@ -120,37 +127,44 @@ INSERT INTO tipoHardware VALUES
 	(NULL, 'Janelas', NULL);
 
 CREATE TABLE hardware(
-	idHardware INT PRIMARY KEY auto_increment,
+	idHardware INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     especificidade VARCHAR(45),
-    capacidade DECIMAL(10,2) NOT NULL,
+    capacidade DOUBLE NOT NULL,
 	fkTipoHardware INT,
     FOREIGN KEY (fkTipoHardware) REFERENCES tipoHardware(idTipoHardware)
 );
+-- JAR pega
 
 CREATE TABLE parametro(
 	idParametro INT PRIMARY KEY AUTO_INCREMENT,
-    min DECIMAL(10,2),
-    max DECIMAL(10,2)
+    min DOUBLE,
+    max DOUBLE
+    -- fkUnidadeMedida INT,
+    -- FOREIGN KEY (fkUnidadeMedida) REFERENCES unidadeMedida(idUnidadeMedida)
 );
 
--- JAR pega
+INSERT INTO parametro VALUES
+	(null, 60.00, 80.00),
+	(null, 20.00, 40.00),
+	(null, 50.00, 70.00),
+	(null, 1.00, 10.00);
 
 CREATE TABLE componente(
 	idComponente INT AUTO_INCREMENT,
-    fkHardware INT,
     fkComputador INT,
+    fkHardware INT,
     fkParametro INT,
     FOREIGN KEY (fkParametro) REFERENCES parametro(idParametro),
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
     FOREIGN KEY (fkComputador) REFERENCES computador(idComputador),
     PRIMARY KEY (idComponente, fkHardware, fkComputador)
-);
+); 
 -- JAR pega
 
 CREATE TABLE captura (
 	idCaptura INT PRIMARY KEY AUTO_INCREMENT,
-    valor DECIMAL(10,2),
+    valor DOUBLE,
     descricao VARCHAR(45),
     dtCaptura DATETIME,
     fkComputador INT,
@@ -161,6 +175,8 @@ CREATE TABLE captura (
     FOREIGN KEY (fkComponente) REFERENCES componente(idComponente)
 );
 
+-- JAR pega
+
 CREATE TABLE alerta(
 	idAlerta INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(100),
@@ -170,8 +186,11 @@ CREATE TABLE alerta(
     FOREIGN KEY (fkCaptura) REFERENCES captura(idCaptura)
 );
 
--- JAR pega
+-- SELECT * FROM tipoHardware;
+-- SELECT * FROM hardware;
+-- SELECT * FROM componente;
+-- SELECT * FROM captura;
 
-select * from hardware;
-select * from componente;
-select * from captura;
+-- SELECT * FROM usuario;
+-- SELECT * FROM empresa;
+-- SELECT * FROM local;

@@ -3,27 +3,29 @@ var database = require("../database/config")
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `   
-    select * from empresa join local on empresa.idEmpresa = fkEmpresa join endereco on fkEndereco = endereco.idEndereco
-    where email = '${email}' and senha = '${senha}';
+        SELECT * FROM empresa 
+        JOIN local on empresa.idEmpresa = fkEmpresa 
+        JOIN endereco on fkEndereco = endereco.idEndereco
+            WHERE email = '${email}' and senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrarEmpresa(nome,razaoSocial,cnpj,telefone) {
+function cadastrarEmpresa(nome, razaoSocial, cnpj, telefone) {
     var instrucao = `
-        INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) 
-        VALUES ('${nome}', '${razaoSocial}', '${cnpj}', '${telefone}');
+        INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES 
+            ('${nome}', '${razaoSocial}', '${cnpj}', '${telefone}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarEndereco(cep,cidade,bairro,uf,logradouro) {
-
+function cadastrarEndereco(cep, cidade, bairro, uf, logradouro) {
     var instrucao = `
-    INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES ('${cep}', '${uf}', '${cidade}', '${bairro}', '${logradouro}');
+        INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES 
+            ('${cep}', '${uf}', '${cidade}', '${bairro}', '${logradouro}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -32,27 +34,25 @@ function cadastrarEndereco(cep,cidade,bairro,uf,logradouro) {
 function consultarUltimaEmpresa() {
     var instrucao = `
         SELECT idEmpresa FROM empresa
-        ORDER BY idEmpresa DESC
-        LIMIT 1;
+            ORDER BY idEmpresa DESC LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-function consultarUltimoEndereco() {
 
+function consultarUltimoEndereco() {
     var instrucao = `
         SELECT idEndereco FROM endereco
-        ORDER BY idEndereco DESC
-        LIMIT 1;
+            ORDER BY idEndereco DESC LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarLocal(numero,complemento,idUltimoEndereco,idUltimaEmpresa) {
-
+function cadastrarLocal(numero, complemento, idUltimoEndereco, idUltimaEmpresa) {
     var instrucao = `
-        INSERT INTO local (numero,complemento,fkEndereco,fkEmpresa) VALUES ('${numero}', '${complemento}','${idUltimoEndereco}','${idUltimaEmpresa}');
+        INSERT INTO local (numero,complemento,fkEndereco,fkEmpresa) VALUES 
+            ('${numero}', '${complemento}','${idUltimoEndereco}','${idUltimaEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -60,15 +60,14 @@ function cadastrarLocal(numero,complemento,idUltimoEndereco,idUltimaEmpresa) {
 
 function exibirEmpresas(idEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
+
     var instrucao = `
-    select empresa.id,empresa.razaoSocial from empresa;
+        SELECT empresa.id,empresa.razaoSocial FROM empresa;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
 module.exports = {
     autenticar,
     cadastrarEmpresa,

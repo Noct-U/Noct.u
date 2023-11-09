@@ -8,6 +8,7 @@ import com.github.britooo.looca.api.group.processador.Processador;
 import dao.NoctuDao;
 import oshi.SystemInfo;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -29,6 +30,12 @@ public class TestePrototipo {
 
         // ADICIONANDO A FICHA TECNICA (INSERINDO HARDWARE NO BANCO)
         Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);
+//        Double teste = memoria.getTotal().doubleValue();
+//        System.out.println(teste);
+//        String CapacidadeMemoria = String.format("%.2f", teste);
+//        System.out.println(CapacidadeMemoria);
+//        Double doubleValue = Double.valueOf(CapacidadeMemoria).doubleValue();
+//        System.out.println(doubleValue);
         Hardware hardwareMemoria = new Hardware("RAM", memoria.getTotal().doubleValue(), 2);
 
         dao.adicionarHardware(hardwareCPU);
@@ -48,10 +55,10 @@ public class TestePrototipo {
         Componente componenteDisco = new Componente(1, 3, "7avsd9s0");
         Componente componenteJanela = new Componente(1, 4, "dasd546a");
 
-        dao.adicionarComponente(componenteCPU);
-        dao.adicionarComponente(componenteRAM);
-        dao.adicionarComponente(componenteDisco);
-        dao.adicionarComponente(componenteJanela);
+        dao.adicionarComponenteCPU(componenteCPU);
+        dao.adicionarComponenteRAM(componenteRAM);
+        dao.adicionarComponenteDisco(componenteDisco);
+        dao.adicionarComponenteJanela(componenteJanela);
 
         // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
         Timer timer = new Timer();

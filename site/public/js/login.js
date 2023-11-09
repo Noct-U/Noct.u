@@ -24,7 +24,7 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.idUsuario;
 
-            if(json.nomeTipo == "Admin"){
+            if(json.nomeTipo == "ADMIN"){
                 setTimeout(function () {
                     window.location = "./dashboard/dashboard.html";
                 }, 1000); // apenas para exibir o loading
