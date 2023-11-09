@@ -4,7 +4,7 @@
 <head>
     <title>NOCT.U | CADASTRO</title>
     <link rel="stylesheet" href="css/cadastro2.css">
-    <script src="js/cadastro-endereco.js"></script>
+
 </head>
 
 <body>
@@ -18,6 +18,17 @@
                     <span>Insira as informações sobre o endereço de sua empresa</span>
                 </div>
                 <div class="camposTela">
+
+                    <div class="linhaCampo">
+                        <div class="nomeCampo encurtado">
+                            <span>CEP:</span>
+                            <input class="campo" id="ipt_cep_empresa" onkeyup="buscarCep()">
+                        </div>
+                        <div class="nomeCampo enderecado">
+                            <span>Bairro:</span>
+                            <input class="campo" id="ipt_bairro_empresa">
+                        </div>
+                    </div>
                     <div class="linhaCampo logradourCEP">
                         <div class="nomeCampo enderecado">
                             <span>Logradouro:</span>
@@ -28,22 +39,8 @@
                             <input class="campo" id="ipt_num_empresa">
                         </div>
                     </div>
-                    <div class="linhaCampo ">
-                        <div class="nomeCampo completo">
-                            <span>Complemento:</span>
-                            <input class="campo" id="????????????">
-                        </div>
-                    </div>
-                    <div class="linhaCampo">
-                        <div class="nomeCampo encurtado">
-                            <span>CEP:</span>
-                            <input class="campo" id="ipt_cep_empresa">
-                        </div>
-                        <div class="nomeCampo enderecado">
-                            <span>Bairro:</span>
-                            <input class="campo" id="ipt_bairro_empresa">
-                        </div>
-                    </div>
+                    
+                    
                     <div class="linhaCampo">
                         <div class="nomeCampo meio">
                             <span>Cidade:</span>
@@ -52,6 +49,12 @@
                         <div class="nomeCampo meio">
                             <span>UF:</span>
                             <input class="campo" id="ipt_uf_empresa">
+                        </div>
+                    </div>
+                    <div class="linhaCampo ">
+                        <div class="nomeCampo completo">
+                            <span>Complemento:</span>
+                            <input class="campo" id="ipt_comp_empresa">
                         </div>
                     </div>
                     <div class="logoCanto">
@@ -77,3 +80,4 @@
 </body>
 
 </html>
+<script src="js/cadastro-endereco.js"></script>

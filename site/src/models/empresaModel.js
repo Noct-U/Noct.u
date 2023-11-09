@@ -13,7 +13,8 @@ function autenticar(email, senha) {
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrarEmpresa(nome,razaoSocial,cnpj,telefone) {
     var instrucao = `
-        INSERT INTO empresa (nome,razaoSocial,cnpj,telefoneFixo) VALUES ('${nome}', '${razaoSocial}', '${cnpj}', '${telefone}');
+        INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) 
+        VALUES ('${nome}', '${razaoSocial}', '${cnpj}', '${telefone}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -22,7 +23,7 @@ function cadastrarEmpresa(nome,razaoSocial,cnpj,telefone) {
 function cadastrarEndereco(cep,cidade,bairro,uf,logradouro) {
 
     var instrucao = `
-        INSERT INTO endereco (cep,uf,cidade,bairro,logradouro) VALUES ('${cep}', '${uf}', '${cidade}', '${bairro}', '${logradouro}');
+    INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES ('${cep}', '${uf}', '${cidade}', '${bairro}', '${logradouro}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -48,10 +49,10 @@ function consultarUltimoEndereco() {
     return database.executar(instrucao);
 }
 
-function cadastrarLocal(numero,complemento,andar,sala,idUltimoEndereco,idUltimaEmpresa) {
+function cadastrarLocal(numero,complemento,idUltimoEndereco,idUltimaEmpresa) {
 
     var instrucao = `
-        INSERT INTO local (numero,complemento,andar,sala,fkEndereco,fkEmpresa) VALUES ('${numero}', '${complemento}','${andar}','${sala}','${idUltimoEndereco}','${idUltimaEmpresa}');
+        INSERT INTO local (numero,complemento,fkEndereco,fkEmpresa) VALUES ('${numero}', '${complemento}','${idUltimoEndereco}','${idUltimaEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

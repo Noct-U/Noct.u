@@ -35,10 +35,8 @@ function voltarEndereco() {
     var uf = ipt_uf_empresa.value;
     var logradouro = ipt_logradouro_empresa.value;
     var num = ipt_num_empresa.value;
-    var andar = ipt_andar_empresa.value;
-    var sala = ipt_sala_empresa.value;
     var complemento = ipt_comp_empresa.value;
-    var dadosEndereco = [cep, cidade, bairro, uf, logradouro, num, andar, sala, complemento];
+    var dadosEndereco = [cep, cidade, bairro, uf, logradouro, num, complemento];
     console.log("dados endereco " + dadosEndereco)
     var jsonDadosEndereco = JSON.stringify(dadosEndereco);
     localStorage.setItem('dadosEndereco', jsonDadosEndereco);
@@ -60,9 +58,7 @@ function verificarDados() {
         ipt_uf_empresa.value = dadosEndereco[3]
         ipt_logradouro_empresa.value = dadosEndereco[4];
         ipt_num_empresa.value = dadosEndereco[5];
-        ipt_andar_empresa.value = dadosEndereco[6];
-        ipt_sala_empresa.value = dadosEndereco[7];
-        ipt_comp_empresa.value = dadosEndereco[8];
+        ipt_comp_empresa.value = dadosEndereco[6];
     }
 }
 
@@ -77,9 +73,10 @@ function finalizarCadastro() {
     var uf = ipt_uf_empresa.value;
     var logradouro = ipt_logradouro_empresa.value;
     var num = ipt_num_empresa.value;
-    var andar = ipt_andar_empresa.value; // camisa de sdd
-    var sala = ipt_sala_empresa.value; // camisa de sdd
     var complemento = ipt_comp_empresa.value;
+
+    console.log(dadosUsuario);
+    console.log(dadosEmpresa);
     fetch("/empresas/cadastrarEmpresa", {
         method: "POST",
         headers: {
@@ -97,7 +94,7 @@ function finalizarCadastro() {
             logEnderecoServer: logradouro
         }),
     })
-        .then(function (resposta) {
+        .then(function () {
             fetch("/empresas/consultarUltimaEmpresa", {
                 method: "POST",
                 headers: {
@@ -132,8 +129,6 @@ function finalizarCadastro() {
                                                     // Agora vá para o arquivo routes/usuario.js
                                                     //Dados da primeira pag de cadastro
                                                     numServer: num,
-                                                    andarServer: andar, // camisa de sdd
-                                                    salaServer: sala, // camisa de sdd
                                                     complementoServer: complemento,
                                                     idUltimaEmpresaServer: idUltimaEmpresa,
                                                     idUltimoEnderecoServer: idUltimoEndereco

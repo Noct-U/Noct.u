@@ -20,8 +20,8 @@ function cadastrarEmpresa(req, res) {
     empresaModel.cadastrarEmpresa(nome,razaoSocial,cnpj,telefone),
     empresaModel.cadastrarEndereco(cep,cidade,bairro,uf,logradouro)
         .then(
-            function (resultado) {
-                res.json(resultado);
+            function () {
+                res.json();
             }
         ).catch(
             function (erro) {
@@ -81,14 +81,12 @@ function cadastrarLocalidade(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var numero = req.body.numServer;
     var complemento = req.body.complementoServer;
-    var andar = req.body.andarServer;
-    var sala = req.body.salaServer;
     var idUltimoEndereco = req.body.idUltimoEnderecoServer;
     var idUltimaEmpresa = req.body.idUltimaEmpresaServer;
 
     // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
 
-    empresaModel.cadastrarLocal(numero,complemento,andar,sala,idUltimoEndereco,idUltimaEmpresa)
+    empresaModel.cadastrarLocal(numero,complemento,idUltimoEndereco,idUltimaEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
