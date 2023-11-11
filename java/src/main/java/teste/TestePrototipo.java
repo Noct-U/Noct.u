@@ -8,6 +8,10 @@ import com.github.britooo.looca.api.group.processador.Processador;
 import dao.NoctuDao;
 import oshi.SystemInfo;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -84,10 +88,59 @@ public class TestePrototipo {
                 Captura cap04 = new Captura(valorJanela, dataAtual, 1, 4, 4);
                 dao.adicionarCaptura(cap04);
 
+
+                GravarEmArquivo(componenteCPU, componenteRAM, componenteDisco, componenteJanela);
+
                 System.out.println(dao.exibirCaptura());
             }
+
+            private void GravarEmArquivo(Componente componenteCPU, Componente componenteRAM, Componente componenteDisco, Componente componenteJanela) {
+
+                    String nomeDoArquivo = "C:\\Users\\sthef\\OneDrive\\Área de Trabalho\\Noct.u\\java\\LogTXT";
+
+                    // Mensagem para solicitar suporte
+                    String mensagemSuporte = "Suporte foi solicitado para arrumar a máquina.";
+
+                    try {
+                        File LogTXT = new File(nomeDoArquivo);
+
+                        if (!LogTXT.exists()) {
+                            LogTXT.createNewFile();
+                        }
+
+                        BufferedWriter escritor = new BufferedWriter(new FileWriter(LogTXT, true));
+
+                        // Construir a string de dados
+                        String dados =
+                                "Consumo CPU: " + componenteCPU + "%\n" +
+                                "Consumo RAM: " + componenteRAM + " bytes\n" +
+                                "Consumo Disco: " + componenteDisco + " GB\n" +
+                                "Janelas Abertas: " + componenteJanela + " janelas abertas\n" +
+                                "Mensagem para Suporte: " + mensagemSuporte + "\n\n";
+
+                        // Escrever os dados no arquivo
+                        escritor.write(dados);
+
+                        escritor.close();
+
+                        System.out.println("Dados gravados em " + nomeDoArquivo + ", Gerando LOG de consumos dos dados");
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+
+
+
         };
         // TEMPORIZADOR PARA A TAREFA.
         timer.scheduleAtFixedRate(tarefa, 5, 5000);
     }
+
+
+
+
+
 }
