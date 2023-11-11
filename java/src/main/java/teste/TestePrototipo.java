@@ -8,7 +8,10 @@ import com.github.britooo.looca.api.group.processador.Processador;
 import dao.NoctuDao;
 import oshi.SystemInfo;
 
-import java.text.DecimalFormat;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,12 +33,6 @@ public class TestePrototipo {
 
         // ADICIONANDO A FICHA TECNICA (INSERINDO HARDWARE NO BANCO)
         Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);
-//        Double teste = memoria.getTotal().doubleValue();
-//        System.out.println(teste);
-//        String CapacidadeMemoria = String.format("%.2f", teste);
-//        System.out.println(CapacidadeMemoria);
-//        Double doubleValue = Double.valueOf(CapacidadeMemoria).doubleValue();
-//        System.out.println(doubleValue);
         Hardware hardwareMemoria = new Hardware("RAM", memoria.getTotal().doubleValue(), 2);
 
         dao.adicionarHardware(hardwareCPU);
@@ -55,10 +52,10 @@ public class TestePrototipo {
         Componente componenteDisco = new Componente(1, 3, "7avsd9s0");
         Componente componenteJanela = new Componente(1, 4, "dasd546a");
 
-        dao.adicionarComponenteCPU(componenteCPU);
-        dao.adicionarComponenteRAM(componenteRAM);
-        dao.adicionarComponenteDisco(componenteDisco);
-        dao.adicionarComponenteJanela(componenteJanela);
+        dao.adicionarComponente(componenteCPU);
+        dao.adicionarComponente(componenteRAM);
+        dao.adicionarComponente(componenteDisco);
+        dao.adicionarComponente(componenteJanela);
 
         // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
         Timer timer = new Timer();
@@ -91,10 +88,59 @@ public class TestePrototipo {
                 Captura cap04 = new Captura(valorJanela, dataAtual, 1, 4, 4);
                 dao.adicionarCaptura(cap04);
 
+
+                GravarEmArquivo(componenteCPU, componenteRAM, componenteDisco, componenteJanela);
+
                 System.out.println(dao.exibirCaptura());
             }
+
+            private void GravarEmArquivo(Componente componenteCPU, Componente componenteRAM, Componente componenteDisco, Componente componenteJanela) {
+
+                String nomeDoArquivo = "C:\\Users\\sthef\\OneDrive\\Área de Trabalho\\Noct.u\\java\\LogTXT";
+
+                // Mensagem para solicitar suporte
+                String mensagemSuporte = "Suporte foi solicitado para arrumar a máquina.";
+
+                try {
+                    File LogTXT = new File(nomeDoArquivo);
+
+                    if (!LogTXT.exists()) {
+                        LogTXT.createNewFile();
+                    }
+
+                    BufferedWriter escritor = new BufferedWriter(new FileWriter(LogTXT, true));
+
+                    // Construir a string de dados
+                    String dados =
+                            "Consumo CPU: " + componenteCPU + "%\n" +
+                                    "Consumo RAM: " + componenteRAM + " bytes\n" +
+                                    "Consumo Disco: " + componenteDisco + " GB\n" +
+                                    "Janelas Abertas: " + componenteJanela + " janelas abertas\n" +
+                                    "Mensagem para Suporte: " + mensagemSuporte + "\n\n";
+
+                    // Escrever os dados no arquivo
+                    escritor.write(dados);
+
+                    escritor.close();
+
+                    System.out.println("Dados gravados em " + nomeDoArquivo + ", Gerando LOG de consumos dos dados");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+
+
         };
         // TEMPORIZADOR PARA A TAREFA.
         timer.scheduleAtFixedRate(tarefa, 5, 5000);
     }
+
+
+
+
+
 }
