@@ -16,5 +16,8 @@ router.post("/consultarUltimoModelo", function (req, res) {
     computadorController.consultarUltimoModelo(req, res);
 })
 
+router.post("/consultarComputadores", function (req, res) {
+    computadorController.consultarComputadores(req, res);
+})
 
 module.exports = router;

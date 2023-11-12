@@ -20,9 +20,14 @@ function entrar() {
             resposta.json().then(json => {
             console.log(json);
             console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.TIPO_USUARIO = json.nomeTipo;
             sessionStorage.ID_USUARIO = json.idUsuario;
+            sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+            sessionStorage.NOME_USUARIO = json.nomeUsuario;
+            sessionStorage.ID_EMPRESA = json.idEmpresa;
+            sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+            sessionStorage.ID_LOCATARIA = json.idEmpresaLocataria;
+            sessionStorage.NOME_LOCATARIA = json.nomeLocataria;
 
             if(json.nomeTipo == "ADMIN"){
                 setTimeout(function () {
@@ -35,7 +40,7 @@ function entrar() {
                     window.location = "./dashboard/dashboard-funcionario.html";
                 }, 1000); // apenas para exibir o loading
             }
-            // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+            sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
         
         
          });

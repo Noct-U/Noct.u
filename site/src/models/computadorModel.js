@@ -33,8 +33,21 @@ function consultarUltimoModelo() {
     return database.executar(instrucao);
 }
 
+function consultarComputadores(idEmpresa) {
+
+    var instrucao = `
+    select modeloComputador.nome as modelo, idComputador as computador, empresaLocataria.nome as locataria
+    from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador 
+    JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria
+    where computador.fkEmpresa = ${idEmpresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
-    consultarUltimoModelo
+    consultarUltimoModelo,
+    consultarComputadores
 };

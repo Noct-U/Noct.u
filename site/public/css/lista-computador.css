@@ -1,6 +1,6 @@
-.form-body{
+/* .form-body{
     overflow: auto;
-}
+} */
 
 .form-footer{
     width: 100%;
@@ -49,7 +49,7 @@
     background-color: #5973d4;
 }
 
-/* .form-body ::-webkit-scrollbar {
+.form-body ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
@@ -61,7 +61,7 @@
 
 .form-body ::-webkit-scrollbar-track {
     background: #a7a3a3;
-} */
+} 
 
 .form-footer{
     width: 100%;
