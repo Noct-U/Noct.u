@@ -1,4 +1,4 @@
-package Slack;
+package slack;
 
 import java.io.IOException;
 import org.json.JSONObject;
