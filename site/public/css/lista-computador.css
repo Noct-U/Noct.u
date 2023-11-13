@@ -51,7 +51,7 @@
 
 .form-body {
     height: 90%;
-    width: 100%;
+    width: 80%;
     overflow-y: auto;
     overflow-x: hidden;
     gap: 25px;
@@ -60,19 +60,22 @@
     /* padding: 1rem 1.5rem 3rem 1.5rem; */
 }
 
-.form-body ::-webkit-scrollbar {
+.form-body::-webkit-scrollbar {
     
-    width: 10px;
+    width: 18px;
     height: 10px;
 }
 
-.form-body ::-webkit-scrollbar-thumb {
-    border-radius: 50px;
+.form-body::-webkit-scrollbar-thumb {
+    border-radius: 90px;
     background: black;
+    border: 5px solid #D4D4D4;
 }
 
-.form-body ::-webkit-scrollbar-track {
-    background: #a7a3a3;
+.form-body::-webkit-scrollbar-track {
+    background: #D4D4D4;
+    border-radius: 50px;
+    /* width: 15px; */
 } 
 
 .form-footer{

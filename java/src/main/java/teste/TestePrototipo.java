@@ -5,6 +5,7 @@ import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
 import dao.NoctuDao;
 import oshi.SystemInfo;
 
@@ -52,10 +53,17 @@ public class TestePrototipo {
         Componente componenteDisco = new Componente(1, 3, "7avsd9s0");
         Componente componenteJanela = new Componente(1, 4, "dasd546a");
 
-        dao.adicionarComponente(componenteCPU);
-        dao.adicionarComponente(componenteRAM);
-        dao.adicionarComponente(componenteDisco);
-        dao.adicionarComponente(componenteJanela);
+//        dao.adicionarComponenteCPU(componenteCPU);
+//        dao.adicionarComponenteRAM(componenteRAM);
+//        dao.adicionarComponenteDisco(componenteDisco);
+//        dao.adicionarComponenteJanela(componenteJanela);
+
+        PlacaDeRede placa = new PlacaDeRede();
+        System.out.println(placa.getHostName());
+        System.out.println(placa.getNumIpv4());
+
+        RedeInterfaceGroup rede2 =new RedeInterfaceGroup(new SystemInfo());
+        System.out.println(rede2.getInterfaces().get(1).getEnderecoIpv4());
 
         // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
         Timer timer = new Timer();
@@ -111,12 +119,7 @@ public class TestePrototipo {
                     BufferedWriter escritor = new BufferedWriter(new FileWriter(LogTXT, true));
 
                     // Construir a string de dados
-                    String dados =
-                            "Consumo CPU: " + componenteCPU + "%\n" +
-                                    "Consumo RAM: " + componenteRAM + " bytes\n" +
-                                    "Consumo Disco: " + componenteDisco + " GB\n" +
-                                    "Janelas Abertas: " + componenteJanela + " janelas abertas\n" +
-                                    "Mensagem para Suporte: " + mensagemSuporte + "\n\n";
+                    String dados = "Consumo CPU: " + componenteCPU + "%\n" + "Consumo RAM: " + componenteRAM + " bytes\n" + "Consumo Disco: " + componenteDisco + " GB\n" + "Janelas Abertas: " + componenteJanela + " janelas abertas\n" + "Mensagem para Suporte: " + mensagemSuporte + "\n\n";
 
                     // Escrever os dados no arquivo
                     escritor.write(dados);
@@ -131,16 +134,10 @@ public class TestePrototipo {
             }
 
 
-
-
-
         };
         // TEMPORIZADOR PARA A TAREFA.
         timer.scheduleAtFixedRate(tarefa, 5, 5000);
     }
-
-
-
 
 
 }
