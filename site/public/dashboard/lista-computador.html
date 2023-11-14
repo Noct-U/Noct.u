@@ -14,7 +14,7 @@
                 <img src="../assets/logo.png" height="68px" width="68px">
             </div>
             <div class="titulo">
-                <div class="marca"><span>NOCT.U</span></div>
+                <div class="marca"><span id="nome_empresa"></span></div>
                 <div class="descricao"><span>Computadores registrados</span></div>
             </div>
             <div class="invisivel"></div>
@@ -64,6 +64,8 @@
 <script src="../js/cadastro-locataria.js"></script>
 
 <script>
+
+    nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
     setTimeout(function() {
         exibirEmpresas();
     }, 100);
