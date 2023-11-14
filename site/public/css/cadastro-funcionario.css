@@ -114,12 +114,13 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #3F3E90;
 }
 
 .btn-direita {
     border-radius: 20px;
     border: 2px solid #FFF;
-    background: #4F64B0;
+    background: #3F3E90;
     color: #FFF;
     padding: 8px 45px;
     display: flex;

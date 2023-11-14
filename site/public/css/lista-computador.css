@@ -1,109 +1,217 @@
-/* .form-body{
-    overflow: auto;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Urbanist&display=swap');
 
-.form-footer{
-    width: 100%;
-}
-
-.form-button{
-    width: 50%;
-}
-
-.form-logo{
-    width: 100%;
+body {
+    margin: 0;
     padding: 0;
+    background-color: #6074BC;
+    font-family: 'Urbanist', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+button {
+    cursor: pointer;
+}
+
+.caixa {
+    margin-top: 15px;
+    height: 95vh;
+    padding: 0 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #D9D9D9;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.marca {
+    font-size: 38px;
+}
+
+.descricao {
+    font-size: 22px;
+    padding: 5px;
+    border-bottom: 1px solid;
+}
+
+.invisivel {
+    width: 100px;
+    height: 100px;
+}
+
+.big {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-        
-}
-
-.form-logo select{
-    width: 50%;
-    height: 50%;
-    border-radius: 10px;
-}
-
-
-.form-logo select, option{
-    color: black;
-}
-
-.selecao{
-    width: 20%;    
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.selecao label{
-    color: black;
-}
-
-#btn_acessar{
-    background-color: #4F64B0;
-}
-
-#btn_acessar:hover{
-    background-color: #5973d4;
-}
-
-.form-body {
-    height: 90%;
-    width: 80%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    gap: 25px;
+.quadrado {
+    width: 60%;
+    height: 350px;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    font-family: 'Inter', sans-serif;
+    
+    
+    gap: 30px;
     display: flex;
     flex-direction: column;
-    /* padding: 1rem 1.5rem 3rem 1.5rem; */
+    justify-content: center;
+    align-items: center;
 }
 
-.form-body::-webkit-scrollbar {
-    
+.conteudo {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quadtop {
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+}
+
+.quadbot {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quadbot::-webkit-scrollbar {
     width: 18px;
     height: 10px;
 }
 
-.form-body::-webkit-scrollbar-thumb {
+.quadbot::-webkit-scrollbar-thumb {
     border-radius: 90px;
-    background: black;
+    background: #FFF;
     border: 5px solid #D4D4D4;
 }
 
-.form-body::-webkit-scrollbar-track {
+.quadbot::-webkit-scrollbar-track {
     background: #D4D4D4;
     border-radius: 50px;
     /* width: 15px; */
 } 
 
-.form-footer{
-    width: 100%;
-    height: 20%;
+.elemento {
+    max-width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    background-color: #FFF;
+    gap: 2px;
+    border-radius: 12px;
+    padding: 5px 20px;
 }
 
-.form-alert{
-    width: 40%;
-    height: 100%;
+.linhaInfo {
+    max-width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.info {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    flex-direction: row;
+    max-width: 100%;
 }
 
-.form-alert label{
-    color: black;
-    font-weight: 800;
+.juntinhos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
-.alerta{
+.alerta {
     width: 15px;
-    height: 100%;
+    height: 15px;
     border-radius: 100%;
     background-color: #FF3C3Ced;
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.418);
-    margin-right: 10px;
+    margin-right: 10px
+}
+
+.btns {
+    gap: 10px;
+}
+
+.btn {
+    border: none;
+    border-radius: 5px;
+    padding: 3px 10px;
+    color: #FFF;
+}
+
+.vermelho {
+    background-color: #EC2020;
+}
+
+.cinza {
+    background-color: #7A7979;
+}
+
+.azul {
+    background-color: #4F64B0;
+}
+
+.botoes {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn-esquerda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-direita {
+    border-radius: 20px;
+    border: 2px solid #FFF;
+    background: #4F64B0;
+    color: #FFF;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
