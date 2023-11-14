@@ -89,9 +89,31 @@ function consultarComputadores(req, res) {
 }
 
 
+function excluirComputador(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var idComputador = req.body.idComputadorServer;
+    computadorModel.excluirComputador(idComputador)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
     consultarUltimoModelo,
-    consultarComputadores
+    consultarComputadores,
+    excluirComputador
 }

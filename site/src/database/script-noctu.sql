@@ -51,7 +51,8 @@ CREATE TABLE empresaLocataria (
 );
 
 INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa) VALUES
-	('SPTech', '10293029381203', 1); -- TIRAR DEPOIS
+	('SPTech', '10293029381203', 1), -- TIRAR DEPOIS
+	('LiminhaTech', '31242131231', 2); -- TIRAR DEPOIS
     
 CREATE TABLE tipoUsuario(
 	idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -84,32 +85,31 @@ CREATE TABLE modeloComputador(
 );
 
 INSERT INTO modeloComputador (nome) VALUES
-	('Padrão'); -- TIRAR DEPOIS
+	('Padrão'), -- TIRAR DEPOIS
+	('Lenovo lindo'); -- TIRAR DEPOIS
  
 CREATE TABLE computador(
 	idComputador INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT,
     fkModeloComputador INT,
-    -- fkEmpresaLocataria INT,
+    fkEmpresaLocataria INT,
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
-    FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
-    -- FOREIGN KEY (fkEmpresaLocataria) REFERENCES empresaLocataria(idEmpresaLocataria)
+    FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador),
+    FOREIGN KEY (fkEmpresaLocataria) REFERENCES empresaLocataria(idEmpresaLocataria)
 );
 
-INSERT INTO computador (fkEmpresa, fkModeloComputador) VALUES
-	(1, 1), -- TIRAR DEPOIS
-	(1, 1), -- TIRAR DEPOIS
-	(1, 1), -- TIRAR DEPOIS
-	(2, 1), -- TIRAR DEPOIS
-	(2, 1); -- TIRAR DEPOIS
+INSERT INTO computador (fkEmpresa, fkModeloComputador, fkEmpresaLocataria) VALUES
+	(1, 1, 1), -- TIRAR DEPOIS
+	(1, 1, 1), -- TIRAR DEPOIS
+	(2, 1, 2); -- TIRAR DEPOIS
     
 CREATE TABLE unidadeMedida(
 	idUnidadeMedida INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(45),
+    nome VARCHAR(45),
 	simbolo VARCHAR(3)
 );
 
-INSERT INTO unidadeMedida (titulo, simbolo) VALUES
+INSERT INTO unidadeMedida (nome	, simbolo) VALUES
 	('Porcentagem', '%'),
 	('GigaBytes', 'GB');
 
@@ -134,32 +134,47 @@ CREATE TABLE hardware(
 	fkTipoHardware INT,
     FOREIGN KEY (fkTipoHardware) REFERENCES tipoHardware(idTipoHardware)
 );
+
+INSERT INTO hardware(nome, capacidade, fkTipoHardware) VALUES
+	('intel 3', 100, 1),
+	('RAM', 100, 2),
+	('Disco c:', 100, 3),
+	('Janela', 100, 4);
+
 -- JAR pega
 
 CREATE TABLE parametro(
 	idParametro INT PRIMARY KEY AUTO_INCREMENT,
     min DOUBLE,
-    max DOUBLE
-    -- fkUnidadeMedida INT,
-    -- FOREIGN KEY (fkUnidadeMedida) REFERENCES unidadeMedida(idUnidadeMedida)
+    max DOUBLE,
+    fkModeloComputador INT,
+    FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
 );
-
-INSERT INTO parametro VALUES
-	(null, 60.00, 80.00),
-	(null, 20.00, 40.00),
-	(null, 50.00, 70.00),
-	(null, 1.00, 10.00);
 
 CREATE TABLE componente(
 	idComponente INT AUTO_INCREMENT,
     fkComputador INT,
     fkHardware INT,
-    fkParametro INT,
-    FOREIGN KEY (fkParametro) REFERENCES parametro(idParametro),
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
     FOREIGN KEY (fkComputador) REFERENCES computador(idComputador),
     PRIMARY KEY (idComponente, fkHardware, fkComputador)
 ); 
+
+INSERT INTO componente VALUES
+	(null, 1, 1),
+	(null, 1, 2),
+	(null, 1, 3),
+	(null, 1, 4),
+	(null, 2, 1),
+	(null, 2, 2),
+	(null, 2, 3),
+	(null, 2, 4),
+	(null, 3, 1),
+	(null, 3, 2),
+	(null, 3, 3),
+	(null, 3, 4);
+    
+    
 -- JAR pega
 
 CREATE TABLE captura (
@@ -194,3 +209,178 @@ CREATE TABLE alerta(
 -- SELECT * FROM usuario;
 -- SELECT * FROM empresa;
 -- SELECT * FROM local;
+select (m.nome) as Limamoura from componente
+	join computador
+	on idComputador = fkComputador
+    join modeloComputador as m
+    on idModeloComputador = fkModeloComputador
+		where m.nome = 'Padrão'; 
+  
+select * from empresaLocataria;
+  
+UPDATE computador
+SET fkModeloComputador = 2
+	WHERE idComputador IN (
+    SELECT idComputador
+    FROM componente
+    JOIN computador as c
+    ON idComputador = fkComputador
+    JOIN modeloComputador AS m
+    ON idModeloComputador = fkModeloComputador
+		WHERE m.nome = 'Padrão' AND c.fkEmpresaLocataria = 1
+);
+
+select * from modeloComputador;
+
+SELECT *
+    FROM componente
+    JOIN computador as c
+    ON idComputador = fkComputador
+    JOIN modeloComputador AS m
+    ON idModeloComputador = fkModeloComputador
+		WHERE m.nome = 'Padrão' AND c.fkEmpresaLocataria = 2;
+        
+        SELECT * FROM computador JOIN empresa ON fkEmpresa = idEmpresa where fkEmpresa = 1 ;
+        
+      SELECT 
+        computador.idComputador as computador ,modeloComputador.nome as modelo, idParametro as parametro, 
+        empresaLocataria.nome as empresaPertencente
+        FROM parametro 
+        JOIN modeloComputador ON modeloComputador.idModeloComputador = parametro.fkModeloComputador
+		JOIN computador ON computador.fkModeloComputador = modeloComputador.idModeloComputador
+		JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria 
+        ;
+      --  JOIN componente ON computador.idComputador = componente.fkComputador
+		-- JOIN hardware ON componente.fkHardware = hardware.idHardware
+      --  JOIN tipoHardware ON hardware.fkTipoHardware = tipoHardware.idTipoHardware
+        -- JOIN unidadeMedida ON fkUnidadeMedida = idUnidadeMedida;
+        
+        -- modelo.nome as nomeModelo,min as parametroMinimo,max as parametroMaximo
+        SELECT 
+        computador.idComputador as computador ,modeloComputador.nome as modelo, idParametro as parametro,
+        min,max,
+        hardware.nome as Hardware,
+        tipoHardware.nome as tipoHardware,
+        unidadeMedida.simbolo as unidaMedida,
+        empresaLocataria.nome as empresaPertencente
+        FROM parametro 
+        JOIN modeloComputador ON modeloComputador.idModeloComputador = parametro.fkModeloComputador
+		JOIN computador ON computador.fkModeloComputador = modeloComputador.idModeloComputador
+		JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria 
+        JOIN componente ON computador.idComputador = componente.fkComputador
+		JOIN hardware ON componente.fkHardware = hardware.idHardware
+		JOIN tipoHardware ON hardware.fkTipoHardware = tipoHardware.idTipoHardware
+        JOIN unidadeMedida ON fkUnidadeMedida = idUnidadeMedida
+        WHERE computador.fkEmpresa = 1
+        ORDER BY idComputador,idParametro, idHardware;
+        
+        
+        SELECT * FROM unidadeMedida
+        JOIN tipoHardware ON fkUnidadeMedida = idUnidadeMedida
+        JOIN hardware ON idHardware = fkTipoHardware;
+        select * from componente;
+
+INSERT INTO parametro VALUES
+	(null, 1, 2, 1),
+	(null, 3, 4, 1),
+	(null, 5, 6, 1),
+    (null, 9, 10, 1),
+	(null, 15, 16, 2),
+	(null, 15, 16, 2),
+	(null, 15, 16, 2),
+	(null, 15, 16, 2);
+select * from parametro;
+		
+        
+        
+        
+        
+        
+        
+        SELECT 
+    c.idComputador as computador,
+    mc.nome as modelo,
+    p.idParametro as parametro,
+    comp.idComponente,
+    h.idHardware,
+    el.nome as empresaPertencente
+FROM parametro p
+JOIN modeloComputador mc ON mc.idModeloComputador = p.fkModeloComputador
+JOIN computador c ON c.fkModeloComputador = mc.idModeloComputador
+JOIN empresaLocataria el ON el.idEmpresaLocataria = c.fkEmpresaLocataria
+JOIN componente comp ON c.idComputador = comp.fkComputador
+JOIN hardware h ON comp.fkHardware = h.idHardware
+WHERE (c.idComputador, p.idParametro) IN (
+    SELECT c1.idComputador, p1.idParametro
+    FROM computador c1
+    JOIN parametro p1 ON mc.idModeloComputador = p1.fkModeloComputador
+    GROUP BY c1.idComputador, p1.idParametro
+);
+
+
+
+
+
+select * from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria;
+
+
+
+select modeloComputador.nome as modelo, idComputador as computador, empresaLocataria.nome as locataria
+from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria
+    where computador.fkEmpresa = 1;
+SELECT 
+    computador,
+    modelo,
+    idParametro,
+    min,
+    max,
+    idComponente,
+    idHardware,
+    empresaPertencente
+FROM (
+    SELECT 
+        computador.idComputador as computador,
+        modeloComputador.nome as modelo,
+        idParametro,
+        min,
+        max,
+        idComponente,
+        hardware.idHardware,
+        empresaLocataria.nome as empresaPertencente,
+        ROW_NUMBER() OVER (PARTITION BY computador.idComputador ORDER BY componente.idComponente) as row_num
+    FROM 
+        parametro 
+    JOIN 
+        modeloComputador ON modeloComputador.idModeloComputador = parametro.fkModeloComputador
+    JOIN 
+        computador ON computador.fkModeloComputador = modeloComputador.idModeloComputador
+    JOIN 
+        empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria 
+    JOIN 
+        componente ON computador.idComputador = componente.fkComputador
+    JOIN 
+        hardware ON componente.fkHardware = hardware.idHardware
+) AS numbered_rows
+WHERE row_num <= 4;
+
+DELIMITER $$
+CREATE TRIGGER exclusao_computador
+    BEFORE DELETE ON computador
+    FOR EACH ROW
+BEGIN
+	call delete_comp(old.idComputador);
+    
+END;
+$$
+DELIMITER ;
+
+DELETE FROM computador WHERE idComputador = 1;
+DELETE FROM componente WHERE fkComputador = 1;
+
+DELIMITER $$
+	CREATE PROCEDURE delete_comp(fkOldComp INT)
+	BEGIN
+
+	DELETE FROM componente WHERE fkComputador = fkOldComp;
+    
+END$$

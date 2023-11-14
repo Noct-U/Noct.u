@@ -123,7 +123,7 @@
                                     <a href="dashboard-funcionario.html">
                                         <button id="btn_acessar"> Acessar </button>
                                     </a>
-                                    <button id="btn_excluir"> Excluir </button>
+                                    <button id="btn_excluir" onclick='excluir(${json[i].computador})'> Excluir </button>
                                     <button id="btn_editar"> Editar </button>
                                 </div>
                             </div>
@@ -139,3 +139,25 @@
             });
     }
     
+
+    function excluir(idComputador){
+        fetch("/computadores/excluirComputador", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idComputadorServer : idComputador
+            }),
+        
+        })
+        .then(function () {
+            location.reload();
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
