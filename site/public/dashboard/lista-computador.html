@@ -14,7 +14,7 @@
                 <img src="../assets/logo.png" height="68px" width="68px">
             </div>
             <div class="titulo">
-                <div class="marca"><span>NOCT.U</span></div>
+                <div class="marca"><span id="nome_empresa"></span></div>
                 <div class="descricao"><span>Computadores registrados</span></div>
             </div>
             <div class="invisivel"></div>
@@ -26,146 +26,13 @@
                     <div class="quadtop">
                         <div class="campo">
                             <span>Escolha uma empresa: </span>
-                            <select name="empresas" id="emp" class="campo">
-                                <option value="empresa1">Sptech</option>
-                                <option value="empresa1">Elera</option>
-                                <option value="empresa1">Simpress</option>
+                            <select name="empresas" id="ipt_empresa" class="campo" onchange="listarComputadores()">
                             </select>
                         </div>
                     </div>
-                    <div class="quadbot">
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad</span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>HOSTNAME:⠀</span> <span>samu</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Número de série:⠀</span> <span>01231131</span></div>
-                                <div class="info"><span>Modelo:⠀</span> <span>IdeaPad<span></span></span></div>
-                                <div class="info"><span>Empresa:⠀</span> <span>SPTECH</span></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
+                    
+                    <div class="quadbot" id="div_lista">
+                        
                         
                     </div>
                 </div>
@@ -192,3 +59,18 @@
 </body>
 
 </html>
+
+<script src="../js/cadastro-computador.js"></script>
+<script src="../js/cadastro-locataria.js"></script>
+
+<script>
+
+    nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
+    setTimeout(function() {
+        exibirEmpresas();
+    }, 100);
+    
+    setTimeout(function() {
+        listarComputadores();;
+    }, 1000);
+</script>

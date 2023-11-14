@@ -1,4 +1,4 @@
-console.log("ccccccccccccccc " + sessionStorage.ID_EMPRESA);
+
 // exibirEmpresas();
 
 function exibirEmpresas() {
