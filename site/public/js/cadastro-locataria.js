@@ -26,7 +26,7 @@ function exibirEmpresas() {
                 console.log(JSON.stringify(json[0].nomeEmpresaOutsorcing));
 
                 for (var i = 0; i <= json.length; i++) {
-                    ipt_empresa.innerHTML += `<option value="${json[i].idEmpresaLocataria}">${json[i].nome}</option>`;
+                    ipt_empresa.innerHTML += `<option onkeyup="listarComputadores(${json[i].idEmpresaLocataria})" value="${json[i].idEmpresaLocataria}">${json[i].nome}</option>`;
                 }
 
 
