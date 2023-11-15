@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +33,30 @@ public class TestePrototipo {
 
         // FORMATAR DATA E HORA NO FORMATO MYSQL
         DateTimeFormatter formatadorDeData = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+
+
+        Integer opcaoEscolhida = -1;
+        List<Usuario> usuarios = new ArrayList<>();
+        do {
+            System.out.println("""
+                                        
+                    SISTEMA DE MONITORAMENTO NOCT.U
+                    1) Cadastro
+                    2) Login         
+                    0) Sair""");
+            opcaoEscolhida = in.nextInt();
+
+
+
+
+
+
+
+
+
+
+
+
 
         // ADICIONANDO A FICHA TECNICA (INSERINDO HARDWARE NO BANCO)
         Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);

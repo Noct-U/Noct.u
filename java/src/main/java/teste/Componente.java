@@ -1,17 +1,20 @@
 package teste;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Componente {
     private Integer fkComputador;
     private Integer fkHardware;
-    private String codigoSerial;
+    private List<Captura> capturas;
 
     public Componente() {
     }
 
-    public Componente(Integer fkComputador, Integer fkHardware, String codigoSerial) {
+    public Componente(Integer fkComputador, Integer fkHardware) {
         this.fkComputador = fkComputador;
         this.fkHardware = fkHardware;
-        this.codigoSerial = codigoSerial;
+        this.capturas = new ArrayList<>();
     }
 
     public Integer getFkComputador() {
@@ -30,20 +33,11 @@ public class Componente {
         this.fkHardware = fkHardware;
     }
 
-    public String getCodigoSerial() {
-        return codigoSerial;
-    }
-
-    public void setCodigoSerial(String codigoSerial) {
-        this.codigoSerial = codigoSerial;
-    }
-
     @Override
     public String toString() {
         return "\nComponente{" +
                 "fkComputador=" + fkComputador +
-                ", fkHardware=" + fkHardware +
-                ", codigoSerial='" + codigoSerial + '\'' +
+                ", fkHardware=" + fkHardware + '\'' +
                 '}';
     }
 
