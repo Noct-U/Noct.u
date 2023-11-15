@@ -199,13 +199,23 @@ header a {
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
+.campo-alerta {
+    width: 28%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+}
+
 .cor-kpi2 {
-    width: 5vh;
-    height: 5vh;
-    margin-left: 5vh;
+    width: 20px;
+    height: 20px;
     box-shadow: 1px 1px 5px black;
     border-radius: 50%;
 }
@@ -220,6 +230,10 @@ header a {
 
 .atencao {
     background-color: #E0CB11;
+}
+
+.tamanho-alerta {
+    width: 80%;
 }
 
 .criticoLbl {

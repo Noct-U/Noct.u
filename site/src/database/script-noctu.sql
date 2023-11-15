@@ -91,7 +91,7 @@ CREATE TABLE computador(
     fkEmpresa INT,
     fkModeloComputador INT,
     -- fkEmpresaLocataria INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
     FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
     -- FOREIGN KEY (fkEmpresaLocataria) REFERENCES empresaLocataria(idEmpresaLocataria)
 );

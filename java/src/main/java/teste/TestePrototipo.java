@@ -5,6 +5,7 @@ import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.group.rede.Rede;
 import com.github.britooo.looca.api.group.rede.RedeInterfaceGroup;
 import dao.NoctuDao;
 import oshi.SystemInfo;
@@ -21,13 +22,13 @@ import java.util.TimerTask;
 
 public class TestePrototipo {
     public static void main(String[] args) {
-        SystemInfo si = new SystemInfo();
         NoctuDao dao = new NoctuDao();
         Processador processador = new Processador();
         Memoria memoria = new Memoria();
         DiscoGrupo grupoDeDiscos = new DiscoGrupo();
         List<Volume> volumes = grupoDeDiscos.getVolumes();
-        JanelaGrupo grupoDeJanelas = new JanelaGrupo(si);
+        JanelaGrupo grupoDeJanelas = new JanelaGrupo(new SystemInfo());
+        Rede rede = new Rede(new SystemInfo());
 
         // FORMATAR DATA E HORA NO FORMATO MYSQL
         DateTimeFormatter formatadorDeData = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
@@ -58,12 +59,9 @@ public class TestePrototipo {
 //        dao.adicionarComponenteDisco(componenteDisco);
 //        dao.adicionarComponenteJanela(componenteJanela);
 
-        PlacaDeRede placa = new PlacaDeRede();
-        System.out.println(placa.getHostName());
-        System.out.println(placa.getNumIpv4());
+        System.out.println(rede.getParametros().getHostName());
+        System.out.println(rede.getParametros());
 
-        RedeInterfaceGroup rede2 =new RedeInterfaceGroup(new SystemInfo());
-        System.out.println(rede2.getInterfaces().get(1).getEnderecoIpv4());
 
         // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
         Timer timer = new Timer();
