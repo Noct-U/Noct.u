@@ -42,7 +42,7 @@ function exibirEmpresas(idEmpresa) {
     var instrucao = `
         SELECT empresaLocataria.*,empresa.idEmpresa,empresa.nome AS nomeEmpresaOutsorcing FROM empresaLocataria 
         JOIN empresa ON empresa.idEmpresa = empresaLocataria.fkEmpresa 
-            WHERE empresaLocataria.fkMatriz IS NULL AND fkEmpresa = '${idEmpresa}';
+            WHERE fkEmpresa = '${idEmpresa}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

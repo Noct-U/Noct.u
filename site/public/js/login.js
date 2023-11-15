@@ -26,9 +26,6 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nomeUsuario;
             sessionStorage.ID_EMPRESA = json.idEmpresa;
             sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
-            sessionStorage.ID_LOCATARIA = json.idEmpresaLocataria;
-            sessionStorage.NOME_LOCATARIA = json.nomeLocataria;
-
             if(json.nomeTipo == "ADMIN"){
                 setTimeout(function () {
                     window.location = "./dashboard/dashboard.html";
