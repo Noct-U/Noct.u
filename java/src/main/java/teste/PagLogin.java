@@ -1,11 +1,8 @@
-package pagsUsuario;
+package teste;
 
 import dao.Conexao;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.lang.UsesSunHttpServer;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class PagLogin {

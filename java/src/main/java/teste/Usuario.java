@@ -1,10 +1,8 @@
-package pagsUsuario;
+package teste;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.util.List;
 
 public class Usuario {
     private String email;

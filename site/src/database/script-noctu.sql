@@ -112,7 +112,11 @@ CREATE TABLE parametro(
 	idParametro INT PRIMARY KEY AUTO_INCREMENT,
     min DOUBLE,
     max DOUBLE,
+    fkUnidadeMedida INT,
+    fkTipoHardware INT,
     fkModeloComputador INT,
+    FOREIGN KEY (fkUnidadeMedida) REFERENCES unidadeMedida(idUnidadeMedida),
+    FOREIGN KEY (fkTipoHardware) REFERENCES tipoHardware(idTipoHardware),
     FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador)
 );
 
@@ -165,6 +169,3 @@ CREATE TABLE alerta(
 -- SELECT * FROM usuario;
 -- SELECT * FROM empresa;
 -- SELECT * FROM local;
-	
-
-        
