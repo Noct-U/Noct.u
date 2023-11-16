@@ -27,8 +27,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     color: #bbbbbb;
     font-size: 40px;
+}
+.subtitle-modal{
+    font-size: 3vh;
 }
 .corpo-modal{
     width: 100%;
@@ -50,6 +54,7 @@
     width: fit-content;
     height: 100%;
     margin: 5vh;
+    
 }
 
 .caixa-input select{
@@ -69,8 +74,28 @@
 }
 .caixa-input input{
     font-family: 'Urbanist', sans-serif;
-    width: 50%;
-    height: 40vh;
+    width: 40vh;
+    height: 60%;
+    border-radius: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #8d8d8d;
+    color: #747474;
+}
+
+.parametros{
+    display: flex;
+    flex-direction: row;
+    width: 40vh;
+    height: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.parametros .ipt-parametros{
+    width: 20%;
+    height: 100%;
+    margin: 1vh;
 
 }
 .rodape-modal{

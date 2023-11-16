@@ -24,7 +24,15 @@ router.post("/excluirComputador", function (req, res) {
     computadorController.excluirComputador(req, res);
 })
 
-router.post("/consultarDisco", function (req, res) {
-    computadorController.consultarDisco(req, res);
+router.post("/consultarDados", function (req, res) {
+    computadorController.consultarDadosGrafico(req, res);
+})
+
+router.post("/consultarDadosCPU", function (req, res) {
+    computadorController.consultarDadosGraficoCpu(req, res);
+})
+
+router.post("/consultarModelos", function (req, res) {
+    computadorController.consultarModelos(req, res);
 })
 module.exports = router;

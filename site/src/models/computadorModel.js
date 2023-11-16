@@ -24,7 +24,7 @@ function cadastrarModelo(modelo) {
 
 function excluirComputador(idComputador) {
     var instrucao = `
-    UPDATE computador SET ativo = false WHERE idComputador = ${idComputador};
+    UPDATE computador SET fkStatus = 2 WHERE idComputador = ${idComputador};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -44,7 +44,7 @@ function consultarUltimoModelo() {
 function consultarComputadores(idEmpresa,idLocataria) {
 
     var instrucao = `
-    select modeloComputador.nome as modelo, idComputador as computador,idStatus as idStatusUsuario, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria
+    select modeloComputador.idModeloComputador AS idModelo,modeloComputador.nome as modelo, idComputador as computador,idStatus as idStatusComputador, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria
     from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador 
     JOIN status ON idStatus = fkStatus
     JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria
@@ -55,21 +55,52 @@ function consultarComputadores(idEmpresa,idLocataria) {
 }
 
 
-function consultarDisco(idComputador,idHardware) {
+function consultarDadosGrafico(idComputador,idHardware) {
 
     var instrucao = `
-    SELECT capacidade, valor FROM captura JOIN componente ON fkComponente = idComponente 
-    JOIN hardware ON hardware.idHardware = componente.fkHardware WHERE captura.fkComputador = ${idComputador} AND captura.fkHardware = ${idHardware}
+    SELECT capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
+    JOIN hardware ON hardware.idHardware = componente.fkHardware
+    JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+    JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
     ORDER BY idCaptura DESC LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function consultarDadosGraficoCpu(idComputador,idHardware) {
+
+    var instrucao = `
+    SELECT * FROM captura JOIN componente ON fkComponente = idComponente 
+    JOIN hardware ON hardware.idHardware = componente.fkHardware
+    JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+    JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
+    ORDER BY dtCaptura DESC 
+    LIMIT 5;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function consultarModelos() {
+
+    var instrucao = `
+        SELECT * FROM modeloComputador;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
     consultarUltimoModelo,
     consultarComputadores,
     excluirComputador,
-    consultarDisco
+    consultarDadosGrafico,
+    consultarDadosGraficoCpu,
+    consultarModelos
 };

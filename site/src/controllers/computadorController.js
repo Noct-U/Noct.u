@@ -111,15 +111,55 @@ function excluirComputador(req, res) {
         );
 }
 
-function consultarDisco(req, res) {
+function consultarDadosGrafico(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 
     var idHardware = req.body.idHardwareServer;
     var idComputador = req.body.idComputadorServer;
-    computadorModel.consultarDisco(idComputador,idHardware)
+    computadorModel.consultarDadosGrafico(idComputador,idHardware)
         .then(
             function (ultimaCaptura) {
                 res.json(ultimaCaptura);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function consultarDadosGraficoCpu(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var idHardware = req.body.idHardwareServer;
+    var idComputador = req.body.idComputadorServer;
+    computadorModel.consultarDadosGraficoCpu(idComputador,idHardware)
+        .then(
+            function (ultimaCaptura) {
+                res.json(ultimaCaptura);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function consultarModelos(req, res) {
+    computadorModel.consultarModelos()
+        .then(
+            function (resposta) {
+                res.json(resposta);
             }
         ).catch(
             function (erro) {
@@ -138,5 +178,7 @@ module.exports = {
     consultarUltimoModelo,
     consultarComputadores,
     excluirComputador,
-    consultarDisco
+    consultarDadosGrafico,
+    consultarDadosGraficoCpu,
+    consultarModelos
 }
