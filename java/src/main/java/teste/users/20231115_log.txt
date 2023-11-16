@@ -1,0 +1,7 @@
+Data/Hora: 2023-11-15
+Mensagem de log: Este é um exemplo de log.
+Data/Hora: 2023-11-15
+ CPU: 70%
+Consumo RAM: 8000000000 bytes
+Consumo Disco: 100 GB
+Nova mensagem de log adicionada.
