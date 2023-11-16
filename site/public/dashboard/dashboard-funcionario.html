@@ -199,27 +199,161 @@
     </body>
 </html>
 <script>
-    plotarGrafico();
-     function plotarGrafico() {
+    alert(sessionStorage.ID_COMPUTADOR);
+    obterDadosGrafico();
+    // plotarGrafico();
+    //  function plotarGrafico() {
 
-        console.log('iniciando plotagem do gráfico...');
+    //     console.log('iniciando plotagem do gráfico...');
 
-        // Criando estrutura para plotar gráfico - labels
+    //     // Criando estrutura para plotar gráfico - labels
 
 
-        // Criando estrutura para plotar gráfico - dados
+    //     // Criando estrutura para plotar gráfico - dados
+    //    
+
+            
+    //     // Criando estrutura para plotar gráfico - dados
+    //     var dados2 = {
+    //         labels: ['Há 180 Segs ', 'Há 90 Segs', 'Há 60 Segs', 'Há 30 Segs', 'Agora'],
+    //         datasets: [
+    //             {
+    //             label: 'DESEMPENHO',
+    //             data: [12, 19,13,45,10,21,55],
+    //             backgroundColor: ['rgb(96, 116, 188)'],
+    //             borderWidth: 1,
+    //             borderColor: '#4F64B0'
+    //             }
+
+    //     ]
+    //         };
+    //         const config2 = {
+    //             type: 'line',
+    //             data: dados2,
+    //             options: {
+    //                 plugins: {
+    //                 legend: {
+    //                     display: false
+    //                 },
+
+    //                 },
+    //             },
+    //             };
+
+    //         // Adicionando gráfico criado em div na tela
+    //         let myChart2 = new Chart(
+    //             document.getElementById(`myChartCanvasGeral2`),
+    //             config2
+    //         );
+
+
+            
+    //     // Criando estrutura para plotar gráfico - dados
+    //     var dados3 = {
+    //         labels: ['EM USO', 'DISPONÍVEL'],
+    //         datasets: [
+    //             {
+    //             label: 'Utilização de disco',
+    //             data: [12, 19],
+    //             backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
+    //             borderWidth: 1,
+    //             }
+
+    //     ]
+    //         };
+    //         const config3 = {
+    //             type: 'pie',
+    //             data: dados3,
+    //             options: {
+    //                 plugins: {
+    //                 legend: {
+    //                     display: false
+                       
+    //                 },
+    //                 },
+    //             },
+    //             };
+
+    //         // Adicionando gráfico criado em div na tela
+    //         let myChart3 = new Chart(
+    //             document.getElementById(`myChartCanvasGeral3`),
+    //             config3
+    //         );
+    // }
+
+    function obterDadosGrafico(idComputador) {
+    
+
+        fetch("/computadores/consultarDisco", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    //Dados da primeira pag de cadastro
+                    idComputadorServer : sessionStorage.ID_COMPUTADOR,
+                    idHardwareServer : 2
+                })
+          }).then(function (ultimaCaptura) {
+              console.log("ESTOU NO THEN DO NOVA FUnCTIONS()!")
+  
+              if (ultimaCaptura.ok) {
+
+                  ultimaCaptura.json().then(ultimaCaptura => {
+                    // var campeao = jsonMelhoresQuiz[0].nome;
+                    // var menorPontuacao = jsonMelhoresQuiz[jsonMelhoresQuiz.length - 1].nome;
+                    // info1.innerHTML = "Líder : "+ campeao;
+                    // info2.innerHTML = "Menor desempenho do ranking no torneio: "+menorPontuacao;
+                    console.log(ultimaCaptura);
+
+                    var capacidade = ultimaCaptura[0].capacidade;
+                    var uso = ultimaCaptura[0].valor;
+
+                    console.log(capacidade,uso)
+                    plotarGrafico(capacidade,uso);
+                  });
+  
+              } else {
+
+  
+                  ultimaCaptura.text().then(texto => {
+                      console.error(texto);
+                      // finalizarAguardar(texto);
+                  });
+              }
+  
+          })
+          .catch(function (erro) {
+              console.log(erro);
+          })
+    }
+    function plotarGrafico(capacidade,uso) {
+
+        var disponivel = capacidade - uso;
+
         var dados = {
             labels: ['EM USO', 'DISPONÍVEL'],
             datasets: [
                 {
-                label: 'Utilização de disco',
-                data: [12, 19],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
+                    label: [],
+                    data: [],
+                    backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
+                    borderWidth: 1,
                 }
 
-        ]
-            };
+            ]
+        };
+           
+
+
+
+
+        
+        dados.datasets[0].data.push(uso);
+        dados.datasets[0].data.push(disponivel);
+       
             const config = {
                 type: 'pie',
                 data: dados,
@@ -239,75 +373,6 @@
                 config
             );
 
-
-
-
-            
-        // Criando estrutura para plotar gráfico - dados
-        var dados2 = {
-            labels: ['Há 180 Segs ', 'Há 90 Segs', 'Há 60 Segs', 'Há 30 Segs', 'Agora'],
-            datasets: [
-                {
-                label: 'DESEMPENHO',
-                data: [12, 19,13,45,10,21,55],
-                backgroundColor: ['rgb(96, 116, 188)'],
-                borderWidth: 1,
-                borderColor: '#4F64B0'
-                }
-
-        ]
-            };
-            const config2 = {
-                type: 'line',
-                data: dados2,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                    },
-
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart2 = new Chart(
-                document.getElementById(`myChartCanvasGeral2`),
-                config2
-            );
-
-
-            
-        // Criando estrutura para plotar gráfico - dados
-        var dados3 = {
-            labels: ['EM USO', 'DISPONÍVEL'],
-            datasets: [
-                {
-                label: 'Utilização de disco',
-                data: [12, 19],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
-                }
-
-        ]
-            };
-            const config3 = {
-                type: 'pie',
-                data: dados3,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                       
-                    },
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart3 = new Chart(
-                document.getElementById(`myChartCanvasGeral3`),
-                config3
-            );
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 </script>

@@ -44,19 +44,32 @@ function consultarUltimoModelo() {
 function consultarComputadores(idEmpresa,idLocataria) {
 
     var instrucao = `
-    select modeloComputador.nome as modelo, idComputador as computador, empresaLocataria.nome as locataria, ativo
+    select modeloComputador.nome as modelo, idComputador as computador,idStatus as idStatusUsuario, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria
     from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador 
+    JOIN status ON idStatus = fkStatus
     JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria
-    where computador.fkEmpresa = ${idEmpresa} AND fkEmpresaLocataria = ${idLocataria};
+    where computador.fkEmpresa = ${idEmpresa} AND fkEmpresaLocataria =  ${idLocataria};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
+
+function consultarDisco(idComputador,idHardware) {
+
+    var instrucao = `
+    SELECT capacidade, valor FROM captura JOIN componente ON fkComponente = idComponente 
+    JOIN hardware ON hardware.idHardware = componente.fkHardware WHERE captura.fkComputador = ${idComputador} AND captura.fkHardware = ${idHardware}
+    ORDER BY idCaptura DESC LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
     consultarUltimoModelo,
     consultarComputadores,
-    excluirComputador
+    excluirComputador,
+    consultarDisco
 };

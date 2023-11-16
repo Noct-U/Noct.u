@@ -97,10 +97,42 @@
                 if (resposta.ok){
                     resposta.json().then(json => {
                         div_lista.innerHTML = "";
-                        console.log(json.computador);
+                        console.log(json);
                         
                         for(var i = 0; i <= json.length; i++){
-                            if(json[i].ativo == 1){
+                            
+                            if(json[i].idStatusUsuario == 1){
+
+                            fundo_modal.innerHTML +=`
+                            <div class="caixa-modal" id="modal${json[i].computador}" style="display: none;">
+                                <div class="header-modal">
+                                    <span id="nome_empresa">Simpress</span>
+                                </div>
+
+                                <div class="corpo-modal">
+                                    <div class="alinhamento-horizontal">
+                                        <div class="caixa-input">
+                                            <label for="">Modelo</label>
+                                            <select name="" id="lista${json[i].computador}">
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="caixa-input">
+                                            <label for="">Empresa</label>
+                                            <select name="" id="listaEmpresa${json[i].computador}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rodape-modal">
+                                    <button onclick="fecharModal(${json[i].computador
+                                    })" id="cancelar">Cancelar</button>
+                                    <button id="salvar">Salvar</button>
+                                </div>
+
+                            </div>
+                            `; 
                             div_lista.innerHTML +=
 
                            
@@ -114,9 +146,10 @@
                                 <div class="linhaInfo">
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
-                                    <div class="info btns"><button class="btn azul">ACESSAR</button> <button class="btn cinza">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].computador})'>EXCLUIR</button></div>
+                                    <div class="info btns"><button class="btn azul" onclick="acessar(${json[i].computador})">ACESSAR</button> <button class="btn cinza" onclick="abrirModal(${json[i].computador},${json[i].idEmpresaLocataria})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].computador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
+                                
                             `
                             }
                         }
@@ -127,6 +160,57 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+    }
+    
+    function exibirEmpresasModal(num,locataria) {
+        var lista = document.getElementById(`listaEmpresa${num}`);
+        fetch("/empresasLocadoras/exibirEmpresas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+    
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+    
+            }),
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+    
+            if (resposta.ok) {
+                console.log(resposta);
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json[0].nomeEmpresaOutsorcing));
+                    lista.innerHTML = "";
+                    
+                    for (var i = 0; i <= json.length; i++) {
+                        if(json[i].idEmpresaLocataria == locataria){
+                            lista.innerHTML += `<option selected value="${json[i].idEmpresaLocataria}">${json[i].nome}</option>`;
+                        }
+                        else{
+                            lista.innerHTML += `<option value="${json[i].idEmpresaLocataria}">${json[i].nome}</option>`;
+
+                        }
+                    }
+    
+    
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+    
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
     }
     
 
@@ -150,4 +234,9 @@
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+    }
+
+    function acessar(idComputador){
+        sessionStorage.ID_COMPUTADOR = idComputador;
+        window.location.href = "dashboard-funcionario.html";
     }

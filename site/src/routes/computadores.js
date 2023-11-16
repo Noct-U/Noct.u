@@ -23,4 +23,8 @@ router.post("/consultarComputadores", function (req, res) {
 router.post("/excluirComputador", function (req, res) {
     computadorController.excluirComputador(req, res);
 })
+
+router.post("/consultarDisco", function (req, res) {
+    computadorController.consultarDisco(req, res);
+})
 module.exports = router;

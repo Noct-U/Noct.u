@@ -111,10 +111,32 @@ function excluirComputador(req, res) {
         );
 }
 
+function consultarDisco(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var idHardware = req.body.idHardwareServer;
+    var idComputador = req.body.idComputadorServer;
+    computadorModel.consultarDisco(idComputador,idHardware)
+        .then(
+            function (ultimaCaptura) {
+                res.json(ultimaCaptura);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
     consultarUltimoModelo,
     consultarComputadores,
-    excluirComputador
+    excluirComputador,
+    consultarDisco
 }
