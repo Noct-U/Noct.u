@@ -18,8 +18,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import org.springframework.jdbc.core.JdbcTemplate;
+import teste.bot.BotSlack;
+import dao.Conexao;
 
 public class TestePrototipo {
+    Conexao Conexao = new Conexao();
+    JdbcTemplate con = Conexao.getConexaoDoBanco();
+    static BotSlack botSlack = new BotSlack();
+
     public static void main(String[] args) {
         SystemInfo si = new SystemInfo();
         NoctuDao dao = new NoctuDao();
@@ -28,6 +35,7 @@ public class TestePrototipo {
         DiscoGrupo grupoDeDiscos = new DiscoGrupo();
         List<Volume> volumes = grupoDeDiscos.getVolumes();
         JanelaGrupo grupoDeJanelas = new JanelaGrupo(si);
+
 
         // FORMATAR DATA E HORA NO FORMATO MYSQL
         DateTimeFormatter formatadorDeData = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
@@ -53,16 +61,18 @@ public class TestePrototipo {
         Componente componenteDisco = new Componente(1, 3, "7avsd9s0");
         Componente componenteJanela = new Componente(1, 4, "dasd546a");
 
-//        dao.adicionarComponenteCPU(componenteCPU);
-//        dao.adicionarComponenteRAM(componenteRAM);
-//        dao.adicionarComponenteDisco(componenteDisco);
-//        dao.adicionarComponenteJanela(componenteJanela);
+        // Notificações para slack
+        verificarLimiteEEnviarNotificacao("CPU", componenteCPU.getFkHardware());
+        verificarLimiteEEnviarNotificacao("RAM", componenteRAM.getFkHardware());
+        verificarLimiteEEnviarNotificacao("Disco", componenteDisco.getFkHardware());
+        verificarLimiteEEnviarNotificacao("Quantidade janelas", componenteJanela.getFkHardware());
+
 
         PlacaDeRede placa = new PlacaDeRede();
         System.out.println(placa.getHostName());
         System.out.println(placa.getNumIpv4());
 
-        RedeInterfaceGroup rede2 =new RedeInterfaceGroup(new SystemInfo());
+        RedeInterfaceGroup rede2 = new RedeInterfaceGroup(new SystemInfo());
         System.out.println(rede2.getInterfaces().get(1).getEnderecoIpv4());
 
         // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
@@ -71,6 +81,9 @@ public class TestePrototipo {
         // CRIA UMA TAREFA PARA SER EXECUTADA REPETIDAMENTE.
 
         TimerTask tarefa = new TimerTask() {
+            private DateTimeFormatter dateTimeFormatter;
+            private String LogTXT;
+
             @Override
             public void run() {
                 // Pega a data atual e formata no estilo mySQL
@@ -97,40 +110,7 @@ public class TestePrototipo {
                 dao.adicionarCaptura(cap04);
 
 
-                GravarEmArquivo(componenteCPU, componenteRAM, componenteDisco, componenteJanela);
-
                 System.out.println(dao.exibirCaptura());
-            }
-
-            private void GravarEmArquivo(Componente componenteCPU, Componente componenteRAM, Componente componenteDisco, Componente componenteJanela) {
-
-                String nomeDoArquivo = "C:\\Users\\sthef\\OneDrive\\Área de Trabalho\\Noct.u\\java\\LogTXT";
-
-                // Mensagem para solicitar suporte
-                String mensagemSuporte = "Suporte foi solicitado para arrumar a máquina.";
-
-                try {
-                    File LogTXT = new File(nomeDoArquivo);
-
-                    if (!LogTXT.exists()) {
-                        LogTXT.createNewFile();
-                    }
-
-                    BufferedWriter escritor = new BufferedWriter(new FileWriter(LogTXT, true));
-
-                    // Construir a string de dados
-                    String dados = "Consumo CPU: " + componenteCPU + "%\n" + "Consumo RAM: " + componenteRAM + " bytes\n" + "Consumo Disco: " + componenteDisco + " GB\n" + "Janelas Abertas: " + componenteJanela + " janelas abertas\n" + "Mensagem para Suporte: " + mensagemSuporte + "\n\n";
-
-                    // Escrever os dados no arquivo
-                    escritor.write(dados);
-
-                    escritor.close();
-
-                    System.out.println("Dados gravados em " + nomeDoArquivo + ", Gerando LOG de consumos dos dados");
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
 
 
@@ -139,5 +119,22 @@ public class TestePrototipo {
         timer.scheduleAtFixedRate(tarefa, 5, 5000);
     }
 
+    private static void verificarLimiteEEnviarNotificacao(String Componente, Integer fkHardware) {
+        if (Componente.equals("CPU") || Componente.equals("Janelas Abertas")) {
+            // Notificar o usuário no Java
+            System.out.println("alerta de limite no Jar");
+        }
 
+        // Enviar notificação por Slack
+        try {
+            botSlack.mensagemHardware(Componente);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+
+

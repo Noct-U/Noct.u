@@ -1,0 +1,2 @@
+Data/Hora: 2023-11-17
+Mensagem de log: Este é um exemplo de log.
