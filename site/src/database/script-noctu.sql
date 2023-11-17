@@ -6,7 +6,7 @@ CREATE TABLE empresa(
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     razaoSocial VARCHAR(100) NOT NULL,
-    cnpj CHAR(14) NOT NULL,
+    cnpj CHAR(14) NOT NULL UNIQUE,
     telefoneFixo CHAR(12) NOT NULL
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE local(
 );
 
 CREATE TABLE status(
-	idStatus INT PRIMARY KEY,
+	idStatus INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(45)
 );
 
@@ -121,21 +121,22 @@ CREATE TABLE parametro(
 );
 
 CREATE TABLE componente(
-	idComponente INT AUTO_INCREMENT,
-    fkComputador VARCHAR(100),
-    fkHardware INT,
+	idComponente INT AUTO_INCREMENT NOT NULL,
+    fkComputador VARCHAR(100) NOT NULL,
+    fkHardware INT NOT NULL,
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
     FOREIGN KEY (fkComputador) REFERENCES computador(idComputador) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (idComponente, fkHardware, fkComputador)
 ); 
-    
+
+
 -- JAR pega
 
 CREATE TABLE captura (
 	idCaptura INT PRIMARY KEY AUTO_INCREMENT,
     valor DOUBLE,
     descricao VARCHAR(45),
-    dtCaptura DATETIME,
+    dtCaptura DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkComputador VARCHAR(100),
     fkHardware INT,
     fkComponente INT,
