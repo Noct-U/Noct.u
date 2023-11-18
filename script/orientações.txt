@@ -1,0 +1,54 @@
+Criar usuário (sudo adduser nome-do-usuario)
+
+Dar permissão sudo (sudo usermod -aG sudo nome-do-usuario)
+
+Entrar no usuario (su nome-do-usuario)
+
+Baixar o git (sudo apt install git)
+
+Dar permissão de acesso a pasta (sudo chmod +rx /home/ubuntu)
+
+Fazer git clone do repositório do script (sudo git clone *link_repositório*)
+
+Dar permissão para acessar a pasta (sudo chmod +rx /home/ubuntu/scriptInstalacao)
+
+Entra na pasta onde estão os arquivos utilizando cd nomeDaPasta
+
+Dar permissão para executar o arquivo Docker (sudo chmod +x /home/ubuntu/scriptInstalacao/install.sh)
+
+Dar permissão para executar o arquivo Banco (sudo chmod +x /home/ubuntu/scriptInstalacao/confBanco.sql)
+
+Dar permissão para executar o arquivo Java (sudo chmod +x /home/ubuntu/scriptInstalacao/java.sh)
+
+Executar script (./install.sh)
+
+----------------------------------------------------------------------------------------------------------
+
+Para comandos no mysql
+
+sudo docker ps
+
+sudo docker exec -it Noctu /bin/bash;
+
+mysql -u aluno -h 172.17.0.1 -p
+
+USE noctuBD;
+
+SHOW tables;
+
+Ideias de selects:
+ select * from empresa;
+ select * from endereco;
+ select * from local;
+ select * from empresaLocataria;
+ select * from tipoUsuario;
+ select * from usuario;
+ select * from modeloComputador;
+ select * from computador;
+ select * from unidadeMedida;
+ select * from tipoHardware;
+ select * from hardware;
+ select * from parametro;
+ select * from componente;
+ select * from captura;
+ select * from alerta;
