@@ -115,13 +115,13 @@
                                     <div class="alinhamento-horizontal">
                                         <div class="caixa-input">
                                             <label for="">Modelo</label>
-                                            <select name="" onfocus="bloquearCampos('${json[i].computador}', 'Listas')" id="listaModelos${json[i].computador}">
+                                            <select name=""  id="listaModelos${json[i].computador}">
                                             <!-- opções do select -->
                                             </select>
                                         </div>
                                         <div class="caixa-input">
                                             <label for="">Empresa</label>
-                                            <select name="" onfocus="bloquearCampos(${json[i].computador},'Listas')" id="listaEmpresa${json[i].computador}">
+                                            <select name="" id="listaEmpresa${json[i].computador}">
                                             </select>
                                         </div>
                                     </div>
@@ -137,27 +137,14 @@
                                         </div>
                                         <div class="scroll-cadastro" id="divHardwares"> 
                                             
-                                            <div class="alinhamento-horizontal alinhamento-cadastro">
-                                                <div class="caixa-input">
-                                                    <label for="">CPU</label>
-                                                    <input placeholder="Intel i3..."></input>
-                                                </div>
-                                                <div class="caixa-input">
-                                                    <label for="">Parâmetros</label>
-                                                    <div class="parametros">
-                                                        <input type="Number" placeholder="min" class="ipt-parametros" id="ipt_min${json[i].computador}"> </input>
-                                                        <input type="Number" placeholder="max" class="ipt-parametros" id="ipt_max${json[i].computador}"> </input>
-                                                        <select class="unidade-medida" id="uniddeMedida${json[i].computador}"><option>%<option/><option>GB<option/></select>  
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="rodape-modal">
-                                    <button id="btnModelo${json[i].computador}" onclick="abrirInputsCadastro(${json[i].computador})" id="novoModelo}">Novo Modelo</button>
+                                    <button id="btnModelo${json[i].computador}" onclick="abrirInputsCadastro(${json[i].computador},consultarHardwares(${json[i].computador}))" id="novoModelo">Novo Modelo</button>
                                     <button onclick="fecharModal(${json[i].computador
                                     })" id="cancelar">Cancelar</button>
                                     <button id="salvar" onclick="atualizarComputador(${json[i].computador})">Salvar</button>
@@ -179,8 +166,6 @@
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
                                     <div class="info btns">
-                                    <button class="btn azul" onclick="consultarHardwares()">teste</button>
-                                    
                                     <button class="btn azul" onclick="acessar(${json[i].computador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModal(${json[i].computador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].computador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
@@ -436,8 +421,7 @@
 
 
    
-    function consultarHardwares() {
-        alert("aayagyagayg")
+    function consultarHardwares(idComputador) {
         var divHardwares = document.getElementById(`divHardwares`);
         fetch("/computadores/consultarTipoHardwares", {
             method: "POST",
@@ -448,15 +432,29 @@
             console.log("ESTOU NO THEN DO entrar()!")
     
             if (resposta.ok) {
-                console.log("RESPOSTA:  +"+resposta);
-    
                 resposta.json().then(json => {
                     divHardwares.innerHTML = "";
-                    console.log(json+"HAAAAAAHAHAHHAHAHHAHHAHAHHAHAHHAHAHHAHHAHAHAHAHHAHAHHAH");
-                    // for (var i = 0; i <= json.length; i++) {
-                    //     divHardwares.innerHTML += `<option selected value="${json[i].idEmpresaLocataria}">${json[i].nome}</option>`;
-
-                    // }
+                    console.log(json);
+                    for (var i = 0; i <= json.length; i++) {
+                        divHardwares.innerHTML +=
+                        `
+                            <div class="alinhamento-horizontal alinhamento-cadastro">
+                                <div class="caixa-input">
+                                    <label for="">${json[i].nome}</label>  
+                                    <input style="display: none" value="${json.idTipoHardware}" id="ipt_TipoHardware${idComputador}"></input>
+                                    <input placeholder="Intel i3..." id="ipt_hardware${idComputador}"></input>
+                                </div>
+                                <div class="caixa-input">
+                                    <label for="">Parâmetros</label>
+                                    <div class="parametros">
+                                        <input type="Number" placeholder="min" class="ipt-parametros" id="ipt_min${idComputador}"> </input>
+                                        <input type="Number" placeholder="max" class="ipt-parametros" id="ipt_max${idComputador}"> </input>
+                                        <select class="unidade-medida" id="uniddeMedida${idComputador}"><option>%<option/><option>GB<option/></select>  
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
     
     
                 });
