@@ -35,4 +35,14 @@ router.post("/consultarDadosCPU", function (req, res) {
 router.post("/consultarModelos", function (req, res) {
     computadorController.consultarModelos(req, res);
 })
+
+router.post("/atualizarComputador", function (req, res) {
+    computadorController.atualizarComputador(req, res);
+})
+
+router.post("/consultarTipoHardwares", function (req, res) {
+    computadorController.consultarTipoHardwares(req, res);
+})
+
+
 module.exports = router;

@@ -94,6 +94,15 @@ function consultarModelos() {
     return database.executar(instrucao);
 }
 
+function consultarTipoHardwares() {
+
+    var instrucao = `
+        select * from tipoHardware;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -102,5 +111,6 @@ module.exports = {
     excluirComputador,
     consultarDadosGrafico,
     consultarDadosGraficoCpu,
-    consultarModelos
+    consultarModelos,
+    consultarTipoHardwares
 };

@@ -172,6 +172,27 @@ function consultarModelos(req, res) {
             }
         );
 }
+
+
+
+function consultarTipoHardwares(req, res) {
+    computadorModel.consultarTipoHardwares()
+        .then(
+            function (resposta) {
+                res.json(resposta);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -180,5 +201,6 @@ module.exports = {
     excluirComputador,
     consultarDadosGrafico,
     consultarDadosGraficoCpu,
-    consultarModelos
+    consultarModelos,
+    consultarTipoHardwares
 }
