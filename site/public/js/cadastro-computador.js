@@ -449,7 +449,9 @@
                                     <div class="parametros">
                                         <input type="Number" placeholder="min" class="ipt-parametros" id="ipt_min${idComputador}"> </input>
                                         <input type="Number" placeholder="max" class="ipt-parametros" id="ipt_max${idComputador}"> </input>
-                                        <select class="unidade-medida" id="uniddeMedida${idComputador}"><option>%<option/><option>GB<option/></select>  
+                                        <select class="unidade-medida" id="uniddeMedida${idComputador}">
+                                            
+                                        </select>  
                                     </div>
                                 </div>
                             </div>
