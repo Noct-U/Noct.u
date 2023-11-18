@@ -1,5 +1,5 @@
--- CREATE DATABASE noctuBD;
--- USE noctuBD;
+CREATE DATABASE noctuBD;
+USE noctuBD;
 
 CREATE TABLE empresa(
 	idEmpresa INT PRIMARY KEY IDENTITY(1,1),
@@ -72,7 +72,8 @@ CREATE TABLE modeloComputador(
 );
  
 CREATE TABLE computador(
-	idComputador VARCHAR(100) PRIMARY KEY,
+	idComputador INT PRIMARY KEY IDENTITY(1,1),
+	nome VARCHAR (100) UNIQUE,
   fkEmpresa INT,
   fkModeloComputador INT,
   fkEmpresaLocataria INT,
@@ -121,7 +122,7 @@ CREATE TABLE parametro(
 
 CREATE TABLE componente(
 	idComponente INT IDENTITY(1,1) NOT NULL,
-  fkComputador VARCHAR(100) NOT NULL,
+  fkComputador INT NOT NULL,
   fkHardware INT NOT NULL,
     FOREIGN KEY (fkComputador) REFERENCES computador(idComputador),
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
@@ -134,10 +135,10 @@ CREATE TABLE captura (
   valor FLOAT,
   descricao VARCHAR(45),
   dtCaptura DATETIME DEFAULT CURRENT_TIMESTAMP,
-  fkComputadorComponente VARCHAR(100) NOT NULL,
-  fkHardwareComponente INT NOT NULL,
+  fkComputador INT NOT NULL,
+  fkHardware INT NOT NULL,
   fkComponente INT NOT NULL,
-    FOREIGN KEY (fkComponente,fkComputadorComponente, fkHardwareComponente) REFERENCES componente(idComponente,fkComputador, fkHardware)
+    FOREIGN KEY (fkComponente,fkComputador, fkHardware) REFERENCES componente(idComponente,fkComputador, fkHardware)
 );
 
 -- -- JAR pega
@@ -190,7 +191,7 @@ INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEm
 	('Padrão'), -- TIRAR DEPOIS
 	('Lenovo lindo'); -- TIRAR DEPOIS
     
-INSERT INTO computador VALUES
+INSERT INTO computador (nome,fkEmpresa,fkModeloComputador,fkEmpresaLocataria,fkStatus) VALUES
 	('123ad', 1, 1, 1,1), -- TIRAR DEPOIS
 	('1234fd', 1, 1, 1,1), -- TIRAR DEPOIS
 	('1234rew',2, 1, 2,1); -- TIRAR DEPOIS	
@@ -215,7 +216,7 @@ INSERT INTO parametro VALUES
 	(1, 2, 1, 1, 1);
 	
 INSERT INTO componente VALUES
-	('123ad', 1);
+	(1, 1);
 -- 	(1, 2),
 -- 	(1, 3),
 -- 	(1, 4),
@@ -229,7 +230,7 @@ INSERT INTO componente VALUES
 -- 	(3, 4);
     
 INSERT INTO captura VALUES
-	(80.0, 'CPU', 1, '123ad', 1, 1);
+	(80.0, 'CPU', 1, 1, 1, 1);
     
 INSERT INTO tipoAlerta VALUES
 	('Urgente'),
@@ -238,4 +239,74 @@ INSERT INTO tipoAlerta VALUES
 INSERT INTO alerta(titulo, fkCaptura, fkTipoAlerta) VALUES
 	('CPU - Uso Maximo', 1, 1);
 	
-SELECT * FROM alerta;
+
+
+--modeloComputadorModel
+
+-- SELECT TOP 1 * FROM modeloComputador 
+    -- ORDER BY idModeloComputador DESC;
+
+  
+  -- select modeloComputador.nome as modelo, idComputador as computador, empresaLocataria.nome as locataria, computador.fkStatus
+  --     from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador 
+  --     JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria WHERE computador.fkStatus = 1 AND
+  --     computador.fkEmpresa = 1 AND fkEmpresaLocataria = 1;
+
+-- UPDATE computador SET fkStatus = 2 WHERE idComputador = '';
+
+
+
+-- empresaLocatariaModel
+/*SELECT empresaLocataria.*,empresa.idEmpresa,empresa.nome AS nomeEmpresaOutsorcing FROM empresaLocataria 
+        JOIN empresa ON empresa.idEmpresa = empresaLocataria.fkEmpresa 
+            WHERE fkEmpresa = 1 AND fkStatus = 1;*/
+            
+-- SELECT TOP 1 capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
+--     JOIN hardware ON hardware.idHardware = componente.fkHardware
+--     JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+--     JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+--     WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
+--     ORDER BY idCaptura DESC;
+
+-- SELECT TOP 5 * FROM captura JOIN componente ON fkComponente = idComponente 
+--     JOIN hardware ON hardware.idHardware = componente.fkHardware
+--     JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+--     JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+--     WHERE captura.fkComputador = {idComputador} AND idtipoHardware = ${idHardware}
+--     ORDER BY dtCaptura DESC ;
+
+SELECT COUNT(*) AS Alertas, idComputador, computador.nome, empresaLocataria.nome FROM computador 
+	JOIN componente ON fkComputador = idComputador
+    JOIN empresaLocataria ON fkEmpresaLocataria = idEmpresaLocataria
+    JOIN captura ON fkComponente = idComponente
+    JOIN alerta ON fkCaptura = idCaptura
+    JOIN tipoAlerta ON fkTipoAlerta = idTipoAlerta WHERE DATEDIFF(DAY, GETDATE(), dtAlerta) < 7 AND computador.fkStatus = 1 GROUP BY idComputador, computador.nome, empresaLocataria.nome ORDER BY alertas DESC;    
+
+
+SELECT COUNT(*) AS Alertas, idEmpresaLocataria FROM computador 
+	JOIN componente ON fkComputador = idComputador
+    JOIN empresaLocataria ON fkEmpresaLocataria = idEmpresaLocataria
+    JOIN captura ON fkComponente = idComponente
+    JOIN alerta ON fkCaptura = idCaptura
+    JOIN tipoAlerta ON fkTipoAlerta = idTipoAlerta WHERE DATEDIFF(DAY, GETDATE(), dtAlerta) < 7 AND computador.fkStatus = 1 GROUP BY idEmpresaLocataria, empresaLocataria.nome ORDER BY alertas DESC; 
+            
+
+            
+    
+
+
+
+
+
+
+
+
+    
+-- SELECT * FROM tipoHardware;
+-- SELECT * FROM hardware;
+-- SELECT * FROM componente;
+-- SELECT * FROM captura;
+
+-- SELECT * FROM usuario;
+-- SELECT * FROM empresa;
+-- SELECT * FROM local;

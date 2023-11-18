@@ -73,7 +73,8 @@ CREATE TABLE modeloComputador(
 );
  
 CREATE TABLE computador(
-	idComputador VARCHAR(100) PRIMARY KEY,
+	idComputador INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL UNIQUE,
     fkEmpresa INT,
     fkModeloComputador INT,
     fkEmpresaLocataria INT,
@@ -122,7 +123,7 @@ CREATE TABLE parametro(
 
 CREATE TABLE componente(
 	idComponente INT AUTO_INCREMENT NOT NULL,
-    fkComputador VARCHAR(100) NOT NULL,
+    fkComputador INT NOT NULL,
     fkHardware INT NOT NULL,
     FOREIGN KEY (fkHardware) REFERENCES hardware(idHardware),
     FOREIGN KEY (fkComputador) REFERENCES computador(idComputador) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -137,7 +138,7 @@ CREATE TABLE captura (
     valor DOUBLE,
     descricao VARCHAR(45),
     dtCaptura DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fkComputador VARCHAR(100),
+    fkComputador INT,
     fkHardware INT,
     fkComponente INT,
     FOREIGN KEY (fkComputador) REFERENCES componente(fkComputador) ON DELETE CASCADE ON UPDATE CASCADE,

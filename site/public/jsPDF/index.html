@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="pdfPage" class="pdf">
+            <div class="pdf-header">
+                <div class="pdf-logo">
+                    <img class="logo" src="../assets/icon/coruja_cabeça_-_editada-removebg-preview 1 (1).png">
+                </div>
+                <div class="pdf-title">
+                    <p>Relatório Semanal</p>
+                    <p class="subtitle">Computadores alocados para - Simpress</p>
+                    <p class="subtitle">Período: 01/11/2023 - 07/11/2023</p>
+                </div>
+            </div>
+            <div class="pdf-body">
+            </div>
+        </div>
+        <button onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+</body>
+
+</html>
