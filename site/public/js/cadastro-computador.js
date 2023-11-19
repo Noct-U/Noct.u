@@ -1,4 +1,5 @@
     listarComputadores()
+ 
     nomeEmpresaID.innerHTML = sessionStorage.NOME_EMPRESA
 
 
@@ -104,38 +105,38 @@
                             if(json[i].idStatusComputador == 1){
 
                             fundo_modal.innerHTML +=`
-                            <div class="caixa-modal" id="modal${json[i].computador}" style="display: none;">
+                            <div class="caixa-modal" id="modal${json[i].idComputador}" style="display: none;">
                                 <div class="header-modal">
                                     <span id="nome_empresa">${json[i].locataria}</span>
                                     <span id="nome_computador" class="subtitle-modal">Computador: ${json[i].computador}</span>
                                 </div>
 
                                 <div class="corpo-modal">
-                                <div style="display:flex"  id="escolhaModelo${json[i].computador}">
+                                <div style="display:flex"  id="escolhaModelo${json[i].idComputador}">
                                     <div class="alinhamento-horizontal">
                                         <div class="caixa-input">
                                             <label for="">Modelo</label>
-                                            <select name=""  id="listaModelos${json[i].computador}">
+                                            <select name=""  id="listaModelos${json[i].idComputador}">
                                             <!-- opções do select -->
                                             </select>
                                         </div>
                                         <div class="caixa-input">
                                             <label for="">Empresa</label>
-                                            <select name="" id="listaEmpresa${json[i].computador}">
+                                            <select name="" id="listaEmpresa${json[i].idComputador}">
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
-                                    <div class="cadastro-novoModelo"  style="display:none" id="cadastroModelo${json[i].computador}">
+                                    <div class="cadastro-novoModelo"  style="display:none" id="cadastroModelo${json[i].idComputador}">
                                         <div class="alinhamento-horizontal">
                                             <div class="caixa-input">
                                                 <label for="">Cadastrar novo Modelo</label>
-                                                <input class="ipt-hardware" type="text" "placeholder="Nome do Modelo" id="ipt_modelo_nome${json[i].computador}"> </input>
+                                                <input class="ipt-hardware" type="text" "placeholder="Nome do Modelo" id="ipt_modelo_nome${json[i].idComputador}"> </input>
                                             </div>
                                            
                                         </div>
-                                        <div class="scroll-cadastro" id="divHardwares"> 
+                                        <div class="scroll-cadastro" id="divHardwares${json[i].idComputador}"> 
                                             
                                             
                                             
@@ -144,10 +145,9 @@
                                 </div>
 
                                 <div class="rodape-modal">
-                                    <button id="btnModelo${json[i].computador}" onclick="abrirInputsCadastro(${json[i].computador},consultarHardwares(${json[i].computador}))" id="novoModelo">Novo Modelo</button>
-                                    <button onclick="fecharModal(${json[i].computador
-                                    })" id="cancelar">Cancelar</button>
-                                    <button id="salvar" onclick="atualizarComputador(${json[i].computador})">Salvar</button>
+                                    <button id="btnModelo${json[i].idComputador}" onclick="abrirInputsCadastro(${json[i].idComputador},consultarHardwares(${json[i].idComputador}))" id="novoModelo">Novo Modelo</button>
+                                    <button onclick="abrirInputsCadastro(${json[i].idComputador}),fecharModal(${json[i].idComputador})" id="cancelar">Cancelar</button>
+                                    <button id="salvar" onclick="atualizarComputador(${json[i].idComputador})">Salvar</button>
                                 </div>
 
                             </div>
@@ -166,7 +166,7 @@
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
                                     <div class="info btns">
-                                    <button class="btn azul" onclick="acessar(${json[i].computador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModal(${json[i].computador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].computador})'>EXCLUIR</button></div>
+                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModal(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
                                 
@@ -307,76 +307,115 @@
         return false;
     }
 
-    function atualizarComputador(idComputador){
-        //modelo da lista
-        var listaModelo = 'listaModelos'+idComputador;
-        listaModelo = document.getElementById(listaModelo);
-        var modeloSelect = listaModelo.value;
 
 
-        //Modelo input
-        var inputModelo = 'ipt_modelo_nome'+idComputador;
-        inputModelo = document.getElementById(inputModelo);
-        var modeloInput = inputModelo.value;
-
-        // minimo e maximo
-        var inputMin = 'ipt_min'+idComputador;
-        inputMin = document.getElementById(inputMin);
-        var min = inputMin.value;
-
-        var inputMax = 'ipt_max'+idComputador;
-        inputMax = document.getElementById(inputMax);
-        var max = inputMax.value;
-
-
-        //empresa da lista
-        var listaEmpresa = 'listaModelos'+idComputador;
-        listaEmpresa = document.getElementById(listaEmpresa);
-        var empresaSelect = listaEmpresa.value;
-        var dados = {};
-
-        if(listaModelo.disabled == true){
-
-            if(min != "" && max != "" && modeloInput != ""){
-                empresaSelect = undefined;
-                modeloSelect = undefined;
-                    
-                }
-        }   
-        else if(inputModelo.disabled == true){
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    //Dados da primeira pag de cadastro
-                min = undefined,
-                max = undefined,
-                modeloInput = undefined
-
-        }
-        console.log("MIN: "+min,"MAX: "+max,"MODELO "+modeloInput)
-        
-        console
-        fetch("/computadores/atualizarComputador", {
+   
+    function consultarHardwares(idComputador) {
+        var divHardwares = document.getElementById(`divHardwares${idComputador}`);
+        var vetorIdTipoHardware = []
+        fetch("/computadores/consultarTipoHardwares", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                modeloIptServer : modeloInput,
-                modeloSltServer : modeloSelect,
-                minServer : min,
-                maxServer : max,
-                empresaServer:empresaSelect,
-                idComputadorServer : idComputador
-            })
-        }).then(function () {
-                    
-                            
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+    
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    divHardwares.innerHTML = "";
+                    console.log(json);
+                    for (var i = 0; i < json.length; i++) {
+                        divHardwares.innerHTML +=
+                        `
+                            <div class="alinhamento-horizontal alinhamento-cadastro">
+                                <div class="caixa-input caixa-hardware">
+                                    <label for="">${json[i].nome}</label>  
+                                    <input style="display: none" class="dadosInputsCadastroModelo${idComputador}" value="${json[i].idTipoHardware}" id="ipt_TipoHardware${json[i].idTipoHardware}${idComputador}"></input>
+                                    
+                                </div>
+                                <div class="caixa-input">
+                                    <label for="">Parâmetros</label>
+                                    <div class="parametros">
+                                        <input type="Number" placeholder="min" class="ipt-parametros dadosInputsCadastroModelo${idComputador}" id="ipt_min${json[i].idTipoHardware}${idComputador} "> </input>
+                                        <input type="Number" placeholder="max" class="ipt-parametros dadosInputsCadastroModelo${idComputador}" id="ipt_max${json[i].idTipoHardware}${idComputador}"> </input>
+                                        <input placeholder="Gigabytes..." class="dadosInputsCadastroModelo${idComputador} nomeUnidadeMedida"  id="iptNomeUnidade${json[i].idTipoHardware}${idComputador}"></input>
+                                        <select class="unidade-medida dadosInputsCadastroModelo${idComputador}" id="uniddeMedida${json[i].idTipoHardware}${idComputador}">
+                                        
+                                            
+                                        </select>  
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        vetorIdTipoHardware.push(`uniddeMedida${json[i].idTipoHardware}${idComputador}`);
+                        
+                    }
+
+                    consultarUnidadeMedida(vetorIdTipoHardware);
+    
+    
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+    
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
         })
-        .catch(function (ultimoModelo) {
-            console.log(`#ERRO: ${ultimoModelo}`);
-        });
 
 
+        
+        return false;
+    }
+    
+
+    function consultarUnidadeMedida(tipoHardware) {
+        
+        
+        
+        fetch("/computadores/consultarUnidadeMedida", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+    
+    
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                  for(var j = 0; j < tipoHardware.length; j++ ){
+
+                      var unidadeMedidaLista = document.getElementById(tipoHardware[j]);
+                      for (var i = 0; i < json.length; i++) {
+                          unidadeMedidaLista.innerHTML +=
+                          `
+                              <option value="${json[i].idUnidadeMedida}">${json[i].simbolo}</option>
+                          `;
+                      }
+                  }
+    
+    
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+    
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        
+        
+        return false;
+    }
+        
         function exibirModelosModal(num,modelo) {
         var lista = document.getElementById(`listaModelos${num}`);
         fetch("/computadores/consultarModelos", {
@@ -417,59 +456,113 @@
         })
         return false;
     }
-    }
+    
+    function atualizarComputador(idComputador){
+        var alteracao = document.getElementById(`escolhaModelo${idComputador}`);
+        console.log(`escolhaModelo${idComputador}`)
+        if(alteracao && alteracao.style.display == "flex"){
+            var modelo = document.getElementById(`listaModelos${idComputador}`);
+            idModelo = modelo.value;
+
+            var empresa = document.getElementById(`listaEmpresa${idComputador}`);
+            idEmpresaLocataria = empresa.value;
 
 
-   
-    function consultarHardwares(idComputador) {
-        var divHardwares = document.getElementById(`divHardwares`);
-        fetch("/computadores/consultarTipoHardwares", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+            fetch("/computadores/atualizarComputador", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    modeloServer : idModelo,
+                    locatariaServer : idEmpresaLocataria,
+                    idComputadorServer : idComputador
+                })
+            }).then(function () {
+                location.reload();
+                                
+            })
+            .catch(function (ultimoModelo) {
+                console.log(`#ERRO: ${ultimoModelo}`);
+            });
+        }
+        else{
+            var modelo = document.getElementById(`ipt_modelo_nome${idComputador}`);
+            modelo = modelo.value;
+
+
+            var vetorDados = document.querySelectorAll(`.dadosInputsCadastroModelo${idComputador}`);
+            var tipoHardwares = [];
+            var parametrosMin = [];
+            var parametrosMax = [];
+            var nomesUnidadesMedidas = [];
+            var unidadesDeMedida = [];
+            
+            for (var i = 0; i < vetorDados.length; i += 5) {
+                // como sempre vai ser 20 dados recebidos e 5 para cada hardware é necessário uma verificação
+                //para os dados ir no vetor certo, os dados sempres seguem a ordem abaixo
+                /*
+                1 - tipoHardware
+                2 - min
+                3 - max
+                4 - nome da unidade de medida
+                5 - unidade de medida 
+                como eles vem tudo misturado, a verificação serve para identificar para qual vetor vai o dado
+                */
+                tipoHardwares.push(vetorDados[i].value);
+                parametrosMin.push(vetorDados[i + 1].value);
+                parametrosMax.push(vetorDados[i + 2].value);
+                nomesUnidadesMedidas.push(vetorDados[i + 3].value);
+                unidadesDeMedida.push(vetorDados[i + 4].value);
             }
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-    
-            if (resposta.ok) {
-                resposta.json().then(json => {
-                    divHardwares.innerHTML = "";
-                    console.log(json);
-                    for (var i = 0; i <= json.length; i++) {
-                        divHardwares.innerHTML +=
-                        `
-                            <div class="alinhamento-horizontal alinhamento-cadastro">
-                                <div class="caixa-input">
-                                    <label for="">${json[i].nome}</label>  
-                                    <input style="display: none" value="${json.idTipoHardware}" id="ipt_TipoHardware${idComputador}"></input>
-                                    <input placeholder="Intel i3..." id="ipt_hardware${idComputador}"></input>
-                                </div>
-                                <div class="caixa-input">
-                                    <label for="">Parâmetros</label>
-                                    <div class="parametros">
-                                        <input type="Number" placeholder="min" class="ipt-parametros" id="ipt_min${idComputador}"> </input>
-                                        <input type="Number" placeholder="max" class="ipt-parametros" id="ipt_max${idComputador}"> </input>
-                                        <select class="unidade-medida" id="uniddeMedida${idComputador}">
-                                            
-                                        </select>  
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }
-    
-    
-                });
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                resposta.text().then(texto => {
-                    console.error(texto);
-    
-                });
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+
+            console.log("Tipo Hardwares:", tipoHardwares);
+            console.log("Parâmetros Mínimos:", parametrosMin);
+            console.log("Parâmetros Máximos:", parametrosMax);
+            console.log("nome da unidade:", nomesUnidadesMedidas);
+            console.log("Unidades de Medida:", unidadesDeMedida);
+
+            // fetch("/computadores/cadastrarParametro", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({
+            //         //parametros minimos
+           
+            //     })
+            // }).then(function () {
+            //     location.reload();
+                                
+            // })
+            // .catch(function (ultimoModelo) {
+            //     console.log(`#ERRO: ${ultimoModelo}`);
+            // });
+            fetch("/computadores/cadastrarModeloEmGeral", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    modeloServer : modelo,
+
+                    //parametros
+                    tipoHardwareServer1 : tipoHardwares[0],parametroMinServer1 : parametrosMin[0],parametroMaxServer1 : parametrosMax[0],nomesUnidadesMedidasServer1 : nomesUnidadesMedidas[0],unidadeMedidaServer1:unidadesDeMedida[0],
+                    tipoHardwareServer2 : tipoHardwares[1],parametroMinServer2 : parametrosMin[1],parametroMaxServer2 : parametrosMax[1],nomesUnidadesMedidasServer2 : nomesUnidadesMedidas[1],unidadeMedidaServer2:unidadesDeMedida[1],
+                    tipoHardwareServer3 : tipoHardwares[2],parametroMinServer3 : parametrosMin[2],parametroMaxServer3 : parametrosMax[2],nomesUnidadesMedidasServer3 : nomesUnidadesMedidas[2],unidadeMedidaServer3:unidadesDeMedida[2],
+                    tipoHardwareServer4 : tipoHardwares[3],parametroMinServer4 : parametrosMin[3],parametroMaxServer4 : parametrosMax[3],nomesUnidadesMedidasServer4 : nomesUnidadesMedidas[3],unidadeMedidaServer4:unidadesDeMedida[3]
+ 
+                })
+            }).then(function () {
+                window.reload();
+                                
+            })
+            .catch(function (ultimoModelo) {
+                console.log(`#ERRO: ${ultimoModelo}`);
+            });
+            
+        }
+        
+
         return false;
     }
-    

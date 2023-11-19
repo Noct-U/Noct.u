@@ -44,5 +44,20 @@ router.post("/consultarTipoHardwares", function (req, res) {
     computadorController.consultarTipoHardwares(req, res);
 })
 
+router.post("/consultarUnidadeMedida", function (req, res) {
+    computadorController.consultarUnidadeMedida(req, res);
+})
 
+
+router.post("/cadastrarModeloEunidadeMedida", function (req, res) {
+    computadorController.cadastrarModeloEunidadeMedida(req, res);
+}) 
+
+router.post("/cadastrarParametro", function (req, res) {
+    computadorController.cadastrarParametro(req, res);
+})
+
+router.post("/cadastrarModeloEmGeral", function (req, res) {
+    computadorController.cadastrarModeloEmGeral(req, res);
+})
 module.exports = router;

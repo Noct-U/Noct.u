@@ -21,6 +21,23 @@ function cadastrarModelo(modelo) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+function cadastrarUnidadeMedida(nomeUnidadeMedida,simbolo){
+    var instrucao = `
+        insert into unidadeMedida(nome,simbolo) values("${nomeUnidadeMedida}","${simbolo}");
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarParametro(parametroMin,parametroMax,idUnidadeMedida,idHardware){
+    var instrucao = `
+    INSERT INTO parametro (min, max, fkmodeloComputador, fkunidadeMedida, fkTipoHardware)
+    VALUES (${parametroMin}, ${parametroMax}, (SELECT MAX(idmodeloComputador) FROM modeloComputador), ${idUnidadeMedida}, ${idHardware});
+
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 function excluirComputador(idComputador) {
     var instrucao = `
@@ -44,7 +61,7 @@ function consultarUltimoModelo() {
 function consultarComputadores(idEmpresa,idLocataria) {
 
     var instrucao = `
-    select modeloComputador.idModeloComputador AS idModelo,modeloComputador.nome as modelo, idComputador as computador,idStatus as idStatusComputador, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria
+    select modeloComputador.idModeloComputador AS idModelo,modeloComputador.nome as modelo, idComputador,computador.nome as computador,idStatus as idStatusComputador, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria
     from modeloComputador JOIN computador on idModeloComputador = fkModeloComputador 
     JOIN status ON idStatus = fkStatus
     JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocataria
@@ -103,6 +120,24 @@ function consultarTipoHardwares() {
     return database.executar(instrucao);
 }
 
+function consultarUnidadeMedida() {
+
+    var instrucao = `
+        select * from unidadeMedida;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function atualizarComputador(modelo,locataria,idComputador) {
+
+    var instrucao = `
+    UPDATE computador SET fkEmpresaLocataria = ${locataria}, fkModeloComputador = ${modelo} WHERE idComputador = ${idComputador};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -112,5 +147,9 @@ module.exports = {
     consultarDadosGrafico,
     consultarDadosGraficoCpu,
     consultarModelos,
-    consultarTipoHardwares
+    consultarTipoHardwares,
+    consultarUnidadeMedida,
+    atualizarComputador,
+    cadastrarUnidadeMedida,
+    cadastrarParametro
 };
