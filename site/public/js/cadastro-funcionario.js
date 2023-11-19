@@ -46,7 +46,7 @@ function cadastrarFunc() {
             // Registro bem-sucedido
             alert("Funcionário cadastrado com sucesso!");
             setTimeout(() => {
-                window.location = "../login.html";
+                window.location = "lista-funcionario.html";
             }, 2000);
         } else {
             // Trata resposta não-ok
