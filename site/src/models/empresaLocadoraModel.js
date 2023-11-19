@@ -48,9 +48,53 @@ function exibirEmpresas(idEmpresa) {
     return database.executar(instrucao);
 }
 
+function consultarLocataria(idEmpresa) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+
+    var instrucao = `
+        SELECT 
+        empresaLocataria.idEmpresaLocataria AS idLocataria,
+        empresaLocataria.nome AS nomeLocataria,
+        empresaLocataria.cnpj AS cnpjLocataria,
+        empresaLocataria.fkStatus as fkStatus,
+        empresaLocataria.fkMatriz AS idMatriz,
+        matriz.nome AS nomeMatriz
+        FROM 
+            empresaLocataria
+        LEFT JOIN 
+            empresaLocataria AS matriz ON empresaLocataria.fkMatriz = matriz.idEmpresaLocataria
+        WHERE 
+            empresaLocataria.fkEmpresa = ${idEmpresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function excluirLocataria(idEmpresa) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+
+    var instrucao = `
+        UPDATE empresaLocataria SET fkStatus = 2 WHERE idEmpresaLocataria = ${idEmpresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
+function atualizarLocataria(nomeLocataria,cnpjLocataria,matriz,idLocataria) {
+    var instrucao = `
+        UPDATE empresaLocataria SET nome = "${nomeLocataria}", cnpj = "${cnpjLocataria}", fkMatriz = ${matriz} WHERE idEmpresaLocataria = ${idLocataria};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     autenticar,
     cadastrarLocadora,
     cadastrarMatriz,
-    exibirEmpresas
+    exibirEmpresas,
+    consultarLocataria,
+    excluirLocataria,
+    atualizarLocataria
 };

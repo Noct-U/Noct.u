@@ -5,7 +5,6 @@
 
     function abrirModal(num,locataria,modelo){
 
-        
         var modal = document.getElementById(`modal${num}`);
 
         fundoModal.style.display = "flex"
