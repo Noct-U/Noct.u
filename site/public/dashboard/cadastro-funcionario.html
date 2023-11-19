@@ -4,7 +4,7 @@
 <head>
     <title>NOCT.U | CADASTRO FUNCIONÁRIO</title>
     <link rel="stylesheet" href="../css/cadastro-funcionario.css">
-    <script src="../js/cadastro-computador.js"></script>
+    <script src="../js/cadastro-funcionario.js"></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             </div>
             <div class="titulo">
                 <div class="marca"><span>NOCT.U</span></div>
-                <div class="descricao"><span>Insira as informações sobre o novo modelo</span></div>
+                <div class="descricao"><span>Cadastrar Novo Funcionário</span></div>
             </div>
             <div class="invisivel"></div>
         </div>
@@ -25,17 +25,17 @@
                 <div class="quad">
                     <div class="campo">
                         <span>Nome:</span>
-                        <input type="text" id="#">
+                        <input type="text" id="ipt_nome_usuario">
                     </div>
                     <div class="campo">
                         <span>Email:</span>
-                        <input type="text" id="#">
+                        <input type="text" id="ipt_email_usuario">
                     </div>
                 </div>
                 <div class="quad">
                     <div class="campo">
                         <span>Senha:</span>
-                        <input type="text" id="#">
+                        <input type="text" id="ipt_senha_usuario">
                     </div>
                     <div class="campo">
                         <span>Confirme a senha:</span>
@@ -45,14 +45,14 @@
                 <div class="quad">
                     <div class="campo">
                         <span>Tipo do usuário:</span>
-                        <select id="iptselecionario">
+                        <select id="ipt_selecionar_user">
                             <option value="1">ADMIN</option>
                             <option value="2">COMUM</option>
                         </select>
                     </div>
                     <div class="campo">
                         <span>Empresa de alocação:</span>
-                        <select id="iptselecionario">
+                        <select id="ipt_selecionar_empresa">
                             <option value="1">SPTECH</option>
                             <option value="2">SPTECH</option>
                             <option value="3">SPTECH</option>
@@ -71,7 +71,7 @@
                     </div>
                 </a>
                 <div class="btn-direita">
-                    <span onclick="cadastrar()">Finalizar</span>
+                    <span onclick="cadastrarFunc()">Finalizar</span>
                 </div>
             </div>
         </div>

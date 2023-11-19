@@ -169,7 +169,32 @@ function cadastrarUsuario(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
+}
 
+function cadastrarFunc(req, res) {
+
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoUsuarioServer;
+    var empresa = req.body.empresaLocadoraServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.cadastrarFunc(nome, email, senha, tipo, empresa, fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
 function publicar(req, res) {
@@ -293,6 +318,7 @@ module.exports = {
     exibirLocatarias,
     exibirUltimoTipo,
     cadastrarUsuario,
+    cadastrarFunc,
     publicar,
     consultarFuncionario,
     excluirUsuario,
