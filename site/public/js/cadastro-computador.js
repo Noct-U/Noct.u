@@ -146,7 +146,7 @@
 
                                 <div class="rodape-modal">
                                     <button id="btnModelo${json[i].idComputador}" onclick="abrirInputsCadastro(${json[i].idComputador},consultarHardwares(${json[i].idComputador}))" id="novoModelo">Novo Modelo</button>
-                                    <button onclick="abrirInputsCadastro(${json[i].idComputador}),fecharModal(${json[i].idComputador})" id="cancelar">Cancelar</button>
+                                    <button onclick="fecharModal(${json[i].idComputador}),fecharInputs(${json[i].idComputador})" id="cancelar">Cancelar</button>
                                     <button id="salvar" onclick="atualizarComputador(${json[i].idComputador})">Salvar</button>
                                 </div>
 
@@ -166,7 +166,7 @@
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
                                     <div class="info btns">
-                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModal(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
+                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModalComportamento2(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
                                 
@@ -184,7 +184,7 @@
     
 
     //método chamado na modal.js
-    function exibirEmpresasModal(num,locataria) {
+    function exibirEmpresasModalEmp2(num,locataria) {
         var lista = document.getElementById(`listaEmpresa${num}`);
         fetch("/empresasLocadoras/exibirEmpresas", {
             method: "POST",
@@ -204,7 +204,7 @@
     
             if (resposta.ok) {
                 console.log(resposta);
-    
+                
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json[0].nomeEmpresaOutsorcing));
@@ -554,7 +554,7 @@
  
                 })
             }).then(function () {
-                window.reload();
+                location.reload();
                                 
             })
             .catch(function (ultimoModelo) {

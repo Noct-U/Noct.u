@@ -122,7 +122,7 @@ function listaEmpresas(){
                                 <div class="linhaInfo">
                                     <div class="info"></div>
                                     <div class="info"></div>
-                                    <div class="info btns"> <button class="btn cinza" onclick="abrirModal(${json[i].idLocataria},${json[i].idLocataria},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idLocataria})">EXCLUIR</button></div>
+                                    <div class="info btns"> <button class="btn cinza" onclick="abrirModalComportamento1(${json[i].idLocataria},${json[i].idLocataria},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idLocataria})">EXCLUIR</button></div>
                                 </div>
                             </div>
                             `;
@@ -272,7 +272,6 @@ function excluir(idEmpresaLocataria) {
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
             //Dados da primeira pag de cadastro
-
             idEmpresaServer: sessionStorage.ID_EMPRESA
 
         }),

@@ -382,7 +382,7 @@
                                             <div class="linhaInfo">
                                                 <div class="info"><span>E-mail:⠀</span> <span>${json[i].emailUsuario}</span></div>
                                                 <div class="info"></div>
-                                                <div class="info btns"><button class="btn cinza" onclick="abrirModal(${json[i].idUsuario},${json[i].fkEmpresaLocadora},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idUsuario})">EXCLUIR</button></div>
+                                                <div class="info btns"><button class="btn cinza" onclick="abrirModalComportamento2( ${json[i].idUsuario},${json[i].fkEmpresaLocadora},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idUsuario})">EXCLUIR</button></div>
                                             </div>
                                         </div>
                                             `;
