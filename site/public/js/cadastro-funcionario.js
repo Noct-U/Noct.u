@@ -375,7 +375,7 @@ function publicar() {
    }
 
    function excluir(idUsuario){
-        fetch("/usuarios/excluirUsuario", {
+        fetch("/usuarios/excluirFunc", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -396,7 +396,7 @@ function publicar() {
         });
    }
 
-   function atualizarUsuario(idUsuario){
+   function atualizarFuncionario(idUsuario){
     var nome = document.getElementById(`ipt_nome_usuario${idUsuario}`);
     nome = nome.value;
 

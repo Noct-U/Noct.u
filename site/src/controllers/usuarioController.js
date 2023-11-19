@@ -197,6 +197,28 @@ function cadastrarFunc(req, res) {
         );
 }
 
+function excluirFunc(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.excluirFunc(idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
 function publicar(req, res) {
     // var titulo = req.body.titulo;
     var idUsuario = req.params.idUsuario;
@@ -280,8 +302,8 @@ function excluirUsuario(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
-
 }
+
 function atualizarUsuario(req, res) {
 
     var idUsuario = req.body.idUsuarioServer;
@@ -293,6 +315,34 @@ function atualizarUsuario(req, res) {
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel.atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function atualizarFunc(req, res) {
+
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoUsuarioServer;
+    var empresa = req.body.empresaLocadoraServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.atualizarFunc(idUsuario,nome, email, senha, tipo, empresa, fkEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -322,5 +372,7 @@ module.exports = {
     publicar,
     consultarFuncionario,
     excluirUsuario,
-    atualizarUsuario
+    atualizarUsuario,
+    excluirFunc,
+    atualizarFunc
 }

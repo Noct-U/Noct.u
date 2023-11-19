@@ -86,9 +86,25 @@ function excluirUsuario(idUsuario) {
     return database.executar(instrucao);
 }
 
+function excluirFun(idUsuario) {
+    var instrucao = `
+    UPDATE usuario SET fkStatus = 2 WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+} 
+
 function atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario){
     var instrucao = `
     UPDATE usuario SET nome = "${nome}", email = "${email}", senha = "${senha}", fkTipoUsuario = ${tipoUsuario}, fkEmpresaLocadora = ${locataria} WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarFunc(nome, email, senha, tipo, empresa, fkEmpresa){
+    var instrucao = `
+    UPDATE usuario SET nome = "${nome}", email = "${email}", senha = "${senha}", fkTipoUsuario = ${tipo}, fkEmpresaLocadora = ${empresa}, fkEmpresa= ${fkEmpresa} WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -104,5 +120,7 @@ module.exports = {
     cadastrarUsuario,
     consultarFuncionario,
     excluirUsuario,
-    atualizarUsuario
+    atualizarUsuario,
+    excluirFun,
+    atualizarFunc
 };

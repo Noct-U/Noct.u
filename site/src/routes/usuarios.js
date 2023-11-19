@@ -32,6 +32,10 @@ router.post("/cadastrarFunc", function (req, res) {
     usuarioController.cadastrarFunc(req, res);
 });
 
+router.post("/excluirFunc", function (req, res) {
+    usuarioController.excluirUsuario(req, res);
+});
+
 router.post("/consultarFuncionario", function (req, res) {
     usuarioController.consultarFuncionario(req, res);
 });
