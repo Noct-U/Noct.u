@@ -3,7 +3,7 @@
 
 
 
-    function abrirModal(num,locataria,modelo){
+    function abrirModalComportamento1(num,locataria,modelo){
 
         var modal = document.getElementById(`modal${num}`);
 
@@ -18,6 +18,24 @@
         exibirModelosModal(num,modelo)
 
     }
+
+    function abrirModalComportamento2(num,locataria,modelo){
+
+        var modal = document.getElementById(`modal${num}`);
+
+        fundoModal.style.display = "flex"
+        modal.style.display = "flex"
+        lista.style.display = "none"
+
+        // exibirEmpresasModal(num,locataria)
+        // exibirModelosModal(num,modelo)
+
+        exibirEmpresasModalEmp2(num,locataria)
+        exibirModelosModal(num,modelo)
+
+    }
+
+
 
     function fecharModal(num){
 
@@ -50,4 +68,15 @@
             iptsAlterar.style.display = "flex"
             iptsCadastro.style.display = "none"
         }
+    }
+
+    function fecharInputs(num){
+        var btnModelo = document.getElementById(`btnModelo${num}`);
+        var iptsAlterar = document.getElementById(`escolhaModelo${num}`);
+        var iptsCadastro = document.getElementById(`cadastroModelo${num}`); 
+
+        
+        btnModelo.innerHTML = "Novo Modelo"
+        iptsAlterar.style.display = "flex"
+        iptsCadastro.style.display = "none"
     }
