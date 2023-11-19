@@ -117,9 +117,73 @@ function exibirEmpresas(req, res) {
         );
 }
 
+function consultarLocataria(req, res) {
+    var idEmpresa = req.body.idLocatariaServer;
+    empresaLocadoraModel.consultarLocataria(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function excluirLocataria(req, res) {
+    var idEmpresa = req.body.idEmpresaLocatariaServer;
+    empresaLocadoraModel.excluirLocataria(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
+function atualizarLocataria(req, res) {
+
+    var idLocataria = req.body.idLocatariaServer;
+    var nomeLocataria = req.body.nomeLocatariaServer;
+    var cnpjLocataria = req.body.cnpjLocatariaServe;
+    var matriz = req.body.matrizServer;
+    empresaLocadoraModel.atualizarLocataria(nomeLocataria,cnpjLocataria,matriz,idLocataria)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     autenticar,
     cadastrar,
     exibirEmpresas,
+    consultarLocataria,
+    excluirLocataria,
+    atualizarLocataria
 }

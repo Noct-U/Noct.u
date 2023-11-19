@@ -23,4 +23,41 @@ router.post("/consultarComputadores", function (req, res) {
 router.post("/excluirComputador", function (req, res) {
     computadorController.excluirComputador(req, res);
 })
+
+router.post("/consultarDados", function (req, res) {
+    computadorController.consultarDadosGrafico(req, res);
+})
+
+router.post("/consultarDadosCPU", function (req, res) {
+    computadorController.consultarDadosGraficoCpu(req, res);
+})
+
+router.post("/consultarModelos", function (req, res) {
+    computadorController.consultarModelos(req, res);
+})
+
+router.post("/atualizarComputador", function (req, res) {
+    computadorController.atualizarComputador(req, res);
+})
+
+router.post("/consultarTipoHardwares", function (req, res) {
+    computadorController.consultarTipoHardwares(req, res);
+})
+
+router.post("/consultarUnidadeMedida", function (req, res) {
+    computadorController.consultarUnidadeMedida(req, res);
+})
+
+
+router.post("/cadastrarModeloEunidadeMedida", function (req, res) {
+    computadorController.cadastrarModeloEunidadeMedida(req, res);
+}) 
+
+router.post("/cadastrarParametro", function (req, res) {
+    computadorController.cadastrarParametro(req, res);
+})
+
+router.post("/cadastrarModeloEmGeral", function (req, res) {
+    computadorController.cadastrarModeloEmGeral(req, res);
+})
 module.exports = router;

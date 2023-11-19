@@ -1,23 +1,5 @@
 var database = require("../database/config")
 
-// function autenticar(email, senha) {
-//     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
-    
-//     var instrucao = `
-//     SELECT nomeTipo,idUsuario, usuario.email as emailUsuario,idEmpresa , usuario.nome as nomeUsuario, 
-//     empresa.nome as nomeEmpresa,idEmpresaLocataria ,empresaLocataria.nome as nomeLocataria
-//     FROM tipoUsuario 
-//            JOIN usuario ON idTipoUsuario = fkTipoUsuario 
-//            JOIN empresa ON idEmpresa = fkEmpresa
-//            LEFT JOIN empresaLocataria ON empresaLocataria.fkEmpresa = idEmpresa 
-//            JOIN local ON local.fkEmpresa = empresa.idEmpresa
-//            JOIN endereco ON endereco.idEndereco = fkEndereco
-//             WHERE email = '${email}' AND senha = '${senha}';
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucao);
-//     return database.executar(instrucao);
-// }
-
 
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
@@ -77,11 +59,42 @@ function cadastrarUsuario(nome, email, senha, tipo, empresa) {
     return database.executar(instrucao);
 }
 
+function consultarFuncionario(idLocataria,idLocadora) {
+    var instrucao = `
+        SELECT usuario.idUsuario,usuario.nome as nomeUsuario,usuario.email as emailUsuario, 
+        usuario.senha as senhaUsuario, usuario.fkStatus as status,usuario.fkEmpresaLocadora,empresaLocataria.nome as locataria
+        FROM usuario JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocadora  
+        WHERE fkEmpresaLocadora = ${idLocataria} AND usuario.fkEmpresa = ${idLocadora};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function excluirUsuario(idUsuario) {
+    var instrucao = `
+        UPDATE usuario SET fkStatus = 2 WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario){
+    var instrucao = `
+    UPDATE usuario SET nome = "${nome}", email = "${email}", senha = "${senha}", fkTipoUsuario = ${tipoUsuario}, fkEmpresaLocadora = ${locataria} WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarTipo,
     exibirLocatarias,
     exibirUltimoTipo,
-    cadastrarUsuario
+    cadastrarUsuario,
+    consultarFuncionario,
+    excluirUsuario,
+    atualizarUsuario
 };
