@@ -213,6 +213,79 @@ function publicar(req, res) {
     }
 }
 
+function consultarFuncionario(req, res) {
+
+    var idLocataria = req.body.idLocatariaServer;
+    var idLocadora = req.body.idLocadoraServer;
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.consultarFuncionario(idLocataria,idLocadora)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function excluirUsuario(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.excluirUsuario(idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+function atualizarUsuario(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    var nome = req.body.nomeServer;
+    var locataria = req.body.locatariaServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipoUsuario = req.body.tipoServer;
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -220,5 +293,8 @@ module.exports = {
     exibirLocatarias,
     exibirUltimoTipo,
     cadastrarUsuario,
-    publicar
+    publicar,
+    consultarFuncionario,
+    excluirUsuario,
+    atualizarUsuario
 }

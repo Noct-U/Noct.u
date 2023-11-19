@@ -59,11 +59,42 @@ function cadastrarUsuario(nome, email, senha, tipo, empresa) {
     return database.executar(instrucao);
 }
 
+function consultarFuncionario(idLocataria,idLocadora) {
+    var instrucao = `
+        SELECT usuario.idUsuario,usuario.nome as nomeUsuario,usuario.email as emailUsuario, 
+        usuario.senha as senhaUsuario, usuario.fkStatus as status,usuario.fkEmpresaLocadora,empresaLocataria.nome as locataria
+        FROM usuario JOIN empresaLocataria ON idEmpresaLocataria = fkEmpresaLocadora  
+        WHERE fkEmpresaLocadora = ${idLocataria} AND usuario.fkEmpresa = ${idLocadora};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function excluirUsuario(idUsuario) {
+    var instrucao = `
+        UPDATE usuario SET fkStatus = 2 WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario){
+    var instrucao = `
+    UPDATE usuario SET nome = "${nome}", email = "${email}", senha = "${senha}", fkTipoUsuario = ${tipoUsuario}, fkEmpresaLocadora = ${locataria} WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarTipo,
     exibirLocatarias,
     exibirUltimoTipo,
-    cadastrarUsuario
+    cadastrarUsuario,
+    consultarFuncionario,
+    excluirUsuario,
+    atualizarUsuario
 };

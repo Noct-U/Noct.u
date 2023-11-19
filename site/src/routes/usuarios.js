@@ -27,4 +27,17 @@ router.post("/exibirUltimoTipo", function (req, res) {
 router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 });
+
+router.post("/consultarFuncionario", function (req, res) {
+    usuarioController.consultarFuncionario(req, res);
+});
+
+router.post("/excluirUsuario", function (req, res) {
+    usuarioController.excluirUsuario(req, res);
+});
+
+router.post("/atualizarUsuario", function (req, res) {
+    usuarioController.atualizarUsuario(req, res);
+});
+
 module.exports = router;

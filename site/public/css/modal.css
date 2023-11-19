@@ -89,6 +89,14 @@
 .parametros .ipt-parametros{
     width: 30%;
 }
+
+.ipt-modal-usuario{
+    width: 20%;
+    height: 100%;
+}
+.modal-usuario{
+    height: 75%;
+}
 /* inputs */
 .caixa-input{
     font-size: 25px;

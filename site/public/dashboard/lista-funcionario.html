@@ -4,96 +4,36 @@
 <head>
     <title>NOCT.U | FUNCIONARIOS</title>
     <link rel="stylesheet" href="../css/lista-computador.css">
-    <script src="../js/cadastro-locataria.js"></script>
+    <link rel="stylesheet" href="../css/modal.css">
 </head>
 
 <body>
+    <div class="fundo-modal" id="fundo_modal">
+        
+    </div>
     <div class="caixa">
         <div class="header">
             <div class="logo">
                 <img src="../assets/logo.png" height="68px" width="68px">
             </div>
             <div class="titulo">
-                <div class="marca"><span>NOCT.U</span></div>
+                <div class="marca"><span id="nome_empresa"></span></div>
                 <div class="descricao"><span>Funcionários registrados</span></div>
             </div>
             <div class="invisivel"></div>
         </div>
 
-        <div class="big">
+        <div class="big" id="lista">
             <div class="quadrado">
                 <div class="conteudo">
                     <div class="quadtop">
                         <div class="campo">
                             <span>Escolha uma empresa: </span>
-                            <select name="empresas" id="emp" class="campo">
-                                <option value="empresa1">Sptech</option>
-                                <option value="empresa2">Elera</option>
-                                <option value="empresa3">Simpress</option>
+                            <select name="empresas" onchange="listarFuncionario()" id="ipt_empresa" class="campo">
                             </select>
                         </div>
                     </div>
-                    <div class="quadbot">
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Nome:⠀</span> <span>Kevin Rodrigues</span></div>
-                                <div class="info"></div>
-                                <div class="info"></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>E-mail:⠀</span> <span>kevin.rodrigues@gmail.com</span></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Nome:⠀</span> <span>Kevin Rodrigues</span></div>
-                                <div class="info"></div>
-                                <div class="info"></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>E-mail:⠀</span> <span>kevin.rodrigues@gmail.com</span></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Nome:⠀</span> <span>Kevin Rodrigues</span></div>
-                                <div class="info"></div>
-                                <div class="info"></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>E-mail:⠀</span> <span>kevin.rodrigues@gmail.com</span></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Nome:⠀</span> <span>Kevin Rodrigues</span></div>
-                                <div class="info"></div>
-                                <div class="info"></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>E-mail:⠀</span> <span>kevin.rodrigues@gmail.com</span></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
-                        <div class="elemento">
-                            <div class="linhaInfo">
-                                <div class="info"><span>Nome:⠀</span> <span>Kevin Rodrigues</span></div>
-                                <div class="info"></div>
-                                <div class="info"></div>
-                            </div>
-                            <div class="linhaInfo">
-                                <div class="info"><span>E-mail:⠀</span> <span>kevin.rodrigues@gmail.com</span></div>
-                                <div class="info"></div>
-                                <div class="info btns"><button class="btn cinza">EDITAR</button> <button class="btn vermelho">EXCLUIR</button></div>
-                            </div>
-                        </div>
+                    <div class="quadbot" id="div_lista">
                         
                     </div>
                 </div>
@@ -120,3 +60,19 @@
 </body>
 
 </html>
+<script src="../js/cadastro-locataria.js"></script>
+<script src="../js/cadastro-usuario.js"></script>
+<script src="../js/modal.js"></script>
+
+<script>
+
+    nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
+    setTimeout(function() {
+        exibirEmpresas();
+    }, 100);
+    
+    setTimeout(function() {
+        listarFuncionario();;
+    }, 1000);
+
+</script>
