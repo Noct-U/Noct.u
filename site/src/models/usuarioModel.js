@@ -22,6 +22,14 @@ function cadastrar(nome, email, senha, tipoUsuario, empresaLocadora, empresaAloc
     return database.executar(instrucao);
 }
 
+function cadastrarFunc(nome, email, senha, tipo, empresa, fkEmpresa) {
+    var instrucao = `
+        INSERT INTO usuario (nome,email,senha,fkTipoUsuario,fkEmpresaLocadora, fkEmpresa) VALUES 
+            ('${nome}','${email}','${senha}','${tipo}','${empresa}', ${fkEmpresa});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 function cadastrarTipo(tipo) {
     var instrucao = `
@@ -70,7 +78,6 @@ function consultarFuncionario(idLocataria,idLocadora) {
     return database.executar(instrucao);
 }
 
-
 function excluirUsuario(idUsuario) {
     var instrucao = `
         UPDATE usuario SET fkStatus = 2 WHERE idUsuario = ${idUsuario};
@@ -91,6 +98,7 @@ module.exports = {
     autenticar,
     cadastrar,
     cadastrarTipo,
+    cadastrarFunc,
     exibirLocatarias,
     exibirUltimoTipo,
     cadastrarUsuario,

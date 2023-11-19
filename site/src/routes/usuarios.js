@@ -28,6 +28,10 @@ router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 });
 
+router.post("/cadastrarFunc", function (req, res) {
+    usuarioController.cadastrarFunc(req, res);
+});
+
 router.post("/consultarFuncionario", function (req, res) {
     usuarioController.consultarFuncionario(req, res);
 });
