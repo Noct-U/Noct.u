@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Dao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Captura.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Componente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Computador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Hardware.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DaoSQLServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoMySQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoSQLServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usuario/Representante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/java.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogTXT.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/noctu_looca_jar/noctu-looca.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/Conexao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/NoctuDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slack/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slack/Slack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/Captura.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/Componente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/Hardware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/PagLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/Select.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/TestePrototipo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/teste/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Slack/APP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Slack/Slack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/Conexao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/NoctuDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/database/Conexao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/Captura.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/Componente$Captura.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/Componente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/Hardware.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/PlacaDeRede.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/Select.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/TestePrototipo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/teste/TestePrototipo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../site/public/dashboard/cadastro-empresa.html" beforeDir="false" afterPath="$PROJECT_DIR$/../site/public/dashboard/cadastro-empresa.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2YPt1ZJ7PaonYejCOthxGOIxtu2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="" />
+      <created>1700438827893</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700438827893</updated>
+    </task>
+    <servers />
+  </component>
+</project>
