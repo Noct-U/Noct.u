@@ -166,7 +166,7 @@
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
                                     <div class="info btns">
-                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}')">ACESSAR</button> <button class="btn cinza" onclick="abrirModalComportamento2(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
+                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}',${json[i].computador})">ACESSAR</button> <button class="btn cinza" onclick="abrirModalComportamento2(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
                                 
@@ -258,8 +258,9 @@
         });
     }
 
-    function acessar(idComputador,modelo){
+    function acessar(idComputador,modelo,nomeComputador){
         sessionStorage.ID_COMPUTADOR = idComputador;
+        sessionStorage.NOME_COMPUTADOR = nomeComputador;
         sessionStorage.MODELO_COMPUTADOR = modelo;
         window.location.href = "dashboard-funcionario.html";
     }
@@ -566,3 +567,5 @@
 
         return false;
     }
+
+    fn

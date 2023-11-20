@@ -10,6 +10,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
+var alertasRouter = require("./src/routes/alertas");
 var empresaRouter = require("./src/routes/empresas");
 var computadorRouter = require("./src/routes/computadores");
 var empresasLocadorasRouter = require("./src/routes/empresasLocadoras");
@@ -23,6 +24,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/alertas", alertasRouter);
 app.use("/empresas", empresaRouter);
 app.use("/computadores", computadorRouter);
 app.use("/empresasLocadoras", empresasLocadorasRouter);

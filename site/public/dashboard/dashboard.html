@@ -57,9 +57,9 @@
                                 </div>
                             </div>
                             <div class="div-num-alerta">
-                                <h1>05</h1>
+                                <h1 id="numero_alertas"></h1>
                             </div>
-                            <label for="" class="dt-analise">Dia da análise: 01/01/2023</label>
+                            <label for="" class="dt-analise" id="data_analise"></label>
                         </div>
                         <div class="kpi2">
                             <span>arrumar logo menos</span>
@@ -78,35 +78,13 @@
                         </div>
                     </div>
 
-                    <div class="kpi3">
+                    <div class="kpi3" id="alertas_empresas">
                         <div class="div-title-kpi3">
                             <div class="title-kpi">
                                 <label for="">Quantidade de alertas por empresa</label>
                             </div>
                         </div>
-                        <div class="label-kpi3">
-                            <label for="">SPtech</label>
-                            <div>
-                                <label class="num-vermelho" for="">01</label>
-                                <label for="" class="num-amarelo">02</label>
-                            </div>
-                        </div>
-
-                        <div class="label-kpi3">
-                            <label for="">Elera</label>
-                            <div>
-                                <label class="num-vermelho" for="">01</label>
-                                <label for="" class="num-amarelo">02</label>
-                            </div>
-                        </div>
-
-                        <div class="label-kpi3">
-                            <label for="">Simpress</label>
-                            <div>
-                                <label class="num-vermelho" for="">01</label>
-                                <label for="" class="num-amarelo">02</label>
-                            </div>
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -169,105 +147,39 @@
 </body>
 
 </html>
+<script src="../js/dashboard-admin.js"></script>
 <script>
-    nomeEmpresa.innerHTML = sessionStorage.NOME_EMPRESA;
-    var dados = {
-        labels: ['IdeaPad', 'IdeaPad', 'IdeaPad', 'IdeaPad'],
-        datasets: [
-            {
-                label: 'Irregularidades',
-                data: [12, 19, 20, 12],
-                backgroundColor: ['rgb(96, 116, 188)', 'rgb(9, 19, 56)'],
-                borderWidth: 1,
-            }
+    setTimeout(function() {
+        obterDadosGrafico();
+    }, 100)
+    setTimeout(function() {
+        quantidadeAlertas();
+    }, 100)
+    setInterval(function() {
+        quantidadeAlertas();
+    }, 30000)
 
-        ]
-    };
-    const config = {
-        type: 'bar',
-        data: dados,
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-            },
-        },
-    };
+    setTimeout(function() {
+        quantidadeAlertasPorEmpresa()
+    }, 100)
 
-    // Adicionando gráfico criado em div na tela
-    let myChart = new Chart(
-        document.getElementById(`myChartCanvasGeral`),
-        config
-    );
+    setTimeout(function() {
+        dadosIrregularidadesModelo(false)
+    }, 100)
 
+    setTimeout(function() {
+        dadosIrregularidadesEmpresa()
+    }, 100)
 
+    setTimeout(function() {
+        dadosIrregularidadesUltimasHoras()
+    }, 100)
 
-    //Grafico de linha 2
-    var dados2 = {
-        labels: ['180', '90', '60', '30', '15'],
-        datasets: [
-            {
-                label: 'Utilização de disco',
-                data: [12, 19, 20, 12],
-                backgroundColor: ['red'],
-                borderWidth: 1,
-                borderColor: 'red'
-            }
+    setTimeout(function() {
+        dadosIrregularidadesModelo()
+    }, 100)
 
-        ]
-    };
-    const config2 = {
-        type: 'line',
-        data: dados2,
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-
-                },
-            },
-        },
-    };
-
-    // Adicionando gráfico criado em div na tela
-    let myChart2 = new Chart(
-        document.getElementById(`myChartCanvasGeral2`),
-        config2
-    );
-
-
-
-    //Grafico de barra 3
-    var dados3 = {
-        labels: ['SPETCH', 'SPETCH', 'SPETCH', 'SPETCH'],
-        datasets: [
-            {
-                label: 'Irregularidades',
-                data: [12, 19, 20, 12],
-                backgroundColor: ['rgb(96, 116, 188)', 'rgb(9, 19, 56)'],
-                borderWidth: 1,
-            }
-
-        ]
-    };
-    const config3 = {
-        type: 'bar',
-        data: dados3,
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-            },
-        },
-    };
-
-    // Adicionando gráfico criado em div na tela
-    let myChart3 = new Chart(
-        document.getElementById(`myChartCanvasGeral3`),
-        config3
-    );
-
-
+    
+    
+    
 </script>
