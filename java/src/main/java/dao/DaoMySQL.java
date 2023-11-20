@@ -12,9 +12,13 @@ import usuario.Funcionario;
 
 import java.util.List;
 
+import metodo.Log;
+
 public class DaoMySQL {
     ConexaoMySQL conexao = new ConexaoMySQL();
     JdbcTemplate con = conexao.getConexaoDoBanco();
+
+    Log logs = new Log();
 
     public DaoMySQL() {
         this.conexao = conexao;

@@ -11,21 +11,33 @@ import com.github.britooo.looca.api.group.rede.Rede;
 import com.sun.jna.platform.win32.WinDef;
 import dao.DaoMySQL;
 import dao.DaoSQLServer;
+import jdbc.ConexaoMySQL;
 import oshi.SystemInfo;
+import slack.BotSlack;
 import usuario.Funcionario;
 import usuario.Representante;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+//import teste.bot.BotSlack;
+import jdbc.ConexaoMySQL;
+import metodo.Log;
+
 public class App {
     public static void main(String[] args) {
         // ENTRADA DE DADOS
         Scanner in = new Scanner(System.in);
         Scanner inText = new Scanner(System.in);
+
+        ConexaoMySQL Conexao = new ConexaoMySQL();
+        Log log = new Log();
+        JdbcTemplate con = Conexao.getConexaoDoBanco();
 
         // LOOCA
         Rede rede = new Rede(new SystemInfo());
@@ -122,9 +134,11 @@ public class App {
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), 1, 2, 2);
                             daoMySQL.adicionarCaptura(cap02);
 
+                            Captura cap03 = null;
+
                             for (Volume v : volumes) {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
-                                Captura cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
+                                cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
                                 daoMySQL.adicionarCaptura(cap03);
                             }
 
@@ -132,10 +146,25 @@ public class App {
                             Captura cap04 = new Captura(valorJanela.doubleValue(), 1, 4, 4);
                             daoMySQL.adicionarCaptura(cap04);
 
+                            Log.gerarLog(cap01.getValor(), cap02.getValor(),cap03.getValor(), computador.getNome());
+                            //Log.adicionarMotivo();
+
+
                         }
                     };
                     // TEMPORIZADOR PARA A TAREFA.
                     timer.scheduleAtFixedRate(tarefa, 5, 5000);
+
+                    Componente componenteCPU = new Componente();
+                    Componente componenteRAM = new Componente();
+                    Componente componenteDisco = new Componente();
+                    Componente componenteJanela = new Componente();
+                    // Notificações para slack
+                    verificarLimiteEEnviarNotificacao("CPU", componenteCPU.getFkHardware());
+                    verificarLimiteEEnviarNotificacao("RAM", componenteRAM.getFkHardware());
+                    verificarLimiteEEnviarNotificacao("Disco", componenteDisco.getFkHardware());
+                    verificarLimiteEEnviarNotificacao("Quantidade janelas", componenteJanela.getFkHardware());
+
 
                 } else {
                     System.out.println("\nA captura desse computador esta desativada!!");
@@ -227,9 +256,27 @@ public class App {
                         }
                     }
                 } while (opcaoUsuario != 0);
+
+
             } else {
                 System.out.println("Email e/ou senha incorretos!");
             }
         } while (!opcaoEscolhida.equals(1));
+
+    }
+
+    private static void verificarLimiteEEnviarNotificacao(String componente, Integer fkTipoHardware) {
+        if (componente.equals("CPU") || componente.equals("Janelas Abertas")) {
+            // Notificar o usuário no Java
+            System.out.println("Alerta de limite no Jar");
+        }
+        // Enviar notificação por Slack
+        try {
+            BotSlack botSlack = new BotSlack();
+            botSlack.mensagemHardware(componente);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Erro ao enviar notificação no Slack", e);
+        }
     }
 }
+
