@@ -60,4 +60,14 @@ router.post("/cadastrarParametro", function (req, res) {
 router.post("/cadastrarModeloEmGeral", function (req, res) {
     computadorController.cadastrarModeloEmGeral(req, res);
 })
+
+router.post("/consultarAlertas", function (req, res) {
+    computadorController.consultarAlertas(req, res);
+})
+
+router.post("/consultarJanelas", function (req, res) {
+    computadorController.consultarJanelas(req, res);
+})
+
+
 module.exports = router;

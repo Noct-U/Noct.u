@@ -75,10 +75,11 @@ function consultarComputadores(idEmpresa,idLocataria) {
 function consultarDadosGrafico(idComputador,idHardware) {
 
     var instrucao = `
-    SELECT capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
+    SELECT min,max,capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
     JOIN hardware ON hardware.idHardware = componente.fkHardware
     JOIN tipoHardware ON idTipoHardware = fkTipoHardware
     JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    JOIN parametro ON tipoHardware.idTipoHardware = parametro.fkTipoHardware
     WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
     ORDER BY idCaptura DESC LIMIT 1;
     `;
@@ -138,6 +139,21 @@ function atualizarComputador(modelo,locataria,idComputador) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+
+function consultarJanelas(idComputador) {
+
+    var instrucao = `
+        SELECT * FROM captura 
+        JOIN hardware ON hardware.idHardware = captura.fkHardware
+        JOIN tipoHardware ON tipoHardware.idTipoHardware = hardware.fkTipoHardware
+        WHERE fkComputador = ${idComputador} AND tipoHardware.nome LIKE '%janela%'
+        ORDER BY idCaptura DESC
+        LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -151,5 +167,6 @@ module.exports = {
     consultarUnidadeMedida,
     atualizarComputador,
     cadastrarUnidadeMedida,
-    cadastrarParametro
+    cadastrarParametro,
+    consultarJanelas
 };

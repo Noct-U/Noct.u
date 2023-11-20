@@ -307,6 +307,25 @@ function cadastrarModeloEmGeral(req, res) {
         );
 }
 
+function consultarJanelas(req, res) {
+    var idComputador = req.body.idComputadorServer;
+
+    computadorModel.consultarJanelas(idComputador)
+        .then(
+            function (resposta) {
+                res.json(resposta);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -319,6 +338,7 @@ module.exports = {
     consultarTipoHardwares,
     consultarUnidadeMedida,
     atualizarComputador,
-    cadastrarModeloEmGeral
+    cadastrarModeloEmGeral,
+    consultarJanelas
     
 }
