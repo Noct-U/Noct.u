@@ -1,5 +1,7 @@
 
     nomeEmpresa.innerHTML = sessionStorage.NOME_EMPRESA;
+    let proximaAtualizacao;
+    let proximaAtualizacaoGraficoModelo;
 
 
     function quantidadeAlertas(){
@@ -79,10 +81,9 @@
             });
     }
 
-    //obter dados do grafico irregularidade por modelo
     function dadosIrregularidadesModelo(){
         
-
+        
         fetch("/alertas/consultaIrregularidadesModelo", {
             method: "POST",
             headers: {
@@ -104,6 +105,7 @@
                         plotarGraficoIrregularidadesModelo(json)
                 })
                 }
+                
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
@@ -151,6 +153,7 @@ function plotarGraficoIrregularidadesModelo(Irregularidades){
         document.getElementById(`myChartCanvasGeral`),
         config
     );
+
 }
 
 
@@ -284,12 +287,10 @@ var dados2 = {
 
     ]
 };
-
 for(var i = 0; i < Irregularidades.length; i++ ){
-    dados2.labels.push("h"+Irregularidades[i].hora+":00")
-    dados2.datasets[0].data.push(Irregularidades[i].qtd_alertas)
+    dados2.labels.push("h"+Irregularidades[i].hora+":00");
+    dados2.datasets[0].data.push(Irregularidades[i].qtd_alertas);
 }
-
 const config2 = {
     type: 'line',
     data: dados2,
@@ -302,7 +303,7 @@ const config2 = {
         scales: {
             y: {
                 beginAtZero: true,
-                max: 5
+                max: Math.max(...dados2.datasets[0].data) + 5
             }
         },
         backgroundColor:'rgb(96, 116, 188)'
@@ -310,10 +311,56 @@ const config2 = {
 };
 
 
-// Adicionando gráfico criado em div na tela
-let myChart2 = new Chart(
-    document.getElementById(`myChartCanvasGeral2`),
-    config2
+    // Adicionando gráfico criado em div na tela
+    let myChart2 = new Chart(
+        document.getElementById(`myChartCanvasGeral2`),
+        config2
 
-);
+    );
+    proximaAtualizacao = setTimeout(() => atualizarGraficoAlertaPorHora(myChart2,dados2), 2000);
+    
+    
 }
+
+function atualizarGraficoAlertaPorHora(myChart2,dados2){
+
+
+    fetch("/alertas/atualizarGraficoAlertaPorHora", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idEmpresaServer : sessionStorage.ID_EMPRESA,
+        }),
+    
+    })
+        .then(function (resposta) {
+            if (resposta.ok){
+                resposta.json().then(json => {
+
+                    if(json[0].qtd_alertas != dados2.datasets[0].data[dados2.datasets[0].data.length - 1]){
+                        dados2.labels.shift();
+                        dados2.labels.push("h"+json[0].hora+":00")
+                        dados2.datasets[0].data.shift();
+                        dados2.datasets[0].data.push(json[0].qtd_alertas)
+                        myChart2.update()
+
+                        const novoMaximoY = Math.max(...dados2.datasets[0].data) + 5;
+                        myChart2.options.scales.y.max = novoMaximoY;
+                        myChart2.options.scales.y.ticks.max = novoMaximoY;
+                        myChart2.update();
+                    }
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoAlertaPorHora(myChart2,dados2), 2000);
+            })
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    
+ 
+   
+    }
+

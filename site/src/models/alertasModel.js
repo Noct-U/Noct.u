@@ -79,12 +79,43 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
         SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
         JOIN captura ON captura.idCaptura = alerta.fkCaptura
         JOIN computador ON computador.idComputador = captura.fkComputador
-        WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = 1
+        WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
         GROUP BY HOUR(dtAlerta) ORDER BY hora;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function atualizarGraficoAlertaPorHora(idEmpresa) {
+
+    var instrucao = `
+        SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+        JOIN captura ON captura.idCaptura = alerta.fkCaptura
+        JOIN computador ON computador.idComputador = captura.fkComputador
+        WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
+        GROUP BY HOUR(dtAlerta) ORDER BY hora DESC LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
+function consultaIrregularidadesModelo(idEmpresa) {
+
+    var instrucao = `
+        SELECT modeloComputador.nome AS modelo, COUNT(idAlerta) AS quantidadeAlertas FROM tipoAlerta 
+        JOIN alerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta
+        JOIN captura ON captura.idCaptura = alerta.fkCaptura
+        JOIN computador ON computador.idComputador = captura.fkComputador
+        JOIN modeloComputador ON modeloComputador.idModeloComputador = computador.fkModeloComputador
+        WHERE computador.fkEmpresa = ${idEmpresa}
+        GROUP BY modeloComputador.nome;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     consultarAlertasComputador,
@@ -92,5 +123,6 @@ module.exports = {
     quantidadeAlertasPorEmpresa,
     consultaIrregularidadesModelo,
     consultaIrregularidadesEmpresa,
-    consultaIrregularidadesUltimasHoras
+    consultaIrregularidadesUltimasHoras,
+    atualizarGraficoAlertaPorHora
 };

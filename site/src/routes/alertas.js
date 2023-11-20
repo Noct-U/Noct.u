@@ -8,6 +8,7 @@ router.post("/consultarAlertasComputador", function (req, res) {
     alertasController.consultarAlertasComputador(req, res);
 })
 
+//alerta dash
 router.post("/quantidadeAlertas", function (req, res) {
     alertasController.quantidadeAlertas(req, res);
 })
@@ -27,6 +28,11 @@ router.post("/consultaIrregularidadesEmpresa", function (req, res) {
 router.post("/consultaIrregularidadesUltimasHoras", function (req, res) {
     alertasController.consultaIrregularidadesUltimasHoras(req, res);
 })
+
+router.post("/atualizarGraficoAlertaPorHora", function (req, res) {
+    alertasController.atualizarGraficoAlertaPorHora(req, res);
+})
+
 
 
 module.exports = router;
