@@ -52,6 +52,11 @@
             <artifactId>looca-api</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20201115</version>
+        </dependency>
         <!--         slack -->
         <!--        <dependency>-->
         <!--            <groupId>org.json</groupId>-->
