@@ -1,7 +1,4 @@
-import aplicacao.Captura;
-import aplicacao.Componente;
-import aplicacao.Computador;
-import aplicacao.Hardware;
+import aplicacao.*;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
@@ -35,10 +32,6 @@ public class App {
         Scanner in = new Scanner(System.in);
         Scanner inText = new Scanner(System.in);
 
-        ConexaoMySQL Conexao = new ConexaoMySQL();
-        Log log = new Log();
-        JdbcTemplate con = Conexao.getConexaoDoBanco();
-
         // LOOCA
         Rede rede = new Rede(new SystemInfo());
         Processador processador = new Processador();
@@ -52,7 +45,7 @@ public class App {
         DaoSQLServer daoSQLServer = new DaoSQLServer();                      // LEMBRAR DISSO AQUI
 
         Integer opcaoEscolhida = -1;
-        Integer opcaoEscolhida2 = -1;
+        Integer opcaoEscolhida2 = -2;
 
         System.out.println("SISTEMA DE MONITORAMENTO NOCTU");
         do {
@@ -71,8 +64,28 @@ public class App {
                 if (daoMySQL.exibirComputadorCadastrado(computador.getNome()).size() > 0) {
                     System.out.println("\nComputador já cadastrado");
                 } else {
-                    System.out.println("\nCriando computador...");
+                    System.out.println("""
+                            \nCriando computador...
+                            Associe esse computador a uma das empresas abaixo
+                            ID | EMPRESA | MATRIZ""");
+                    List<EmpresaLocataria> empresas = daoMySQL.exibirEmpresasLocatarias(func.getFkEmpresa());
+                    for (int i = 0; i < empresas.size(); i++) {
+                        EmpresaLocataria empresaDaVez = empresas.get(i);
+                        String empresaMatriz;
+                        Integer contador = i + 1;
+                        if (empresaDaVez.getFkMatriz() != null) {
+                            empresaMatriz = daoMySQL.exibirEmpresasLocatariasMatriz(contador).getNome();
+                        } else {
+                            empresaMatriz = "-";
+                        }
+                        System.out.println("""
+                                %d) %s %s""".formatted(contador, empresaDaVez.getNome(), empresaMatriz));
+                    }
+                    System.out.print("ID: ");
+                    Integer alocarComputador = in.nextInt();
+                    computador.setFkEmpresaLocataria(alocarComputador);
                     daoMySQL.adicionarComputador(computador);
+                    daoSQLServer.adicionarComputador(computador);
                 }
 
                 // ADICIONANDO CPU, MEMORIA, DISCO, E JANELA
@@ -81,18 +94,22 @@ public class App {
                 if (daoMySQL.exibirHardwareCadastrados().size() < 4) {
                     System.out.println("Cadastrando CPU...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareCPU);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareCPU);
                     System.out.println("Cadastrando RAM...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareMemoria);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareMemoria);
 
                     for (Volume v : volumes) {
                         System.out.println("Cadastrando Disco...");
                         Hardware hardwareDisco = new Hardware(v.getNome(), v.getTotal().doubleValue(), 3);
                         daoMySQL.adicionarHardwareSemEspecificidade(hardwareDisco);
+                        daoSQLServer.adicionarHardwareSemEspecificidade(hardwareDisco);
                     }
 
                     Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
                     System.out.println("Cadastrando Janelas...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareJanelas);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareJanelas);
                 } else {
                     System.out.println("Hardwares já cadastrados");
                 }
@@ -100,18 +117,22 @@ public class App {
                     System.out.println("Montando setup com CPU...");
                     Componente componenteCPU = new Componente(1, 1);
                     daoMySQL.adicionarComponente(componenteCPU);
+                    daoSQLServer.adicionarComponente(componenteCPU);
 
                     System.out.println("Montando setup com RAM...");
                     Componente componenteRAM = new Componente(1, 2);
                     daoMySQL.adicionarComponente(componenteRAM);
+                    daoSQLServer.adicionarComponente(componenteRAM);
 
                     System.out.println("Montando setup com Disco...");
                     Componente componenteDisco = new Componente(1, 3);
                     daoMySQL.adicionarComponente(componenteDisco);
+                    daoSQLServer.adicionarComponente(componenteDisco);
 
                     System.out.println("Montando setup com Janela...");
                     Componente componenteJanela = new Componente(1, 4);
                     daoMySQL.adicionarComponente(componenteJanela);
+                    daoSQLServer.adicionarComponente(componenteJanela);
                 } else {
                     System.out.println("Componentes já montados");
                 }
@@ -129,10 +150,12 @@ public class App {
                             Long valorProcessador = processador.getUso().longValue();
                             Captura cap01 = new Captura(valorProcessador.doubleValue(), 1, 1, 1);
                             daoMySQL.adicionarCaptura(cap01);
+                            daoSQLServer.adicionarCaptura(cap01);
 
                             Long valorMemoria = memoria.getEmUso();
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), 1, 2, 2);
                             daoMySQL.adicionarCaptura(cap02);
+                            daoSQLServer.adicionarCaptura(cap02);
 
                             Captura cap03 = null;
 
@@ -140,14 +163,16 @@ public class App {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
                                 cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
                                 daoMySQL.adicionarCaptura(cap03);
+                                daoSQLServer.adicionarCaptura(cap03);
                             }
 
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
                             Captura cap04 = new Captura(valorJanela.doubleValue(), 1, 4, 4);
                             daoMySQL.adicionarCaptura(cap04);
+                            daoSQLServer.adicionarCaptura(cap04);
 
-                            Log.gerarLog(cap01.getValor(), cap02.getValor(),cap03.getValor(), computador.getNome());
-                            //Log.adicionarMotivo();
+                            Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
+//                            Log.adicionarMotivo();
 
 
                         }
@@ -196,6 +221,7 @@ public class App {
                             case 2:
                                 System.out.println("Desativando captura de dados...");
                                 rep.atualizarMaquina(2);
+                                System.exit(0);
                                 break;
                             case 3:
                                 System.out.println("Visualizando dados de CPU...");
