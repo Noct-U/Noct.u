@@ -4,10 +4,10 @@ NC='\033[0m'
 VERSAO=11
 
 # URL do arquivo JAR no GitHub
-jar_url="https://github.com/Noct-U/Noct.u/raw/main/java/out/artifacts/noctu_looca_jar/noctu-looca.jar"
+jar_url="https://github.com/Noct-U/Noct.u/raw/main/java/target/java-1.0-jar-with-dependencies.jar"
 
 # Nome do arquivo JAR após o download
-jar_nome="noctu-looca.jar"
+jar_nome="java-1.0-jar-with-dependencies.jar"
 
 # verificando e instalando java 17
 sleep 5
