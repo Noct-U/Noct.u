@@ -79,7 +79,7 @@ CREATE TABLE computador(
     fkModeloComputador INT,
     fkEmpresaLocataria INT,
     fkStatus INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa),
     FOREIGN KEY (fkModeloComputador) REFERENCES modeloComputador(idModeloComputador), 
     FOREIGN KEY (fkEmpresaLocataria) REFERENCES empresaLocataria(idEmpresaLocataria) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (fkStatus) REFERENCES status(idStatus)
