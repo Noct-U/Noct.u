@@ -1,7 +1,4 @@
-import aplicacao.Captura;
-import aplicacao.Componente;
-import aplicacao.Computador;
-import aplicacao.Hardware;
+import aplicacao.*;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
@@ -35,10 +32,6 @@ public class App {
         Scanner in = new Scanner(System.in);
         Scanner inText = new Scanner(System.in);
 
-        ConexaoMySQL Conexao = new ConexaoMySQL();
-        Log log = new Log();
-        JdbcTemplate con = Conexao.getConexaoDoBanco();
-
         // LOOCA
         Rede rede = new Rede(new SystemInfo());
         Processador processador = new Processador();
@@ -52,7 +45,7 @@ public class App {
         DaoSQLServer daoSQLServer = new DaoSQLServer();                      // LEMBRAR DISSO AQUI
 
         Integer opcaoEscolhida = -1;
-        Integer opcaoEscolhida2 = -1;
+        Integer opcaoEscolhida2 = -2;
 
         System.out.println("SISTEMA DE MONITORAMENTO NOCTU");
         do {
@@ -71,7 +64,26 @@ public class App {
                 if (daoMySQL.exibirComputadorCadastrado(computador.getNome()).size() > 0) {
                     System.out.println("\nComputador já cadastrado");
                 } else {
-                    System.out.println("\nCriando computador...");
+                    System.out.println("""
+                            \nCriando computador...
+                            Associe esse computador a uma das empresas abaixo
+                            ID | EMPRESA | MATRIZ""");
+                    List<EmpresaLocataria> empresas = daoMySQL.exibirEmpresasLocatarias(func.getFkEmpresa());
+                    for (int i = 0; i < empresas.size(); i++) {
+                        EmpresaLocataria empresaDaVez = empresas.get(i);
+                        String empresaMatriz;
+                        Integer contador = i + 1;
+                        if (empresaDaVez.getFkMatriz() != null) {
+                            empresaMatriz = daoMySQL.exibirEmpresasLocatariasMatriz(contador).getNome();
+                        } else {
+                            empresaMatriz = "-";
+                        }
+                        System.out.println("""
+                                %d) %s %s""".formatted(contador, empresaDaVez.getNome(), empresaMatriz));
+                    }
+                    System.out.print("ID: ");
+                    Integer alocarComputador = in.nextInt();
+                    computador.setFkEmpresaLocataria(alocarComputador);
                     daoMySQL.adicionarComputador(computador);
                 }
 
@@ -146,8 +158,8 @@ public class App {
                             Captura cap04 = new Captura(valorJanela.doubleValue(), 1, 4, 4);
                             daoMySQL.adicionarCaptura(cap04);
 
-                            Log.gerarLog(cap01.getValor(), cap02.getValor(),cap03.getValor(), computador.getNome());
-                            //Log.adicionarMotivo();
+                            Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
+//                            Log.adicionarMotivo();
 
 
                         }
@@ -196,6 +208,7 @@ public class App {
                             case 2:
                                 System.out.println("Desativando captura de dados...");
                                 rep.atualizarMaquina(2);
+                                System.exit(0);
                                 break;
                             case 3:
                                 System.out.println("Visualizando dados de CPU...");

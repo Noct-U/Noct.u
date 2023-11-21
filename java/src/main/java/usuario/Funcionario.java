@@ -64,12 +64,6 @@ public class Funcionario {
         }
     }
 
-    public void visualizarCapturas() {
-        DaoMySQL dao = new DaoMySQL();
-        List<Captura> capturas = dao.exibirTodasCapturas();
-        System.out.println(capturas);
-    }
-
     public String getNome() {
         return nome;
     }

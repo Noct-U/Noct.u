@@ -1,9 +1,6 @@
 package dao;
 
-import aplicacao.Captura;
-import aplicacao.Componente;
-import aplicacao.Computador;
-import aplicacao.Hardware;
+import aplicacao.*;
 import jdbc.ConexaoMySQL;
 import org.h2.command.query.Select;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -74,10 +71,16 @@ public class DaoMySQL {
         return componenteDoBanco;
     }
 
-    public List<Captura> exibirTodasCapturas() {
+    public List<EmpresaLocataria> exibirEmpresasLocatarias(Integer fkEmpresa) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        List<Captura> capturasDoBanco = con.query("SELECT valor, dtCaptura, fkTipoHardware FROM captura AS cpt JOIN componente AS cmp ON idComponente = fkComponente JOIN Hardware AS hdw ON hdw.idHardware = cmp.fkHardware ORDER BY dtCaptura DESC", new BeanPropertyRowMapper<>(Captura.class));
-        return capturasDoBanco;
+        List<EmpresaLocataria> empresasLocatariasDoBanco = con.query("SELECT nome, fkMatriz, fkEmpresa, fkStatus FROM empresaLocataria WHERE fkEmpresa = ? AND fkStatus = 1", new BeanPropertyRowMapper<>(EmpresaLocataria.class), fkEmpresa);
+        return empresasLocatariasDoBanco;
+    }
+
+    public EmpresaLocataria exibirEmpresasLocatariasMatriz(Integer idEmpresaLocataria) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        EmpresaLocataria empresasLocatariasMatrizDoBanco = con.queryForObject("SELECT matriz.nome, matriz.fkMatriz, matriz.fkEmpresa, matriz.fkStatus FROM empresaLocataria AS emp JOIN empresaLocataria AS matriz ON matriz.idEmpresaLocataria = emp.fkMatriz WHERE emp.idEmpresaLocataria = ?", new BeanPropertyRowMapper<>(EmpresaLocataria.class), idEmpresaLocataria);
+        return empresasLocatariasMatrizDoBanco;
     }
 
     public List<Captura> exibirCapturasDeUmTipo(Integer tipo) {

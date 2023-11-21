@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/slack/BotSlack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slack/ConfBotSlack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/EmpresaLocataria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoSQLServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metodo/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metodo/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slack/BotSlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slack/BotSlack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slack/ConfBotSlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slack/ConfBotSlack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jdbc/ConexaoSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc/ConexaoSQLServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/metodo/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/metodo/Log.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/slack/BotSlack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/slack/BotSlack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/slack/ConfBotSlack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/slack/ConfBotSlack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +38,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2YPt1ZJ7PaonYejCOthxGOIxtu2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,8 +53,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "adicionandoslacklog",
-    "last_opened_file_path": "C:/Users/sthef/OneDrive/Área de Trabalho/Noct.u/java"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Aluno/Documents/repositórios/iloveyou/Noct.u/java"
   }
 }]]></component>
   <component name="RunManager" selected="Application.App">
