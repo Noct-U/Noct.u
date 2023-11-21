@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/aplicacao/EmpresaLocataria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdbc/ConexaoSQLServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/metodo/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metodo/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slack/BotSlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slack/BotSlack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slack/ConfBotSlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slack/ConfBotSlack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/jdbc/ConexaoSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc/ConexaoSQLServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/metodo/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/metodo/Log.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/slack/BotSlack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/slack/BotSlack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/slack/ConfBotSlack.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/slack/ConfBotSlack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +38,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Aluno/Documents/repositórios/iloveyou/Noct.u/java"
+    "last_opened_file_path": "C:/Users/Aluno/Documents/repositórios/iloveyou/Noct.u/java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RunManager" selected="Application.App">
