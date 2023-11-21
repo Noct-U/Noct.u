@@ -19,9 +19,9 @@ public class ConexaoSQLServer {
                 jdbc:mysql://localhost:3306/mydb <- EXEMPLO PARA MYSQL
                 jdbc:sqlserver://localhost:1433;database=mydb <- EXEMPLO PARA SQL SERVER
         */
-        dataSource.setUrl("jdbc:sqlserver://--IP--:1433; database=noctuBD; user=--USER--; password=--SENHA--; trustServerCertificate=true;"); //ATUALIZAR ESSE CAMINHO DEPOIS
-        dataSource.setUsername("--USER--");                                    //ATUALIZAR ESSE CAMINHO DEPOIS
-        dataSource.setPassword("--SENHA--");                                    //ATUALIZAR ESSE CAMINHO DEPOIS
+        dataSource.setUrl("jdbc:sqlserver://54.145.163.168:1433; database=noctuBD; user=sa; password=n0ct.U$8; trustServerCertificate=true;"); //ATUALIZAR ESSE CAMINHO DEPOIS
+        dataSource.setUsername("sa");                                    //ATUALIZAR ESSE CAMINHO DEPOIS
+        dataSource.setPassword("n0ct.U$8");                                    //ATUALIZAR ESSE CAMINHO DEPOIS
 
         conexaoDoBanco = new JdbcTemplate(dataSource);
     }
