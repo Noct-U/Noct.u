@@ -3,7 +3,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'aluno'@'172.17.0.1' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 
-USE noctuBD;
+USE noctu;
 
 CREATE TABLE empresa(
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -195,7 +195,7 @@ INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEm
  
  INSERT INTO modeloComputador (nome) VALUES
 	('Padrão'), -- TIRAR DEPOIS
-	('Lenovo lindo'); -- TIRAR DEPOIS
+	('Lenovo'); -- TIRAR DEPOIS
     
 INSERT INTO computador VALUES
 	(NULL, '1212', 1, 1, 1, 1),	
