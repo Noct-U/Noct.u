@@ -1,11 +1,11 @@
 package dao;
 
-import aplicacao.Captura;
-import aplicacao.Componente;
-import aplicacao.Computador;
-import aplicacao.Hardware;
+import aplicacao.*;
 import jdbc.ConexaoSQLServer;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class DaoSQLServer {
     ConexaoSQLServer conexao = new ConexaoSQLServer();
@@ -31,5 +31,9 @@ public class DaoSQLServer {
 
     public void adicionarCaptura(Captura captura) {
         con.update("INSERT INTO captura (valor, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?)", captura.getValor(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
+    }
+
+    public void adicionarAlerta(Alerta alerta) {
+        con.update("INSERT INTO alerta (titulo, fkCaptura, fkTipoAlerta) VALUES (?, ?, ?)", alerta.getTitulo(), alerta.getFkCaptura(), alerta.getFkTipoAlerta());
     }
 }

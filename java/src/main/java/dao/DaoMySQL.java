@@ -39,6 +39,10 @@ public class DaoMySQL {
         con.update("INSERT INTO captura (valor, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?)", captura.getValor(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
     }
 
+    public void adicionarAlerta(Alerta alerta) {
+        con.update("INSERT INTO alerta (titulo, fkCaptura, fkTipoAlerta) VALUES (?, ?, ?)", alerta.getTitulo(), alerta.getFkCaptura(), alerta.getFkTipoAlerta());
+    }
+
 
     // FUNCÕES DE EXIBIR REGISTROS (SELECT)
     public Funcionario exibirUsuario(String email) {
@@ -87,6 +91,18 @@ public class DaoMySQL {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Captura> capturasDoBanco = con.query("SELECT valor, dtCaptura, fkTipoHardware FROM captura AS cpt JOIN componente AS cmp ON idComponente = fkComponente JOIN Hardware AS hdw ON hdw.idHardware = cmp.fkHardware WHERE hdw.fkTipoHardware = ? ORDER BY dtCaptura DESC LIMIT 10", new BeanPropertyRowMapper<>(Captura.class), tipo);
         return capturasDoBanco;
+    }
+
+    public List<Parametro> exibirParametrosDoModeloComputador(Integer fkModeloComputador) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Parametro> parametrosDoBanco = con.query("SELECT min, max, fkUnidadeMedida, fkTipoHardware, fkModeloComputador FROM parametro WHERE fkModeloComputador = ?", new BeanPropertyRowMapper<>(Parametro.class), fkModeloComputador);
+        return parametrosDoBanco;
+    }
+
+    public List<Captura> exibirIdCaptura() {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Captura> parametrosDoBanco = con.query("SELECT idCaptura FROM captura ORDER BY idCaptura DESC LIMIT 1", new BeanPropertyRowMapper<>(Captura.class));
+        return parametrosDoBanco;
     }
 
 
