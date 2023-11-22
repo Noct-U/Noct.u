@@ -166,9 +166,6 @@ CREATE TABLE alerta(
     FOREIGN KEY (fkTipoAlerta) REFERENCES tipoAlerta(idTipoAlerta)
 );
 
-<<<<<<< HEAD
-use noctu;
-
 INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES
 	('Simpress', 'Ltda', '12356789019183', '119333576377'), -- TIRAR DEPOIS
 	('PressSim', 'Ltda', '12356789019283', '119333576377'); -- TIRAR DEPOIS
@@ -186,11 +183,9 @@ INSERT INTO status (titulo) VALUES
 INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa) VALUES
 	('SPTech', '10293029381203', 1), -- TIRAR DEPOIS
 	('LiminhaTech', '31242131231', 2); -- TIRAR DEPOIS
-=======
 INSERT INTO status VALUES
 	(null, 'ATIVO'),
 	(null, 'INATIVO');
->>>>>>> 4925269cd33207c1784edee6daf921dbbc009543
 
 INSERT INTO tipoUsuario (nomeTipo) VALUES
 	('ADMIN'),
