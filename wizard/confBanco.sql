@@ -166,7 +166,7 @@ CREATE TABLE alerta(
     FOREIGN KEY (fkTipoAlerta) REFERENCES tipoAlerta(idTipoAlerta)
 );
 
-use noctuBD;
+use noctu;
 
 INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES
 	('Simpress', 'Ltda', '12356789019183', '119333576377'), -- TIRAR DEPOIS
