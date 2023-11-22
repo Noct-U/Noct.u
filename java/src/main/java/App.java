@@ -82,7 +82,7 @@ public class App {
                     Integer alocarComputador = in.nextInt();
                     computador.setFkEmpresaLocataria(alocarComputador);
                     daoMySQL.adicionarComputador(computador);
-//                    daoSQLServer.adicionarComputador(computador);
+                    daoSQLServer.adicionarComputador(computador);
                 }
 
                 // ADICIONANDO CPU, MEMORIA, DISCO, E JANELA
@@ -91,22 +91,22 @@ public class App {
                 if (daoMySQL.exibirHardwareCadastrados().size() < 4) {
                     System.out.println("Cadastrando CPU...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareCPU);
-//                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareCPU);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareCPU);
                     System.out.println("Cadastrando RAM...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareMemoria);
-//                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareMemoria);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareMemoria);
 
                     for (Volume v : volumes) {
                         System.out.println("Cadastrando Disco...");
                         Hardware hardwareDisco = new Hardware(v.getNome(), v.getTotal().doubleValue(), 3);
                         daoMySQL.adicionarHardwareSemEspecificidade(hardwareDisco);
-//                        daoSQLServer.adicionarHardwareSemEspecificidade(hardwareDisco);
+                        daoSQLServer.adicionarHardwareSemEspecificidade(hardwareDisco);
                     }
 
                     Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
                     System.out.println("Cadastrando Janelas...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareJanelas);
-//                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareJanelas);
+                    daoSQLServer.adicionarHardwareSemEspecificidade(hardwareJanelas);
                 } else {
                     System.out.println("Hardwares já cadastrados");
                 }
@@ -114,22 +114,22 @@ public class App {
                     System.out.println("Montando setup com CPU...");
                     Componente componenteCPU = new Componente(1, 1);
                     daoMySQL.adicionarComponente(componenteCPU);
-//                    daoSQLServer.adicionarComponente(componenteCPU);
+                    daoSQLServer.adicionarComponente(componenteCPU);
 
                     System.out.println("Montando setup com RAM...");
                     Componente componenteRAM = new Componente(1, 2);
                     daoMySQL.adicionarComponente(componenteRAM);
-//                    daoSQLServer.adicionarComponente(componenteRAM);
+                    daoSQLServer.adicionarComponente(componenteRAM);
 
                     System.out.println("Montando setup com Disco...");
                     Componente componenteDisco = new Componente(1, 3);
                     daoMySQL.adicionarComponente(componenteDisco);
-//                    daoSQLServer.adicionarComponente(componenteDisco);
+                    daoSQLServer.adicionarComponente(componenteDisco);
 
                     System.out.println("Montando setup com Janela...");
                     Componente componenteJanela = new Componente(1, 4);
                     daoMySQL.adicionarComponente(componenteJanela);
-//                    daoSQLServer.adicionarComponente(componenteJanela);
+                    daoSQLServer.adicionarComponente(componenteJanela);
                 } else {
                     System.out.println("Componentes já montados");
                 }
@@ -171,7 +171,7 @@ public class App {
                             Captura cap01 = new Captura(valorProcessador.doubleValue(), 1, 1, 1);
                             valorAtual = cap01.getValor();
                             daoMySQL.adicionarCaptura(cap01);
-//                            daoSQLServer.adicionarCaptura(cap01);
+                            daoSQLServer.adicionarCaptura(cap01);
                             if (valorAtual <= alertaVermelhoAbaixo) {
                                 Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("CPU - ABAIXO DO LIMITE", idCaptura, 2);
@@ -194,7 +194,7 @@ public class App {
                             Long valorMemoria = memoria.getEmUso();
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), 1, 2, 2);
                             daoMySQL.adicionarCaptura(cap02);
-//                            daoSQLServer.adicionarCaptura(cap02);
+                            daoSQLServer.adicionarCaptura(cap02);
                             valorAtual = cap02.getValor();
                             if (valorAtual <= alertaVermelhoAbaixo) {
                                 Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
@@ -220,7 +220,7 @@ public class App {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
                                 cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
                                 daoMySQL.adicionarCaptura(cap03);
-//                                daoSQLServer.adicionarCaptura(cap03);
+                                daoSQLServer.adicionarCaptura(cap03);
                                 valorAtual = cap03.getValor();
                                 if (valorAtual <= alertaVermelhoAbaixo) {
                                     Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
@@ -244,11 +244,10 @@ public class App {
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
                             Captura cap04 = new Captura(valorJanela.doubleValue(), 1, 4, 4);
                             daoMySQL.adicionarCaptura(cap04);
-//                            daoSQLServer.adicionarCaptura(cap04);
+                            daoSQLServer.adicionarCaptura(cap04);
 
                             Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
 //                            Log.adicionarMotivo();
-
 
                         }
                     };
