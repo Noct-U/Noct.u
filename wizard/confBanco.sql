@@ -195,6 +195,10 @@ INSERT INTO tipoUsuario (nomeTipo) VALUES
 INSERT INTO modeloComputador VALUES
 	(null, 'Padrão');
 
+INSERT INTO unidadeMedida (nome	, simbolo) VALUES
+	('Porcentagem', '%'),
+	('GigaBytes', 'GB');
+
 INSERT INTO tipoHardware VALUES	
 	(NULL, 'CPU', 1),
 	(NULL, 'RAM', 2),
