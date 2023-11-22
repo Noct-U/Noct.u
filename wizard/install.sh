@@ -81,7 +81,7 @@ fi
 #baixando imagem mysql com pull
 sleep 5
 echo "..."  
-cho -e "\033[${PURPLE}m[Noct.u]:${NC} Instalando Mysql" 
+echo -e "\033[${PURPLE}m[Noct.u]:${NC} Instalando Mysql" 
 echo -e "\033[${PURPLE}m[Noct.u]:${NC} Aguarde um instante enquanto fazemos as configurações..." 
 echo -e "\033[${PURPLE}m[Noct.u]:${NC} Não se preocupe, esse processo não afetará seus aplicativos atuais"
 echo "..."  

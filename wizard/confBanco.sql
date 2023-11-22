@@ -224,7 +224,8 @@ INSERT INTO parametro (min, max, fkUnidadeMedida, fkTipoHardware, fkModeloComput
 	(50, 100, 3, 4, 1);
 
 INSERT INTO tipoAlerta (descricao) values
-	('ATENÇÃO'),	('URGENTE');
+	('ATENÇÃO'),	
+    ('URGENTE');
     
  -- MYSQL-API
  
