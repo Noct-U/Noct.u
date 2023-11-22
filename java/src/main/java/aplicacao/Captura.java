@@ -1,6 +1,7 @@
 package aplicacao;
 
 public class Captura {
+    private Integer idCaptura;
     private Double valor;
     private String descricao;
     private String dtCaptura;
@@ -9,6 +10,10 @@ public class Captura {
     private Integer fkComponente;
 
     public Captura() {
+    }
+
+    public Captura(Integer idCaptura) {
+        this.idCaptura = idCaptura;
     }
 
     public Captura(Double valor, Integer fkComputador, Integer fkHardware, Integer fkComponente) {
@@ -25,6 +30,14 @@ public class Captura {
         this.fkComputador = fkComputador;
         this.fkHardware = fkHardware;
         this.fkComponente = fkComponente;
+    }
+
+    public Integer getIdCaptura() {
+        return idCaptura;
+    }
+
+    public void setIdCaptura(Integer idCaptura) {
+        this.idCaptura = idCaptura;
     }
 
     public Double getValor() {
@@ -78,11 +91,12 @@ public class Captura {
     @Override
     public String toString() {
         return """
-                \nvalor: %.2f
+                \nidCaptura: %d
+                valor: %.2f
                 descricao: %s
                 dtCaptura: %s
                 fkComputador: %d
                 fkHardware: %d
-                fkComponente: %d""".formatted(valor, descricao, dtCaptura, fkComputador, fkHardware, fkComponente);
+                fkComponente: %d""".formatted(idCaptura, valor, descricao, dtCaptura, fkComputador, fkHardware, fkComponente);
     }
 }

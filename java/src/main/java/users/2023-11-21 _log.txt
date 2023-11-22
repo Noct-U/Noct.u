@@ -12322,3 +12322,339 @@ Data/Hora: 2023-11-21
 Consumo RAM: 7274139648,00 bytes
 Consumo Disco: 111509733376,00 GB
  
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 19,00
+Consumo RAM: 7254806528,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 19,00
+Consumo RAM: 7249354752,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 28,00
+Consumo RAM: 7267287040,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 28,00
+Consumo RAM: 7275798528,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 19,00
+Consumo RAM: 7292239872,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 11,00
+Consumo RAM: 7293833216,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 11,00
+Consumo RAM: 7297011712,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 14,00
+Consumo RAM: 7295434752,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 12,00
+Consumo RAM: 7297781760,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 23,00
+Consumo RAM: 7297929216,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 11,00
+Consumo RAM: 7394627584,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 21,00
+Consumo RAM: 7385690112,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 9,00
+Consumo RAM: 7403073536,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 6,00
+Consumo RAM: 7395934208,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 8,00
+Consumo RAM: 7373078528,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7368527872,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7368523776,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7368491008,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 16,00
+Consumo RAM: 7375187968,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 47,00
+Consumo RAM: 7377936384,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 43,00
+Consumo RAM: 7729696768,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 49,00
+Consumo RAM: 7855177728,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 68,00
+Consumo RAM: 7861198848,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 54,00
+Consumo RAM: 7934709760,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 72,00
+Consumo RAM: 7947841536,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 13,00
+Consumo RAM: 7947714560,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 10,00
+Consumo RAM: 8007426048,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 17,00
+Consumo RAM: 8000163840,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 25,00
+Consumo RAM: 7998943232,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 13,00
+Consumo RAM: 7989731328,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 18,00
+Consumo RAM: 7893929984,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 13,00
+Consumo RAM: 7870267392,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7679881216,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 15,00
+Consumo RAM: 7715647488,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 11,00
+Consumo RAM: 7719038976,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 19,00
+Consumo RAM: 7688507392,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 12,00
+Consumo RAM: 7655337984,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 28,00
+Consumo RAM: 7653933056,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 6,00
+Consumo RAM: 7662583808,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 26,00
+Consumo RAM: 7655825408,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 11,00
+Consumo RAM: 7669538816,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 10,00
+Consumo RAM: 7654895616,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7549177856,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 17,00
+Consumo RAM: 7547047936,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 9,00
+Consumo RAM: 7555416064,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 8,00
+Consumo RAM: 7554854912,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 9,00
+Consumo RAM: 7553699840,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 10,00
+Consumo RAM: 7554973696,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7572811776,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 8,00
+Consumo RAM: 7560269824,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 17,00
+Consumo RAM: 7559368704,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 20,00
+Consumo RAM: 7574081536,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 7,00
+Consumo RAM: 7561592832,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 6,00
+Consumo RAM: 7561035776,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 6,00
+Consumo RAM: 7558164480,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 
+Data/Hora: 2023-11-21
+ Computador: SPTECH01391 
+ Consumo CPU: 14,00
+Consumo RAM: 7554048000,00 bytes
+Consumo Disco: 111924482048,00 GB
+ 

@@ -16,10 +16,7 @@ import usuario.Representante;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 //import teste.bot.BotSlack;
@@ -140,6 +137,11 @@ public class App {
                 if (daoMySQL.exibirComputadorAtual(computador.getNome()).getFkStatus().equals(1)) {
                     System.out.println("Iniciando capturas...");
 
+                    List<Parametro> parametros = (daoMySQL.exibirParametrosDoModeloComputador(computador.getFkModeloComputador()));
+                    Double valorInicial;
+                    Double valorFinal;
+                    Double Range;
+
                     // CRIA UM TEMPORIZADOR COM INTERVALO DE X SEGUNDOS.
                     Timer timer = new Timer();
 
@@ -147,15 +149,70 @@ public class App {
                     TimerTask tarefa = new TimerTask() {
                         @Override
                         public void run() {
+                            Double valorInicial;
+                            Double valorFinal;
+                            Double range;
+                            Double alertaVermelhoAbaixo;
+                            Double alertaAmareloAbaixo;
+                            Double alertaAmareloAcima;
+                            Double alertaVermelhoAcima;
+                            Double valorAtual;
+
+                            Parametro parametroAtual = parametros.get(1);
+                            valorInicial = parametroAtual.getMin();
+                            valorFinal = parametroAtual.getMax();
+                            range = valorFinal - valorInicial;
+                            alertaVermelhoAbaixo = valorInicial + (range * 0.125);
+                            alertaAmareloAbaixo = valorInicial + (range * 0.25);
+                            alertaAmareloAcima = valorInicial + (range * 0.75);
+                            alertaVermelhoAcima = valorInicial + (range * 0.875);
+
                             Long valorProcessador = processador.getUso().longValue();
                             Captura cap01 = new Captura(valorProcessador.doubleValue(), 1, 1, 1);
+                            valorAtual = cap01.getValor();
                             daoMySQL.adicionarCaptura(cap01);
                             daoSQLServer.adicionarCaptura(cap01);
+                            if (valorAtual <= alertaVermelhoAbaixo) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("CPU - ABAIXO DO LIMITE", idCaptura, 2);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual <= alertaAmareloAbaixo) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaVermelhoAcima) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("CPU - ACIMA DO LIMITE ", idCaptura, 2);
+                                daoMySQL.adicionarAlerta(alerta);
+                            }
+
 
                             Long valorMemoria = memoria.getEmUso();
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), 1, 2, 2);
                             daoMySQL.adicionarCaptura(cap02);
                             daoSQLServer.adicionarCaptura(cap02);
+                            valorAtual = cap02.getValor();
+                            if (valorAtual <= alertaVermelhoAbaixo) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("RAM - ABAIXO DO LIMITE", idCaptura, 2);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual <= alertaAmareloAbaixo) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                daoMySQL.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaVermelhoAcima) {
+                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("RAM - ACIMA DO LIMITE ", idCaptura, 2);
+                                daoMySQL.adicionarAlerta(alerta);
+                            }
 
                             Captura cap03 = null;
 
@@ -164,6 +221,24 @@ public class App {
                                 cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
                                 daoMySQL.adicionarCaptura(cap03);
                                 daoSQLServer.adicionarCaptura(cap03);
+                                valorAtual = cap03.getValor();
+                                if (valorAtual <= alertaVermelhoAbaixo) {
+                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
+                                    daoMySQL.adicionarAlerta(alerta);
+                                } else if (valorAtual <= alertaAmareloAbaixo) {
+                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                    daoMySQL.adicionarAlerta(alerta);
+                                } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
+                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                    daoMySQL.adicionarAlerta(alerta);
+                                } else if (valorAtual >= alertaVermelhoAcima) {
+                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
+                                    daoMySQL.adicionarAlerta(alerta);
+                                }
                             }
 
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
@@ -173,7 +248,6 @@ public class App {
 
                             Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
 //                            Log.adicionarMotivo();
-
 
                         }
                     };
