@@ -178,7 +178,6 @@ CREATE TABLE alerta(
 INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES
 	('Simpress', 'Ltda', '92183', '119333576377');
     
-    
 INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES
 	('08474230', 'SP', 'São Paulo', 'Paulista', 'Rua Haddock Lobo'); -- TIRAR DEPOIS
     
@@ -193,23 +192,21 @@ INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa, fkStatus, fkMatriz) VALUES
   ('SPTech', '10293029381203', 1, 1, null),
 	('LUAN', '1231242141', 1, 1, 1);
 
-
 INSERT INTO tipoUsuario (nomeTipo) VALUES
 	('ADMIN'),
 	('COMUM');
 
  insert into usuario values
  (null, 'mc lovin', 'mclovin@email.com', '123', 1, null, 1, 1),
- (null, 'kevin', 'kevin@email.com', '123', 2, null, 1, 1);
+ (null, 'samuel', 'samuel@email.com', '123', 2, null, 1, 1),
+ (null, 'kevin', 'kevin@email.com', '123', 2, null, 1, 1),
+ (null, 'stheffany', 'stheffany@email.com', '123', 2, null, 1, 1),
+ (null, 'matheus', 'matheus@email.com', '123', 2, null, 1, 1),
+ (null, 'guilherme', 'guilherme@email.com', '123', 2, null, 1, 1),
+ (null, 'poliana', 'poliana@email.com', '123', 2, null, 1, 1);
  
  INSERT INTO modeloComputador (nome) VALUES
-	('Padrão'), -- TIRAR DEPOIS
-	('Lenovo lindo'); -- TIRAR DEPOIS
-    
-INSERT INTO computador VALUES
-	(NULL, '1214', 1, 1, 1, 1),	
-	(NULL, '127', 1, 1, 2, 1);	
-    
+	('Padrão'); -- TIRAR DEPOIS
 
 INSERT INTO unidadeMedida (nome	, simbolo) VALUES
 	('Porcentagem', '%'),
@@ -220,32 +217,13 @@ INSERT INTO unidadeMedida (nome	, simbolo) VALUES
 	(NULL, 'RAM', 1),
 	(NULL, 'Disco', 2),
 	(NULL, 'Janelas', NULL);
-        
-INSERT INTO hardware(nome, capacidade, fkTipoHardware) VALUES
-	('intel 3', 100, 1),
-	('RAM', 100, 2),
-	('Disco c:', 100, 3),
-	('Janela', 100, 4);
 
 insert into parametro (min, max, fkUnidadeMedida, fkTipoHardware, fkModeloComputador) values
 	(40, 60, 1, 1, 1),
 	(60, 80, 1, 2, 1),
 	(20, 70, 1, 3, 1),
 	(50, 100, 1, 4, 1);
-    
-    
-INSERT INTO componente VALUES
-	(NULL, 1, 1),
-	(NULL, 1, 2),
-	(NULL, 1, 3),
-	(NULL, 1, 4);
-    
-INSERT INTO captura (valor, descricao, fkComputador, fkHardware, fkComponente) VALUES
-	(65.0, 'CPU', 1, 1, 1);
 
 insert into tipoAlerta (descricao) values
 	('ATENÇÃO'),
 	('URGENTE');
-    
-INSERT INTO alerta (titulo, fkTipoAlerta, fkCaptura)VALUES
-	('CPU - Uso Maximo', 1, 1);

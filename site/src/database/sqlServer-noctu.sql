@@ -1,5 +1,5 @@
-CREATE DATABASE noctuBD;
-USE noctuBD;
+CREATE DATABASE noctu;
+USE noctu;
 
 CREATE TABLE empresa(
 	idEmpresa INT PRIMARY KEY IDENTITY(1,1),
@@ -158,12 +158,8 @@ CREATE TABLE alerta(
     FOREIGN KEY (fkTipoAlerta) REFERENCES tipoAlerta(idTipoAlerta)
 );
 
-INSERT INTO empresa VALUES
-  ('teste', 'razao', '09832127321231', '119333576377');
-
 INSERT INTO empresa(nome, razaoSocial, cnpj, telefoneFixo) VALUES
-	('Simpress', 'Ltda', '12356789019183', '119333576377'), -- TIRAR DEPOIS
-	('PressSim', 'Ltda', '12356789019283', '119333576377'); -- TIRAR DEPOIS
+	('Simpress', 'Ltda', '92183', '119333576377');
     
 INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES
 	('08474230', 'SP', 'São Paulo', 'Paulista', 'Rua Haddock Lobo'); -- TIRAR DEPOIS
@@ -171,74 +167,53 @@ INSERT INTO endereco (cep, uf, cidade, bairro, logradouro) VALUES
 INSERT INTO local (numero, fkEndereco, fkEmpresa) VALUES
 	(211, 1, 1); -- TIRAR DEPOIS
     
-INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa) VALUES
-	('SPTech', '10293029381203', 1), -- TIRAR DEPOIS
-	('LiminhaTech', '31242131231', 2); -- TIRAR DEPOIS
-
-INSERT INTO tipoUsuario (nomeTipo) VALUES
-	('ADMIN'),
-	('COMUM');
-	
 INSERT INTO status VALUES
 	('Ativo'),
 	('Inativo');
 
+INSERT INTO empresaLocataria (nome, cnpj, fkEmpresa, fkStatus, fkMatriz) VALUES
+	('SPTech', '10293029381203', 1, 1, null), -- TIRAR DEPOIS
+	('LiminhaTech', '31242131231', 1, 1, 1); -- TIRAR DEPOIS
 
-INSERT INTO  usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEmpresa) VALUES
-	('Kevin', 'kevin.silva@sptech.school', '1234', 1, 1, 1); -- TIRAR DEPOIS
- 
- INSERT INTO modeloComputador (nome) VALUES
-	('Padrão'), -- TIRAR DEPOIS
-	('Lenovo lindo'); -- TIRAR DEPOIS
+
+INSERT INTO tipoUsuario (nomeTipo) VALUES
+	('ADMIN'),
+	('COMUM');
     
-INSERT INTO computador (nome,fkEmpresa,fkModeloComputador,fkEmpresaLocataria,fkStatus) VALUES
-	('123ad', 1, 1, 1,1), -- TIRAR DEPOIS
-	('1234fd', 1, 1, 1,1), -- TIRAR DEPOIS
-	('1234rew',2, 1, 2,1); -- TIRAR DEPOIS	
+INSERT INTO usuario (nome, email, senha, fkTipoUsuario, fkEmpresaLocadora, fkEmpresa, fkStatus) values
+ ('mc lovin', 'mclovin@email.com', '123', 1, null, 1, 1),
+ ('samuel', 'samuel@email.com', '123', 2, null, 1, 1),
+ ('kevin', 'kevin@email.com', '123', 2, null, 1, 1),
+ ('stheffany', 'stheffany@email.com', '123', 2, null, 1, 1),
+ ('matheus', 'matheus@email.com', '123', 2, null, 1, 1),
+ ('guilherme', 'guilherme@email.com', '123', 2, null, 1, 1),
+ ('poliana', 'poliana@email.com', '123', 2, null, 1, 1);
+ 
+INSERT INTO modeloComputador (nome) VALUES
+	('Padrão'); -- TIRAR DEPOIS
 
 INSERT INTO unidadeMedida (nome	, simbolo) VALUES
 	('Porcentagem', '%'),
-	('GigaBytes', 'GB');
+	('GigaBytes', 'GB');   
  
- INSERT INTO tipoHardware VALUES
+INSERT INTO tipoHardware VALUES
 	('CPU', 1),
 	('RAM', 1),
 	('Disco', 2),
 	('Janelas', NULL);
-    
-INSERT INTO hardware(nome, capacidade, fkTipoHardware) VALUES
-	('intel 3', 100, 1),
-	('RAM', 100, 2),
-	('Disco c:', 100, 3),
-	('Janela', 100, 4);
-    
-INSERT INTO parametro VALUES
-	(1, 2, 1, 1, 1);
-	
-INSERT INTO componente VALUES
-	(1, 1);
--- 	(1, 2),
--- 	(1, 3),
--- 	(1, 4),
--- 	(2, 1),
--- 	(2, 2),
--- 	(2, 3),
--- 	(2, 4),
--- 	(3, 1),
--- 	(3, 2),
--- 	(3, 3),
--- 	(3, 4);
-    
-INSERT INTO captura VALUES
-	(80.0, 'CPU', 1, 1, 1, 1);
-    
+
+insert into parametro (min, max, fkUnidadeMedida, fkTipoHardware, fkModeloComputador) values
+	(40, 60, 1, 1, 1),
+	(60, 80, 1, 2, 1),
+	(20, 70, 1, 3, 1),
+	(50, 100, 1, 4, 1);
+
 INSERT INTO tipoAlerta VALUES
 	('Urgente'),
 	('Atenção');
-    
-INSERT INTO alerta(titulo, fkCaptura, fkTipoAlerta) VALUES
-	('CPU - Uso Maximo', 1, 1);
 	
+
+
 
 
 --modeloComputadorModel
