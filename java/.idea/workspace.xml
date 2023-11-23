@@ -12,13 +12,11 @@
     <list default="true" id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aplicacao/Computador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Computador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aplicacao/Hardware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Hardware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aplicacao/Componente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Componente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/DaoSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DaoSQLServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/aplicacao/Computador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aplicacao/Computador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/aplicacao/Hardware.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aplicacao/Hardware.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/aplicacao/Componente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aplicacao/Componente.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dao/DaoSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DaoSQLServer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -24,6 +24,8 @@ import jdbc.ConexaoMySQL;
 import metodo.Log;
 
 public class App {
+    static Hardware hardwareDisco = new Hardware();
+
     public static void main(String[] args) {
         // ENTRADA DE DADOS
         Scanner in = new Scanner(System.in);
@@ -91,7 +93,7 @@ public class App {
                 // ADICIONANDO CPU, MEMORIA, DISCO, E JANELA
                 Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);
                 Hardware hardwareMemoria = new Hardware("RAM", memoria.getTotal().doubleValue(), 2);
-                Hardware hardwareDisco = new Hardware();
+
                 Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
                 if (daoMySQL.exibirHardwareCadastrados().size() < 4) {
                     System.out.println("Cadastrando CPU...");
@@ -177,8 +179,12 @@ public class App {
                             alertaAmareloAcima = valorInicial + (range * 0.75);
                             alertaVermelhoAcima = valorInicial + (range * 0.875);
 
+                            Integer idComputador = daoSQLServer.exibirIdComputadorPeloNomeComputador(computador.getNome()).get(0).getIdComputador();
+                            Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareCPU.getNome()).get(0).getIdHardware();
+                            Integer idComponenteCPU = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareCPU).get(0).getIdComponente();
+
                             Long valorProcessador = processador.getUso().longValue();
-                            Captura cap01 = new Captura(valorProcessador.doubleValue(), 1, 1, 1);
+                            Captura cap01 = new Captura(valorProcessador.doubleValue(), idComputador, idHardwareCPU, idComponenteCPU);
                             valorAtual = cap01.getValor();
                             daoMySQL.adicionarCaptura(cap01);
                             daoSQLServer.adicionarCaptura(cap01);
@@ -200,9 +206,10 @@ public class App {
                                 daoMySQL.adicionarAlerta(alerta);
                             }
 
-
+                            Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareMemoria.getNome()).get(0).getIdHardware();
+                            Integer idComponenteMemoria = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareMemoria).get(0).getIdComponente();
                             Long valorMemoria = memoria.getEmUso();
-                            Captura cap02 = new Captura(valorMemoria.doubleValue(), 1, 2, 2);
+                            Captura cap02 = new Captura(valorMemoria.doubleValue(), idComputador, idHardwareMemoria, idComponenteMemoria);
                             daoMySQL.adicionarCaptura(cap02);
                             daoSQLServer.adicionarCaptura(cap02);
                             valorAtual = cap02.getValor();
@@ -225,10 +232,11 @@ public class App {
                             }
 
                             Captura cap03 = null;
-
+                            Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareDisco.getNome()).get(0).getIdHardware();
+                            Integer idComponenteDisco = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareDisco).get(0).getIdComponente();
                             for (Volume v : volumes) {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
-                                cap03 = new Captura(valorDisco.doubleValue(), 1, 3, 3);
+                                cap03 = new Captura(valorDisco.doubleValue(), idComputador, idHardwareDisco, idComponenteDisco);
                                 daoMySQL.adicionarCaptura(cap03);
                                 daoSQLServer.adicionarCaptura(cap03);
                                 valorAtual = cap03.getValor();
@@ -251,8 +259,10 @@ public class App {
                                 }
                             }
 
+                            Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareJanelas.getNome()).get(0).getIdHardware();
+                            Integer idComponenteJanela = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareJanela).get(0).getIdComponente();
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
-                            Captura cap04 = new Captura(valorJanela.doubleValue(), 1, 4, 4);
+                            Captura cap04 = new Captura(valorJanela.doubleValue(), idComputador, idHardwareJanela, idComponenteJanela);
                             daoMySQL.adicionarCaptura(cap04);
                             daoSQLServer.adicionarCaptura(cap04);
 
@@ -366,13 +376,10 @@ public class App {
                         }
                     }
                 } while (opcaoUsuario != 0);
-
-
             } else {
                 System.out.println("Email e/ou senha incorretos!");
             }
         } while (!opcaoEscolhida.equals(1));
-
     }
 
     private static void verificarLimiteEEnviarNotificacao(String componente, Integer fkTipoHardware) {

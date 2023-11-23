@@ -1,15 +1,28 @@
 package aplicacao;
 
 public class Componente {
+    private Integer idComponente;
     private Integer fkComputador;
     private Integer fkHardware;
 
     public Componente() {
     }
 
+    public Componente(Integer idComponente) {
+        this.idComponente = idComponente;
+    }
+
     public Componente(Integer fkComputador, Integer fkHardware) {
         this.fkComputador = fkComputador;
         this.fkHardware = fkHardware;
+    }
+
+    public Integer getIdComponente() {
+        return idComponente;
+    }
+
+    public void setIdComponente(Integer idComponente) {
+        this.idComponente = idComponente;
     }
 
     public Integer getFkComputador() {

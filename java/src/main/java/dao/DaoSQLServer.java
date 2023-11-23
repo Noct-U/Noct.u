@@ -49,6 +49,12 @@ public class DaoSQLServer {
         return hardwareDoBanco;
     }
 
+    public List<Componente> exibirIdComponentePeloIdComputadorEIdHardware(Integer fkComputador, Integer fkHardware) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Componente> componentesDoBanco = con.query("SELECT idComponente FROM componente WHERE fkComputador = ? AND fkHardware = ?", new BeanPropertyRowMapper<>(Componente.class), fkComputador, fkHardware);
+        return componentesDoBanco;
+    }
+
     public List<Computador> exibirComputadorCadastrado(String nome) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Computador> computadorDoBanco = con.query("SELECT nome, fkEmpresa, fkModeloComputador, fkEmpresaLocataria, fkStatus FROM computador WHERE nome = ?", new BeanPropertyRowMapper<>(Computador.class), nome);
