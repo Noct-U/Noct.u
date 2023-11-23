@@ -1,12 +1,17 @@
 package aplicacao;
 
 public class Hardware {
+    private Integer idHardware;
     private String nome;
     private String especificidade;
     private Double capacidade;
     private Integer fkTipoHardware;
 
     public Hardware() {
+    }
+
+    public Hardware(Integer idHardware) {
+        this.idHardware = idHardware;
     }
 
     public Hardware(String nome, Double capacidade, Integer fkTipoHardware) {
@@ -21,6 +26,14 @@ public class Hardware {
         this.especificidade = especificidade;
         this.capacidade = capacidade;
         this.fkTipoHardware = fkTipoHardware;
+    }
+
+    public Integer getIdHardware() {
+        return idHardware;
+    }
+
+    public void setIdHardware(Integer idHardware) {
+        this.idHardware = idHardware;
     }
 
     public String getNome() {

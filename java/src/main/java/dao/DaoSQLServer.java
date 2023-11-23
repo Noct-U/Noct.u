@@ -36,4 +36,16 @@ public class DaoSQLServer {
     public void adicionarAlerta(Alerta alerta) {
         con.update("INSERT INTO alerta (titulo, fkCaptura, fkTipoAlerta) VALUES (?, ?, ?)", alerta.getTitulo(), alerta.getFkCaptura(), alerta.getFkTipoAlerta());
     }
+
+    public List<Computador> exibirIdComputadorPeloNomeComputador(String nome) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Computador> computadorDoBanco = con.query("SELECT IdComputador FROM computador WHERE nome = ?", new BeanPropertyRowMapper<>(Computador.class), nome);
+        return computadorDoBanco;
+    }
+
+    public List<Hardware> exibirIdHardwarePeloNomeHardware(String nome) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Hardware> hardwareDoBanco = con.query("SELECT idHardware FROM hardware WHERE nome = ? ORDER BY idHardware DESC", new BeanPropertyRowMapper<>(Hardware.class), nome);
+        return hardwareDoBanco;
+    }
 }

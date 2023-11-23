@@ -51,6 +51,9 @@ public class App {
             System.out.print("Digite sua senha: ");
             String senha = inText.nextLine();
 
+            System.out.println(daoMySQL.exibirComponentesCadastrados().size());
+
+
             // VALIDANDO SE POSSUI CADASTRO NO BANCO
             Funcionario func = daoMySQL.exibirUsuario(email);
             if (func.getEmail().equals(email) && func.getSenha().equals(senha)) {
@@ -88,6 +91,8 @@ public class App {
                 // ADICIONANDO CPU, MEMORIA, DISCO, E JANELA
                 Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);
                 Hardware hardwareMemoria = new Hardware("RAM", memoria.getTotal().doubleValue(), 2);
+                Hardware hardwareDisco = new Hardware();
+                Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
                 if (daoMySQL.exibirHardwareCadastrados().size() < 4) {
                     System.out.println("Cadastrando CPU...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareCPU);
@@ -98,12 +103,11 @@ public class App {
 
                     for (Volume v : volumes) {
                         System.out.println("Cadastrando Disco...");
-                        Hardware hardwareDisco = new Hardware(v.getNome(), v.getTotal().doubleValue(), 3);
+                        hardwareDisco = new Hardware(v.getNome(), v.getTotal().doubleValue(), 3);
                         daoMySQL.adicionarHardwareSemEspecificidade(hardwareDisco);
                         daoSQLServer.adicionarHardwareSemEspecificidade(hardwareDisco);
                     }
 
-                    Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
                     System.out.println("Cadastrando Janelas...");
                     daoMySQL.adicionarHardwareSemEspecificidade(hardwareJanelas);
                     daoSQLServer.adicionarHardwareSemEspecificidade(hardwareJanelas);
@@ -111,23 +115,29 @@ public class App {
                     System.out.println("Hardwares já cadastrados");
                 }
                 if (daoMySQL.exibirComponentesCadastrados().size() < 4) {
+                    Integer idComputador = daoSQLServer.exibirIdComputadorPeloNomeComputador(computador.getNome()).get(0).getIdComputador();
+
+                    Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareCPU.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com CPU...");
-                    Componente componenteCPU = new Componente(1, 1);
+                    Componente componenteCPU = new Componente(idComputador, idHardwareCPU);
                     daoMySQL.adicionarComponente(componenteCPU);
                     daoSQLServer.adicionarComponente(componenteCPU);
 
+                    Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareMemoria.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com RAM...");
-                    Componente componenteRAM = new Componente(1, 2);
+                    Componente componenteRAM = new Componente(idComputador, idHardwareMemoria);
                     daoMySQL.adicionarComponente(componenteRAM);
                     daoSQLServer.adicionarComponente(componenteRAM);
 
+                    Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareDisco.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com Disco...");
-                    Componente componenteDisco = new Componente(1, 3);
+                    Componente componenteDisco = new Componente(idComputador, idHardwareDisco);
                     daoMySQL.adicionarComponente(componenteDisco);
                     daoSQLServer.adicionarComponente(componenteDisco);
 
+                    Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareJanelas.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com Janela...");
-                    Componente componenteJanela = new Componente(1, 4);
+                    Componente componenteJanela = new Componente(idComputador, idHardwareJanela);
                     daoMySQL.adicionarComponente(componenteJanela);
                     daoSQLServer.adicionarComponente(componenteJanela);
                 } else {

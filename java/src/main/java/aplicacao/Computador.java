@@ -1,6 +1,7 @@
 package aplicacao;
 
 public class Computador {
+    private Integer idComputador;
     private String nome;
     private Integer fkEmpresa;
     private Integer fkModeloComputador;
@@ -10,12 +11,24 @@ public class Computador {
     public Computador() {
     }
 
+    public Computador(Integer idComputador) {
+        this.idComputador = idComputador;
+    }
+
     public Computador(String nome, Integer fkEmpresa, Integer fkModeloComputador, Integer fkEmpresaLocataria, Integer fkStatus) {
         this.nome = nome;
         this.fkEmpresa = fkEmpresa;
         this.fkModeloComputador = fkModeloComputador;
         this.fkEmpresaLocataria = fkEmpresaLocataria;
         this.fkStatus = fkStatus;
+    }
+
+    public Integer getIdComputador() {
+        return idComputador;
+    }
+
+    public void setIdComputador(Integer idComputador) {
+        this.idComputador = idComputador;
     }
 
     public String getNome() {
