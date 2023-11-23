@@ -18,8 +18,8 @@ function cadastrarMatriz(nome, cnpj, fkMatriz, fkEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cnpj, fkEmpresa, fkMatriz);
 
     var instrucao = `
-        INSERT INTO empresaLocataria (nome,cnpj,fkEmpresa) VALUES 
-            ('${nome}', '${cnpj}','${fkEmpresa}');
+        INSERT INTO empresaLocataria (nome,cnpj,fkEmpresa,fkStatus) VALUES 
+            ('${nome}', '${cnpj}','${fkEmpresa}',1);
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -29,8 +29,8 @@ function cadastrarLocadora(nome, cnpj, fkMatriz, fkEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cnpj, fkEmpresa, fkMatriz);
 
     var instrucao = `
-        INSERT INTO empresaLocataria (nome,cnpj,fkMatriz,fkEmpresa) VALUES 
-            ('${nome}', '${cnpj}','${fkMatriz}', '${fkEmpresa}');
+        INSERT INTO empresaLocataria (nome,cnpj,fkMatriz,fkEmpresa,fkStatus) VALUES 
+            ('${nome}', '${cnpj}','${fkMatriz}', '${fkEmpresa}',1);
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

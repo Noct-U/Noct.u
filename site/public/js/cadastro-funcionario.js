@@ -6,7 +6,7 @@ function cadastrarFunc() {
     var emailUsuario = document.getElementById('ipt_email_usuario').value;
     var senhaUsuario = document.getElementById('ipt_senha_usuario').value;
     var tipoUsuario = document.getElementById('ipt_selecionar_user').value;
-    var empresaAlocada = document.getElementById('ipt_selecionar_empresa').value;
+    var empresaAlocada = document.getElementById('ipt_empresa').value;
 
     // Validação dos dados (pode ser necessário adicionar mais validações)
     if (!nomeUsuario || !emailUsuario || !senhaUsuario || !tipoUsuario || !empresaAlocada) {

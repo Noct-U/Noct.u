@@ -18,10 +18,10 @@
                 </a>
             </div>
             <div class="div-header">
-                <label class="txt-header" for="">SPTECH</label>
+                <label class="txt-header" for="" id="nome_locataria"></label>
             </div>
             <div class="div-header">
-                <label class="txt-header" for="">CARAMICO</label>
+                <label class="txt-header" id="nome_usuario"></label>
             </div>
         </header>
         <div class="div-dash">
@@ -107,10 +107,10 @@
                         <div class="div-conteudo-kpi4">
                             <div class="componentes-kpi">
 
-                                <p>CPU</p><div class="cor-grafico cor-graficocomp cor1" id="corCpu"></div>
+                                <p>CPU</p><div class="cor-grafico cor-graficocomp cor3" id="corCpu"></div>
                             </div>
                             <div class="componentes-kpi">
-                                <p>MEMÓRIA</p><div class="cor-grafico cor-graficocomp cor2" id="corMemoria"></div>
+                                <p>MEMÓRIA</p><div class="cor-grafico cor-graficocomp cor3" id="corMemoria"></div>
                             </div>
                             <div class="componentes-kpi">
                                 <p>DISCO</p><div class="cor-grafico cor-graficocomp cor3" id="corDisco"></div>
@@ -159,10 +159,9 @@
 <script>
     num_serie.innerHTML = sessionStorage.NOME_COMPUTADOR;
     modelo_nome.innerHTML = sessionStorage.MODELO_COMPUTADOR;
-
-    obterDadosGrafico(sessionStorage.ID_COMPUTADOR);
-    obterDadosGraficoRam(sessionStorage.ID_COMPUTADOR)
-    obterDadosGraficoCpu(sessionStorage.ID_COMPUTADOR)
+    nome_locataria.innerHTML = sessionStorage.NOME_EMPRESA_LOCATARIA;
+    nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    
 
     setTimeout(function() {
         buscarAlertas();
@@ -174,5 +173,17 @@
 
     setInterval(function() {
         buscarJanelas();
+    }, 100)
+
+    setTimeout(function() {
+        obterDadosGraficoCpu(sessionStorage.ID_COMPUTADOR)
+    }, 100)
+
+    setTimeout(function() {
+        obterDadosGrafico(sessionStorage.ID_COMPUTADOR);
+    }, 100)
+
+    setTimeout(function() {
+        obterDadosGraficoRam(sessionStorage.ID_COMPUTADOR)
     }, 100)
 </script>  

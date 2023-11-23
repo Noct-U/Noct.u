@@ -69,5 +69,9 @@ router.post("/consultarJanelas", function (req, res) {
     computadorController.consultarJanelas(req, res);
 })
 
+router.post("/atualizarGraficoCpu", function (req, res) {
+    computadorController.atualizarGraficoCpu(req, res);
+})
+
 
 module.exports = router;

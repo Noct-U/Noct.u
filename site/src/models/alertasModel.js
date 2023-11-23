@@ -89,11 +89,11 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
 function atualizarGraficoAlertaPorHora(idEmpresa) {
 
     var instrucao = `
-        SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
-        JOIN captura ON captura.idCaptura = alerta.fkCaptura
-        JOIN computador ON computador.idComputador = captura.fkComputador
-        WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
-        GROUP BY HOUR(dtAlerta) ORDER BY hora DESC LIMIT 1;
+    SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+    JOIN captura ON captura.idCaptura = alerta.fkCaptura
+    JOIN computador ON computador.idComputador = captura.fkComputador
+    WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
+    GROUP BY HOUR(dtAlerta) ORDER BY hora LIMIT 1	;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

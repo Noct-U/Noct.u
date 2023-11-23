@@ -1,3 +1,12 @@
+let proximaAtualizacaoCpu;
+let proximaAtualizacaoDisco;
+let proximaAtualizacaoRam;
+
+var cpuId = document.getElementById("corCpu");
+var ramId = document.getElementById("corMemoria");
+var discoId = document.getElementById("corDisco");
+
+
 function obterDadosGrafico(idComputador) {
     
 
@@ -124,7 +133,16 @@ function plotarGrafico(capacidade,uso,simbolo) {
 
         ]
     };
-              
+    if(disponivel < 10){
+        discoId.style.backgroundColor = "#FF3C3C";
+    }
+    else if(disponivel < 50){
+        discoId.style.backgroundColor = "#E0CB11";
+    }
+    else{
+        discoId.style.backgroundColor = "#DFDFDF";
+    }
+
     dados.datasets[0].data.push(uso);
     dados.datasets[0].data.push(disponivel);
    
@@ -146,6 +164,7 @@ function plotarGrafico(capacidade,uso,simbolo) {
             document.getElementById(`myChartCanvasGeral`),
             config
         );
+        proximaAtualizacaoDisco = setTimeout(() => atualizarGraficoDisco(myChart,dados), 30000);
 
     // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
@@ -154,8 +173,9 @@ function plotarGrafico(capacidade,uso,simbolo) {
 //Plotar Grafico Ram
 function plotarGraficoRam(capacidade,uso,simbolo) {           
 
+
         var dados3 = {
-        labels: [`${simbolo} em uso`, `${simbolo} Disponível`],
+        labels: [ `${simbolo} Disponível`,`${simbolo} em uso`],
         datasets: [
             {
                 label: [],
@@ -171,6 +191,16 @@ function plotarGraficoRam(capacidade,uso,simbolo) {
         uso = parseInt((uso / capacidade) * 100);
         var disponivel = parseInt(100 - uso);
 
+        //calculo em porcentagem
+        if(disponivel < 10){
+            ramId.style.backgroundColor = "#FF3C3C";
+        }
+        else if(disponivel < 50){
+            ramId.style.backgroundColor = "#E0CB11";
+        }
+        else{
+            ramId.style.backgroundColor = "#DFDFDF";
+        }
         dados3.datasets[0].data.push(uso);
         dados3.datasets[0].data.push(disponivel);
         const config3 = {
@@ -192,14 +222,14 @@ function plotarGraficoRam(capacidade,uso,simbolo) {
             config3
         );
 
-    // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        proximaAtualizacaoRam = setTimeout(() => atualizarGraficoRam(myChart3,dados3,capacidade), 3000);
     }
 
 
 
 
+    //GRAFICO CPU
     function obterDadosGraficoCpu(idComputador){
-     //GRAFICO RAM
 
      fetch("/computadores/consultarDadosCPU", {
           method: "POST",
@@ -225,6 +255,8 @@ function plotarGraficoRam(capacidade,uso,simbolo) {
                 
                 var simbolo = ultimaCaptura[0].simbolo;
                 plotarGraficoCpu(ultimaCaptura,simbolo)
+
+                
               });
 
           } else {
@@ -262,42 +294,70 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
     for(var i = (ultimaCaptura.length - 1); i >= 0; i-- ){
         
         const dataObj = new Date(ultimaCaptura[i].dtCaptura);
-        var minutosCaptura = dataObj.getMinutes()
-        var segundosCaptura = dataObj.getSeconds()
+        const agora = new Date();
 
+        var diferenca = agora - dataObj;
 
-        const dataAtual = new Date();
-        var minutosAtual = dataAtual.getMinutes();
-        var segundosAtual = dataAtual.getSeconds();
+        var mensagem;
 
+        const segundo = Math.floor(diferenca / 1000);
 
-        var minutos = 60 * (minutosAtual - minutosCaptura);
-        var segundos = minutos + (segundosAtual - segundosCaptura);
+        if (segundo < 60) {
+            mensagem = `Há ${segundo} segundo${segundo > 1 ? 's' : ''}`;
+        } else if (segundo < 3600) {
+            const minutos = Math.floor(segundo / 60);
+            mensagem = `Há ${minutos} minuto${minutos > 1 ? 's' : ''}`;
+        } else if (segundo < 86400) {
+            const horas = Math.floor(segundo / 3600);
+            mensagem = `Há ${horas} hora${horas > 1 ? 's' : ''}`;
+        } else {
+            const dias = Math.floor(segundo / 86400);
+            const horasRestantes = Math.floor((segundo % 86400) / 3600);
+            mensagem = `Há ${dias} dia${dias > 1 ? 's' : ''} e ${horasRestantes} hora${horasRestantes > 1 ? 's' : ''}`;
+        }
 
-
-
-        dados2.labels.push("Há " + segundos + " segs");
+        dados2.labels.push(mensagem);
         dados2.datasets[0].data.push(ultimaCaptura[i].valor);
 
     }
-        const config2 = {
-            type: 'line',
-            data: dados2,
-            options: {
-                plugins: {
+ 
+
+    const config2 = {
+        type: 'line',
+        data: dados2,
+        options: {
+            plugins: {
                 legend: {
                     display: false
                 },
-
-                },
             },
-            };
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: Math.max(...dados2.datasets[0].data) + 20
+                }
+            }
+        }
+    };
 
-        // Adicionando gráfico criado em div na tela
-        let myChart2 = new Chart(
-            document.getElementById(`myChartCanvasGeral2`),
-            config2
-        );
+        
+            
+            // Adicionando gráfico criado em div na tela
+            let myChart2 = new Chart(
+                document.getElementById(`myChartCanvasGeral2`),
+                config2
+            );
+            if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 10)){
+                cpuId.style.backgroundColor = "#FF3C3C";
+            }
+            else if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 20)){
+                cpuId.style.backgroundColor = "#E0CB11";
+            }
+            else{
+                cpuId.style.backgroundColor = "#DFDFDF";
+            }
+        
+            proximaAtualizacaoCpu = setTimeout(() => atualizarGraficoCpu(myChart2,dados2), 2000);
 
     // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
@@ -443,3 +503,198 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
     function verListaComputador(){
         window.location.href = "lista-computador.html"
     }
+
+    
+function atualizarGraficoCpu(myChart2,dados2){
+    console.log("teste")
+    fetch("/computadores/atualizarGraficoCpu", {
+        method: "POST",
+        headers: {
+              "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+            idComputadorServer : sessionStorage.ID_COMPUTADOR,
+            idHardwareServer : 1
+        })
+    
+    })
+        .then(function (resposta) {
+            if (resposta.ok){
+                resposta.json().then(json => {
+                        const dataObj = new Date(json[0].dtCaptura);
+                        const agora = new Date();
+
+                        var diferenca = agora - dataObj;
+
+                        var mensagem;
+
+                        const segundo = Math.floor(diferenca / 1000);
+
+                        if (segundo < 60) {
+                            mensagem = `Há ${segundo} segundo${segundo > 1 ? 's' : ''}`;
+                        } else if (segundo < 3600) {
+                            const minutos = Math.floor(segundo / 60);
+                            mensagem = `Há ${minutos} minuto${minutos > 1 ? 's' : ''}`;
+                        } else if (segundo < 86400) {
+                            const horas = Math.floor(segundo / 3600);
+                            mensagem = `Há ${horas} hora${horas > 1 ? 's' : ''}`;
+                        } else {
+                            const dias = Math.floor(segundo / 86400);
+                            const horasRestantes = Math.floor((segundo % 86400) / 3600);
+                            mensagem = `Há ${dias} dia${dias > 1 ? 's' : ''} e ${horasRestantes} hora${horasRestantes > 1 ? 's' : ''}`;
+                        }
+
+                    if(json[0].valor != dados2.datasets[0].data[dados2.datasets[0].data.length - 1] || mensagem == dados2.labels[dados2.labels.length - 1]){
+
+                        if(json[0].valor >= (json[0].capacidade - 10)){
+                            cpuId.style.backgroundColor = "#FF3C3C";
+                        }
+                        else if(json[0].valor >= (json[0].capacidade - 20)){
+                            cpuId.style.backgroundColor = "#E0CB11";
+                        }
+                        else{
+                            cpuId.style.backgroundColor = "#DFDFDF";
+                        }
+                        dados2.labels.shift();
+                        dados2.labels.push(mensagem);
+                        dados2.datasets[0].data.shift();
+                        dados2.datasets[0].data.push(json[0].valor);
+
+                        const novoMaximoY = Math.max(...dados2.datasets[0].data) + 5;
+                        myChart2.options.scales.y.max = novoMaximoY;
+                        myChart2.options.scales.y.ticks.max = novoMaximoY;
+                        myChart2.update();
+                    }
+                    proximaAtualizacaoCpu = setTimeout(() => atualizarGraficoCpu(myChart2,dados2), 1000);
+
+            })
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    
+ 
+   
+    }
+
+
+
+    function atualizarGraficoDisco(myChart,dados){
+        console.log("teste")
+        fetch("/computadores/consultarDados", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+              body: JSON.stringify({
+                  // crie um atributo que recebe o valor recuperado aqui
+                  // Agora vá para o arquivo routes/usuario.js
+                  //Dados da primeira pag de cadastro
+                  idComputadorServer : sessionStorage.ID_COMPUTADOR,
+                  idHardwareServer : 3
+              })
+        
+        })
+            .then(function (resposta) {
+                if (resposta.ok){
+                    resposta.json().then(json => {
+                        if(json[0].valor != dados.datasets[0].data[dados.datasets[0].data.length - 1]){
+                        
+
+                            var capacidade = json[0].capacidade;
+                            var uso = json[0].valor;
+                            uso = parseInt((uso / capacidade) * 100);
+                            var disponivel = parseInt(100 - uso);
+                            
+                            if(disponivel <= 10){
+                                discoId.style.backgroundColor = "#FF3C3C";
+                            }
+                            else if(disponivel <= 50){
+                                discoId.style.backgroundColor = "#E0CB11";
+                            }
+                            else{
+                                discoId.style.backgroundColor = "#DFDFDF";
+                            }
+
+                            dados.datasets[0].data.length = 0;
+                            dados.datasets[0].data.push(uso);
+                            dados.datasets[0].data.push(disponivel);
+
+                            myChart.update();
+                        }
+                        proximaAtualizacaoDisco = setTimeout(() => atualizarGraficoDisco(myChart,dados), 30000);
+    
+                })
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        
+     
+       
+        }
+
+
+        function atualizarGraficoRam(myChart3,dados3,capacidade){
+            console.log("teste")
+            fetch("/computadores/consultarDados", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                  body: JSON.stringify({
+                      // crie um atributo que recebe o valor recuperado aqui
+                      // Agora vá para o arquivo routes/usuario.js
+                      //Dados da primeira pag de cadastro
+                      idComputadorServer : sessionStorage.ID_COMPUTADOR,
+                      idHardwareServer : 2
+                  })
+            })
+                .then(function (resposta) {
+                    
+                    if (resposta.ok){
+                        resposta.json().then(json => {
+                            if(json[0].valor != dados3.datasets[0].data[dados3.datasets[0].data.length - 1]){
+                                
+
+                                var capacidade = json[0].capacidade;
+                                var uso = json[0].valor;
+                                uso = parseInt((uso / capacidade) * 100);
+                                var disponivel = parseInt(100 - uso);
+                                
+                                if(disponivel < 10){
+                                    ramId.style.backgroundColor = "#FF3C3C";
+                                }
+                                else if(disponivel < 50){
+                                    ramId.style.backgroundColor = "#E0CB11";
+                                }
+                                else{
+                                    ramId.style.backgroundColor = "#DFDFDF";
+                                }
+                                dados3.datasets[0].data.length = 0;
+                                dados3.datasets[0].data.push(uso);
+                                dados3.datasets[0].data.push(disponivel);
+    
+                                myChart3.update();
+                            }
+                            proximaAtualizacaoRam = setTimeout(() => atualizarGraficoRam(myChart3,dados3,capacidade), 30000);
+        
+                    })
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            
+         
+           
+            }
+
+
+
+
