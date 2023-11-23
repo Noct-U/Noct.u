@@ -48,4 +48,10 @@ public class DaoSQLServer {
         List<Hardware> hardwareDoBanco = con.query("SELECT idHardware FROM hardware WHERE nome = ? ORDER BY idHardware DESC", new BeanPropertyRowMapper<>(Hardware.class), nome);
         return hardwareDoBanco;
     }
+
+    public List<Computador> exibirComputadorCadastrado(String nome) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Computador> computadorDoBanco = con.query("SELECT nome, fkEmpresa, fkModeloComputador, fkEmpresaLocataria, fkStatus FROM computador WHERE nome = ?", new BeanPropertyRowMapper<>(Computador.class), nome);
+        return computadorDoBanco;
+    }
 }

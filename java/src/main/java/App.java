@@ -61,7 +61,7 @@ public class App {
 
                 // ADICIONANDO COMPUTADOR
                 Computador computador = new Computador(rede.getParametros().getHostName(), func.getFkEmpresa(), 1, null, 1);
-                if (daoMySQL.exibirComputadorCadastrado(computador.getNome()).size() > 0) {
+                if (daoSQLServer.exibirComputadorCadastrado(computador.getNome()).size() > 0) {
                     System.out.println("\nComputador já cadastrado");
                 } else {
                     System.out.println("""
