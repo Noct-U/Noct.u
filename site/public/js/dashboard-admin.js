@@ -1,7 +1,6 @@
 
     nomeEmpresa.innerHTML = sessionStorage.NOME_EMPRESA;
     let proximaAtualizacao;
-    let proximaAtualizacaoGraficoModelo;
 
 
     function quantidadeAlertas(){
@@ -287,7 +286,7 @@ var dados2 = {
 
     ]
 };
-for(var i = 0; i < Irregularidades.length; i++ ){
+for(var i = (Irregularidades.length - 1); i >= 0; i--  ){
     dados2.labels.push("h"+Irregularidades[i].hora+":00");
     dados2.datasets[0].data.push(Irregularidades[i].qtd_alertas);
 }

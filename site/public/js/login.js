@@ -34,7 +34,7 @@ function entrar() {
             }
             else{
                 setTimeout(function () {
-                    window.location = "./dashboard/dashboard-funcionario.html";
+                    window.location = "./dashboard/lista-computador.html";
                 }, 1000); // apenas para exibir o loading
             }
             sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)

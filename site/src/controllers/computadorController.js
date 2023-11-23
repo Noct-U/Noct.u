@@ -326,6 +326,29 @@ function consultarJanelas(req, res) {
             }
         );
 }
+
+
+function atualizarGraficoCpu(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var idHardware = req.body.idHardwareServer;
+    var idComputador = req.body.idComputadorServer;
+    computadorModel.atualizarGraficoCpu(idComputador,idHardware)
+        .then(
+            function (ultimaCaptura) {
+                res.json(ultimaCaptura);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -339,6 +362,7 @@ module.exports = {
     consultarUnidadeMedida,
     atualizarComputador,
     cadastrarModeloEmGeral,
-    consultarJanelas
+    consultarJanelas,
+    atualizarGraficoCpu
     
 }

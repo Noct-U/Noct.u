@@ -25,21 +25,20 @@
                 <div class="quad">
                     <div class="campo">
                         <span>Razão social:</span>
-                        <input type="text" id="#">
+                        <input type="text" id="ipt_nome">
                     </div>
                     <div class="campo">
-                        <span>Telefone:</span>
-                        <input type="text" id="#">
+                        <span>CNPJ:</span>
+                        <input type="text" id="ipt_cnpj">
                     </div>
                 </div>
                 <div class="quad">
-                    <div class="campo">
-                        <span>CNPJ:</span>
-                        <input type="text" id="#">
-                    </div>
+                   
                     <div class="campo">
                         <span>Matriz:</span>
-                        <input type="text" id="#">
+                        <select name="" id="ipt_empresa">
+                            <option value="null">É a matriz</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -62,3 +61,7 @@
 </body>
 
 </html>
+<script src="../js/cadastro-locataria.js"></script>
+<script>
+    exibirEmpresas()
+</script>

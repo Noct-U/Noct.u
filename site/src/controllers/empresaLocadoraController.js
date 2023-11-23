@@ -57,7 +57,7 @@ function cadastrar(req, res) {
     var cnpj = req.body.cnpjServer;
     var fkMatriz = req.body.fkMatrizServer;
     var fkEmpresa = req.body.idEmpresaServer;
-    if(fkMatriz == "nunhuma"){
+    if(fkMatriz == "null"){
         // Passe os valores como parâmetro e vá para o arquivo empresaLocadoraModel.js
         empresaLocadoraModel.cadastrarMatriz(nome,cnpj,fkMatriz,fkEmpresa)
         .then(

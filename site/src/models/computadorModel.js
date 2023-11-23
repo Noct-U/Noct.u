@@ -154,6 +154,22 @@ function consultarJanelas(idComputador) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function atualizarGraficoCpu(idComputador,idHardware) {
+
+    var instrucao = `
+    SELECT * FROM captura JOIN componente ON fkComponente = idComponente 
+    JOIN hardware ON hardware.idHardware = componente.fkHardware
+    JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+    JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
+    ORDER BY dtCaptura DESC 
+    LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
     cadastrarModelo,
@@ -168,5 +184,6 @@ module.exports = {
     atualizarComputador,
     cadastrarUnidadeMedida,
     cadastrarParametro,
-    consultarJanelas
+    consultarJanelas,
+    atualizarGraficoCpu
 };

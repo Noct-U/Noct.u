@@ -122,7 +122,7 @@ function listaEmpresas(){
                                 <div class="linhaInfo">
                                     <div class="info"></div>
                                     <div class="info"></div>
-                                    <div class="info btns"> <button class="btn cinza" onclick="abrirModalComportamento1(${json[i].idLocataria},${json[i].idLocataria},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idLocataria})">EXCLUIR</button></div>
+                                    <div class="info btns"> <button class="btn cinza" onclick="abrirModalComportamento1(${json[i].idLocataria},${json[i].idLocataria},'null')">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idLocataria})">EXCLUIR</button></div>
                                 </div>
                             </div>
                             `;
@@ -207,6 +207,8 @@ function cadastrar() {
     var nome = ipt_nome.value;
     var cnpj = ipt_cnpj.value;
     var matriz = ipt_empresa.value;
+
+
     console.log(matriz)
     fetch("/empresasLocadoras/cadastrar", {
         method: "POST",
@@ -226,10 +228,10 @@ function cadastrar() {
         }),
     })
         .then(function (resposta) {
-            location.reload();
-            // setTimeout(() => {
-            //     window.location = "login.html";
-            // }, "2000")
+            // location.reload();
+            setTimeout(() => {
+                window.location = "lista-empresa.html";
+            }, "100")
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
