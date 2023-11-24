@@ -62,6 +62,18 @@ public class DaoSQLServer {
         return empresasLocatariasMatrizDoBanco;
     }
 
+    public List<Hardware> exibirHardwareCadastrado(Hardware hardware) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Hardware> hardwareDoBanco = con.query("SELECT nome, especificidade, capacidade, fkTipoHardware FROM hardware WHERE nome = ? AND capacidade = ? AND fkTipoHardware = ?;", new BeanPropertyRowMapper<>(Hardware.class), hardware.getNome(), hardware.getCapacidade(), hardware.getFkTipoHardware());
+        return hardwareDoBanco;
+    }
+
+    public List<Componente> exibirComponentesCadastradosPorComputador(Integer idComputador) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Componente> componenteDoBanco = con.query("SELECT fkComputador, fkHardware FROM componente where fkComputador = ?;", new BeanPropertyRowMapper<>(Componente.class), idComputador);
+        return componenteDoBanco;
+    }
+
     public List<Captura> exibirCapturasDeUmTipo(Integer tipo) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Captura> capturasDoBanco = con.query("SELECT valor, dtCaptura, fkTipoHardware FROM captura AS cpt JOIN componente AS cmp ON idComponente = fkComponente JOIN Hardware AS hdw ON hdw.idHardware = cmp.fkHardware WHERE hdw.fkTipoHardware = ? ORDER BY dtCaptura DESC LIMIT 10", new BeanPropertyRowMapper<>(Captura.class), tipo);

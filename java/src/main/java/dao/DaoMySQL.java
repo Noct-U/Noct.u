@@ -23,6 +23,20 @@ public class DaoMySQL {
     }
 
     // FUNÇÕES DE ADICIONAR REGISTROS (INSERT)
+    public void adicionarCaptura(Captura captura) {
+        con.update("INSERT IGNORE INTO captura (valor) VALUES (?)", captura.getValor());
+    }
+
+
+
+
+
+
+
+
+
+
+
     public void adicionarComputador(Computador computador) {
         con.update("INSERT IGNORE INTO computador (nome, fkEmpresa, fkModeloComputador, fkEmpresaLocataria, fkStatus) VALUES (?, ?, ?, ?, ?)", computador.getNome(), computador.getFkEmpresa(), computador.getFkModeloComputador(), computador.getFkEmpresaLocataria(), computador.getFkStatus());
     }
@@ -35,9 +49,7 @@ public class DaoMySQL {
         con.update("INSERT IGNORE INTO hardware (nome, capacidade, fkTipoHardware) VALUES (?, ?, ?)", hardware.getNome(), hardware.getCapacidade(), hardware.getFkTipoHardware());
     }
 
-    public void adicionarCaptura(Captura captura) {
-        con.update("INSERT IGNORE INTO captura (valor, fkComputador, fkHardware, fkComponente) VALUES (?, ?, ?, ?)", captura.getValor(), captura.getFkComputador(), captura.getFkHardware(), captura.getFkComponente());
-    }
+
 
     public void adicionarAlerta(Alerta alerta) {
         con.update("INSERT IGNORE INTO alerta (titulo, fkCaptura, fkTipoAlerta) VALUES (?, ?, ?)", alerta.getTitulo(), alerta.getFkCaptura(), alerta.getFkTipoAlerta());
@@ -52,19 +64,14 @@ public class DaoMySQL {
         return computadorDoBanco;
     }
 
-    public List<Hardware> exibirHardwareCadastrados() {
+    public List<Hardware> exibirHardwareCadastrado(Hardware hardware) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         con.execute("SET FOREIGN_KEY_CHECKS = 0");
-        List<Hardware> hardwareDoBanco = con.query("SELECT nome, especificidade, capacidade, fkTipoHardware FROM hardware", new BeanPropertyRowMapper<>(Hardware.class));
+        List<Hardware> hardwareDoBanco = con.query("SELECT nome, especificidade, capacidade, fkTipoHardware FROM hardware WHERE nome = ? AND capacidade = ? AND fkTipoHardware = ?;", new BeanPropertyRowMapper<>(Hardware.class), hardware.getNome(), hardware.getCapacidade(), hardware.getFkTipoHardware());
         return hardwareDoBanco;
     }
 
-    public List<Componente> exibirComponentesCadastrados() {
-        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        con.execute("SET FOREIGN_KEY_CHECKS = 0");
-        List<Componente> componenteDoBanco = con.query("SELECT fkComputador, fkHardware FROM componente", new BeanPropertyRowMapper<>(Componente.class));
-        return componenteDoBanco;
-    }
+
 
     public List<EmpresaLocataria> exibirEmpresasLocatarias(Integer fkEmpresa) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
