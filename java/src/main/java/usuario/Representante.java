@@ -1,6 +1,7 @@
 package usuario;
 
 import dao.DaoMySQL;
+import dao.DaoSQLServer;
 
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class Representante extends Funcionario {
 //    }
 
     public void atualizarMaquina(Integer opcao) {
-        DaoMySQL daoMySQL = new DaoMySQL();
+        DaoSQLServer daoMySQL = new DaoSQLServer();
         daoMySQL.atualizarComputador(opcao);
     }
 

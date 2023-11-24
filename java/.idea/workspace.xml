@@ -12,12 +12,17 @@
     <list default="true" id="b45ff884-208c-4998-b1f2-a8004c7c24b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aplicacao/Componente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aplicacao/Componente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DaoMySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/DaoSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DaoSQLServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/users/2023-11-23 _log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/users/2023-11-23 _log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usuario/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usuario/Representante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usuario/Representante.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/aplicacao/Componente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aplicacao/Componente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DaoMySQL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dao/DaoSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DaoSQLServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/usuario/Funcionario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/usuario/Representante.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/usuario/Representante.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
