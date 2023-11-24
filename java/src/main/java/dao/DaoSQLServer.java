@@ -74,9 +74,9 @@ public class DaoSQLServer {
         return componenteDoBanco;
     }
 
-    public List<Captura> exibirCapturasDeUmTipo(Integer tipo) {
+    public List<Captura> exibirCapturasDeUmTipo(Integer fkTipoHardware, Integer fkComputador) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        List<Captura> capturasDoBanco = con.query("SELECT valor, dtCaptura, fkTipoHardware FROM captura AS cpt JOIN componente AS cmp ON idComponente = fkComponente JOIN Hardware AS hdw ON hdw.idHardware = cmp.fkHardware WHERE hdw.fkTipoHardware = ? ORDER BY dtCaptura DESC LIMIT 10", new BeanPropertyRowMapper<>(Captura.class), tipo);
+        List<Captura> capturasDoBanco = con.query("SELECT cpt.valor, cpt.dtCaptura, hdw.fkTipoHardware, cmp.fkComputador FROM captura cpt INNER JOIN componente cmp ON cpt.fkComponente = cmp.idComponente INNER JOIN Hardware hdw ON hdw.idHardware = cmp.fkHardware WHERE hdw.fkTipoHardware = ? AND cmp.fkComputador = ? ORDER BY cpt.dtCaptura DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY", new BeanPropertyRowMapper<>(Captura.class), fkTipoHardware, fkComputador);
         return capturasDoBanco;
     }
 
@@ -86,17 +86,25 @@ public class DaoSQLServer {
         return parametrosDoBanco;
     }
 
+    public List<Captura> exibirIdCaptura() {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Captura> parametrosDoBanco = con.query("SELECT TOP 1 idCaptura FROM captura ORDER BY idCaptura DESC", new BeanPropertyRowMapper<>(Captura.class));
+        return parametrosDoBanco;
+    }
+
     public List<Computador> exibirIdComputadorPeloNomeComputador(String nome) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Computador> computadorDoBanco = con.query("SELECT IdComputador FROM computador WHERE nome = ?", new BeanPropertyRowMapper<>(Computador.class), nome);
         return computadorDoBanco;
     }
 
-    public List<Hardware> exibirIdHardwarePeloNomeHardware(String nome) {
+    public List<Hardware> exibirIdHardwarePeloIdComputador(Integer fkTipoHardware) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        List<Hardware> hardwareDoBanco = con.query("SELECT idHardware FROM hardware WHERE nome = ? ORDER BY idHardware DESC", new BeanPropertyRowMapper<>(Hardware.class), nome);
+        List<Hardware> hardwareDoBanco = con.query("SELECT idHardware, nome, especificidade, capacidade, fkTipoHardware FROM hardware WHERE fkTipoHardware = ? ORDER BY idHardware DESC OFFSET 0 ROWS FETCH NEXT 4 ROWS ONLY", new BeanPropertyRowMapper<>(Hardware.class), fkTipoHardware);
         return hardwareDoBanco;
     }
+
+
 
     public List<Componente> exibirIdComponentePeloIdComputadorEIdHardware(Integer fkComputador, Integer fkHardware) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
@@ -104,6 +112,13 @@ public class DaoSQLServer {
         return componentesDoBanco;
     }
 
+    public List<Hardware> exibirHardwaresPeloIDComputador(Integer fkComputador) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Hardware> hardwareDoBanco = con.query("SELECT hwd.nome, hwd.capacidade, hwd.fktipoHardware FROM hardware hwd RIGHT JOIN componente cmp ON hwd.idHardware = cmp.fkHardware RIGHT JOIN computador cpt ON cpt.idComputador = cmp.fkComputador WHERE cpt.idComputador = ?", new BeanPropertyRowMapper<>(Hardware.class), fkComputador);
+        return hardwareDoBanco;
+    }
+
+//    SELECT hwd.nome, hwd.capacidade, hwd.fktipoHardware FROM hardware hwd RIGHT JOIN componente cmp ON hwd.idHardware = cmp.fkHardware RIGHT JOIN computador cpt ON cpt.idComputador = cmp.fkComputador WHERE cpt.idComputador = 1;
     public List<Computador> exibirComputadorCadastrado(String nome) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Computador> computadorDoBanco = con.query("SELECT nome, fkEmpresa, fkModeloComputador, fkEmpresaLocataria, fkStatus FROM computador WHERE nome = ?", new BeanPropertyRowMapper<>(Computador.class), nome);

@@ -49,13 +49,6 @@ public class DaoMySQL {
         con.update("INSERT IGNORE INTO hardware (nome, capacidade, fkTipoHardware) VALUES (?, ?, ?)", hardware.getNome(), hardware.getCapacidade(), hardware.getFkTipoHardware());
     }
 
-
-
-    public void adicionarAlerta(Alerta alerta) {
-        con.update("INSERT IGNORE INTO alerta (titulo, fkCaptura, fkTipoAlerta) VALUES (?, ?, ?)", alerta.getTitulo(), alerta.getFkCaptura(), alerta.getFkTipoAlerta());
-    }
-
-
     // FUNCÕES DE EXIBIR REGISTROS (SELECT)
     public Computador exibirComputadorAtual(String nome) {
         // ISSO AQUI BUSCA 1 ELEMENTO (COM PERSONALIZAÇÃO)
@@ -94,12 +87,7 @@ public class DaoMySQL {
         return parametrosDoBanco;
     }
 
-    public List<Captura> exibirIdCaptura() {
-        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
-        con.execute("SET FOREIGN_KEY_CHECKS = 0");
-        List<Captura> parametrosDoBanco = con.query("SELECT idCaptura FROM captura ORDER BY idCaptura DESC LIMIT 1", new BeanPropertyRowMapper<>(Captura.class));
-        return parametrosDoBanco;
-    }
+
 
 
     // FUNCÕES DE ATUALIZAR REGISTROS (UPDATE)

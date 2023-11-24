@@ -28,9 +28,9 @@ public class Funcionario {
         this.fkStatus = fkStatus;
     }
 
-    public void visualizarCPU() {
+    public void visualizarCPU(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(1);
+        List<Captura> capturas = dao.exibirCapturasDeUmTipo(1, idComputador);
 
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -38,27 +38,31 @@ public class Funcionario {
         }
     }
 
-    public void visualizarRAM() {
+    public void visualizarRAM(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(2);
+        List<Captura> capturas = dao.exibirCapturasDeUmTipo(2, idComputador);
+
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
-            System.out.println("RAM    %.2f    %s".formatted(c.getValor(), c.getDtCaptura()));
+            Double conversaoGB = c.getValor() / 1024 / 1024 / 1024;
+            System.out.println("RAM    %.2f    %s".formatted(conversaoGB, c.getDtCaptura()));
         }
     }
 
-    public void visualizarDisco() {
+    public void visualizarDisco(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(3);
+        List<Captura> capturas = dao.exibirCapturasDeUmTipo(3, idComputador);
+
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
-            System.out.println("DIS    %.2f    %s".formatted(c.getValor(), c.getDtCaptura()));
+            Double conversaoGB = c.getValor() / 1024 / 1024 / 1024;
+            System.out.println("DIS    %.2f    %s".formatted(conversaoGB, c.getDtCaptura()));
         }
     }
 
-    public void visualizarJanelas() {
+    public void visualizarJanelas(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(4);
+        List<Captura> capturas = dao.exibirCapturasDeUmTipo(4, idComputador);
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
             System.out.println("JAN    %.2f    %s".formatted(c.getValor(), c.getDtCaptura()));

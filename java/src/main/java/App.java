@@ -5,22 +5,17 @@ import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.rede.Rede;
-import com.sun.jna.platform.win32.WinDef;
 import dao.DaoMySQL;
 import dao.DaoSQLServer;
-import jdbc.ConexaoMySQL;
 import oshi.SystemInfo;
 import slack.BotSlack;
 import usuario.Funcionario;
 import usuario.Representante;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 //import teste.bot.BotSlack;
-import jdbc.ConexaoMySQL;
 import metodo.Log;
 
 public class App {
@@ -90,7 +85,7 @@ public class App {
                 Hardware hardwareCPU = new Hardware(processador.getNome(), 100.0, 1);
                 Hardware hardwareMemoria = new Hardware("RAM", memoria.getTotal().doubleValue(), 2);
 
-                Hardware hardwareJanelas = new Hardware("Janelas", grupoDeJanelas.getTotalJanelasVisiveis().doubleValue(), 4);
+                Hardware hardwareJanelas = new Hardware("Janelas", 50.0, 4);
                 if (daoSQLServer.exibirHardwareCadastrado(hardwareCPU).size() < 1) {
                     System.out.println("Cadastrando CPU...");
                     daoSQLServer.adicionarHardwareSemEspecificidade(hardwareCPU);
@@ -119,27 +114,28 @@ public class App {
                     System.out.println("Cadastrando Janelas...");
                     daoSQLServer.adicionarHardwareSemEspecificidade(hardwareJanelas);
                 } else {
-                    System.out.println("Janela já cadastrado");
+                    System.out.println("Obtendo janelas...");
                 }
 
                 Integer idComputador = daoSQLServer.exibirIdComputadorPeloNomeComputador(computador.getNome()).get(0).getIdComputador();
                 if (daoSQLServer.exibirComponentesCadastradosPorComputador(idComputador).size() < 4) {
-                    Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareCPU.getNome()).get(0).getIdHardware();
+                    Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloIdComputador(1).get(0).getIdHardware();
+                    Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloIdComputador(2).get(0).getIdHardware();
+                    Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloIdComputador(3).get(0).getIdHardware();
+                    Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloIdComputador(4).get(0).getIdHardware();
+
                     System.out.println("Montando setup com CPU...");
                     Componente componenteCPU = new Componente(idComputador, idHardwareCPU);
                     daoSQLServer.adicionarComponente(componenteCPU);
 
-                    Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareMemoria.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com RAM...");
                     Componente componenteRAM = new Componente(idComputador, idHardwareMemoria);
                     daoSQLServer.adicionarComponente(componenteRAM);
 
-                    Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareDisco.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com Disco...");
                     Componente componenteDisco = new Componente(idComputador, idHardwareDisco);
                     daoSQLServer.adicionarComponente(componenteDisco);
 
-                    Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareJanelas.getNome()).get(0).getIdHardware();
                     System.out.println("Montando setup com Janela...");
                     Componente componenteJanela = new Componente(idComputador, idHardwareJanela);
                     daoSQLServer.adicionarComponente(componenteJanela);
@@ -171,6 +167,12 @@ public class App {
                             Double alertaVermelhoAcima;
                             Double valorAtual;
 
+
+                            List<Hardware> hardwaresDoComputador = daoSQLServer.exibirHardwaresPeloIDComputador(idComputador);
+                            Double proporcaoMemoria = hardwaresDoComputador.get(1).getCapacidade() / 100;
+                            Double proporcaoDisco = hardwaresDoComputador.get(2).getCapacidade() / 100;
+                            Double valorEmPorcentagem;
+
                             Parametro parametroAtual = parametros.get(1);
                             valorInicial = parametroAtual.getMin();
                             valorFinal = parametroAtual.getMax();
@@ -181,7 +183,7 @@ public class App {
                             alertaVermelhoAcima = valorInicial + (range * 0.875);
 
                             Integer idComputador = daoSQLServer.exibirIdComputadorPeloNomeComputador(computador.getNome()).get(0).getIdComputador();
-                            Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareCPU.getNome()).get(0).getIdHardware();
+                            Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloIdComputador(1).get(0).getIdHardware();
                             Integer idComponenteCPU = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareCPU).get(0).getIdComponente();
 
                             Long valorProcessador = processador.getUso().longValue();
@@ -190,50 +192,51 @@ public class App {
                             daoMySQL.adicionarCaptura(cap01);
                             daoSQLServer.adicionarCaptura(cap01);
                             if (valorAtual <= alertaVermelhoAbaixo) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("CPU - ABAIXO DO LIMITE", idCaptura, 2);
-//                                daoMySQL.adicionarAlerta(alerta);
+                                daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual <= alertaAmareloAbaixo) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("CPU - PERTO DO LIMITE BAIXO", idCaptura, 1);
-//                                daoMySQL.adicionarAlerta(alerta);
+                                daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("CPU - PERTO DO LIMITE ACIMA", idCaptura, 1);
-//                                daoMySQL.adicionarAlerta(alerta);
+                                daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaVermelhoAcima) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("CPU - ACIMA DO LIMITE ", idCaptura, 2);
-//                                daoMySQL.adicionarAlerta(alerta);
+                                daoSQLServer.adicionarAlerta(alerta);
                             }
-
-                            Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareMemoria.getNome()).get(0).getIdHardware();
+                            Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloIdComputador(2).get(0).getIdHardware();
                             Integer idComponenteMemoria = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareMemoria).get(0).getIdComponente();
                             Long valorMemoria = memoria.getEmUso();
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), idComputador, idHardwareMemoria, idComponenteMemoria);
                             daoMySQL.adicionarCaptura(cap02);
                             daoSQLServer.adicionarCaptura(cap02);
                             valorAtual = cap02.getValor();
-                            if (valorAtual <= alertaVermelhoAbaixo) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+
+                            valorEmPorcentagem = valorAtual / proporcaoMemoria;
+                            if (valorEmPorcentagem <= alertaVermelhoAbaixo) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("RAM - ABAIXO DO LIMITE", idCaptura, 2);
-//                                daoMySQL.adicionarAlerta(alerta);
-                            } else if (valorAtual <= alertaAmareloAbaixo) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorEmPorcentagem <= alertaAmareloAbaixo) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("RAM - PERTO DO LIMITE BAIXO", idCaptura, 1);
-//                                daoMySQL.adicionarAlerta(alerta);
-                            } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorEmPorcentagem >= alertaAmareloAcima && valorEmPorcentagem < alertaVermelhoAcima) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("RAM - PERTO DO LIMITE ACIMA", idCaptura, 1);
-//                                daoMySQL.adicionarAlerta(alerta);
-                            } else if (valorAtual >= alertaVermelhoAcima) {
-                                Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorEmPorcentagem >= alertaVermelhoAcima) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                 Alerta alerta = new Alerta("RAM - ACIMA DO LIMITE ", idCaptura, 2);
-//                                daoMySQL.adicionarAlerta(alerta);
+                                daoSQLServer.adicionarAlerta(alerta);
                             }
 
                             Captura cap03 = null;
-                            Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareDisco.getNome()).get(0).getIdHardware();
+                            Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloIdComputador(3).get(0).getIdHardware();
                             Integer idComponenteDisco = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareDisco).get(0).getIdComponente();
                             for (Volume v : volumes) {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
@@ -241,26 +244,27 @@ public class App {
                                 daoMySQL.adicionarCaptura(cap03);
                                 daoSQLServer.adicionarCaptura(cap03);
                                 valorAtual = cap03.getValor();
+                                valorEmPorcentagem = valorAtual / proporcaoDisco;
                                 if (valorAtual <= alertaVermelhoAbaixo) {
-                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
-//                                    daoMySQL.adicionarAlerta(alerta);
+                                    daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorAtual <= alertaAmareloAbaixo) {
-                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
-//                                    daoMySQL.adicionarAlerta(alerta);
+                                    daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
-                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
-//                                    daoMySQL.adicionarAlerta(alerta);
+                                    daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorAtual >= alertaVermelhoAcima) {
-                                    Integer idCaptura = daoMySQL.exibirIdCaptura().get(0).getIdCaptura();
+                                    Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
-//                                    daoMySQL.adicionarAlerta(alerta);
+                                    daoSQLServer.adicionarAlerta(alerta);
                                 }
                             }
 
-                            Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloNomeHardware(hardwareJanelas.getNome()).get(0).getIdHardware();
+                            Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloIdComputador(4).get(0).getIdHardware();
                             Integer idComponenteJanela = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareJanela).get(0).getIdComponente();
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
                             Captura cap04 = new Captura(valorJanela.doubleValue(), idComputador, idHardwareJanela, idComponenteJanela);
@@ -320,22 +324,23 @@ public class App {
                                 break;
                             case 3:
                                 System.out.println("Visualizando dados de CPU...");
-                                rep.visualizarCPU();
+                                rep.visualizarCPU(idComputador);
                                 break;
                             case 4:
                                 System.out.println("Visualizando dados de RAM...");
-                                rep.visualizarRAM();
+                                rep.visualizarRAM(idComputador);
                                 break;
                             case 5:
                                 System.out.println("Visualizando dados de Disco...");
-                                rep.visualizarDisco();
+                                rep.visualizarDisco(idComputador);
                                 break;
                             case 6:
                                 System.out.println("Visualizando dados de Janelas...");
-                                rep.visualizarJanelas();
+                                rep.visualizarJanelas(idComputador);
                                 break;
                             case 0:
                                 System.out.println("Saindo...");
+                                System.exit(0);
                                 break;
                             default:
                                 System.out.println("Escolha uma opção válida!");
@@ -356,23 +361,24 @@ public class App {
                         switch (opcaoEscolhida2) {
                             case 1:
                                 System.out.println("Visualizando dados de CPU...");
-                                func.visualizarCPU();
+                                func.visualizarCPU(idComputador);
                                 break;
                             case 2:
                                 System.out.println("Visualizando dados de RAM...");
-                                func.visualizarRAM();
+                                func.visualizarRAM(idComputador);
                                 break;
                             case 3:
                                 System.out.println("Visualizando dados de Disco...");
-                                func.visualizarDisco();
+                                func.visualizarDisco(idComputador);
                                 break;
                             case 4:
                                 System.out.println("Visualizando dados de Janelas...");
-                                func.visualizarJanelas();
+                                func.visualizarJanelas(idComputador);
                                 break;
                             default:
                             case 0:
                                 System.out.println("Saindo...");
+                                System.exit(0);
                                 break;
                         }
                     }

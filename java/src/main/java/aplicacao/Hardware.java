@@ -14,6 +14,11 @@ public class Hardware {
         this.idHardware = idHardware;
     }
 
+    public Hardware(Integer idHardware, Integer fkTipoHardware) {
+        this.idHardware = idHardware;
+        this.fkTipoHardware = fkTipoHardware;
+    }
+
     public Hardware(String nome, Double capacidade, Integer fkTipoHardware) {
         this.nome = nome;
         this.especificidade = null;
@@ -22,6 +27,14 @@ public class Hardware {
     }
 
     public Hardware(String nome, String especificidade, Double capacidade, Integer fkTipoHardware) {
+        this.nome = nome;
+        this.especificidade = especificidade;
+        this.capacidade = capacidade;
+        this.fkTipoHardware = fkTipoHardware;
+    }
+
+    public Hardware(Integer idHardware, String nome, String especificidade, Double capacidade, Integer fkTipoHardware) {
+        this.idHardware = idHardware;
         this.nome = nome;
         this.especificidade = especificidade;
         this.capacidade = capacidade;

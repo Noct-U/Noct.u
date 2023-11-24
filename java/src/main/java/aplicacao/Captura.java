@@ -16,6 +16,11 @@ public class Captura {
         this.idCaptura = idCaptura;
     }
 
+    public Captura(Integer idCaptura, Integer fkComputador) {
+        this.idCaptura = idCaptura;
+        this.fkComputador = fkComputador;
+    }
+
     public Captura(Double valor, Integer fkComputador, Integer fkHardware, Integer fkComponente) {
         this.valor = valor;
         this.fkComputador = fkComputador;
