@@ -50,6 +50,13 @@ function excluirComputador(idComputador) {
 function consultarUltimoModelo() {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
 
+    /*  SQL SERVER
+    
+    SELECT TOP 1 * FROM modeloComputador 
+        ORDER BY idModeloComputador DESC;
+        
+    */
+
     var instrucao = `
         SELECT * FROM modeloComputador 
             ORDER BY idModeloComputador DESC LIMIT 1;
@@ -59,6 +66,10 @@ function consultarUltimoModelo() {
 }
 
 function consultarComputadores(idEmpresa,idLocataria) {
+
+    /*  
+    SQL SERVER - MESMO COMANDO
+    */
 
     var instrucao = `
     select modeloComputador.idModeloComputador AS idModelo,modeloComputador.nome as modelo, idComputador,computador.nome as computador,idStatus as idStatusComputador, status.titulo as nomeStatusUsuario, idEmpresaLocataria,empresaLocataria.nome as locataria

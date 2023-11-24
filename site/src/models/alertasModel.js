@@ -2,6 +2,22 @@ var database = require("../database/config")
 
 function consultarAlertasComputador(idComputador) {
 
+    /*
+        SQL SERVER
+
+
+        SELECT TOP 8 alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
+        tipoHardware.nome AS tipoHardware, unidadeMedida.simbolo AS unidadeMedida ,alerta.titulo AS descricaoAlerta, alerta.dtAlerta AS dataAlerta, 
+        tipoAlerta.descricao  FROM alerta 
+            JOIN tipoAlerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta 
+            JOIN captura ON captura.idCaptura = alerta.fkCaptura
+            JOIN computador ON computador.idComputador = captura.fkComputador
+            JOIN hardware ON hardware.idHardware = captura.fkHardware
+            JOIN tipoHardware ON tipoHardware.idTipoHardware = hardware.fkTipoHardware
+            LEFT JOIN unidadeMedida ON unidadeMedida.idUnidadeMedida = tipoHardware.fkUnidadeMedida
+                WHERE captura.fkComputador = ${idComputador} ORDER BY alerta.idAlerta DESC;
+    */
+
     var instrucao = `
         SELECT alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
         tipoHardware.nome AS tipoHardware, unidadeMedida.simbolo AS unidadeMedida ,alerta.titulo AS descricaoAlerta, alerta.dtAlerta AS dataAlerta, 
@@ -21,6 +37,8 @@ function consultarAlertasComputador(idComputador) {
 
 function consultarQuantidadeAlertas(idEmpresa) {
 
+    // SQL SERVER - É O MESMO COMANDO
+
     var instrucao = `
         SELECT COUNT(idAlerta) AS quantidadeAlerta FROM alerta JOIN captura ON captura.idCaptura = alerta.fkCaptura JOIN computador ON computador.idComputador = captura.fkComputador
         WHERE computador.fkEmpresa = ${idEmpresa};
@@ -31,6 +49,8 @@ function consultarQuantidadeAlertas(idEmpresa) {
 
 
 function quantidadeAlertasPorEmpresa(idEmpresa) {
+
+    // SQL SERVER - É O MESMO COMANDO
 
     var instrucao = `
         SELECT empresaLocataria.nome AS nomeLocataria ,COUNT(idAlerta) AS quantidadeAlerta FROM alerta 
@@ -44,6 +64,8 @@ function quantidadeAlertasPorEmpresa(idEmpresa) {
 }
 
 function consultaIrregularidadesModelo(idEmpresa) {
+
+    // SQL SERVER - É O MESMO COMANDO
 
     var instrucao = `
         SELECT modeloComputador.nome AS modelo, COUNT(idAlerta) AS quantidadeAlertas FROM tipoAlerta 
@@ -60,6 +82,8 @@ function consultaIrregularidadesModelo(idEmpresa) {
 
 function consultaIrregularidadesEmpresa(idEmpresa) {
 
+    // SQL SERVER - É O MESMO COMANDO
+
     var instrucao = `
         SELECT empresaLocataria.nome AS modelo, COUNT(idAlerta) AS quantidadeAlertas FROM tipoAlerta 
         JOIN alerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta
@@ -75,6 +99,16 @@ function consultaIrregularidadesEmpresa(idEmpresa) {
 
 function consultaIrregularidadesUltimasHoras(idEmpresa) {
 
+    /*
+        SQL SERVER - *TEM QUE TESTAR ESSE
+        
+        SELECT CONVERT(VARCHAR(2), dtAlerta, 105) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+         JOIN captura ON captura.idCaptura = alerta.fkCaptura
+         JOIN computador ON computador.idComputador = captura.fkComputador
+         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = ${idEmpresa}
+         GROUP BY CONVERT(VARCHAR(2), dtAlerta, 105) ORDER BY hora;
+     */
+
     var instrucao = `
         SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
         JOIN captura ON captura.idCaptura = alerta.fkCaptura
@@ -87,6 +121,16 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
 }
 
 function atualizarGraficoAlertaPorHora(idEmpresa) {
+
+    /*
+        SQL SERVER - *TEM QUE TESTAR ESSE
+        
+        SELECT TOP 1 CONVERT(VARCHAR(2), dtAlerta, 105) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+         JOIN captura ON captura.idCaptura = alerta.fkCaptura
+         JOIN computador ON computador.idComputador = captura.fkComputador
+         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = ${idEmpresa}
+         GROUP BY CONVERT(VARCHAR(2), dtAlerta, 105) ORDER BY hora;
+     */
 
     var instrucao = `
     SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
@@ -102,6 +146,8 @@ function atualizarGraficoAlertaPorHora(idEmpresa) {
 
 
 function consultaIrregularidadesModelo(idEmpresa) {
+
+    // SQL SERVER - É O MESMO COMANDO
 
     var instrucao = `
         SELECT modeloComputador.nome AS modelo, COUNT(idAlerta) AS quantidadeAlertas FROM tipoAlerta 
