@@ -53,11 +53,8 @@ public class App {
             System.out.print("Digite sua senha: ");
             String senha = inText.nextLine();
 
-            System.out.println(daoMySQL.exibirComponentesCadastrados().size());
-
-
             // VALIDANDO SE POSSUI CADASTRO NO BANCO
-            Funcionario func = daoMySQL.exibirUsuario(email);
+            Funcionario func = daoSQLServer.exibirUsuario(email).get(0);
             if (func.getEmail().equals(email) && func.getSenha().equals(senha)) {
                 System.out.println("\n----- Bem vindo - %s -----".formatted(func.getNome()));
 
@@ -70,13 +67,13 @@ public class App {
                             \nCriando computador...
                             Associe esse computador a uma das empresas abaixo
                             ID | EMPRESA | MATRIZ""");
-                    List<EmpresaLocataria> empresas = daoMySQL.exibirEmpresasLocatarias(func.getFkEmpresa());
+                    List<EmpresaLocataria> empresas = daoSQLServer.exibirEmpresasLocatarias(func.getFkEmpresa());
                     for (int i = 0; i < empresas.size(); i++) {
                         EmpresaLocataria empresaDaVez = empresas.get(i);
                         String empresaMatriz;
                         Integer contador = i + 1;
                         if (empresaDaVez.getFkMatriz() != null) {
-                            empresaMatriz = daoMySQL.exibirEmpresasLocatariasMatriz(contador).getNome();
+                            empresaMatriz = daoSQLServer.exibirEmpresasLocatariasMatriz(contador).getNome();
                         } else {
                             empresaMatriz = "-";
                         }
@@ -146,10 +143,10 @@ public class App {
                     System.out.println("Componentes já montados");
                 }
 
-                if (daoMySQL.exibirComputadorAtual(computador.getNome()).getFkStatus().equals(1)) {
+                if (daoSQLServer.exibirComputadorAtual(computador.getNome()).getFkStatus().equals(1)) {
                     System.out.println("Iniciando capturas...");
 
-                    List<Parametro> parametros = (daoMySQL.exibirParametrosDoModeloComputador(computador.getFkModeloComputador()));
+                    List<Parametro> parametros = (daoSQLServer.exibirParametrosDoModeloComputador(computador.getFkModeloComputador()));
                     Double valorInicial;
                     Double valorFinal;
                     Double Range;

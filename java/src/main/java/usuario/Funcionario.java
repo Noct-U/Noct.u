@@ -2,6 +2,7 @@ package usuario;
 
 import aplicacao.Captura;
 import dao.DaoMySQL;
+import dao.DaoSQLServer;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Funcionario {
     }
 
     public void visualizarCPU() {
-        DaoMySQL dao = new DaoMySQL();
+        DaoSQLServer dao = new DaoSQLServer();
         List<Captura> capturas = dao.exibirCapturasDeUmTipo(1);
 
         System.out.println("TIPO | Valor | Data da captura");
@@ -38,7 +39,7 @@ public class Funcionario {
     }
 
     public void visualizarRAM() {
-        DaoMySQL dao = new DaoMySQL();
+        DaoSQLServer dao = new DaoSQLServer();
         List<Captura> capturas = dao.exibirCapturasDeUmTipo(2);
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -47,7 +48,7 @@ public class Funcionario {
     }
 
     public void visualizarDisco() {
-        DaoMySQL dao = new DaoMySQL();
+        DaoSQLServer dao = new DaoSQLServer();
         List<Captura> capturas = dao.exibirCapturasDeUmTipo(3);
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -56,7 +57,7 @@ public class Funcionario {
     }
 
     public void visualizarJanelas() {
-        DaoMySQL dao = new DaoMySQL();
+        DaoSQLServer dao = new DaoSQLServer();
         List<Captura> capturas = dao.exibirCapturasDeUmTipo(4);
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
