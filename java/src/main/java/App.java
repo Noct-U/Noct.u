@@ -245,19 +245,19 @@ public class App {
                                 daoSQLServer.adicionarCaptura(cap03);
                                 valorAtual = cap03.getValor();
                                 valorEmPorcentagem = valorAtual / proporcaoDisco;
-                                if (valorAtual <= alertaVermelhoAbaixo) {
+                                if (valorEmPorcentagem <= alertaVermelhoAbaixo) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
                                     daoSQLServer.adicionarAlerta(alerta);
-                                } else if (valorAtual <= alertaAmareloAbaixo) {
+                                } else if (valorEmPorcentagem <= alertaAmareloAbaixo) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
                                     daoSQLServer.adicionarAlerta(alerta);
-                                } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
+                                } else if (valorEmPorcentagem >= alertaAmareloAcima && valorEmPorcentagem < alertaVermelhoAcima) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
                                     daoSQLServer.adicionarAlerta(alerta);
-                                } else if (valorAtual >= alertaVermelhoAcima) {
+                                } else if (valorEmPorcentagem >= alertaVermelhoAcima) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
                                     Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
                                     daoSQLServer.adicionarAlerta(alerta);
@@ -270,6 +270,24 @@ public class App {
                             Captura cap04 = new Captura(valorJanela.doubleValue(), idComputador, idHardwareJanela, idComponenteJanela);
                             daoMySQL.adicionarCaptura(cap04);
                             daoSQLServer.adicionarCaptura(cap04);
+                            valorAtual = cap04.getValor();
+                            if (valorAtual <= alertaVermelhoAbaixo) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorAtual <= alertaAmareloAbaixo) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                daoSQLServer.adicionarAlerta(alerta);
+                            } else if (valorAtual >= alertaVermelhoAcima) {
+                                Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
+                                Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
+                                daoSQLServer.adicionarAlerta(alerta);
+                            }
 
                             Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
 //                            Log.adicionarMotivo();
