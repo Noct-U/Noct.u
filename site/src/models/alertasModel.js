@@ -102,11 +102,12 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
     /*
         SQL SERVER - *TEM QUE TESTAR ESSE
         
-        SELECT CONVERT(VARCHAR(2), dtAlerta, 105) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+        
+        SELECT DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
          JOIN captura ON captura.idCaptura = alerta.fkCaptura
          JOIN computador ON computador.idComputador = captura.fkComputador
-         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = ${idEmpresa}
-         GROUP BY CONVERT(VARCHAR(2), dtAlerta, 105) ORDER BY hora;
+         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
+         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
      */
 
     var instrucao = `
@@ -125,11 +126,11 @@ function atualizarGraficoAlertaPorHora(idEmpresa) {
     /*
         SQL SERVER - *TEM QUE TESTAR ESSE
         
-        SELECT TOP 1 CONVERT(VARCHAR(2), dtAlerta, 105) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+        SELECT TOP 1 DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
          JOIN captura ON captura.idCaptura = alerta.fkCaptura
          JOIN computador ON computador.idComputador = captura.fkComputador
-         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = ${idEmpresa}
-         GROUP BY CONVERT(VARCHAR(2), dtAlerta, 105) ORDER BY hora;
+         WHERE dtAlerta BETWEEN DATEADD(HOUR, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
+         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
      */
 
     var instrucao = `

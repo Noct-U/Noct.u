@@ -14,6 +14,7 @@ var alertasRouter = require("./src/routes/alertas");
 var empresaRouter = require("./src/routes/empresas");
 var computadorRouter = require("./src/routes/computadores");
 var empresasLocadorasRouter = require("./src/routes/empresasLocadoras");
+var relatorioSemanalRouter = require("./src/routes/relatorioSemanal");
 
 
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use("/alertas", alertasRouter);
 app.use("/empresas", empresaRouter);
 app.use("/computadores", computadorRouter);
 app.use("/empresasLocadoras", empresasLocadorasRouter);
+app.use("/relatorioSemanal", relatorioSemanalRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

@@ -23,7 +23,6 @@ function gerarPDF() {
     y: 0,
     width: widthTela * 0.35,
     windowWidth: widthTela,
-    height: heightTela
   });
 
   

@@ -85,6 +85,19 @@ function consultarComputadores(idEmpresa,idLocataria) {
 
 function consultarDadosGrafico(idComputador,idHardware) {
 
+    /*
+        SQL SERVER 
+    
+        SELECT TOP 1 min,max,capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
+            JOIN hardware ON hardware.idHardware = componente.fkHardware
+            JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+            JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+            JOIN parametro ON tipoHardware.idTipoHardware = parametro.fkTipoHardware
+        WHERE captura.fkComputador = ${idComputador} AND idTipoHardware = ${idHardware}
+        ORDER BY idCaptura DESC;
+
+    */
+
     var instrucao = `
     SELECT min,max,capacidade, valor,idtipoHardware,tipoHardware.nome,unidadeMedida.nome,unidadeMedida.simbolo FROM captura JOIN componente ON fkComponente = idComponente 
     JOIN hardware ON hardware.idHardware = componente.fkHardware
@@ -100,14 +113,21 @@ function consultarDadosGrafico(idComputador,idHardware) {
 
 function consultarDadosGraficoCpu(idComputador,idHardware) {
 
+    /*
+    SELECT TOP 5 * FROM captura JOIN componente ON fkComponente = idComponente 
+        JOIN hardware ON hardware.idHardware = componente.fkHardware
+        JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+        JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
+    ORDER BY dtCaptura DESC; */
+
     var instrucao = `
     SELECT * FROM captura JOIN componente ON fkComponente = idComponente 
-    JOIN hardware ON hardware.idHardware = componente.fkHardware
-    JOIN tipoHardware ON idTipoHardware = fkTipoHardware
-    JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+        JOIN hardware ON hardware.idHardware = componente.fkHardware
+        JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+        JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
     WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
-    ORDER BY dtCaptura DESC 
-    LIMIT 5;
+    ORDER BY dtCaptura DESC LIMIT 5;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -115,6 +135,8 @@ function consultarDadosGraficoCpu(idComputador,idHardware) {
 
 
 function consultarModelos() {
+
+    // SQL SERVER - MESMO COMANDO
 
     var instrucao = `
         SELECT * FROM modeloComputador;
@@ -125,6 +147,8 @@ function consultarModelos() {
 
 function consultarTipoHardwares() {
 
+    // SQL SERVER - MESMO COMANDO
+
     var instrucao = `
         select * from tipoHardware;
     `;
@@ -133,6 +157,8 @@ function consultarTipoHardwares() {
 }
 
 function consultarUnidadeMedida() {
+
+    // SQL SERVER - MESMO COMANDO
 
     var instrucao = `
         select * from unidadeMedida;
@@ -154,6 +180,16 @@ function atualizarComputador(modelo,locataria,idComputador) {
 
 function consultarJanelas(idComputador) {
 
+    /*
+        SQL SERVER
+
+        SELECT TOP 1 * FROM captura 
+            JOIN hardware ON hardware.idHardware = captura.fkHardware
+            JOIN tipoHardware ON tipoHardware.idTipoHardware = hardware.fkTipoHardware
+        WHERE fkComputador = ${idComputador} AND tipoHardware.nome LIKE '%janela%'
+        ORDER BY idCaptura DESC; 
+    */
+
     var instrucao = `
         SELECT * FROM captura 
         JOIN hardware ON hardware.idHardware = captura.fkHardware
@@ -167,6 +203,17 @@ function consultarJanelas(idComputador) {
 }
 
 function atualizarGraficoCpu(idComputador,idHardware) {
+
+    /*
+        SQL SERVER
+
+        SELECT TOP 1 * FROM captura JOIN componente ON fkComponente = idComponente 
+            JOIN hardware ON hardware.idHardware = componente.fkHardware
+            JOIN tipoHardware ON idTipoHardware = fkTipoHardware
+            JOIN unidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+        WHERE captura.fkComputador = ${idComputador} AND idtipoHardware = ${idHardware}
+        ORDER BY dtCaptura DESC; 
+    */
 
     var instrucao = `
     SELECT * FROM captura JOIN componente ON fkComponente = idComponente 

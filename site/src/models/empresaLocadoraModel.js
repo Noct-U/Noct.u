@@ -3,11 +3,13 @@ var database = require("../database/config")
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
 
+    // SQL SERVER - É O MESMO COMANDO
+
     var instrucao = `
-        SELECT * FROM empresa ]
-        JOIN local on empresa.idEmpresa = fkIdempresa 
-        JOIN endereco on fkIdEndereco = endereco.idEndereco
-            WHERE email = '${email}' AND senha = ${senha};
+        SELECT * FROM empresa
+            JOIN local on empresa.idEmpresa = fkIdempresa 
+            JOIN endereco on fkIdEndereco = endereco.idEndereco
+                WHERE email = '${email}' AND senha = ${senha};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,6 +41,8 @@ function cadastrarLocadora(nome, cnpj, fkMatriz, fkEmpresa) {
 function exibirEmpresas(idEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
 
+    // SQL SERVER - MESMO COMANDO
+
     var instrucao = `
         SELECT empresaLocataria.*,empresa.idEmpresa,empresa.nome AS nomeEmpresaOutsorcing FROM empresaLocataria 
         JOIN empresa ON empresa.idEmpresa = empresaLocataria.fkEmpresa 
@@ -50,6 +54,8 @@ function exibirEmpresas(idEmpresa) {
 
 function consultarLocataria(idEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+
+    // SQL SERVER - MESMO COMANDO
 
     var instrucao = `
         SELECT 
