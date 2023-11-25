@@ -1,5 +1,4 @@
 package metodo;
-import aplicacao.Componente;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,30 +22,34 @@ public class Log {
         String nomeArquivo = dateFormat.format(dataAtual) + "_log.txt";
         String caminhoCompleto = CAMINHO_ARQUIVO + nomeArquivo;
 
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String timestamp = LocalDateTime.now().format(dateTimeFormatter);
+
         if (Files.exists(Path.of(caminhoCompleto))) {
-            adicionarMensagens(caminhoCompleto, dataAtual, componenteCPU, componenteRAM, componenteDisco, nome);
+            adicionarMensagens(caminhoCompleto, timestamp, componenteCPU, componenteRAM, componenteDisco, nome);
         } else {
             criarNovoArquivo(caminhoCompleto, dataAtual);
         }
     }
 
-    private static void adicionarMensagens(String caminhoCompleto, LocalDate dataAtual, Double componenteCPU, Double componenteRAM, Double componenteDisco, String nome) {
+    private static void adicionarMensagens(String caminhoCompleto, String timestamp, Double componenteCPU, Double componenteRAM, Double componenteDisco, String nome) {
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(caminhoCompleto), StandardOpenOption.APPEND)) {
 
-            String mensagemSuporte = "Suporte foi solicitado para arrumar  a maquina";
+            String mensagemSuporte = "Suporte foi solicitado para arrumar a maquina";
 
             // Adicionar mensagem relacionada ao consumo máximo de CPU e RAM
             String mensagemConsumo = String.format("O consumo de CPU estourou o máximo sugerido (%d%%). O consumo de RAM atingiu o máximo sugerido (%d%%) de acordo com o nome da máquina.%n", LIMITE_CPU, LIMITE_RAM);
 
-            String dados = String.format("Data/Hora: %s%n Computador: %s %n Consumo CPU: %.2f%nConsumo RAM: %.2f bytes%nConsumo Disco: %.2f GB%n %n",
-                    dataAtual, nome, componenteCPU, componenteRAM, componenteDisco, mensagemConsumo);
+            String dados = String.format("Data/Hora: %s%nComputador: %s %nConsumo CPU: %.2f%nConsumo RAM: %.2f bytes%nConsumo Disco: %.2f GB%n %n",
+                    timestamp, nome, componenteCPU, componenteRAM, componenteDisco, mensagemConsumo);
 
             writer.write(dados);
-//            System.out.println("Mensagem adicionada ao log em: " + caminhoCompleto);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     private static void criarNovoArquivo(String caminhoCompleto, LocalDate dataAtual) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoCompleto))) {

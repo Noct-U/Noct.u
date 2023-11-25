@@ -1,0 +1,288 @@
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 6122725376,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 6122725376,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 6137909248,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 6095945728,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 6088994816,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 9,00
+Consumo RAM: 6059794432,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5844684800,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 5901987840,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5895938048,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5973270528,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 6016032768,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 6013267968,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 6014423040,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5856161792,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5947830272,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23
+ Computador: SUPERVACA 
+ Consumo CPU: 14,00
+Consumo RAM: 5662814208,00 bytes
+Consumo Disco: 103130681344,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:14.020627600
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5945774080,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:14.067405700
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5945774080,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:14.104704500
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5945774080,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:18.773065100
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5939953664,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:23.712197200
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5958598656,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:28.702091500
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5960716288,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:33.738150400
+ Computador: SUPERVACA 
+ Consumo CPU: 9,00
+Consumo RAM: 5977657344,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:38.730311800
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5885652992,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:43.711411100
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5883187200,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:48.702428200
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5878034432,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:53.729560600
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 5886230528,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:21:58.723086300
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 5892317184,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:03.742709200
+ Computador: SUPERVACA 
+ Consumo CPU: 3,00
+Consumo RAM: 5930885120,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:08.841583400
+ Computador: SUPERVACA 
+ Consumo CPU: 16,00
+Consumo RAM: 5894135808,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:13.734091200
+ Computador: SUPERVACA 
+ Consumo CPU: 9,00
+Consumo RAM: 5953683456,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:18.722064500
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5954727936,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:23.713248200
+ Computador: SUPERVACA 
+ Consumo CPU: 9,00
+Consumo RAM: 5945294848,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:28.705364700
+ Computador: SUPERVACA 
+ Consumo CPU: 10,00
+Consumo RAM: 5944090624,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:33.716785
+ Computador: SUPERVACA 
+ Consumo CPU: 3,00
+Consumo RAM: 5950083072,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:38.714548400
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 5945303040,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:43.718373800
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5701881856,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:48.703190500
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5808668672,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:53.717605400
+ Computador: SUPERVACA 
+ Consumo CPU: 6,00
+Consumo RAM: 5853884416,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:22:58.701014100
+ Computador: SUPERVACA 
+ Consumo CPU: 4,00
+Consumo RAM: 5878046720,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:03.687801900
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5893959680,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:08.696428900
+ Computador: SUPERVACA 
+ Consumo CPU: 7,00
+Consumo RAM: 5909725184,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:13.716865900
+ Computador: SUPERVACA 
+ Consumo CPU: 3,00
+Consumo RAM: 5914787840,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:18.738084200
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5909098496,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:23.726247100
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5923880960,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:28.695075400
+ Computador: SUPERVACA 
+ Consumo CPU: 5,00
+Consumo RAM: 5918384128,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:33.722683800
+ Computador: SUPERVACA 
+ Consumo CPU: 8,00
+Consumo RAM: 5908189184,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
+Data/Hora: 2023-11-23T18:23:38.690910600
+ Computador: SUPERVACA 
+ Consumo CPU: 14,00
+Consumo RAM: 5684346880,00 bytes
+Consumo Disco: 103173169152,00 GB
+ 
