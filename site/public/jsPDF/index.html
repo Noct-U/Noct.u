@@ -38,7 +38,8 @@
                     <div class="pdf-title">
                         <span>Relatório Semanal</span>
                         <span class="subtitle" id="nome_empresa"></span>
-                        <span class="subtitle">Período: 01/11/2023 - 07/11/2023</span>
+                        <span class="subtitle">Relatório dos últimos sete dias! </span>
+                        <span class="subtitle"id="relatorio">Último registro em: </span>
                     </div>
                 </div>
                 <div class="pdf-body">
@@ -105,6 +106,10 @@
 </html>
 
 <script>
+
+    var dataAtual = new Date();
+
+    relatorio.innerHTML += `${dataAtual.getDate()}/${dataAtual.getMonth() + 1}/${dataAtual.getFullYear()}`
 
     nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
 
