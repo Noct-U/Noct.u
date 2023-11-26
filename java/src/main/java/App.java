@@ -13,7 +13,7 @@ import usuario.Funcionario;
 import usuario.Representante;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.*;;
 
 //import teste.bot.BotSlack;
 import metodo.Log;
@@ -193,19 +193,19 @@ public class App {
                             daoSQLServer.adicionarCaptura(cap01);
                             if (valorAtual <= alertaVermelhoAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("CPU - ABAIXO DO LIMITE", idCaptura, 2);
+                                Alerta alerta = new Alerta("CPU - ABAIXO DO LIMITE", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual <= alertaAmareloAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE BAIXO", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                Alerta alerta = new Alerta("CPU - PERTO DO LIMITE ACIMA", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("CPU - ACIMA DO LIMITE ", idCaptura, 2);
+                                Alerta alerta = new Alerta("CPU - ACIMA DO LIMITE ", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             }
                             Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloIdComputador(2).get(0).getIdHardware();
@@ -219,19 +219,19 @@ public class App {
                             valorEmPorcentagem = valorAtual / proporcaoMemoria;
                             if (valorEmPorcentagem <= alertaVermelhoAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("RAM - ABAIXO DO LIMITE", idCaptura, 2);
+                                Alerta alerta = new Alerta("RAM - ABAIXO DO LIMITE", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorEmPorcentagem <= alertaAmareloAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE BAIXO", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorEmPorcentagem >= alertaAmareloAcima && valorEmPorcentagem < alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                Alerta alerta = new Alerta("RAM - PERTO DO LIMITE ACIMA", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorEmPorcentagem >= alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("RAM - ACIMA DO LIMITE ", idCaptura, 2);
+                                Alerta alerta = new Alerta("RAM - ACIMA DO LIMITE ", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             }
 
@@ -247,19 +247,19 @@ public class App {
                                 valorEmPorcentagem = valorAtual / proporcaoDisco;
                                 if (valorEmPorcentagem <= alertaVermelhoAbaixo) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                    Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
+                                    Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 1);
                                     daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorEmPorcentagem <= alertaAmareloAbaixo) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 2);
                                     daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorEmPorcentagem >= alertaAmareloAcima && valorEmPorcentagem < alertaVermelhoAcima) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                    Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 2);
                                     daoSQLServer.adicionarAlerta(alerta);
                                 } else if (valorEmPorcentagem >= alertaVermelhoAcima) {
                                     Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                    Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
+                                    Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 1);
                                     daoSQLServer.adicionarAlerta(alerta);
                                 }
                             }
@@ -273,19 +273,19 @@ public class App {
                             valorAtual = cap04.getValor();
                             if (valorAtual <= alertaVermelhoAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("DISCO - ABAIXO DO LIMITE", idCaptura, 2);
+                                Alerta alerta = new Alerta("JANELA - ABAIXO DO LIMITE", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual <= alertaAmareloAbaixo) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE BAIXO", idCaptura, 1);
+                                Alerta alerta = new Alerta("JANELA - PERTO DO LIMITE BAIXO", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaAmareloAcima && valorAtual < alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("DISCO - PERTO DO LIMITE ACIMA", idCaptura, 1);
+                                Alerta alerta = new Alerta("JANELA - PERTO DO LIMITE ACIMA", idCaptura, 2);
                                 daoSQLServer.adicionarAlerta(alerta);
                             } else if (valorAtual >= alertaVermelhoAcima) {
                                 Integer idCaptura = daoSQLServer.exibirIdCaptura().get(0).getIdCaptura();
-                                Alerta alerta = new Alerta("DISCO - ACIMA DO LIMITE ", idCaptura, 2);
+                                Alerta alerta = new Alerta("JANELA - ACIMA DO LIMITE ", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             }
 
@@ -334,6 +334,7 @@ public class App {
                             case 1:
                                 System.out.println("Ativando captura de dados...");
                                 rep.atualizarMaquina(1);
+                                System.exit(0);
                                 break;
                             case 2:
                                 System.out.println("Desativando captura de dados...");

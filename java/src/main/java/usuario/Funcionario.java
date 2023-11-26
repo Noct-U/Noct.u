@@ -4,6 +4,7 @@ import aplicacao.Captura;
 import dao.DaoMySQL;
 import dao.DaoSQLServer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Funcionario {
@@ -14,6 +15,7 @@ public class Funcionario {
     protected Integer fkEmpresaLocadora;
     protected Integer fkEmpresa;
     protected Integer fkStatus;
+    protected List<Captura> capturas;
 
     public Funcionario() {
     }
@@ -26,11 +28,12 @@ public class Funcionario {
         this.fkEmpresaLocadora = fkEmpresaLocadora;
         this.fkEmpresa = fkEmpresa;
         this.fkStatus = fkStatus;
+        this.capturas = new ArrayList<>();
     }
 
     public void visualizarCPU(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(1, idComputador);
+        capturas = dao.exibirCapturasDeUmTipo(1, idComputador);
 
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -40,7 +43,7 @@ public class Funcionario {
 
     public void visualizarRAM(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(2, idComputador);
+        capturas = dao.exibirCapturasDeUmTipo(2, idComputador);
 
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -51,7 +54,7 @@ public class Funcionario {
 
     public void visualizarDisco(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(3, idComputador);
+        capturas = dao.exibirCapturasDeUmTipo(3, idComputador);
 
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
@@ -62,7 +65,7 @@ public class Funcionario {
 
     public void visualizarJanelas(Integer idComputador) {
         DaoSQLServer dao = new DaoSQLServer();
-        List<Captura> capturas = dao.exibirCapturasDeUmTipo(4, idComputador);
+        capturas = dao.exibirCapturasDeUmTipo(4, idComputador);
         System.out.println("TIPO | Valor | Data da captura");
         for (Captura c : capturas) {
             System.out.println("JAN    %.2f    %s".formatted(c.getValor(), c.getDtCaptura()));
