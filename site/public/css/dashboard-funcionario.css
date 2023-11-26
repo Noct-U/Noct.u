@@ -75,7 +75,7 @@ header a {
 }
 
 .div-alertas2 {
-    width: 90%;
+    width: 100%;
     height: 90%;
     display: flex;
     justify-content: space-between;
@@ -384,7 +384,7 @@ header a {
 /* Alertas */
 .div-title-alertas {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     align-items: center;
     text-align: center;
@@ -396,7 +396,7 @@ header a {
 }
 
 .div-notificao {
-    height: 100%;
+    height: 80%;
     width: 100%;
     overflow-y: scroll;
 }
@@ -418,7 +418,7 @@ header a {
 
 .div-caixa-mensagem {
     width: 100%;
-    height: 15%;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;

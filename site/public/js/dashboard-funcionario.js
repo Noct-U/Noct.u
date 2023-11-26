@@ -133,21 +133,7 @@ function plotarGrafico(capacidade,uso,simbolo) {
 
         ]
     };
-    if(disponivel < 10){
-        discoId.style.backgroundColor = "#FF3C3C";
-        estado_disco.innerHTML = "Urgente";
-        estado_disco.style.color = "#FF3C3C";
-    }
-    else if(disponivel < 50){
-        discoId.style.backgroundColor = "#E0CB11";
-        estado_disco.innerHTML = "Atenção";
-        estado_disco.style.color = "#E0CB11";
-    }
-    else{
-        discoId.style.backgroundColor = "#DFDFDF";
-        estado_disco.innerHTML = "Bom";
-        estado_disco.style.color = "#DFDFDF";
-    }
+
 
     dados.datasets[0].data.push(uso);
     dados.datasets[0].data.push(disponivel);
@@ -197,23 +183,7 @@ function plotarGraficoRam(capacidade,uso,simbolo) {
         uso = parseInt((uso / capacidade) * 100);
         var disponivel = parseInt(100 - uso);
 
-        //calculo em porcentagem
-        if(disponivel < 10){
-            ramId.style.backgroundColor = "#FF3C3C";
-            estado_memoria.innerHTML = "Urgente";
-            estado_memoria.style.color = "#FF3C3C";
 
-        }
-        else if(disponivel < 50){
-            ramId.style.backgroundColor = "#E0CB11";
-            estado_memoria.innerHTML = "Atenção";
-            estado_memoria.style.color = "#E0CB11";
-        }
-        else{
-            ramId.style.backgroundColor = "#DFDFDF";
-            estado_memoria.innerHTML = "Bom";
-            estado_memoria.style.color = "#DFDFDF";
-        }
         dados3.datasets[0].data.push(uso);
         dados3.datasets[0].data.push(disponivel);
         const config3 = {
@@ -360,21 +330,7 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
                 document.getElementById(`myChartCanvasGeral2`),
                 config2
             );
-            if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 10)){
-                cpuId.style.backgroundColor = "#FF3C3C";
-                estado_cpu.innerHTML = "Urgente";
-                estado_cpu.style.color = "#FF3C3C";
-            }
-            else if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 20)){
-                cpuId.style.backgroundColor = "#E0CB11";
-                estado_cpu.innerHTML = "Atenção";
-                estado_cpu.style.color = "#E0CB11";
-            }
-            else{
-                cpuId.style.backgroundColor = "#DFDFDF";
-                estado_cpu.innerHTML = "Bom";
-                estado_cpu.style.color = "#DFDFDF";
-            }
+           
         
             proximaAtualizacaoCpu = setTimeout(() => atualizarGraficoCpu(myChart2,dados2), 2000);
 
@@ -458,14 +414,31 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
                     // Formata a data no formato "19/11/2023 23:52:18"
                     const dataFormatada = `${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`;
 
+                    var valor;
+                    var unidadeMedida;
+                    if(ultimosAlertas[i].tipoHardware == "RAM" || ultimosAlertas[i].tipoHardware == "Disco"){
+                        valor = ultimosAlertas[i].valorCaptura/1024/1024/1024;
+                        unidadeMedida = "GB"
+                    }
+                    else{
+                        valor = ultimosAlertas[i].valorCaptura;
+                        if(ultimosAlertas[i].tipoHardware == "Janelas"){
+                            unidadeMedida = ""
+                        }
+                        else{
+                            unidadeMedida = "%"
+                        }
+                    }
                     console.log(dataFormatada);
                         console.log(ultimosAlertas[i].idAlerta)
                         if(ultimosAlertas[i].descricao == "Urgente"){
+
+
                             divNotificacao.innerHTML += `
                                 <div class="div-caixa-mensagem">
                                     <div class="caixa-mensagem perigo">
                                         <p>${ultimosAlertas[i].descricaoAlerta}</p>
-                                        <p>Hardware: ${ultimosAlertas[i].tipoHardware} ${ultimosAlertas[i].valorCaptura} ${ultimosAlertas[i].unidadeMedida}</p>
+                                        <p>Hardware: ${ultimosAlertas[i].tipoHardware} ${valor.toFixed(2)} ${unidadeMedida}</p>
                                         <p>Data: ${dataFormatada}</p>
                                     </div>
                                 </div>
@@ -487,17 +460,88 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
 
                         // Formata a data no formato "19/11/2023 23:52:18"
                         const dataFormatada = `${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`;
-                        
+                        var valor;
+                        var unidadeMedida;
+                        if(ultimosAlertas[i].tipoHardware == "RAM" || ultimosAlertas[i].tipoHardware == "Disco"){
+                            valor = ultimosAlertas[i].valorCaptura/1024/1024/1024;
+                            unidadeMedida = "GB"
+                        }
+                        else{
+                            valor = ultimosAlertas[i].valorCaptura;
+                            if(ultimosAlertas[i].tipoHardware == "Janelas"){
+                                unidadeMedida = ""
+                            }
+                            else{
+                                unidadeMedida = "%"
+                            }
+                        }
                         if(ultimosAlertas[i].descricao == "Atenção"){
+                            
                             divNotificacao.innerHTML += `
                                 <div class="div-caixa-mensagem">
                                     <div class="caixa-mensagem cuidado">
                                         <p>${ultimosAlertas[i].descricaoAlerta}</p>
-                                        <p>Hardware: ${ultimosAlertas[i].tipoHardware} ${ultimosAlertas[i].valorCaptura} ${ultimosAlertas[i].unidadeMedida}</p>
+                                        <p>Hardware: ${ultimosAlertas[i].tipoHardware} ${valor.toFixed(2)}  ${unidadeMedida}</p>
                                         <p>Data: ${dataFormatada}</p>
                                     </div>
                                 </div>
                                 `;
+                        }
+
+                    }          
+                  
+                    for(var i = ultimosAlertas.length - 1; i > 0; i--){
+                        if(ultimosAlertas[i].tipoHardware == "CPU"){
+                            if(ultimosAlertas[i].descricao == "Urgente"){
+                                
+                                cpuId.style.backgroundColor = "#FF3C3C";
+                                estado_cpu.innerHTML = "Urgente";
+                                estado_cpu.style.color = "#FF3C3C";
+                            }
+                            else if(ultimosAlertas[i].descricao == "Atenção"){
+                                cpuId.style.backgroundColor = "#E0CB11";
+                                estado_cpu.innerHTML = "Atenção";
+                                estado_cpu.style.color = "#E0CB11";
+                            }
+                            else{
+                                cpuId.style.backgroundColor = "#DFDFDF";
+                                estado_cpu.innerHTML = "Bom";
+                                estado_cpu.style.color = "#DFDFDF";
+                            }
+                        }
+                        else if(ultimosAlertas[i].tipoHardware == "Disco"){
+                            if(ultimosAlertas[i].descricao == "Urgente"){
+                                discoId.style.backgroundColor = "#FF3C3C";
+                                estado_disco.innerHTML = "Urgente";
+                                estado_disco.style.color = "#FF3C3C";
+                            }
+                            else if(ultimosAlertas[i].descricao == "Atenção"){
+                                discoId.style.backgroundColor = "#E0CB11";
+                                estado_disco.innerHTML = "Atenção";
+                                estado_disco.style.color = "#E0CB11";
+                            }
+                            else{
+                                discoId.style.backgroundColor = "#DFDFDF";
+                                estado_disco.innerHTML = "Bom";
+                                estado_disco.style.color = "#DFDFDF";
+                            }
+                        }
+                        else{
+                            if(ultimosAlertas[i].descricao == "Urgente"){
+                                ramId.style.backgroundColor = "#FF3C3C";
+                                estado_memoria.innerHTML = "Urgente";
+                                estado_memoria.style.color = "#FF3C3C";
+                            }
+                            else if(ultimosAlertas[i].descricao == "Atenção"){
+                                ramId.style.backgroundColor = "#E0CB11";
+                                estado_memoria.innerHTML = "Atenção";
+                                estado_memoria.style.color = "#E0CB11";
+                            }
+                            else{
+                                ramId.style.backgroundColor = "#DFDFDF";
+                                estado_memoria.innerHTML = "Bom";
+                                estado_memoria.style.color = "#DFDFDF";
+                            }
                         }
                     }
                     
@@ -568,15 +612,7 @@ function atualizarGraficoCpu(myChart2,dados2){
 
                     if(json[0].valor != dados2.datasets[0].data[dados2.datasets[0].data.length - 1] || mensagem == dados2.labels[dados2.labels.length - 1]){
 
-                        if(json[0].valor >= (json[0].capacidade - 10)){
-                            cpuId.style.backgroundColor = "#FF3C3C";
-                        }
-                        else if(json[0].valor >= (json[0].capacidade - 20)){
-                            cpuId.style.backgroundColor = "#E0CB11";
-                        }
-                        else{
-                            cpuId.style.backgroundColor = "#DFDFDF";
-                        }
+
                         dados2.labels.shift();
                         dados2.labels.push(mensagem);
                         dados2.datasets[0].data.shift();
@@ -629,15 +665,6 @@ function atualizarGraficoCpu(myChart2,dados2){
                             uso = parseInt((uso / capacidade) * 100);
                             var disponivel = parseInt(100 - uso);
                             
-                            if(disponivel <= 10){
-                                discoId.style.backgroundColor = "#FF3C3C";
-                            }
-                            else if(disponivel <= 50){
-                                discoId.style.backgroundColor = "#E0CB11";
-                            }
-                            else{
-                                discoId.style.backgroundColor = "#DFDFDF";
-                            }
 
                             dados.datasets[0].data.length = 0;
                             dados.datasets[0].data.push(uso);
@@ -686,15 +713,7 @@ function atualizarGraficoCpu(myChart2,dados2){
                                 uso = parseInt((uso / capacidade) * 100);
                                 var disponivel = parseInt(100 - uso);
                                 
-                                if(disponivel < 10){
-                                    ramId.style.backgroundColor = "#FF3C3C";
-                                }
-                                else if(disponivel < 50){
-                                    ramId.style.backgroundColor = "#E0CB11";
-                                }
-                                else{
-                                    ramId.style.backgroundColor = "#DFDFDF";
-                                }
+
                                 dados3.datasets[0].data.length = 0;
                                 dados3.datasets[0].data.push(uso);
                                 dados3.datasets[0].data.push(disponivel);

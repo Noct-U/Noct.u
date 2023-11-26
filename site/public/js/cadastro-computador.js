@@ -342,6 +342,10 @@
                     divHardwares.innerHTML = "";
                     console.log(json);
                     for (var i = 0; i < json.length; i++) {
+                        var simbolo = "";
+                        if(json[i].idTipoHardware != 4 ){
+                            simbolo = "<label>%</label>"
+                        }
                         divHardwares.innerHTML +=
                         `
                             <div class="alinhamento-horizontal alinhamento-cadastro">
@@ -355,8 +359,9 @@
                                     <div class="parametros">
                                         <input type="Number" placeholder="min" class="ipt-parametros dadosInputsCadastroModelo${idComputador}" id="ipt_min${json[i].idTipoHardware}${idComputador} "> </input>
                                         <input type="Number" placeholder="max" class="ipt-parametros dadosInputsCadastroModelo${idComputador}" id="ipt_max${json[i].idTipoHardware}${idComputador}"> </input>
-                                        <input placeholder="Gigabytes..." class="dadosInputsCadastroModelo${idComputador} nomeUnidadeMedida"  id="iptNomeUnidade${json[i].idTipoHardware}${idComputador}"></input>
-                                        <select class="unidade-medida dadosInputsCadastroModelo${idComputador}" id="uniddeMedida${json[i].idTipoHardware}${idComputador}">
+                                        ${simbolo}
+                                        <input placeholder="Gigabytes..." style="display:none" class="dadosInputsCadastroModelo${idComputador} nomeUnidadeMedida"  id="iptNomeUnidade${json[i].idTipoHardware}${idComputador}"></input>
+                                        <select style="display:none" class="unidade-medida dadosInputsCadastroModelo${idComputador}" id="uniddeMedida${json[i].idTipoHardware}${idComputador}">
                                         
                                             
                                         </select>  
