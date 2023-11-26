@@ -135,12 +135,18 @@ function plotarGrafico(capacidade,uso,simbolo) {
     };
     if(disponivel < 10){
         discoId.style.backgroundColor = "#FF3C3C";
+        estado_disco.innerHTML = "Urgente";
+        estado_disco.style.color = "#FF3C3C";
     }
     else if(disponivel < 50){
         discoId.style.backgroundColor = "#E0CB11";
+        estado_disco.innerHTML = "Atenção";
+        estado_disco.style.color = "#E0CB11";
     }
     else{
         discoId.style.backgroundColor = "#DFDFDF";
+        estado_disco.innerHTML = "Bom";
+        estado_disco.style.color = "#DFDFDF";
     }
 
     dados.datasets[0].data.push(uso);
@@ -194,12 +200,19 @@ function plotarGraficoRam(capacidade,uso,simbolo) {
         //calculo em porcentagem
         if(disponivel < 10){
             ramId.style.backgroundColor = "#FF3C3C";
+            estado_memoria.innerHTML = "Urgente";
+            estado_memoria.style.color = "#FF3C3C";
+
         }
         else if(disponivel < 50){
             ramId.style.backgroundColor = "#E0CB11";
+            estado_memoria.innerHTML = "Atenção";
+            estado_memoria.style.color = "#E0CB11";
         }
         else{
             ramId.style.backgroundColor = "#DFDFDF";
+            estado_memoria.innerHTML = "Bom";
+            estado_memoria.style.color = "#DFDFDF";
         }
         dados3.datasets[0].data.push(uso);
         dados3.datasets[0].data.push(disponivel);
@@ -349,12 +362,18 @@ function plotarGraficoCpu(ultimaCaptura,simbolo) {
             );
             if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 10)){
                 cpuId.style.backgroundColor = "#FF3C3C";
+                estado_cpu.innerHTML = "Urgente";
+                estado_cpu.style.color = "#FF3C3C";
             }
             else if(ultimaCaptura[0].valor >= (ultimaCaptura[0].capacidade - 20)){
                 cpuId.style.backgroundColor = "#E0CB11";
+                estado_cpu.innerHTML = "Atenção";
+                estado_cpu.style.color = "#E0CB11";
             }
             else{
                 cpuId.style.backgroundColor = "#DFDFDF";
+                estado_cpu.innerHTML = "Bom";
+                estado_cpu.style.color = "#DFDFDF";
             }
         
             proximaAtualizacaoCpu = setTimeout(() => atualizarGraficoCpu(myChart2,dados2), 2000);

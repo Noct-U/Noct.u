@@ -125,7 +125,7 @@ header a {
 }
 
 .kpis {
-    width: 38vh;
+    width: 35vh;
     height: 80%;
     border-radius: 15px;
     background-color: white;
@@ -186,6 +186,7 @@ header a {
     height: 10vh;
     text-align: center;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -285,7 +286,7 @@ header a {
 }
 
 .componentes-kpi {
-    width: 60%;
+    width: 90%;
     height: 5vh;
     display: flex;
     justify-content: space-between;
