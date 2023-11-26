@@ -252,27 +252,27 @@ function cadastrarModeloEmGeral(req, res) {
     tipoHardWare4 = req.body.tipoHardwareServer4;
 
 
-    //primeiro
-    nomeUnidadeMedida1 = req.body.nomesUnidadesMedidasServer1;
-    idUnidadeMedida1 = req.body.unidadeMedidaServer1;
+    // //primeiro
+    // nomeUnidadeMedida1 = req.body.nomesUnidadesMedidasServer1;
+    idUnidadeMedida1 = 1;
     parametroMin1 = req.body.parametroMinServer1;
     parametroMax1 = req.body.parametroMaxServer1;
     
-    //segundo
-    nomeUnidadeMedida2 = req.body.nomesUnidadesMedidasServer2;
-    idUnidadeMedida2 = req.body.unidadeMedidaServer2;
+    // //segundo
+    // nomeUnidadeMedida2 = req.body.nomesUnidadesMedidasServer2;
+    idUnidadeMedida2 = 1;
     parametroMin2 = req.body.parametroMinServer2;
     parametroMax2 = req.body.parametroMaxServer2;
 
-    //terceiro
-    nomeUnidadeMedida3 = req.body.nomesUnidadesMedidasServer3;
-    idUnidadeMedida3 = req.body.unidadeMedidaServer3;
+    // //terceiro
+    // nomeUnidadeMedida3 = req.body.nomesUnidadesMedidasServer3;
+    idUnidadeMedida3 = 1;
     parametroMin3 = req.body.parametroMinServer3;
     parametroMax3 = req.body.parametroMaxServer3;
     
-    //quarto
-    nomeUnidadeMedida4 = req.body.nomesUnidadesMedidasServer4;
-    idUnidadeMedida4 = req.body.unidadeMedidaServer4;
+    // //quarto
+    // nomeUnidadeMedida4 = req.body.nomesUnidadesMedidasServer4;
+    idUnidadeMedida4 = 1;
     parametroMin4 = req.body.parametroMinServer4;
     parametroMax4 = req.body.parametroMaxServer4;
 
@@ -280,16 +280,16 @@ function cadastrarModeloEmGeral(req, res) {
 
     computadorModel.cadastrarModelo(modelo),
 
-    computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida1,idUnidadeMedida1),
+    // computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida1,idUnidadeMedida1)
     computadorModel.cadastrarParametro(parametroMin1,parametroMax1,idUnidadeMedida1,tipoHardWare1),
 
-    computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida2,idUnidadeMedida2),
+    // computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida2,idUnidadeMedida2)
     computadorModel.cadastrarParametro(parametroMin2,parametroMax2,idUnidadeMedida2,tipoHardWare2),
 
-    computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida3,idUnidadeMedida3),
+    // computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida3,idUnidadeMedida3)
     computadorModel.cadastrarParametro(parametroMin3,parametroMax3,idUnidadeMedida3,tipoHardWare3),
 
-    computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida4,idUnidadeMedida4),
+    // computadorModel.cadastrarUnidadeMedida(nomeUnidadeMedida4,idUnidadeMedida4)
     computadorModel.cadastrarParametro(parametroMin4,parametroMax4,idUnidadeMedida4,tipoHardWare4)
     .then(
             function (ultimaCaptura) {

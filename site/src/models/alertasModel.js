@@ -3,23 +3,8 @@ var database = require("../database/config")
 function consultarAlertasComputador(idComputador) {
 
     /*
-        SQL SERVER
-
-
-        SELECT TOP 8 alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
-        tipoHardware.nome AS tipoHardware, unidadeMedida.simbolo AS unidadeMedida ,alerta.titulo AS descricaoAlerta, alerta.dtAlerta AS dataAlerta, 
-        tipoAlerta.descricao  FROM alerta 
-            JOIN tipoAlerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta 
-            JOIN captura ON captura.idCaptura = alerta.fkCaptura
-            JOIN computador ON computador.idComputador = captura.fkComputador
-            JOIN hardware ON hardware.idHardware = captura.fkHardware
-            JOIN tipoHardware ON tipoHardware.idTipoHardware = hardware.fkTipoHardware
-            LEFT JOIN unidadeMedida ON unidadeMedida.idUnidadeMedida = tipoHardware.fkUnidadeMedida
-                WHERE captura.fkComputador = ${idComputador} ORDER BY alerta.idAlerta DESC;
-    */
-
-    var instrucao = `
-        SELECT alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
+        MySQL 
+SELECT alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
         tipoHardware.nome AS tipoHardware, unidadeMedida.simbolo AS unidadeMedida ,alerta.titulo AS descricaoAlerta, alerta.dtAlerta AS dataAlerta, 
         tipoAlerta.descricao  FROM alerta 
         JOIN tipoAlerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta 
@@ -30,6 +15,21 @@ function consultarAlertasComputador(idComputador) {
         LEFT JOIN unidadeMedida ON unidadeMedida.idUnidadeMedida = tipoHardware.fkUnidadeMedida
         WHERE captura.fkComputador = ${idComputador} ORDER BY alerta.idAlerta DESC
         LIMIT 8;
+
+    */
+
+    var instrucao = `
+        
+    SELECT TOP 8 alerta.idAlerta AS idAlerta ,captura.fkComputador as idComputador , computador.nome AS nomeComputador ,captura.valor AS valorCaptura, 
+    tipoHardware.nome AS tipoHardware, unidadeMedida.simbolo AS unidadeMedida ,alerta.titulo AS descricaoAlerta, alerta.dtAlerta AS dataAlerta, 
+    tipoAlerta.descricao  FROM alerta 
+        JOIN tipoAlerta ON alerta.fkTipoAlerta = tipoAlerta.idTipoAlerta 
+        JOIN captura ON captura.idCaptura = alerta.fkCaptura
+        JOIN computador ON computador.idComputador = captura.fkComputador
+        JOIN hardware ON hardware.idHardware = captura.fkHardware
+        JOIN tipoHardware ON tipoHardware.idTipoHardware = hardware.fkTipoHardware
+        LEFT JOIN unidadeMedida ON unidadeMedida.idUnidadeMedida = tipoHardware.fkUnidadeMedida
+            WHERE captura.fkComputador = ${idComputador} ORDER BY alerta.idAlerta DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -100,22 +100,22 @@ function consultaIrregularidadesEmpresa(idEmpresa) {
 function consultaIrregularidadesUltimasHoras(idEmpresa) {
 
     /*
-        SQL SERVER - *TEM QUE TESTAR ESSE
-        
-        
-        SELECT DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
-         JOIN captura ON captura.idCaptura = alerta.fkCaptura
-         JOIN computador ON computador.idComputador = captura.fkComputador
-         WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
-         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
-     */
-
-    var instrucao = `
+        Mysql - *TEM QUE TESTAR ESSE
         SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
         JOIN captura ON captura.idCaptura = alerta.fkCaptura
         JOIN computador ON computador.idComputador = captura.fkComputador
         WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
         GROUP BY HOUR(dtAlerta) ORDER BY hora;
+        
+        
+     */
+
+    var instrucao = `
+    SELECT DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+    JOIN captura ON captura.idCaptura = alerta.fkCaptura
+    JOIN computador ON computador.idComputador = captura.fkComputador
+    WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
+    GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -124,21 +124,21 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
 function atualizarGraficoAlertaPorHora(idEmpresa) {
 
     /*
-        SQL SERVER - *TEM QUE TESTAR ESSE
+        MySQL - *TEM QUE TESTAR ESSE
         
-        SELECT TOP 1 DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
-         JOIN captura ON captura.idCaptura = alerta.fkCaptura
-         JOIN computador ON computador.idComputador = captura.fkComputador
-         WHERE dtAlerta BETWEEN DATEADD(HOUR, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
-         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
-     */
-
-    var instrucao = `
-    SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+         SELECT HOUR(dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
     JOIN captura ON captura.idCaptura = alerta.fkCaptura
     JOIN computador ON computador.idComputador = captura.fkComputador
     WHERE dtAlerta BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND computador.fkEmpresa = ${idEmpresa}
     GROUP BY HOUR(dtAlerta) ORDER BY hora LIMIT 1	;
+     */
+
+    var instrucao = `
+    SELECT TOP 1 DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+         JOIN captura ON captura.idCaptura = alerta.fkCaptura
+         JOIN computador ON computador.idComputador = captura.fkComputador
+         WHERE dtAlerta BETWEEN DATEADD(HOUR, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
+         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

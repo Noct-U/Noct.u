@@ -265,6 +265,7 @@ function excluir(idEmpresaLocataria) {
  //método chamado na modal.js
  function exibirEmpresasModal(num,locataria) {
     var lista = document.getElementById(`listaEmpresa${num}`);
+    
     fetch("/empresasLocadoras/exibirEmpresas", {
         method: "POST",
         headers: {
@@ -320,6 +321,10 @@ function atualizarLocataria(idLocataria){
     var matriz = document.getElementById(`listaEmpresa${idLocataria}`);
     matriz = matriz.value;
 
+    if(!matriz){
+        matriz = null;
+    }
+
     fetch("/empresasLocadoras/atualizarLocataria", {
         method: "POST",
         headers: {
@@ -338,7 +343,7 @@ function atualizarLocataria(idLocataria){
         }),
     })
         .then(function (resposta) {
-            location.reload();
+            // location.reload();
             // setTimeout(() => {
             //     window.location = "login.html";
             // }, "2000")

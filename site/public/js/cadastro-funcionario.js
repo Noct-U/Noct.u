@@ -431,7 +431,7 @@ function publicar() {
     
     })
     .then(function () {
-        location.reload();
+        // location.reload();
     })
     .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

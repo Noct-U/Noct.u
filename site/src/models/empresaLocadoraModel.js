@@ -90,7 +90,7 @@ function excluirLocataria(idEmpresa) {
 
 function atualizarLocataria(nomeLocataria,cnpjLocataria,matriz,idLocataria) {
     var instrucao = `
-        UPDATE empresaLocataria SET nome = "${nomeLocataria}", cnpj = "${cnpjLocataria}", fkMatriz = ${matriz} WHERE idEmpresaLocataria = ${idLocataria};
+        UPDATE empresaLocataria SET nome = '${nomeLocataria}', cnpj = '${cnpjLocataria}', fkMatriz = ${matriz} WHERE idEmpresaLocataria = ${idLocataria};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

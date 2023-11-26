@@ -61,12 +61,13 @@ function exibirUltimoTipo() {
 
     /* SQL SERVER 
 
-        SELECT TOP 1 * FROM tipoUsuario
-        ORDER BY idTipoUsuario DESC;
-    */
-    var instrucao = `
         SELECT * FROM tipoUsuario
             ORDER BY idTipoUsuario DESC LIMIT 1;
+    */
+    var instrucao = `
+    SELECT TOP 1 * FROM tipoUsuario
+        ORDER BY idTipoUsuario DESC;
+        
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -120,7 +121,7 @@ function atualizarUsuario(idUsuario,nome,email,senha,locataria,tipoUsuario){
 
     //SQL SERVER MESMA SINTAXE
     var instrucao = `
-    UPDATE usuario SET nome = "${nome}", email = "${email}", senha = "${senha}", fkTipoUsuario = ${tipoUsuario}, fkEmpresaLocadora = ${locataria} WHERE idUsuario = ${idUsuario};
+    UPDATE usuario SET nome = '${nome}', email = '${email}', senha = '${senha}', fkTipoUsuario = ${tipoUsuario}, fkEmpresaLocadora = ${locataria} WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

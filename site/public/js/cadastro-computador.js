@@ -179,7 +179,7 @@
                                     <div class="info"><span>Estado:⠀</span> <div class="juntinhos"><span> Crítico⠀</span><div class="alerta"></div></div></div>
                                     <div class="info"></div>
                                     <div class="info btns">
-                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}',${json[i].computador},'${json[i].locataria}')">ACESSAR</button> <button class="btn cinza btn-admin" onclick="abrirModalComportamento2(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho btn-admin" onclick='excluir(${json[i].idComputador})'>EXCLUIR</button></div>
+                                    <button class="btn azul" onclick="acessar(${json[i].idComputador},'${json[i].modelo}','${json[i].computador}','${json[i].locataria}')">ACESSAR</button> <button class="btn cinza btn-admin" onclick="abrirModalComportamento2(${json[i].idComputador},${json[i].idEmpresaLocataria},${json[i].idModelo})">EDITAR</button> <button class="btn vermelho btn-admin" onclick='excluirComputador(${json[i].idComputador})'>EXCLUIR</button></div>
                                     </div>
                                 </div>
                                 
@@ -250,7 +250,7 @@
     }
     
 
-    function excluir(idComputador){
+    function excluirComputador(idComputador){
         fetch("/computadores/excluirComputador", {
             method: "POST",
             headers: {

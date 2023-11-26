@@ -42,13 +42,14 @@ function consultarUltimaEmpresa() {
 
     /*SQL SERVER
 
-         SELECT TOP 1 idEmpresa FROM empresa
-            ORDER BY idEmpresa DESC;
+         SELECT idEmpresa FROM empresa
+            ORDER BY idEmpresa DESC LIMIT 1;
     */
 
     var instrucao = `
-        SELECT idEmpresa FROM empresa
-            ORDER BY idEmpresa DESC LIMIT 1;
+        
+            SELECT TOP 1 idEmpresa FROM empresa
+            ORDER BY idEmpresa DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -58,13 +59,14 @@ function consultarUltimoEndereco() {
 
 
     /* SQL SERVER
-        SELECT TOP 1 idEndereco FROM endereco
-                ORDER BY idEndereco DESC;
+       SELECT idEndereco FROM endereco
+            ORDER BY idEndereco DESC LIMIT 1;
 
     */
     var instrucao = `
-        SELECT idEndereco FROM endereco
-            ORDER BY idEndereco DESC LIMIT 1;
+    SELECT TOP 1 idEndereco FROM endereco
+                ORDER BY idEndereco DESC;
+        
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
