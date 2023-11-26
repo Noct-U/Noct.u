@@ -111,11 +111,11 @@ function consultaIrregularidadesUltimasHoras(idEmpresa) {
      */
 
     var instrucao = `
-    SELECT DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+    SELECT DATEPART(MINUTE, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
     JOIN captura ON captura.idCaptura = alerta.fkCaptura
     JOIN computador ON computador.idComputador = captura.fkComputador
     WHERE dtAlerta BETWEEN DATEADD(DAY, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
-    GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
+    GROUP BY DATEPART(MINUTE, dtAlerta) ORDER BY hora;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -134,11 +134,11 @@ function atualizarGraficoAlertaPorHora(idEmpresa) {
      */
 
     var instrucao = `
-    SELECT TOP 1 DATEPART(HOUR, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
+    SELECT TOP 1 DATEPART(MINUTE, dtAlerta) AS hora,COUNT(dtAlerta) AS qtd_alertas FROM alerta
          JOIN captura ON captura.idCaptura = alerta.fkCaptura
          JOIN computador ON computador.idComputador = captura.fkComputador
-         WHERE dtAlerta BETWEEN DATEADD(HOUR, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
-         GROUP BY DATEPART(HOUR, dtAlerta) ORDER BY hora;
+         WHERE dtAlerta BETWEEN DATEADD(MINUTE, -1, GETDATE()) AND GETDATE() AND computador.fkEmpresa = 1
+         GROUP BY DATEPART(MINUTE, dtAlerta) ORDER BY hora;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

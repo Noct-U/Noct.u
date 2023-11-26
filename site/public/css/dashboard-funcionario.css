@@ -116,7 +116,7 @@ header a {
 
 .div-kpis {
     margin-top: 0vh;
-    width: 65%;
+    width: 60%;
     height: 40%;
     display: flex;
     justify-content: space-around;
@@ -312,7 +312,7 @@ header a {
 }
 
 .div-graficos {
-    width: 64.2%;
+    width: 60%;
     height: 55.1%;
     display: flex;
     justify-content: space-evenly;

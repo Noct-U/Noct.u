@@ -228,7 +228,7 @@ function cadastrar() {
         }),
     })
         .then(function (resposta) {
-            // location.reload();
+            location.reload();
             setTimeout(() => {
                 window.location = "lista-empresa.html";
             }, "100")
@@ -343,10 +343,10 @@ function atualizarLocataria(idLocataria){
         }),
     })
         .then(function (resposta) {
-            // location.reload();
-            // setTimeout(() => {
-            //     window.location = "login.html";
-            // }, "2000")
+            location.reload();
+             setTimeout(() => {
+                 window.location = "lista-empresa.html";
+            }, "2000")
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
