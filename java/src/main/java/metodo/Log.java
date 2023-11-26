@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class Log {
-    private static final String CAMINHO_ARQUIVO = "src/main/java/users/";
+    private static final String CAMINHO_ARQUIVO = System.getProperty("java.io.tmpdir")+"/";
     private static final int LIMITE_CPU = 60;  // Defina o limite máximo de CPU conforme necessário
     private static final int LIMITE_RAM = 60;  // Defina o limite máximo de RAM conforme necessário
 
@@ -50,14 +54,23 @@ public class Log {
     }
 
 
-
     private static void criarNovoArquivo(String caminhoCompleto, LocalDate dataAtual) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoCompleto))) {
+        System.out.println(caminhoCompleto);
+        Set<PosixFilePermission> perms = EnumSet.of(PosixFilePermission.OWNER_READ, PosixFilePermission.OWNER_EXECUTE, PosixFilePermission.OWNER_WRITE);
+        Path of = Path.of(caminhoCompleto);
+        try {
+            Files.createFile(of, PosixFilePermissions.asFileAttribute(perms));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (BufferedWriter writer = Files.newBufferedWriter(of)) {
             System.out.println("log gerado com sucesso em: " + caminhoCompleto);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public static void adicionarMotivo(String mensagem){  // caso queira colocar mensagem do pq do erro
 
