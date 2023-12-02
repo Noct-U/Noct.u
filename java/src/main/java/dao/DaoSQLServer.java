@@ -5,10 +5,11 @@ import jdbc.ConexaoSQLServer;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import usuario.Funcionario;
-
+import metodo.Log;
 import java.util.List;
 
 public class DaoSQLServer {
+    static Log logs = new Log();
     ConexaoSQLServer conexao = new ConexaoSQLServer();
     JdbcTemplate con = conexao.getConexaoDoBanco();
 
@@ -98,13 +99,17 @@ public class DaoSQLServer {
         return computadorDoBanco;
     }
 
+    public List<Hardware> descobrirIdHardware(String nome, Double capacidade) {
+        // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
+        List<Hardware> hardwareDoBanco = con.query("SELECT idHardware FROM hardware WHERE nome = ? AND capacidade = ?", new BeanPropertyRowMapper<>(Hardware.class), nome, capacidade);
+        return hardwareDoBanco;
+    }
+
     public List<Hardware> exibirIdHardwarePeloIdComputador(Integer fkTipoHardware) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"
         List<Hardware> hardwareDoBanco = con.query("SELECT idHardware, nome, especificidade, capacidade, fkTipoHardware FROM hardware WHERE fkTipoHardware = ? ORDER BY idHardware DESC OFFSET 0 ROWS FETCH NEXT 4 ROWS ONLY", new BeanPropertyRowMapper<>(Hardware.class), fkTipoHardware);
         return hardwareDoBanco;
     }
-
-
 
     public List<Componente> exibirIdComponentePeloIdComputadorEIdHardware(Integer fkComputador, Integer fkHardware) {
         // SEMPRE FAZER ESSE BLOCO DE CODIGO PARA PRINTAR NA TELA E GUARDAR NO VETOR "personagensDoBanco"

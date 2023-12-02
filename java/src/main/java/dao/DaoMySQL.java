@@ -6,16 +6,15 @@ import org.h2.command.query.Select;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import usuario.Funcionario;
-
+import metodo.Log;
 import java.util.List;
 
 import metodo.Log;
 
 public class DaoMySQL {
+    static Log logs = new Log();
     ConexaoMySQL conexao = new ConexaoMySQL();
     JdbcTemplate con = conexao.getConexaoDoBanco();
-
-    Log logs = new Log();
 
     public DaoMySQL() {
         this.conexao = conexao;
@@ -24,7 +23,7 @@ public class DaoMySQL {
 
     // FUNÇÕES DE ADICIONAR REGISTROS (INSERT)
     public void adicionarCaptura(Captura captura) {
-        con.update("INSERT IGNORE INTO captura (valor) VALUES (?)", captura.getValor());
+        con.update("INSERT INTO captura (valor) VALUES (?)", captura.getValor());
     }
 
 

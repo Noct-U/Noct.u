@@ -11,14 +11,14 @@ import oshi.SystemInfo;
 import slack.BotSlack;
 import usuario.Funcionario;
 import usuario.Representante;
-
+import metodo.Log;
 import java.io.IOException;
 import java.util.*;;
 
 //import teste.bot.BotSlack;
-import metodo.Log;
 
 public class App {
+    static Log logs = new Log();
     static Hardware hardwareDisco = new Hardware();
 
     public static void main(String[] args) {
@@ -183,7 +183,7 @@ public class App {
                             alertaVermelhoAcima = valorInicial + (range * 0.875);
 
                             Integer idComputador = daoSQLServer.exibirIdComputadorPeloNomeComputador(computador.getNome()).get(0).getIdComputador();
-                            Integer idHardwareCPU = daoSQLServer.exibirIdHardwarePeloIdComputador(1).get(0).getIdHardware();
+                            Integer idHardwareCPU = daoSQLServer.descobrirIdHardware(hardwareCPU.getNome(), hardwareCPU.getCapacidade()).get(0).getIdHardware();
                             Integer idComponenteCPU = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareCPU).get(0).getIdComponente();
 
                             Long valorProcessador = processador.getUso().longValue();
@@ -208,7 +208,7 @@ public class App {
                                 Alerta alerta = new Alerta("CPU - ACIMA DO LIMITE ", idCaptura, 1);
                                 daoSQLServer.adicionarAlerta(alerta);
                             }
-                            Integer idHardwareMemoria = daoSQLServer.exibirIdHardwarePeloIdComputador(2).get(0).getIdHardware();
+                            Integer idHardwareMemoria = daoSQLServer.descobrirIdHardware(hardwareMemoria.getNome(), hardwareMemoria.getCapacidade()).get(0).getIdHardware();
                             Integer idComponenteMemoria = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareMemoria).get(0).getIdComponente();
                             Long valorMemoria = memoria.getEmUso();
                             Captura cap02 = new Captura(valorMemoria.doubleValue(), idComputador, idHardwareMemoria, idComponenteMemoria);
@@ -236,7 +236,7 @@ public class App {
                             }
 
                             Captura cap03 = null;
-                            Integer idHardwareDisco = daoSQLServer.exibirIdHardwarePeloIdComputador(3).get(0).getIdHardware();
+                            Integer idHardwareDisco = daoSQLServer.descobrirIdHardware(hardwareDisco.getNome(), hardwareDisco.getCapacidade()).get(0).getIdHardware();
                             Integer idComponenteDisco = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareDisco).get(0).getIdComponente();
                             for (Volume v : volumes) {
                                 Long valorDisco = v.getTotal() - v.getDisponivel();
@@ -264,7 +264,7 @@ public class App {
                                 }
                             }
 
-                            Integer idHardwareJanela = daoSQLServer.exibirIdHardwarePeloIdComputador(4).get(0).getIdHardware();
+                            Integer idHardwareJanela = daoSQLServer.descobrirIdHardware(hardwareJanelas.getNome(), hardwareJanelas.getCapacidade()).get(0).getIdHardware();
                             Integer idComponenteJanela = daoSQLServer.exibirIdComponentePeloIdComputadorEIdHardware(idComputador, idHardwareJanela).get(0).getIdComponente();
                             Long valorJanela = grupoDeJanelas.getTotalJanelas().longValue();
                             Captura cap04 = new Captura(valorJanela.doubleValue(), idComputador, idHardwareJanela, idComponenteJanela);
@@ -289,8 +289,16 @@ public class App {
                                 daoSQLServer.adicionarAlerta(alerta);
                             }
 
-                            Log.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
-//                            Log.adicionarMotivo();
+                            try {
+                                logs.gerarLog(cap01.getValor(), cap02.getValor(), cap03.getValor(), computador.getNome());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                logs.adicionarMotivo(hardwareCPU.getEspecificidade());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
 
                         }
                     };
