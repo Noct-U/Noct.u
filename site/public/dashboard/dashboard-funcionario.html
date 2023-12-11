@@ -18,10 +18,10 @@
                 </a>
             </div>
             <div class="div-header">
-                <label class="txt-header" for="">SPTECH</label>
+                <label class="txt-header" for="" id="nome_locataria"></label>
             </div>
             <div class="div-header">
-                <label class="txt-header" for="">CARAMICO</label>
+                <label class="txt-header" id="nome_usuario"></label>
             </div>
         </header>
         <div class="div-dash">
@@ -29,53 +29,15 @@
                 <div class="div-alertas2">
                     <div class="alertas">
                         <div class="div-title-alertas">
-                            <h2>HISTÓRICO DE ALERTAS</h2>
+                            <h2>HISTÓRICO DE ALERTAS</h2> 
                         </div>
-                        <div class="div-notificao">
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem perigo">
-                                    <p>CPU - Ocupação acima do limite</p>
-                                </div>
-                            </div>
+                        <div class="div-notificao" id="noticacao">
+                           
+                            
 
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem cuidado">
-                                    <p>CPU - Ocupação proxima do limite</p>
-                                </div>
-                            </div>
-
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem cuidado">
-                                    <p>Memoria - Memória proxima do limite</p>
-                                </div>
-                            </div>
-
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem perigo">
-                                    <p>CPU - Ocupação acima do limite</p>
-                                </div>
-                            </div>
-
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem perigo">
-                                    <p>CPU - Ocupação acima do limite</p>
-                                </div>
-                            </div>
-
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem cuidado">
-                                    <p>Memoria - Memória proxima do limite</p>
-                                </div>
-                            </div>
-
-                            <div class="div-caixa-mensagem">
-                                <div class="caixa-mensagem cuidado">
-                                    <p>CPU - Ocupação proxima do limite</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <button>Lista de Computadores</button>
+                    <button onclick="verListaComputador()">Lista de Computadores</button>
                 </div>
             </div>
             <div class="div-conteudo">
@@ -90,7 +52,7 @@
                             <label for="">Número de série:</label>
                         </div>
                         <div class="sessao-subtitle-kpi div-num-serie">
-                            <label for="" class="num-serie">012391027912X-S</label>
+                            <label for="" class="num-serie" id="num_serie"></label>
                         </div>
                         <div class="div-linha-kpi">
                             <div class="linha-kpi"></div>
@@ -99,23 +61,17 @@
                             <label for="">Modelo:</label>
                         </div>
                         <div class="sessao-subtitle-kpi div-num-serie">
-                            <label for="" class="num-serie">IdealPad</label>
+                            <label for="" class="num-serie" id="modelo_nome">IdealPad</label>
                         </div>
                     </div>
                     <div class="kpis">
                         <div class="sessao-title-kpi">
                             <div class="rotulo-kpi2">
-                                <label for="">Tempo de atividade da máquina</label>
+                                <label for="">Número de janelas em execução </label>
                             </div>
                         </div>
                         <div class="sessao-subtitle-kpi div-num-serie">
-                            <label for="" class="num-serie">04:20:15:53</label>
-                        </div>  
-                        <div class="sessao-subtitle-kpi">
-                            <label for="">Janelas:</label>
-                        </div>
-                        <div class="sessao-subtitle-kpi div-num-serie">
-                            <label for="" class="janelas">05</label>
+                            <label for="" class="janelas" id="janelas"></label>
                         </div>
                     </div>
                     <div class="kpis">
@@ -150,13 +106,20 @@
                         </div>
                         <div class="div-conteudo-kpi4">
                             <div class="componentes-kpi">
-                                <p>CPU</p><div class="cor-grafico cor-graficocomp cor1"></div>
+
+                                <p>CPU</p>
+                                <p id="estado_cpu"></p>
+                                <div class="cor-grafico cor-graficocomp cor3" id="corCpu"></div>
                             </div>
                             <div class="componentes-kpi">
-                                <p>MEMÓRIA</p><div class="cor-grafico cor-graficocomp cor2"></div>
+                                <p>MEMÓRIA</p>
+                                <p id="estado_memoria"></p>
+                                <div class="cor-grafico cor-graficocomp cor3" id="corMemoria"></div>
                             </div>
                             <div class="componentes-kpi">
-                                <p>DISCO</p><div class="cor-grafico cor-graficocomp cor3"></div>
+                                <p>DISCO</p>
+                                <p id="estado_disco"></p>
+                                <div class="cor-grafico cor-graficocomp cor3" id="corDisco"></div>
                             </div>
                         </div>
                     </div>
@@ -198,116 +161,35 @@
         </div>
     </body>
 </html>
+<script src="../js/dashboard-funcionario.js"></script>
 <script>
-    plotarGrafico();
-     function plotarGrafico() {
+    num_serie.innerHTML = sessionStorage.NOME_COMPUTADOR;
+    modelo_nome.innerHTML = sessionStorage.MODELO_COMPUTADOR;
+    nome_locataria.innerHTML = sessionStorage.NOME_EMPRESA_LOCATARIA;
+    nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    
 
-        console.log('iniciando plotagem do gráfico...');
+    setTimeout(function() {
+        buscarAlertas();
+    }, 100);
 
-        // Criando estrutura para plotar gráfico - labels
+    setInterval(function() {
+        buscarAlertas();
+    }, 300000);
 
+    setInterval(function() {
+        buscarJanelas();
+    }, 100)
 
-        // Criando estrutura para plotar gráfico - dados
-        var dados = {
-            labels: ['EM USO', 'DISPONÍVEL'],
-            datasets: [
-                {
-                label: 'Utilização de disco',
-                data: [12, 19],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
-                }
+    setTimeout(function() {
+        obterDadosGraficoCpu(sessionStorage.ID_COMPUTADOR)
+    }, 100)
 
-        ]
-            };
-            const config = {
-                type: 'pie',
-                data: dados,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                       
-                    },
-                    },
-                },
-                };
+    setTimeout(function() {
+        obterDadosGrafico(sessionStorage.ID_COMPUTADOR);
+    }, 100)
 
-            // Adicionando gráfico criado em div na tela
-            let myChart = new Chart(
-                document.getElementById(`myChartCanvasGeral`),
-                config
-            );
-
-
-
-
-            
-        // Criando estrutura para plotar gráfico - dados
-        var dados2 = {
-            labels: ['Há 180 Segs ', 'Há 90 Segs', 'Há 60 Segs', 'Há 30 Segs', 'Agora'],
-            datasets: [
-                {
-                label: 'DESEMPENHO',
-                data: [12, 19,13,45,10,21,55],
-                backgroundColor: ['rgb(96, 116, 188)'],
-                borderWidth: 1,
-                borderColor: '#4F64B0'
-                }
-
-        ]
-            };
-            const config2 = {
-                type: 'line',
-                data: dados2,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                    },
-
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart2 = new Chart(
-                document.getElementById(`myChartCanvasGeral2`),
-                config2
-            );
-
-
-            
-        // Criando estrutura para plotar gráfico - dados
-        var dados3 = {
-            labels: ['EM USO', 'DISPONÍVEL'],
-            datasets: [
-                {
-                label: 'Utilização de disco',
-                data: [12, 19],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
-                }
-
-        ]
-            };
-            const config3 = {
-                type: 'pie',
-                data: dados3,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                       
-                    },
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart3 = new Chart(
-                document.getElementById(`myChartCanvasGeral3`),
-                config3
-            );
-    }
-</script>
+    setTimeout(function() {
+        obterDadosGraficoRam(sessionStorage.ID_COMPUTADOR)
+    }, 100)
+</script>  

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>NOCT.U | CADASTRO</title>
+    <title>NOCT.U | CADASTRO COMPUTADOR</title>
     <link rel="stylesheet" href="../css/cadastro-computador.css">
     <script src="../js/cadastro-computador.js"></script>
 </head>
@@ -15,31 +15,31 @@
             </div>
             <div class="titulo">
                 <div class="marca"><span>NOCT.U</span></div>
-                <div class="descricao"><span>Insira as informações sobre o novo computador</span></div>
+                <div class="descricao"><span>Insira as informações sobre o novo modelo</span></div>
             </div>
             <div class="invisivel"></div>
         </div>
 
         <div class="big">
             <div class="quadrado">
-                <div class="qdd-bloco">
+                <div class="quad">
                     <div class="campo">
-                        <span>Número-Série:</span>
-                        <input type="text" id="ipt_numeroSerie">
+                        <span>Novo modelo:</span>
+                        <input type="text" id="#">
                     </div>
                     <div class="campo">
-                        <span>Empresa associada:</span>
-                        <select >
-                            <option value="emp1">Empresa 1</option>
-                            <option value="emp2">Empresa 2</option>
-                            <option value="emp3">Empresa 3</option>
+                        <span>Selecionar modelo:</span>
+                        <select id="iptselecionario">
+                            <option value="1">IdeaPad</option>
+                            <option value="2">Lenovo</option>
+                            <option value="3">Dell</option>
                         </select>
                     </div>
                 </div>
-                <div class="qdd-bloco">
+                <div class="quad">
                     <div class="campo">
-                        <span>Novo modelo:</span>
-                        <input type="text" id="ipt_modelo">
+                        <span></span>
+                        <input type="text" id="#">
                     </div>
                     <div class="campo">
                         <span>Selecionar modelo:</span>
@@ -61,9 +61,9 @@
                         </svg>
                     </div>
                 </a>
-                    <div class="btn-direita">
-                        <span onclick="cadastrar()">Finalizar</span>
-                    </div>
+                <div class="btn-direita">
+                    <span onclick="cadastrar()">Finalizar</span>
+                </div>
             </div>
         </div>
     </div>

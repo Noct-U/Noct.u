@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Urbanist', sans-serif;
     overflow: hidden;
 }
-body{
+
+body {
     background-color: #6174BB;
     height: 100vh;
     width: 100%;
 }
-header{
+
+header {
     width: 100%;
     height: 12vh;
     border-bottom: 5px solid #D9D9D9;
@@ -19,15 +21,20 @@ header{
     flex-direction: row;
     justify-content: space-around;
 }
-header a{
+#nome_locataria{
+    font-size: 6vh;
+}
+
+header a {
     text-decoration: none;
     display: flex;
     align-items: center;
     color: #DFDFDF;
-    cursor:pointer;
+    cursor: pointer;
     width: fit-content;
 }
-.div-header{
+
+.div-header {
     height: 100%;
     display: flex;
     justify-content: flex-end;
@@ -38,33 +45,37 @@ header a{
     font-size: 6vh;
     color: #D9D9D9;
 }
-.div-header img{
+
+.div-header img {
     width: 13vh;
 }
-.txt-header{
+
+.txt-header {
     font-size: 4vh;
     font-weight: 300;
 }
-.div-dash{
+
+.div-dash {
     width: 300vh;
     height: 80%;
     display: flex;
     flex-direction: row;
-    
+
 }
 
 /* alertas */
 
-.div-alertas{
+.div-alertas {
     width: 17%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 
 }
-.div-alertas2{
-    width: 90%;
+
+.div-alertas2 {
+    width: 100%;
     height: 90%;
     display: flex;
     justify-content: space-between;
@@ -72,7 +83,8 @@ header a{
     flex-direction: column;
 
 }
-.alertas{
+
+.alertas {
     width: 95%;
     height: 80%;
     background-color: #D9D9D9;
@@ -80,7 +92,8 @@ header a{
     border: 5px solid white;
     opacity: 80%;
 }
-.div-alertas2 button{
+
+.div-alertas2 button {
     height: 15%;
     border-radius: 15px;
     width: 98%;
@@ -90,27 +103,29 @@ header a{
 }
 
 /* graficos e kpis */
-.div-conteudo{
+.div-conteudo {
     width: 100%;
     height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
     background-color: #6174BB;
-    
+
 
 }
-.div-kpis{
+
+.div-kpis {
     margin-top: 0vh;
-    width: 65%;
+    width: 60%;
     height: 40%;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
 }
-.kpis{
-    width: 38vh;
+
+.kpis {
+    width: 35vh;
     height: 80%;
     border-radius: 15px;
     background-color: white;
@@ -118,7 +133,8 @@ header a{
     flex-direction: column;
 
 }
-.sessao-title-kpi{
+
+.sessao-title-kpi {
     width: 100%;
     height: 9vh;
     font-size: 18px;
@@ -127,107 +143,127 @@ header a{
     align-items: center;
 }
 
-.sessao-subtitle-kpi{
+.sessao-subtitle-kpi {
     width: 100%;
-    height: 3vh;
+    height: 10vh;
     text-align: center;
     font-weight: 500;
 }
-.div-num-serie{
-    height: 5vh;
+
+.div-num-serie {
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.num-serie{
+
+.num-serie {
     color: #4F64B0;
     font-weight: 600;
 }
-.div-linha-kpi{
+
+.div-linha-kpi {
     width: 100%;
     display: flex;
     justify-content: center;
 
 }
-.linha-kpi{
+
+.linha-kpi {
     border-bottom: 4px solid #4F64B0;
     width: 35%;
 }
-.rotulo-kpi{
+
+.rotulo-kpi {
     width: 60%;
     height: 80%;
     text-align: center;
     color: black;
 }
-.rotulo-kpi2{
+
+.rotulo-kpi2 {
     width: 100%;
     height: 10vh;
     text-align: center;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
-.janelas{
+
+.janelas {
     font-size: 5vh;
     color: #4F64B0;
     font-weight: 700;
 }
-.rotulo-kpi3{
+
+.rotulo-kpi3 {
     text-align: center;
 }
-#myChartCanvasGeral{
+
+#myChartCanvasGeral {
     display: flex;
     flex-direction: column;
 }
-.div-grafico{
+
+.div-grafico {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
 }
-.div-legenda{
+
+.div-legenda {
     width: 30%;
     height: 50%;
     display: flex;
     flex-direction: column;
     margin-left: 1vh;
 }
-.legenda{
+
+.legenda {
     width: 100%;
     height: 40%;
     display: flex;
     align-items: center;
     flex-direction: row;
 }
-.legenda-total{
+
+.legenda-total {
     width: 25%;
     height: 30%;
 }
-.div-grafico1{
+
+.div-grafico1 {
     width: 45%;
     height: 100%;
 
 }
-.cor-grafico{
+
+.cor-grafico {
     width: 2vh;
     height: 2vh;
     background-color: black;
     border-radius: 50%;
 }
-.legenda p{
+
+.legenda p {
     margin-left: 1vh;
     font-size: 9px;
     font-weight: 800;
 }
-.cor-grafico1{
+
+.cor-grafico1 {
     background-color: #4F64B0;
 
 }
-.cor-grafico2{
+
+.cor-grafico2 {
     background-color: #091338;
 
 }
-.sessao-title-kpi4{
+
+.sessao-title-kpi4 {
     width: 100%;
     height: 7vh;
     display: flex;
@@ -235,10 +271,12 @@ header a{
     text-align: center;
     align-items: flex-end;
 }
-.rotulo-kpi4{
+
+.rotulo-kpi4 {
     width: 17vh;
 }
-.div-conteudo-kpi4{
+
+.div-conteudo-kpi4 {
     width: 100%;
     height: 100%;
     display: flex;
@@ -246,29 +284,35 @@ header a{
     flex-direction: column;
     align-items: center;
 }
-.componentes-kpi{
-    width: 60%;
+
+.componentes-kpi {
+    width: 90%;
     height: 5vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
 }
-.cor-graficocomp{
+
+.cor-graficocomp {
     width: 4vh;
     height: 4vh;
 }
-.cor1{
+
+.cor1 {
     background-color: #FF3C3C;
 }
-.cor2{
+
+.cor2 {
     background-color: #E0CB11;
 }
-.cor3{
+
+.cor3 {
     background-color: #DFDFDF;
 }
-.div-graficos{
-    width: 64.2%;
+
+.div-graficos {
+    width: 60%;
     height: 55.1%;
     display: flex;
     justify-content: space-evenly;
@@ -276,7 +320,7 @@ header a{
 }
 
 /* Graficos de baixo */
-.div-grafico-linha{
+.div-grafico-linha {
     width: 60%;
     height: 100%;
     background-color: #FFFFFF;
@@ -286,89 +330,101 @@ header a{
     align-items: center;
     flex-direction: column;
 }
-.div-grafico-linha h2{
+
+.div-grafico-linha h2 {
     font-weight: 500;
     color: #4F64B0;
     font-size: 20px;
 }
-.div-grafico-pizza{
+
+.div-grafico-pizza {
     background-color: #FFFFFF;
     width: 33%;
     height: 100%;
     border-radius: 15px;
 }
-.grafico-linha{
+
+.grafico-linha {
     width: 100%;
     height: 30vh;
     display: flex;
     justify-content: center;
 }
-.legenda-grafico3{
+
+.legenda-grafico3 {
     height: 20%;
 }
-.legenda-grafico3 p{
+
+.legenda-grafico3 p {
     font-size: 12px;
 }
-.div-grafico3{
+
+.div-grafico3 {
     width: 70%;
     height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.div-legenda3{
+
+.div-legenda3 {
     width: 35%;
     margin-left: 1vh;
 }
 
-.rotulo-grafico3{
+.rotulo-grafico3 {
     color: #4F64B0;
 }
-.legenda-total3{
+
+.legenda-total3 {
     height: 40%;
     width: 30%;
 }
 
 /* Alertas */
-.div-title-alertas{
+.div-title-alertas {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     align-items: center;
-    text-align: center;    
+    text-align: center;
 }
-.div-title-alertas h2{
+
+.div-title-alertas h2 {
     color: #5A4F4F;
     font-weight: 500;
 }
-.div-notificao{
-    height: 100%;
+
+.div-notificao {
+    height: 80%;
     width: 100%;
     overflow-y: scroll;
 }
 
-.div-notificao::-webkit-scrollbar{
+.div-notificao::-webkit-scrollbar {
     width: 8px;
 }
 
 .div-notificao::-webkit-scrollbar-track {
     border-radius: 20px;
     background: #bbbbbb;
-  }
-  
-  .div-notificao::-webkit-scrollbar-thumb {
+}
+
+.div-notificao::-webkit-scrollbar-thumb {
     background-color: #646464;
     border-radius: 20px;
     border: 3px solid #bbbbbb;
-  }
-.div-caixa-mensagem{
+}
+
+.div-caixa-mensagem {
     width: 100%;
-    height: 15%;    
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.caixa-mensagem{
+
+.caixa-mensagem {
     width: 90%;
     height: 80%;
     border-radius: 10px;
@@ -376,9 +432,16 @@ header a{
     text-align: center;
     box-shadow: #5A4F4F 1px 1px 3px 1px;
 }
-.perigo{
+
+
+.caixa-mensagem p{
+    font-size: 2vh;
+}
+
+.perigo {
     background-color: #FF3C3C;
 }
-.cuidado{
+
+.cuidado {
     background-color: #E0CB11;
 }

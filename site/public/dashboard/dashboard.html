@@ -1,261 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/dashboard-empresa.css">
-        <!-- scripts do Chart.js - 2022-1 -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Dashboard</title>
-    </head>
-    <body>
-        <header>
-            <div class="div-logo">
-                <img src="../assets/icon/favicon2.svg" alt="">
-            </div>
-            <div class="div-lista">
-                <img src="../assets/lista-funcionarios.png" alt="">
-                <div class="div-link-lista">
-                    <a href="lista-funcionario.html">Lista de Funcionários</a>
-                </div>
-            </div>
-            <div class="div-lista">
-                <img src="../assets/lista-computadores.png" alt="">
-                <div class="div-link-lista">
-                    <a href="lista-computador.html">Lista de Computadores</a>
-                </div>
-            </div>
-            <div class="div-lista">
-                <img src="../assets/lista-empresas.png" alt="">
-                <div class="div-link-lista">
-                    <a href="lista-empresa.html">Lista de Empresas</a>
-                </div>
-            </div>
-            <div class="div-btn-sair">
-                <a href="">
-                    <img src="../assets/img-sair.png" alt="">
-                    <a href="../login.html">Sair</a>
-                </a>
-            </div>
-        </header>
-        <div class="conteudo">
-            <div class="header-horizontal">
-                <div class="label-header">
-                    <label id="nomeEmpresa"  class="lbl-noctu"></label>
-                </div>
-            </div>
-            <div class="div-graficos">
-                <div class="sessao-graficos">
-                    <div class="metade-sessao">
-                        <div class="div-kpis">
-                            <div class="kpi1">
-                                <div class="div-title-kpi1">
-                                    <div class="title-kpi1">
-                                        <label for="">Quantidade atual de alertas</label>
-                                    </div>
-                                </div>
-                                <div class="div-num-alerta">
-                                    <h1>05</h1>
-                                </div>
-                                <label for="" class="dt-analise">Dia da análise: 01/01/2023</label>
-                            </div>
-                            <div class="kpi2">
-                                <div class="cor-kpi2 critico"></div>
-                                <label class="criticoLbl">Crítico</label>
-                                <div class="cor-kpi2 atencao"></div>
-                                <label class="atencaoLbl">Atenção</label>
-                            </div>
-                        </div>
 
-                        <div class="kpi3">
-                            <div class="div-title-kpi3">
-                                <div class="title-kpi">
-                                    <label for="">Empresas que atualmente estáo com maquinas sob alerta</label>
-                                </div>
-                            </div>
-                            <div class="label-kpi3">
-                                <label for="">SPtech</label>
-                                <div>
-                                    <label class="num-vermelho" for="">01</label>
-                                    <label for="" class="num-amarelo">02</label>
-                                </div>
-                            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard-empresa.css">
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
 
-                            <div class="label-kpi3">
-                                <label for="">Elera</label>
-                                <div>
-                                    <label class="num-vermelho" for="">01</label>
-                                    <label for="" class="num-amarelo">02</label>
-                                </div>
-                            </div>
-
-                            <div class="label-kpi3">
-                                <label for="">Simpress</label>
-                                <div>
-                                    <label class="num-vermelho" for="">01</label>
-                                    <label for="" class="num-amarelo">02</label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="metade-sessao">
-                        <div class="div-grafico1">
-                            <div class="div-title-grafico">
-                                <div class="title-grafico1">
-                                    <label for="">
-                                        Irregularidades por modelos de computador (Últimas 24h)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="fundo-grafico1">
-                                <div class="grafico1">
-                                    <canvas id="myChartCanvasGeral"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sessao-graficos">
-                    <div class="metade-sessao">
-                        <div class="div-grafico1 div-grafico2">
-                            <div class="div-title-grafico">
-                                <div class="title-grafico1 title-grafico2">
-                                    <label for="">
-                                        Alertas durante as últimas 24h
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="fundo-grafico1">
-                                <div class="grafico1">
-                                    <canvas id="myChartCanvasGeral2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="metade-sessao">
-                        <div class="div-grafico1 div-grafico3">
-                            <div class="div-title-grafico3">
-                                <div class="title-grafico3">
-                                    <label for="">
-                                        Irregularidades por empresa (Últimas 24h)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="fundo-grafico1">
-                                <div class="grafico1 grafico3">
-                                    <canvas id="myChartCanvasGeral3"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                
+<body>
+    <header>
+        <div class="div-logo">
+            <img src="../assets/icon/favicon2.svg" alt="">
+        </div>
+        <div class="div-lista">
+            <img src="../assets/lista-funcionarios.png" alt="">
+            <div class="div-link-lista">
+                <a href="lista-funcionario.html">Lista de Funcionários</a>
             </div>
         </div>
-    </body>
+        <div class="div-lista">
+            <img src="../assets/lista-computadores.png" alt="">
+            <div class="div-link-lista">
+                <a href="lista-computador.html">Lista de Computadores</a>
+            </div>
+        </div>
+        <div class="div-lista">
+            <img src="../assets/lista-empresas.png" alt="">
+            <div class="div-link-lista">
+                <a href="lista-empresa.html">Lista de Empresas</a>
+            </div>
+        </div>
+        <div class="div-lista">
+            <img src="../assets/file.png" alt="">
+            <div class="div-link-lista">
+                <a href="../jsPDF/index.html">Gerar Relatório Semanal</a>
+            </div>
+        </div>
+        <div class="div-btn-sair">
+            <a href="">
+                <img src="../assets/img-sair.png" alt="">
+                <a href="../login.html">Sair</a>
+            </a>
+        </div>
+    </header>
+    <div class="conteudo">
+        <div class="header-horizontal">
+            <div class="label-header">
+                <label id="nomeEmpresa" class="lbl-noctu"></label>
+            </div>
+        </div>
+        <div class="div-graficos">
+            <div class="sessao-graficos">
+                <div class="metade-sessao">
+                    <div class="div-kpis">
+                        <div class="kpi1">
+                            <div class="div-title-kpi1">
+                                <div class="title-kpi1">
+                                    <label for="">Quantidade atual de alertas</label>
+                                </div>
+                            </div>
+                            <div class="div-num-alerta">
+                                <h1 id="numero_alertas"></h1>
+                            </div>
+                            <label for="" class="dt-analise" id="data_analise"></label>
+                        </div>
+
+                    </div>
+
+                    <div class="kpi3" id="alertas_empresas">
+                        <div class="div-title-kpi3">
+                            <div class="title-kpi">
+                                <label for="">Quantidade de alertas por empresa</label>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                <div class="metade-sessao">
+                    <div class="div-grafico1">
+                        <div class="div-title-grafico">
+                            <div class="title-grafico1">
+                                <label for="">
+                                    Irregularidades por modelos de computador (Últimas 24h)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fundo-grafico1">
+                            <div class="grafico1">
+                                <canvas id="myChartCanvasGeral"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sessao-graficos">
+                <div class="metade-sessao">
+                    <div class="div-grafico1 div-grafico2">
+                        <div class="div-title-grafico">
+                            <div class="title-grafico1 title-grafico2">
+                                <label for="">
+                                    Alertas durante as últimas 24h
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fundo-grafico1">
+                            <div class="grafico1">
+                                <canvas id="myChartCanvasGeral2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metade-sessao">
+                    <div class="div-grafico1 div-grafico3">
+                        <div class="div-title-grafico3">
+                            <div class="title-grafico3">
+                                <label for="">
+                                    Irregularidades por empresa (Últimas 24h)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="fundo-grafico1">
+                            <div class="grafico1 grafico3">
+                                <canvas id="myChartCanvasGeral3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
 </html>
+<script src="../js/dashboard-admin.js"></script>
 <script>
-        nomeEmpresa.innerHTML = sessionStorage.NOME_EMPRESA;
-        var dados = {
-            labels: ['IdeaPad', 'IdeaPad', 'IdeaPad', 'IdeaPad'],
-            datasets: [
-                {
-                label: 'Irregularidades',
-                data: [12, 19,20,12],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
-                }
+    setTimeout(function() {
+        obterDadosGrafico();
+    }, 100)
+    setTimeout(function() {
+        quantidadeAlertas();
+    }, 100)
+    setInterval(function() {
+        quantidadeAlertas();
+    }, 30000)
 
-        ]
-            };
-            const config = {
-                type: 'bar',
-                data: dados,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                    },
-                    },
-                },
-                };
+    setTimeout(function() {
+        quantidadeAlertasPorEmpresa()
+    }, 100)
 
-            // Adicionando gráfico criado em div na tela
-            let myChart = new Chart(
-                document.getElementById(`myChartCanvasGeral`),
-                config
-            );
+    setTimeout(function() {
+        dadosIrregularidadesModelo()
+    }, 100)
 
+    setTimeout(function() {
+        dadosIrregularidadesEmpresa()
+    }, 100)
 
+    setTimeout(function() {
+        dadosIrregularidadesUltimasHoras()
+    }, 100)
 
-            //Grafico de linha 2
-            var dados2 = {
-            labels: ['Há 180 Seg', 'Há 90 Seg', 'Há 60 Seg', 'Há 30 Seg', 'Agora'],
-            datasets: [
-                {
-                label: 'Utilização de disco',
-                data: [12, 19,20,12],
-                backgroundColor: ['red'],
-                borderWidth: 1,
-                borderColor: 'red'
-                }
+    setTimeout(function() {
+        dadosIrregularidadesModelo()
+    }, 100)
 
-        ]
-            };
-            const config2 = {
-                type: 'line',
-                data: dados2,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                       
-                    },
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart2 = new Chart(
-                document.getElementById(`myChartCanvasGeral2`),
-                config2
-            );
-
-
-
-            //Grafico de barra 3
-            var dados3 = {
-            labels: ['SPETCH', 'SPETCH', 'SPETCH', 'SPETCH'],
-            datasets: [
-                {
-                label: 'Irregularidades',
-                data: [12, 19,20,12],
-                backgroundColor: ['rgb(96, 116, 188)','rgb(9, 19, 56)'],
-                borderWidth: 1,
-                }
-
-        ]
-            };
-            const config3 = {
-                type: 'bar',
-                data: dados3,
-                options: {
-                    plugins: {
-                    legend: {
-                        display: false
-                    },
-                    },
-                },
-                };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart3 = new Chart(
-                document.getElementById(`myChartCanvasGeral3`),
-                config3
-            );
-
-
+    
+    
+    
 </script>

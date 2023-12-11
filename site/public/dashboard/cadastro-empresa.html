@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-    <title>NOCT.U | CADASTRO</title>
+    <title>NOCT.U | CADASTRO EMPRESA</title>
     <link rel="stylesheet" href="../css/cadastro-empresa.css">
-    <script src="../js/cadastro-locataria.js"></script>
+    <script src="../js/cadastro-computador.js"></script>
 </head>
 
 <body>
@@ -22,22 +22,24 @@
 
         <div class="big">
             <div class="quadrado">
-                <div class="campo">
-                    <span>Razão social:</span>
-                    <input type="text" id="ipt_nome">
+                <div class="quad">
+                    <div class="campo">
+                        <span>Razão social:</span>
+                        <input type="text" id="ipt_nome">
+                    </div>
+                    <div class="campo">
+                        <span>CNPJ:</span>
+                        <input type="text" id="ipt_cnpj">
+                    </div>
                 </div>
-                <div class="campo">
-                    <span>Telefone:</span>
-                    <input type="text" id="ipt_cnpj">
-                </div>
-                <div class="campo">
-                    <span>CNPJ:</span>
-                    <input type="text" id="ipt_cnpj">
-                </div>
-                <div class="campo">
-                    <span>Matriz:</span>
-                    <select name="Bananinha" id="ipt_empresa">
-                    </select>
+                <div class="quad">
+                   
+                    <div class="campo">
+                        <span>Matriz:</span>
+                        <select name="" id="ipt_empresa">
+                            <option value="null">É a matriz</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="botoes">
@@ -50,12 +52,16 @@
                         </svg>
                     </div>
                 </a>
-                    <div class="btn-direita">
-                        <span onclick="cadastrar()">Finalizar</span>
-                    </div>
+                <div class="btn-direita">
+                    <span onclick="cadastrar()">Finalizar</span>
+                </div>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+<script src="../js/cadastro-locataria.js"></script>
+<script>
+    exibirEmpresas()
+</script>

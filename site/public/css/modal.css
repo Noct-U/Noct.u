@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500&display=swap');
+*{
+    font-family: 'Urbanist', sans-serif;
+}
+.fundo-modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(88, 88, 88, 0.5);
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.caixa-modal{
+    font-family: 'Urbanist', sans-serif;
+    width: 55%;
+    height: 60%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    background-image: url("../assets/mancha-azul.png");
+    background-position: -75% 110%;
+    background-repeat: no-repeat;
+    flex-direction: column;
+}
+.header-modal{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #bbbbbb;
+    font-size: 40px;
+}
+.subtitle-modal{
+    font-size: 3vh;
+}
+.corpo-modal{
+    width: 100%;
+    height: 60%;
+    color: #747474;
+}
+.alinhamento-horizontal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 15vh;
+}
+.alinhamento-cadastro{
+    display: flex;
+    justify-content: space-between;
+}
+.cadastroModelo{
+    display: none;
+}
+.escolhaModelo{
+    display: block;
+}
+
+.cadastro-novoModelo{
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.caixa-hardware{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-cadastro{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.164);
+    height: 60%;
+    width: 85%;
+    overflow-y: scroll;
+}
+.parametros .nomeUnidadeMedida{
+    width: 60%;
+    height: 100%;
+    margin-right: 2%;
+}
+.parametros .ipt-parametros{
+    width: 30%;
+}
+
+.ipt-modal-usuario{
+    width: 20%;
+    height: 100%;
+}
+.modal-usuario{
+    height: 75%;
+}
+/* inputs */
+.caixa-input{
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+    margin: 5vh;
+    
+}
+
+.caixa-input select{
+    font-family: 'Urbanist', sans-serif;
+    width: 40vh;
+    height: 60%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid #8d8d8d;
+    color: #747474;
+
+    
+}
+
+.caixa-input option{
+    color: #747474;
+}
+.caixa-input input{
+    font-family: 'Urbanist', sans-serif;
+    width: 40vh;
+    height: 60%;
+    border-radius: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #8d8d8d;
+    color: #747474;
+}
+
+.parametros{
+    display: flex;
+    flex-direction: row;
+    width: 45vh;
+    height: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.parametros .ipt-parametros{
+    width: 30%;
+    height: 100%;
+    margin: 1vh;
+
+}
+.caixa-input .unidade-medida{
+    width: 30%;
+    height: 100%;
+}
+
+.caixa-input .ipt-hardware{
+    height: 50%;
+    width: 100%;
+
+}
+.rodape-modal{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.rodape-modal button{
+    width: 30vh;
+    height: 60%;
+    margin: 5vh;
+    border-radius: 10px;
+    font-size: 20px;
+}
+#cancelar{
+    background-color: red;
+    color: white;
+}
+#salvar{
+    background-color: #6074BC;
+    color: white;
+    border: 2px solid #747474;
+}
+#novoModelo{
+    background-color: #747474;
+    color: white;
+}

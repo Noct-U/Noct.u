@@ -346,4 +346,172 @@
         }
 
 
-    
+       function listarFuncionario(){
+
+        var locataria = ipt_empresa.value;
+        fetch("/usuarios/consultarFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idLocatariaServer: locataria,
+                idLocadoraServer: sessionStorage.ID_EMPRESA
+
+            }),
+        }).then(function (resposta) {
+                if(resposta.ok){
+                    resposta.json().then(json => {
+                            console.log(json);
+                            div_lista.innerHTML = "";
+                            for(var i = 0; i <= json.length; i++ ){
+
+                                if(json[i].status != 2){
+
+                                        div_lista.innerHTML +=
+                                        `
+                                        <div class="elemento">
+                                            <div class="linhaInfo">
+                                                <div class="info"><span>Nome:⠀</span> <span>${json[i].nomeUsuario}</span></div>
+                                                <div class="info"></div>
+                                                <div class="info"></div>
+                                            </div>
+                                            <div class="linhaInfo">
+                                                <div class="info"><span>E-mail:⠀</span> <span>${json[i].emailUsuario}</span></div>
+                                                <div class="info"></div>
+                                                <div class="info btns"><button class="btn cinza" onclick="abrirModalComportamento2( ${json[i].idUsuario},${json[i].fkEmpresaLocadora},null)">EDITAR</button> <button class="btn vermelho" onclick="excluir(${json[i].idUsuario})">EXCLUIR</button></div>
+                                            </div>
+                                        </div>
+                                            `;
+        
+                                        fundo_modal.innerHTML +=`
+                                            <div class="caixa-modal modal-usuario" id="modal${json[i].idUsuario}" style="display: none;">
+                                                <div class="header-modal">
+                                                    <span id="nome_empresa">${json[i].locataria}</span>
+                                                    <span id="nome_computador" class="subtitle-modal">Nome: ${json[i].nomeUsuario}</span>
+                                                </div>
+        
+                                                <div class="corpo-modal">
+                                                <div class="alinhamento-horizontal">
+                                                        <div class="caixa-input">
+                                                            <label for="">Alterar Nome</label>
+                                                            <input class="ipt-modal-usuario" type="text" value="${json[i].nomeUsuario}" "placeholder="Nome..." id="ipt_nome_usuario${json[i].idUsuario}"> </input>
+                                                        </div>
+                                                        <div class="caixa-input">
+                                                            <label for="">Empresa</label>
+                                                            <select class="ipt-modal-usuario" name="" id="listaEmpresa${json[i].idUsuario}">
+                                                            </select>
+                                                        </div>
+                                                </div>
+                                                <div class="alinhamento-horizontal">
+                                                        <div class="caixa-input">
+                                                            <label for="">Alterar Email</label>
+                                                            <input class="ipt-modal-usuario" type="text" value="${json[i].emailUsuario}" "placeholder="Email..." id="ipt_email_usuario${json[i].idUsuario}"> </input>
+                                                        </div>
+                                                        <div class="caixa-input">
+                                                            <label for="">Alterar Senha</label>
+                                                            <input class="ipt-modal-usuario" type="text" value="${json[i].senhaUsuario}" "placeholder="Senha..." id="ipt_senha_usuario${json[i].idUsuario}"> </input>
+                                                        </div>
+                                                </div>
+                                                <div class="alinhamento-horizontal">
+                                                        <div class="caixa-input">
+                                                            <label for="">Alterar Tipo do Usuário</label>
+                                                            <select id="ipt_tipo_usuario${json[i].idUsuario}">
+                                                                <option value="1">ADMIN</option>
+                                                                <option value="2">COMUM</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                </div>
+                                                
+        
+                    
+                                                </div>
+        
+                                                <div class="rodape-modal">
+                                                    <button onclick="fecharModal(${json[i].idUsuario})" id="cancelar">Cancelar</button>
+                                                    <button id="salvar" onclick="atualizarUsuario(${json[i].idUsuario})">Salvar</button>
+                                                </div>
+        
+                                            </div>
+                                    `; 
+                                }
+                            }
+
+
+                        
+                        })
+                }   
+                
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+       }
+
+       function excluir(idUsuario){
+            fetch("/usuarios/excluirUsuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    //Dados da primeira pag de cadastro
+                    idUsuarioServer : idUsuario
+                }),
+            
+            })
+            .then(function () {
+                location.reload();
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+       }
+
+       function atualizarUsuario(idUsuario){
+        var nome = document.getElementById(`ipt_nome_usuario${idUsuario}`);
+        nome = nome.value;
+
+        var locataria = document.getElementById(`listaEmpresa${idUsuario}`);
+        locataria = locataria.value;
+        
+        var email = document.getElementById(`ipt_email_usuario${idUsuario}`);
+        email = email.value;
+
+        var senha = document.getElementById(`ipt_senha_usuario${idUsuario}`);
+        senha = senha.value;
+
+        var tipoUsuario = document.getElementById(`ipt_tipo_usuario${idUsuario}`);
+        tipoUsuario = tipoUsuario.value;
+
+        fetch("/usuarios/atualizarUsuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idUsuarioServer : idUsuario,
+                nomeServer : nome,
+                locatariaServer : locataria,
+                emailServer : email,
+                senhaServer : senha,
+                tipoServer : tipoUsuario
+            }),
+        
+        })
+        .then(function () {
+            location.reload();
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+       }

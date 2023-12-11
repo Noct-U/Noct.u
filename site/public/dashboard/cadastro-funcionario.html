@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>NOCT.U | CADASTRO</title>
+    <title>NOCT.U | CADASTRO FUNCIONÁRIO</title>
     <link rel="stylesheet" href="../css/cadastro-funcionario.css">
-    <script src="../js/cadastro-usuario.js"></script>
+    
 </head>
 
 <body>
@@ -15,39 +15,47 @@
             </div>
             <div class="titulo">
                 <div class="marca"><span>NOCT.U</span></div>
-                <div class="descricao"><span>Insira as informações sobre o novo funcionário</span></div>
+                <div class="descricao"><span>Cadastrar Novo Funcionário</span></div>
             </div>
             <div class="invisivel"></div>
         </div>
 
         <div class="big">
             <div class="quadrado">
-                <div class="campo">
-                    <span>Nome:</span>
-                    <input type="text" id="iptNome">
+                <div class="quad">
+                    <div class="campo">
+                        <span>Nome:</span>
+                        <input type="text" id="ipt_nome_usuario">
+                    </div>
+                    <div class="campo">
+                        <span>Email:</span>
+                        <input type="text" id="ipt_email_usuario">
+                    </div>
                 </div>
-                <div class="campo">
-                    <span>Email:</span>
-                    <input type="text" id="iptEmail">
+                <div class="quad">
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input type="text" id="ipt_senha_usuario">
+                    </div>
+                    <div class="campo">
+                        <span>Confirme a senha:</span>
+                        <input type="text" id="#">
+                    </div>
                 </div>
-                <div class="campo">
-                    <span>Senha:</span>
-                    <input type="text" id="iptSenha">
-                </div>
-                <div class="campo">
-                    <span>Tipo do usuário:</span>
-                    <select id="iptFuncionario">
-                        <option value="tip1">Comum</option>
-                        <option value="tip2">Gestor</option>
-                    </select>
-                </div>
-                <div class="campo">
-                    <span>Empresa de alocação:</span>
-                    <select id="iptEmpresas">
-                            <option value="1">IdeaPad</option>
-                            <option value="2">Lenovo</option>
-                            <option value="3">Dell</option>
-                    </select>
+                <div class="quad">
+                    <div class="campo">
+                        <span>Tipo do usuário:</span>
+                        <select id="ipt_selecionar_user">
+                            <option value="1">ADMIN</option>
+                            <option value="2">COMUM</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <span>Empresa de alocação:</span>
+                        <select id="ipt_empresa">
+ 
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="botoes">
@@ -60,13 +68,19 @@
                         </svg>
                     </div>
                 </a>
-                    <div class="btn-direita">
-                        <span onclick="cadastrar()">Finalizar</span>
-                    </div>
-              
+                <div class="btn-direita">
+                    <span onclick="cadastrarFunc()">Finalizar</span>
+                </div>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+<script src="../js/cadastro-funcionario.js"></script>
+<script src="../js/cadastro-locataria.js"></script>
+<script>
+
+    
+    exibirEmpresas()
+</script>

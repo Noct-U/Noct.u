@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="pre-visu">
+            <h1>
+                Relatório semanal de alertas
+            </h1>
+            <h2>
+                Salve suas informações em pdf
+            </h2>
+        </div>
+
+        <button onclick="gerarPDF()" class="btn_gerar-pdf">Salvar em PDF</button>
+        <div class="pdf-border">
+            <div id="pdfPage" class="pdf">
+                <div class="pdf-header">
+                    <div class="pdf-logo">
+                        <img class="logo" src="../assets/icon/coruja_cabeça_-_editada-removebg-preview 1 (1).png">
+                    </div>
+                    <div class="pdf-title">
+                        <span>Relatório Semanal</span>
+                        <span class="subtitle" id="nome_empresa"></span>
+                        <span class="subtitle">Relatório dos últimos sete dias! </span>
+                        <span class="subtitle"id="relatorio">Último registro em: </span>
+                    </div>
+                </div>
+                <div class="pdf-body">
+                    <div class="pdf-container">
+                        <div class="pdf-kpis">
+                            <div class="container-kpi">
+                                <div class="kpi urgente">
+                                    <span id="resultUrgente"> </span>
+                                </div>
+                                <div class="kpi-descricao">
+                                    <p>Alertas <span class="urgente">"URGENTES"</span> durante a semana</p>
+                                </div>
+                            </div>
+                            <div class="container-kpi">
+                                <div class="kpi atencao">
+                                    <span id="resultAtencao"> </span>
+                                </div>
+                                <div class="kpi-descricao">
+                                    <p>Alertas <span class="atencao">"ATENÇÃO"</span> durante a semana</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pdf-table">
+                        <div class="table-title">
+                            <p>Lista dos computadores com alertas</p>
+                        </div>
+                        <table id="lista_alertas">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade de Alertas</th>
+                                <th>Empresa atual</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pdf-table">
+                        <div class="table-title">
+                            <p>Componentes que mais tiveram alertas durante a semana</p>
+                        </div>
+                        <table id="lista_componentes">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade de Alertas</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pdf-table">
+                        <div class="table-title">
+                            <p>Empresas que mais tiveram problemas durante a semana</p>
+                        </div>
+                        <table id="lista_empresas">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade de Alertas</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var dataAtual = new Date();
+
+    relatorio.innerHTML += `${dataAtual.getDate()}/${dataAtual.getMonth() + 1}/${dataAtual.getFullYear()}`
+
+    nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
+
+    window.onload = obterLista();
+
+    function obterLista() {
+        listarComputadores();
+        listarComponentes();
+        listarEmpresa();
+        buscarKpi();
+    }
+
+    function buscarKpi() {
+
+        fetch("/relatorioSemanal/buscarKpi", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        resultUrgente.innerHTML = json[0].qtd
+                        resultAtencao.innerHTML = json[1].qtd
+                    })
+                }
+
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function listarEmpresa() {
+
+        fetch("/relatorioSemanal/listarEmpresas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(json[0].idAlerta);
+                        for (var i = 0; i < json.length; i++) {
+                            lista_empresas.innerHTML += `
+                                <tr>
+                                    <th>${json[i].nomeE}</th>
+                                    <th>${json[i].qtd}</th>
+                                </tr>
+                            `;
+                        }
+                    })
+                }
+
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function listarComputadores() {
+
+        fetch("/relatorioSemanal/listarAlertas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        for (var i = 0; i < json.length; i++) {
+                            lista_alertas.innerHTML += `
+                            <tr>
+                                <th>${json[i].nomePC}</th>
+                                <th>${json[i].alertas}</th>
+                                <th>${json[i].empresa}</th>
+                            </tr>
+                        `;
+                        }
+                    })
+                }
+
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function listarEmpresa() {
+
+        fetch("/relatorioSemanal/listarEmpresas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(json[0].idAlerta);
+                        for (var i = 0; i < json.length; i++) {
+                            lista_empresas.innerHTML += `
+                            <tr>
+                                <th>${json[i].nomeE}</th>
+                                <th>${json[i].qtd}</th>
+                            </tr>
+                        `;
+                        }
+                    })
+                }
+
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+
+    function listarComponentes() {
+
+        fetch("/relatorioSemanal/listarComponentes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                //Dados da primeira pag de cadastro
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(json[0].idAlerta);
+                        for (var i = 0; i < json.length; i++) {
+                            lista_componentes.innerHTML += `
+                            <tr>
+                                <th>${json[i].nomeH}</th>
+                                <th>${json[i].qtd}</th>
+                            </tr>
+                        `;
+                        }
+                    })
+                }
+
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+</script>
