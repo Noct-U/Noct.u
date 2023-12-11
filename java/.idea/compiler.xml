@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="noctu-looca" />
+        <module name="java" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="login-java" target="17" />
+      <module name="noctu-looca" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
